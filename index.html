@@ -1,0 +1,167 @@
+<meta charset="utf-8">
+<title>משרות מערכות מידע — לוח אישי</title>
+<style>
+  :root{
+    --bg:#0f172a; --panel:#1e293b; --row:#1a2433; --row2:#1e293b; --ink:#e2e8f0; --muted:#94a3b8;
+    --accent:#38bdf8; --good:#34d399; --line:#334155; --near:#0f2e23;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl}
+  header{padding:26px 20px 16px;background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid var(--line)}
+  h1{margin:0 0 6px;font-size:25px}
+  .sub{color:var(--muted);font-size:14px}
+  .meta{color:var(--muted);font-size:12.5px;margin-top:9px;line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+  .filters button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:20px;
+    padding:6px 15px;font-size:13.5px;cursor:pointer}
+  .filters button:hover{border-color:var(--accent)}
+  .filters button.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
+  .count{color:var(--muted);font-size:13px;margin:0 0 10px}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  thead th{position:sticky;top:0;background:#0b1220;color:var(--muted);text-align:right;font-weight:600;
+    padding:11px 12px;border-bottom:2px solid var(--line);font-size:13px;white-space:nowrap}
+  tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+  tbody tr{background:var(--row)}
+  tbody tr:nth-child(even){background:var(--row2)}
+  tbody tr:hover{background:#26344a}
+  tbody tr.near{background:var(--near)}
+  tbody tr.near:hover{background:#15402f}
+  .title a{color:var(--ink);text-decoration:none;font-weight:600}
+  .title a:hover{color:var(--accent)}
+  .desc{color:var(--muted);font-size:13px;max-width:340px;line-height:1.5}
+  .loc{white-space:nowrap}
+  .km{display:block;color:var(--good);font-size:11.5px;margin-top:3px}
+  .yes{color:var(--good);font-weight:600}
+  .no{color:var(--muted)}
+  .na{color:#64748b;font-size:12px}
+  .src{font-size:12px;background:#334155;padding:3px 9px;border-radius:6px;white-space:nowrap}
+  .secbar{margin:20px 0 8px;font-size:14px;color:var(--good);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .secbar.far{color:var(--muted)}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:22px;border-top:1px solid var(--line);margin-top:26px;line-height:1.8}
+  @media(max-width:760px){.desc{max-width:none}}
+</style>
+
+<header>
+  <div class="wrap" style="padding-bottom:0">
+    <h1>🎯 משרות מערכות מידע — לוח אישי</h1>
+    <div class="sub">מנהל/ת מערכות מידע · CIO · מנהל/ת אפליקציות · IT/IS Manager</div>
+    <div class="meta">
+      מקורות: JobMaster · AllJobs · דרושים IL · LinkedIn &nbsp;|&nbsp; עודכן: 22.06.2026<br>
+      ממוין לפי מרחק אווירי משוער מ<b>צרופה</b> — קודם עד 30 ק"מ, אחר כך לפי מרחק עולה.
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="filters" id="filters">
+    <button class="active" data-f="all">הכל</button>
+    <button data-f="near">עד 30 ק"מ ✓</button>
+    <button data-f="hybrid">היברידי</button>
+    <button data-f="JobMaster">JobMaster</button>
+    <button data-f="AllJobs">AllJobs</button>
+    <button data-f="דרושים">דרושים IL</button>
+  </div>
+  <div class="count" id="count"></div>
+
+  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
+  <table>
+    <thead><tr>
+      <th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר</th><th>חברה</th>
+    </tr></thead>
+    <tbody id="tbody-near"></tbody>
+  </table>
+
+  <div class="secbar far">📌 מעבר ל-30 ק"מ — לפי מרחק עולה</div>
+  <table>
+    <thead><tr>
+      <th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר</th><th>חברה</th>
+    </tr></thead>
+    <tbody id="tbody-far"></tbody>
+  </table>
+</div>
+
+<footer>
+  הקישורים מובילים ישירות למודעה במקור — מומלץ לוודא פרטים לפני הגשה.<br>
+  המרחקים אומדן אווירי בלבד (לא מרחק נסיעה). הנתונים נאספו אוטומטית; ייתכנו אי-דיוקים בשם חברה/מיקום.<br>
+  LinkedIn בגרסת אורח החזיר תוצאות חלשות — לחיפוש איכותי שם נדרשת התחברות אישית.
+</footer>
+
+<script>
+  const JOBS=[
+    // ---- within 30 km ----
+    {title:"IT Director – Business Applications",company:"חברה חסויה (השמה)",loc:"קיסריה / יוקנעם / חיפה",km:12,hybrid:"na",src:"AllJobs",
+     desc:"הובלה אסטרטגית של מערך האפליקציות העסקיות בארגון",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8689027"},
+    {title:"מנהל/ת מערכות מידע – חברה תעשייתית",company:"לירון ואליס גיוס והשמה",loc:"חיפה / ק.מוצקין / כרמיאל",km:25,hybrid:"no",src:"AllJobs",
+     desc:"ניהול מערך מערכות המידע וה-IT והובלת פרויקטים טכנולוגיים",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8703157"},
+
+    // ---- beyond 30 km ----
+    {title:"מנהל/ת מערכות מידע · CIO",company:"ישומים לבכירים",loc:"עכו",km:45,hybrid:"na",src:"AllJobs",
+     desc:"אחריות מלאה על אסטרטגיית הטכנולוגיה, תשתיות IT ומערכות הארגון",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8639251"},
+    {title:"מנהל/ת מערכות מידע ומחשוב",company:"JOMBA HR",loc:"הוד השרון",km:55,hybrid:"na",src:"דרושים",
+     desc:"ניהול מערכות מידע ומחשוב בחברה מובילה בתחומה",url:"https://www.drushim.co.il/job/37202402/734bcd31/"},
+    {title:"מנהל/ת מערכות מידע (היברידי)",company:"Jomba HR",loc:"הוד השרון",km:55,hybrid:"yes",src:"AllJobs",
+     desc:"5+ שנות ניסיון במערכות מידע, הובלת מערך IT",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8677683"},
+    {title:"מנהל/ת מערכות מידע",company:"אלביט מערכות",loc:"רמת השרון",km:62,hybrid:"na",src:"JobMaster",
+     desc:"הובלת מערכות הליבה החטיבתיות — ERP, MES, PLM",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9781929"},
+    {title:"מנהל/ת אפליקציות ומנתח/ת מערכות",company:"טופ סופטוור",loc:"רמת השרון / חולון",km:62,hybrid:"na",src:"JobMaster",
+     desc:"עבודה עם משתמשים, תהליכים ומערכות מידע במולטינשיונל",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9744554"},
+    {title:"מנהל/ת מערכות מידע, דאטה ויישום AI",company:"זרועות ברקן",loc:"אריאל",km:72,hybrid:"na",src:"דרושים",
+     desc:"הובלת תחום מערכות מידע, דאטה ויישום מערכות AI",url:"https://www.drushim.co.il/job/37334889/0ba1c908/"},
+    {title:"מנהל מערכות מידע ראשי",company:"נת\"ע — תחבורה עירונית",loc:"חולון",km:75,hybrid:"yes",src:"JobMaster",
+     desc:"ניהול מערך מערכות המידע — משרה ציבורית",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9722939"},
+    {title:"מנהל IT",company:"חברה גלובלית (מוצרי צריכה)",loc:"שוהם",km:75,hybrid:"na",src:"JobMaster",
+     desc:"ניהול מערך ה-IT בחברה גלובלית מובילה",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9737902"},
+    {title:"מנהל מערכות מידע ראשי",company:"חברה חסויה",loc:"שוהם",km:75,hybrid:"yes",src:"JobMaster",
+     desc:"ניהול ראשי של מערך מערכות המידע",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9783932"},
+    {title:"Information Systems Manager",company:"וויופוינט השמות",loc:"שוהם / מודיעין / לוד",km:78,hybrid:"na",src:"AllJobs",
+     desc:"Lead and manage the company's enterprise information systems",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8666201"},
+    {title:"מנהל/ת מערכות מידע ו-IT",company:"חברה חסויה",loc:"יבנה",km:88,hybrid:"na",src:"JobMaster",
+     desc:"ניהול מערכות מידע ו-IT, דגש על SAP B1",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9791811"},
+    {title:"מנהל מערכות מידע, IT ורשתות",company:"אהרון יוסף ובניו",loc:"גן יבנה",km:88,hybrid:"na",src:"AllJobs",
+     desc:"ניהול מערכות מחשוב, רשתות תקשורת ותשתיות",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8642585"},
+    {title:"מנהל/ת מערכות מידע גלובלי",company:"חברה גלובלית",loc:"צפת",km:90,hybrid:"na",src:"JobMaster",
+     desc:"הובלת מערך מערכות המידע הגלובלי — אסטרטגיה, תשתיות, אבטחת מידע",url:"https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2&ezor=31"},
+  ];
+
+  const hb={yes:'<span class="yes">כן</span>',no:'<span class="no">לא</span>',na:'<span class="na">לא צוין</span>'};
+  function row(j){
+    return `<tr class="${j.km<=30?'near':''}" data-hybrid="${j.hybrid}" data-src="${j.src}" data-near="${j.km<=30}">
+      <td class="title"><a href="${j.url}" target="_blank">${j.title}</a></td>
+      <td class="desc">${j.desc}</td>
+      <td class="loc">${j.loc}<span class="km">~${j.km} ק"מ</span></td>
+      <td>${hb[j.hybrid]}</td>
+      <td><span class="src">${j.src}</span></td>
+      <td>${j.company}</td></tr>`;
+  }
+  const sorted=[...JOBS].sort((a,b)=>a.km-b.km);
+  document.getElementById('tbody-near').innerHTML=sorted.filter(j=>j.km<=30).map(row).join('');
+  document.getElementById('tbody-far').innerHTML =sorted.filter(j=>j.km>30).map(row).join('');
+
+  const countEl=document.getElementById('count');
+  function applyFilter(f){
+    let n=0;
+    document.querySelectorAll('tbody tr').forEach(tr=>{
+      let show=true;
+      if(f==='near')show=tr.dataset.near==='true';
+      else if(f==='hybrid')show=tr.dataset.hybrid==='yes';
+      else if(f!=='all')show=tr.dataset.src===f;
+      tr.style.display=show?'':'none';
+      if(show)n++;
+    });
+    document.querySelectorAll('.secbar').forEach(s=>{
+      const tb=s.nextElementSibling.querySelector('tbody');
+      const any=[...tb.querySelectorAll('tr')].some(tr=>tr.style.display!=='none');
+      s.style.display=any?'':'none';
+      s.nextElementSibling.style.display=any?'':'none';
+    });
+    countEl.textContent=`מציג ${n} משרות`;
+  }
+  document.getElementById('filters').addEventListener('click',e=>{
+    if(e.target.tagName!=='BUTTON')return;
+    document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));
+    e.target.classList.add('active');
+    applyFilter(e.target.dataset.f);
+  });
+  applyFilter('all');
+</script>
