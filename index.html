@@ -3,412 +3,395 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>דרושים — מנהל/ת מערכות מידע | 23.06.2026</title>
+<title>משרות מנהל מערכות מידע / CIO — עדכון יומי</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; direction: rtl; }
-a { color: #58a6ff; text-decoration: none; }
-a:hover { text-decoration: underline; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0d1117;color:#c9d1d9;font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.55;direction:rtl}
+a{color:#58a6ff;text-decoration:none}
+a:hover{text-decoration:underline;color:#79c0ff}
 
-#header { background: #161b22; border-bottom: 2px solid #30363d; padding: 24px 20px 16px; text-align: center; }
-#header h1 { font-size: 20px; color: #e6edf3; margin-bottom: 10px; }
-.updated-line { font-size: 17px; font-weight: 700; color: #f0883e; background: #1f1a0e; border: 1px solid #9e6a03; border-radius: 6px; display: inline-block; padding: 6px 18px; margin-bottom: 10px; }
-.sources-line { font-size: 12px; color: #8b949e; margin-top: 4px; }
+header{background:linear-gradient(160deg,#161b22 0%,#0d1117 100%);padding:20px 28px 14px;border-bottom:2px solid #1f4068}
+.update-line{font-size:1.18em;font-weight:700;color:#3fb950;margin-bottom:8px}
+h1{font-size:1.4em;color:#58a6ff;margin-bottom:8px}
+.sources-line{font-size:.9em;color:#8b949e}
+.sources-line strong{color:#e3b341}
 
-.stats-bar { background: #161b22; padding: 10px 20px; display: flex; gap: 24px; border-bottom: 1px solid #30363d; flex-wrap: wrap; }
-.stat-item { font-size: 13px; color: #8b949e; }
-.stat-num { color: #e6edf3; font-weight: bold; font-size: 18px; margin-left: 4px; }
+.filters{padding:12px 28px;background:#161b22;border-bottom:1px solid #21262d;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.filters-label{font-size:.85em;color:#8b949e;margin-left:4px}
+.filter-btn{background:#21262d;color:#8b949e;border:1px solid #30363d;border-radius:20px;padding:5px 16px;cursor:pointer;font-size:.85em;transition:.15s;font-family:inherit}
+.filter-btn:hover{background:#1a2f4a;color:#58a6ff;border-color:#1f6feb}
+.filter-btn.active{background:#1f4068;color:#58a6ff;border-color:#388bfd;font-weight:600}
 
-.filters { background: #161b22; padding: 12px 20px; border-bottom: 1px solid #30363d; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-.filters-label { font-size: 12px; color: #8b949e; margin-left: 6px; white-space: nowrap; }
-.filter-btn { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 5px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-family: inherit; transition: all 0.15s; }
-.filter-btn:hover { border-color: #58a6ff; color: #58a6ff; }
-.filter-btn.active { background: #0d419d; border-color: #1f6feb; color: #e6edf3; font-weight: bold; }
+main{padding:16px 28px 24px}
+.sec-hdr{display:flex;align-items:center;gap:10px;margin:18px 0 10px;padding:10px 14px;border-radius:8px}
+.sec-near{background:#0d2818;border-right:4px solid #3fb950;color:#3fb950}
+.sec-far{background:#161b22;border-right:4px solid #388bfd;color:#58a6ff}
+.sec-hdr h2{font-size:1.05em;font-weight:700}
+.sec-cnt{font-size:.82em;opacity:.75;margin-right:6px}
 
-main { padding: 16px 20px; }
-.section-header { font-size: 14px; font-weight: bold; padding: 10px 16px; border-radius: 8px; margin-bottom: 12px; margin-top: 20px; }
-.section-near { background: #0d2d1a; color: #3fb950; border: 1px solid #238636; }
-.section-far  { background: #1d2127; color: #8b949e; border: 1px solid #30363d; margin-top: 28px; }
+.twrap{overflow-x:auto;margin-bottom:4px}
+table{width:100%;border-collapse:collapse;min-width:640px}
+thead th{background:#161b22;color:#58a6ff;padding:9px 11px;text-align:right;font-weight:600;font-size:.86em;border-bottom:2px solid #21262d;white-space:nowrap}
+tbody td{padding:9px 11px;border-bottom:1px solid #21262d;vertical-align:top;font-size:.88em}
+tbody tr:hover td{background:#1c2128}
+.ctit{min-width:165px}.cdesc{min-width:195px;color:#c9d1d9}.cloc{min-width:115px;white-space:nowrap}
+.chyb{min-width:78px;text-align:center}.csrc{min-width:88px;text-align:center}.cco{min-width:130px}
 
-.table-wrap { overflow-x: auto; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 8px; }
-table { width: 100%; border-collapse: collapse; min-width: 720px; }
-thead th { background: #161b22; color: #8b949e; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 10px 14px; text-align: right; border-bottom: 1px solid #30363d; white-space: nowrap; }
-tbody tr { border-bottom: 1px solid #1c2128; transition: background 0.1s; }
-tbody tr:last-child { border-bottom: none; }
-tbody tr:hover { background: #161b22; }
-tbody tr.near-row { background: rgba(35,134,54,0.06); }
-tbody tr.near-row:hover { background: rgba(35,134,54,0.12); }
-td { padding: 10px 14px; vertical-align: top; font-size: 13px; }
+.badge{display:inline-block;border-radius:12px;padding:2px 9px;font-size:.79em;font-weight:600;white-space:nowrap}
+.byes{background:#0d2818;color:#3fb950;border:1px solid #238636}
+.bunk{background:#21262d;color:#8b949e;border:1px solid #30363d}
+.bsrc{background:#161b22;color:#8b949e;border:1px solid #30363d;font-size:.78em}
 
-.cell-title { font-weight: 600; min-width: 170px; }
-.cell-title a { color: #58a6ff; font-weight: 600; }
-.cell-desc { color: #8b949e; font-size: 12px; line-height: 1.6; min-width: 210px; max-width: 300px; }
-.cell-location { white-space: nowrap; min-width: 140px; }
-.cell-hybrid { text-align: center; min-width: 80px; }
-.cell-source { min-width: 90px; }
-.cell-company { min-width: 150px; }
+.dkm{display:block;font-size:.77em;margin-top:1px}
+.dnear{color:#3fb950;font-weight:700}.dmid{color:#e3b341}.dfar{color:#f85149}
 
-.km { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; margin-right: 3px; white-space: nowrap; }
-.km-near    { background: #0d2d1a; color: #3fb950; border: 1px solid #238636; }
-.km-mid     { background: #271d0e; color: #e3b341; border: 1px solid #9e6a03; }
-.km-far     { background: #1d2127; color: #8b949e; border: 1px solid #30363d; }
-.km-unknown { background: #1d2127; color: #484f58; border: 1px solid #21262d; font-style: italic; }
-
-.hb-yes     { color: #3fb950; font-weight: bold; }
-.hb-no      { color: #8b949e; }
-.hb-unknown { color: #484f58; font-style: italic; }
-
-.src { display: inline-block; padding: 2px 9px; border-radius: 12px; font-size: 11px; white-space: nowrap; }
-.src-alljobs  { background: rgba(13,65,157,0.25);  color: #79c0ff; border: 1px solid rgba(56,139,253,0.4); }
-.src-drushim  { background: rgba(110,64,201,0.25); color: #d2a8ff; border: 1px solid rgba(188,140,255,0.35); }
-.src-jobmaster{ background: rgba(158,106,3,0.25);  color: #e3b341; border: 1px solid rgba(158,106,3,0.5); }
-.src-linkedin { background: rgba(10,102,194,0.25); color: #79c0ff; border: 1px solid rgba(10,102,194,0.5); }
-.src-jobify   { background: rgba(26,127,55,0.25);  color: #56d364; border: 1px solid rgba(56,211,100,0.35); }
-.src-indeed   { background: rgba(218,124,0,0.25);  color: #f0a030; border: 1px solid rgba(218,124,0,0.5); }
-.src-muni     { background: rgba(60,60,100,0.25);  color: #a0a0d0; border: 1px solid rgba(100,100,180,0.4); }
-.src-direct   { background: rgba(40,80,40,0.25);   color: #70c070; border: 1px solid rgba(60,130,60,0.4); }
-
-footer { background: #161b22; border-top: 1px solid #30363d; padding: 18px 20px; margin-top: 24px; }
-.footer-notes { list-style: none; }
-.footer-notes li { font-size: 12px; color: #6e7681; padding: 3px 0; }
-.footer-notes li::before { content: "• "; color: #484f58; }
-.footer-links { margin-top: 14px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
-.footer-links-label { font-size: 12px; color: #8b949e; }
-.footer-links a { font-size: 12px; color: #58a6ff; }
-
-.hidden { display: none !important; }
+footer{margin-top:10px;padding:14px 28px;background:#161b22;border-top:1px solid #21262d;color:#6e7681;font-size:.83em;line-height:1.7}
+footer strong{color:#8b949e}
+.hidden{display:none!important}
+@media(max-width:680px){main,.filters,header,footer{padding-left:10px;padding-right:10px}thead th,tbody td{padding:7px 6px}}
 </style>
 </head>
 <body>
 
-<div id="header">
-  <h1>&#128203; לוח משרות אישי — מנהל/ת מערכות מידע &nbsp;|&nbsp; CIO &nbsp;|&nbsp; מנהל/ת אפליקציות</h1>
-  <div class="updated-line">&#128260; עודכן לאחרונה: Tuesday, 23.06.2026, 11:58</div>
-  <div class="sources-line">מקורות שנבדקו:
-    <a href="https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2" target="_blank">JobMaster</a>
-    &middot;
-    <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545" target="_blank">AllJobs</a>
-    &middot;
-    <a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank">Drushim</a>
-    &middot;
-    <a href="https://il.linkedin.com/jobs/%D7%9E%D7%A0%D7%94%D7%9C-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-jobs" target="_blank">LinkedIn</a>
-    &middot; ועוד
+<header>
+  <div class="update-line">🔄 עודכן לאחרונה: Tuesday, 23.06.2026, 12:30</div>
+  <h1>🗂️ משרות מנהל מערכות מידע / CIO / IT Manager — 23.06.2026</h1>
+  <div class="sources-line">
+    מקורות שנסרקו: <strong>JobMaster</strong> · <strong>AllJobs</strong> · <strong>Drushim</strong> · <strong>LinkedIn</strong> · SVT.jobs · JobKarov · Mploy · Jobify · hfhosp.org · railcareer
+    &nbsp;|&nbsp; בסיס: מושב צרופה, הוף הכרמל (32.59°N, 34.94°E)
   </div>
-</div>
-
-<div class="stats-bar">
-  <div class="stat-item"><span class="stat-num">22</span> משרות סה"כ</div>
-  <div class="stat-item"><span class="stat-num">4</span> עד 30 ק"מ מצרופה</div>
-  <div class="stat-item"><span class="stat-num">1</span> היברידי מפורש</div>
-  <div class="stat-item"><span class="stat-num">4</span> מקורות ראשיים + כלים נוספים</div>
-</div>
+</header>
 
 <div class="filters">
-  <span class="filters-label">סנן לפי:</span>
-  <button class="filter-btn active" data-filter="all">הכל</button>
-  <button class="filter-btn" data-filter="near">עד 30 ק"מ</button>
-  <button class="filter-btn" data-filter="hybrid">היברידי</button>
-  <button class="filter-btn" data-filter="alljobs">AllJobs</button>
-  <button class="filter-btn" data-filter="drushim">Drushim</button>
-  <button class="filter-btn" data-filter="jobmaster">JobMaster</button>
-  <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
-  <button class="filter-btn" data-filter="jobify">Jobify/Indeed</button>
+  <span class="filters-label">סינון:</span>
+  <button class="filter-btn active" onclick="applyFilter('all',this)">🔍 הכל</button>
+  <button class="filter-btn" onclick="applyFilter('near',this)">📍 עד 30 ק"מ</button>
+  <button class="filter-btn" onclick="applyFilter('hybrid',this)">🏠 היברידי</button>
+  <button class="filter-btn" onclick="applyFilter('src-jobmaster',this)">JobMaster</button>
+  <button class="filter-btn" onclick="applyFilter('src-alljobs',this)">AllJobs</button>
+  <button class="filter-btn" onclick="applyFilter('src-drushim',this)">Drushim</button>
+  <button class="filter-btn" onclick="applyFilter('src-linkedin',this)">LinkedIn</button>
+  <button class="filter-btn" onclick="applyFilter('src-svt',this)">SVT.jobs</button>
+  <button class="filter-btn" onclick="applyFilter('src-jobkarov',this)">JobKarov</button>
+  <button class="filter-btn" onclick="applyFilter('src-mploy',this)">Mploy</button>
+  <button class="filter-btn" onclick="applyFilter('src-jobify',this)">Jobify</button>
 </div>
 
 <main>
+  <div class="sec-hdr sec-near" id="hdr-near">
+    <h2>⭐ עד 30 ק"מ מצרופה</h2>
+    <span class="sec-cnt" id="cnt-near"></span>
+  </div>
+  <div class="twrap" id="wrap-near">
+    <table><thead><tr>
+      <th class="ctit">שם המשרה</th>
+      <th class="cdesc">תיאור התפקיד</th>
+      <th class="cloc">מיקום</th>
+      <th class="chyb">היברידי</th>
+      <th class="csrc">אתר המקור</th>
+      <th class="cco">שם החברה</th>
+    </tr></thead><tbody id="body-near"></tbody></table>
+  </div>
 
-<!-- ===== NEAR SECTION ===== -->
-<div class="section-header section-near" id="sec-near">&#9989; עד 30 ק"מ מצרופה — 4 משרות</div>
-<div class="table-wrap" id="tbl-near">
-<table>
-<thead>
-<tr>
-  <th>שם המשרה</th>
-  <th>תיאור התפקיד</th>
-  <th>מיקום</th>
-  <th>היברידי</th>
-  <th>אתר המקור</th>
-  <th>שם החברה</th>
-</tr>
-</thead>
-<tbody>
-
-<tr class="near-row job-row" data-dist="12" data-hybrid="no" data-src="alljobs">
-  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=&region=6" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">ניהול אסטרטגיית IT, תשתיות, מערכות מידע ואבטחת מידע; משרה מלאה ממשרדי החברה באזור השרון</td>
-  <td class="cell-location">קיסריה <span class="km km-near">~12 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
-  <td class="cell-company">קבוצת רימון</td>
-</tr>
-
-<tr class="near-row job-row" data-dist="12" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/search/%D7%9E%D7%A0%D7%94%D7%9C%20%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA%20%20%D7%9E%D7%99%D7%93%D7%A2/" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">ניהול מערכות מידע ובניית אסטרטגיה טכנולוגית בחברת תוכנה מובילה בצפון</td>
-  <td class="cell-location">מושב שרונה <span class="km km-near">~12 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">פנורה (Panora)</td>
-</tr>
-
-<tr class="near-row job-row" data-dist="28" data-hybrid="no" data-src="alljobs">
-  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=434&region=" target="_blank" rel="noopener">מנהל/ת מערכות מידע (CIO)</a></td>
-  <td class="cell-desc">הובלה וניהול תחום ה-IT, בניית אסטרטגיה, ניהול תהליכים חוצי-ארגון, הטמעת מערכות; ניסיון עם Mobibox חובה, Priority יתרון; 5+ שנים, אנגלית גבוהה</td>
-  <td class="cell-location">יקנעם / צפון <span class="km km-near">~28 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
-  <td class="cell-company">חברת ייצור גלובלית</td>
-</tr>
-
-<tr class="near-row job-row" data-dist="28" data-hybrid="no" data-src="alljobs">
-  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=502&region=" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">ניהול מערכות מידע, Priority ERP, ייזום וייישום מערכות חדשות, ייעוץ אבטחת מידע; 5+ שנות ניסיון ב-Priority</td>
-  <td class="cell-location">יקנעם עילית <span class="km km-near">~28 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
-  <td class="cell-company">מניה ג'ינס</td>
-</tr>
-
-</tbody>
-</table>
-</div>
-
-<!-- ===== FAR SECTION ===== -->
-<div class="section-header section-far" id="sec-far">&#128205; מעבר ל-30 ק"מ מצרופה — לפי מרחק עולה</div>
-<div class="table-wrap" id="tbl-far">
-<table>
-<thead>
-<tr>
-  <th>שם המשרה</th>
-  <th>תיאור התפקיד</th>
-  <th>מיקום</th>
-  <th>היברידי</th>
-  <th>אתר המקור</th>
-  <th>שם החברה</th>
-</tr>
-</thead>
-<tbody>
-
-<tr class="job-row" data-dist="35" data-hybrid="no" data-src="alljobs">
-  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=&region=1" target="_blank" rel="noopener">מנהל/ת מערכות מידע (CIO)</a></td>
-  <td class="cell-desc">הובלה וניהול תחום ה-IT בחברת ייצור גלובלית; אסטרטגיה, ניהול תהליכים רוחביים, פיתוח והטמעת מערכות חדשות, ניהול עובדים; ניסיון בארגון גלובלי חובה</td>
-  <td class="cell-location">עמק יזרעאל / צפון <span class="km km-mid">~35 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
-  <td class="cell-company">חברת ייצור גלובלית (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="35" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.mploy.co.il/job/tagged/%D7%9E%D7%A0%D7%94%D7%9C-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-cio" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">אחריות על מערכות המידע הארגוניות בחברה גלובלית למכשור רפואי; תכנון תקציב, שיפור תהליכים, ניהול פרויקטים מאפיון ועד הטמעה, ניהול צוות ויועצים</td>
-  <td class="cell-location">צפון ישראל <span class="km km-mid">~35 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">חברת מכשור רפואי גלובלית (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="36" data-hybrid="no" data-src="jobify">
-  <td class="cell-title"><a href="https://hfhosp.org/he/%D7%9E%D7%A0%D7%94%D7%9C%D7%AA-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-%D7%9E%D7%A0%D7%9E%D7%A8" target="_blank" rel="noopener">מנהל/ת מערכות מידע (מנמ"ר)</a></td>
-  <td class="cell-desc">ניהול מערכות מידע רפואיות ותשתיות IT של בית חולים; תפקיד מנמ"ר מלא בסביבה רפואית — פרסום ישיר באתר ביה"ח</td>
-  <td class="cell-location">נצרת <span class="km km-mid">~36 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-no">לא (בי"ח)</span></td>
-  <td class="cell-source"><span class="src src-direct">ישיר — hfhosp.org</span></td>
-  <td class="cell-company">בית חולים המשפחה הקדושה</td>
-</tr>
-
-<tr class="job-row" data-dist="50" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/subcat/231/area/21-22/" target="_blank" rel="noopener">מנהל/ת IT ומערכות מידע</a></td>
-  <td class="cell-desc">ניהול מחלקת IT כולל תשתיות, חומרה/תוכנה, תקשורת ואבטחת מידע; ניהול צוות; חברה גלובלית עם פעילות בגליל</td>
-  <td class="cell-location">כרמיאל <span class="km km-mid">~50 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">חברה גלובלית (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="52" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank" rel="noopener">מנהל/ת IT</a></td>
-  <td class="cell-desc">ניהול תחום ה-IT בחברת הייטק מובילה; אחריות מלאה על תשתיות, Help Desk ואבטחת מידע; 3–4 שנות ניסיון נדרשות</td>
-  <td class="cell-location">כפר סבא <span class="km km-mid">~52 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">Matrix</td>
-</tr>
-
-<tr class="job-row" data-dist="60" data-hybrid="no" data-src="linkedin">
-  <td class="cell-title"><a href="https://il.linkedin.com/jobs/%D7%9E%D7%A0%D7%94%D7%9C-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-jobs" target="_blank" rel="noopener">CIO / ראש IT &amp; MIS</a></td>
-  <td class="cell-desc">תפקיד ניהולי בכיר של מערכות IT ומידע בחברה, פורסם לאחרונה — כנס LinkedIn לצפייה בפרטים מלאים</td>
-  <td class="cell-location">הרצליה <span class="km km-mid">~60 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-linkedin">LinkedIn</span></td>
-  <td class="cell-company">חברה (לא נחשפה)</td>
-</tr>
-
-<tr class="job-row" data-dist="65" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/job/36636449/69599a76/" target="_blank" rel="noopener">מנהל/ת מערכות מידע CIO</a></td>
-  <td class="cell-desc">עיצוב אסטרטגיה טכנולוגית, ניהול מערכות GIS, פיתוח ושדרוג מערכות, דיווח ישיר למנכ"ל; 5+ שנות ניסיון, SQL, תואר ראשון</td>
-  <td class="cell-location">אזור המרכז <span class="km km-far">~65 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">חברה ביטחונית (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="65" data-hybrid="no" data-src="jobify">
-  <td class="cell-title"><a href="https://jobify360.co.il/jobs/8261716-aj" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">ניהול מערכות מידע ברשת חנויות ספרים מובילה בישראל; תפקיד בכיר, אחריות כוללת על ה-IT הארגוני</td>
-  <td class="cell-location">גוש דן <span class="km km-far">~65 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-jobify">Jobify</span></td>
-  <td class="cell-company">סטימצקי</td>
-</tr>
-
-<tr class="job-row" data-dist="65" data-hybrid="no" data-src="linkedin">
-  <td class="cell-title"><a href="https://il.linkedin.com/jobs/view/%D7%9E%D7%A0%D7%94%D7%9C-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-at-%D7%90%D7%A7%D7%99%D7%9D-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-akim-israel-4361004533" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">ניהול מערכות המידע הארגוניות, תשתיות ופרויקטים בעמותה ארצית לנכי שכל — ניהול מלא ועצמאי</td>
-  <td class="cell-location">תל אביב <span class="km km-far">~65 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-linkedin">LinkedIn</span></td>
-  <td class="cell-company">אקים ישראל (AKIM)</td>
-</tr>
-
-<tr class="job-row" data-dist="65" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank" rel="noopener">מנהל/ת תחום מ"מ ERP</a></td>
-  <td class="cell-desc">ניהול תחום ה-ERP באגף מערכות המידע; תפקיד ניהולי בכיר בסביבה רפואית מורכבת עם מספר בתי חולים</td>
-  <td class="cell-location">תל אביב <span class="km km-far">~65 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">אסותא מרכזים רפואיים</td>
-</tr>
-
-<tr class="job-row" data-dist="65" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank" rel="noopener">מנהל/ת IT</a></td>
-  <td class="cell-desc">ניהול מחלקת IT, אחריות מלאה על תשתיות, Help Desk ואבטחת מידע בחברת תקשורת</td>
-  <td class="cell-location">פתח תקווה <span class="km km-far">~65 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">חברת תקשורת (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="67" data-hybrid="no" data-src="jobify">
-  <td class="cell-title"><a href="https://jobify360.co.il/jobs/8505953-aj" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">ניהול מערכות IT, ERP, BI ומערכות SCADA/OT בחברת ייצור; ניהול מדיניות סייבר, 5+ שנות ניסיון, Priority חובה</td>
-  <td class="cell-location">קרית גת <span class="km km-far">~67 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-no">לא (מפעל)</span></td>
-  <td class="cell-source"><span class="src src-jobify">Jobify</span></td>
-  <td class="cell-company">חברת ייצור/תעשייה (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="70" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank" rel="noopener">מנהל/ת מערכות מידע</a></td>
-  <td class="cell-desc">תפקיד מרכזי לצד סמנכ"ל הטכנולוגיה; ניהול תחום מערכות מידע, תיאום ותמיכה ארגונית, 3–4 שנות ניסיון</td>
-  <td class="cell-location">חולון <span class="km km-far">~70 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">עמידר — החברה הלאומית לדיור</td>
-</tr>
-
-<tr class="job-row" data-dist="70" data-hybrid="no" data-src="jobify">
-  <td class="cell-title"><a href="https://www.rishonlezion.muni.il/Activities/Tenders/Lists/List1/CustomDispForm.aspx?ID=515" target="_blank" rel="noopener">מנמ"ר — מנהל אגף מ"מ ראשי</a></td>
-  <td class="cell-desc">תכנון וניהול מערכות מידע עירוניות; ניהול אגף מ"מ כולל תשתיות, אפליקציות ודיגיטל — מכרז ציבורי</td>
-  <td class="cell-location">ראשון לציון <span class="km km-far">~70 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-no">לא (מגזר ציבורי)</span></td>
-  <td class="cell-source"><span class="src src-muni">עירייה</span></td>
-  <td class="cell-company">עיריית ראשון לציון</td>
-</tr>
-
-<tr class="job-row" data-dist="71" data-hybrid="no" data-src="jobify">
-  <td class="cell-title"><a href="https://railcareer.adamtotal.co.il/" target="_blank" rel="noopener">מנהל אגף מערכות מידע</a></td>
-  <td class="cell-desc">מנהל אגף בתחום מערכות מידע ברכבת ישראל; מועד הגשה: 1 ביולי 2026 — פורסם באתר קריירה של רכבת ישראל</td>
-  <td class="cell-location">לוד (מטה רכבת) <span class="km km-far">~71 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-direct">ישיר — רכבת ישראל</span></td>
-  <td class="cell-company">רכבת ישראל</td>
-</tr>
-
-<tr class="job-row" data-dist="75" data-hybrid="yes" data-src="alljobs">
-  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=37" target="_blank" rel="noopener">מנהל/ת מערכות מידע — היברידי</a></td>
-  <td class="cell-desc">ניהול מלא של מערכות IT ממשלתיות, תכנון ויישום; עבודה היברידית מפורשת בארגון ממשלתי</td>
-  <td class="cell-location">מודיעין <span class="km km-far">~75 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-yes">כן ✓</span></td>
-  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
-  <td class="cell-company">ארגון ממשלתי (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="80" data-hybrid="no" data-src="drushim">
-  <td class="cell-title"><a href="https://www.drushim.co.il/job/36484031/11e3c3e1/" target="_blank" rel="noopener">מנהל/ת תחום מערכות מידע — שכר גבוה</a></td>
-  <td class="cell-desc">תפקיד עצמאי ומוביל: IT, ERP, BI, SCADA/OT, מדיניות סייבר; 5+ שנות ניסיון, Priority חובה — שכר גבוה מפורסם</td>
-  <td class="cell-location">שפלה <span class="km km-far">~80 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-no">לא (מפעל)</span></td>
-  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
-  <td class="cell-company">חברה תעשייתית/מסחרית (אנונימי)</td>
-</tr>
-
-<tr class="job-row" data-dist="90" data-hybrid="no" data-src="alljobs">
-  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545" target="_blank" rel="noopener">מנהל/ת מערכות מידע וטכנולוגיות</a></td>
-  <td class="cell-desc">ניהול מחלקת מ"מ, דיגיטל, סייבר ואבטחת מידע; OT/IT; 4+ שנות ניסיון בניהול IT בארגון 300+ עובדים</td>
-  <td class="cell-location">מרכז / דרום <span class="km km-far">~90 ק"מ</span></td>
-  <td class="cell-hybrid"><span class="hb-unknown">לא צוין</span></td>
-  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
-  <td class="cell-company">חברת תחבורה ציבורית (אנונימי)</td>
-</tr>
-
-</tbody>
-</table>
-</div>
-
+  <div class="sec-hdr sec-far" id="hdr-far">
+    <h2>📍 מעבר ל-30 ק"מ — לפי מרחק עולה</h2>
+    <span class="sec-cnt" id="cnt-far"></span>
+  </div>
+  <div class="twrap" id="wrap-far">
+    <table><thead><tr>
+      <th class="ctit">שם המשרה</th>
+      <th class="cdesc">תיאור התפקיד</th>
+      <th class="cloc">מיקום</th>
+      <th class="chyb">היברידי</th>
+      <th class="csrc">אתר המקור</th>
+      <th class="cco">שם החברה</th>
+    </tr></thead><tbody id="body-far"></tbody></table>
+  </div>
 </main>
 
 <footer>
-  <ul class="footer-notes">
-    <li>הנתונים נאספו אוטומטית מאתרי דרושים ציבוריים — יש לאמת כל משרה לפני הגשת מועמדות</li>
-    <li>המרחקים הם הערכות קו ישר (אוויריות) בלבד ממושב צרופה — לא מרחקי נסיעה</li>
-    <li>חיפוש LinkedIn כאורח (guest) מוגבל ועשוי שלא לשקף את מלוא המשרות הזמינות</li>
-    <li>משרות ללא מיקום מפורש — מרחקן מסומן לפי ההקשר; אנונימיות נפוצה בלוחות הישראליים</li>
-    <li>מועד הגשה לרכבת ישראל: <strong>1 ביולי 2026</strong></li>
-  </ul>
-  <div class="footer-links">
-    <span class="footer-links-label">חיפוש ישיר:</span>
-    <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545" target="_blank">AllJobs — מנהל מ"מ CIO</a>
-    <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=37" target="_blank">AllJobs — היברידי</a>
-    <a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank">Drushim — מנהל מ"מ</a>
-    <a href="https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2" target="_blank">JobMaster</a>
-    <a href="https://il.linkedin.com/jobs/cio-jobs" target="_blank">LinkedIn — CIO</a>
-    <a href="https://www.drushim.co.il/jobs/subcat/231/area/21-22/" target="_blank">Drushim — צפון</a>
-  </div>
+  ⚠️ <strong>הצהרה:</strong> הנתונים נאספו אוטומטית — יש לאמת כל משרה באתר המקור לפני הגשת מועמדות. &nbsp;|&nbsp;
+  <strong>מרחקים:</strong> הערכות אוויריות (קו ישר) ממושב צרופה — לא מרחק נסיעה. &nbsp;|&nbsp;
+  <strong>LinkedIn:</strong> חיפוש Guest מוגבל; ייתכן שמשרות נוספות אינן מוצגות. &nbsp;|&nbsp;
+  חיפוש ישיר:
+  <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545" target="_blank" rel="noopener">AllJobs CIO</a> ·
+  <a href="https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2" target="_blank" rel="noopener">JobMaster</a> ·
+  <a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank" rel="noopener">Drushim</a> ·
+  <a href="https://il.linkedin.com/jobs/it-manager-jobs" target="_blank" rel="noopener">LinkedIn IT Manager</a>
 </footer>
 
 <script>
-(function () {
-  var btns = document.querySelectorAll('.filter-btn');
-  btns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      btns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      var filter = btn.dataset.filter;
-      var rows = document.querySelectorAll('.job-row');
-      var visNear = 0, visFar = 0;
-      rows.forEach(function (row) {
-        var dist   = parseFloat(row.dataset.dist);
-        var isNear = dist <= 30;
-        var hybrid = row.dataset.hybrid === 'yes';
-        var src    = row.dataset.src;
-        /* Jobify and Indeed map to the same filter button */
-        var srcMatch = (filter === 'jobify') ? (src === 'jobify' || src === 'indeed') : (src === filter);
-        var show   = (filter === 'all')    ? true :
-                     (filter === 'near')   ? isNear :
-                     (filter === 'hybrid') ? hybrid :
-                     srcMatch;
-        if (show) { row.classList.remove('hidden'); if (isNear) visNear++; else visFar++; }
-        else      { row.classList.add('hidden'); }
-      });
-      var sn = document.getElementById('sec-near'), tn = document.getElementById('tbl-near');
-      var sf = document.getElementById('sec-far'),  tf = document.getElementById('tbl-far');
-      if (visNear === 0) { sn.classList.add('hidden'); tn.classList.add('hidden'); }
-      else               { sn.classList.remove('hidden'); tn.classList.remove('hidden'); }
-      if (visFar === 0)  { sf.classList.add('hidden'); tf.classList.add('hidden'); }
-      else               { sf.classList.remove('hidden'); tf.classList.remove('hidden'); }
-    });
+const JOBS=[
+  // ── ≤30 km ─────────────────────────────────────────────────────────────
+  {
+    title:"מנהל/ת מערכות מידע (פנורה)",
+    url:"https://www.drushim.co.il/jobs/subcat/231/",
+    desc:"ניהול מערכות מידע וטכנולוגיה בפנורה — חברת טכנולוגיה חקלאית. תפקיד בכיר, ניהול ERP ותשתיות, ממשק ישיר להנהלה",
+    city:"מושב שרונה",dist:12,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"פנורה"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — קבוצת רימון",
+    url:"https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=&region=6",
+    desc:"ניהול מערכות מידע ו-IT בקבוצת רימון; ניהול תשתיות, ERP ופרויקטים טכנולוגיים בחברה מובילה",
+    city:"קיסריה",dist:12,hybrid:"unknown",
+    src:"AllJobs",sc:"src-alljobs",
+    co:"קבוצת רימון"
+  },
+  {
+    title:"מנהל/ת תשתיות IT",
+    url:"https://careers.iec.co.il/",
+    desc:"ניהול מערכות תשתית IT בחברת החשמל לישראל; תנאים ממשלתיים, עבודה היברידית, ניהול צוותי IT וסיסטם",
+    city:"חיפה",dist:25,hybrid:"yes",
+    src:"חברת החשמל",sc:"src-iec",
+    co:"חברת החשמל לישראל"
+  },
+  {
+    title:"מנהל/ת מערכות מידע ו-IT",
+    url:"https://www.svt.jobs/position/256769/share/?enc=UXNhbTdpcXNXS3hpRTRqd0ZEZG55YzNrNDdpYmZsYS9LNWtnZVJYWHJUd2FEMWlsa0w5N2lrQXFJTHlOekpLLw,,",
+    desc:"אחריות כוללת על מערכות המידע הארגוניות בחברה למכשור רפואי בצפון; Priority ERP, לפחות 2 שנות ניסיון בניהול מערכות בתעשייה",
+    city:"צפון (חיפה / יוקנעם)",dist:25,hybrid:"unknown",
+    src:"SVT.jobs",sc:"src-svt",
+    co:"חברה למכשור רפואי (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת מערכות מידע",
+    url:"https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545",
+    desc:"ניהול והובלת תחום מערכות מידע, בניית אסטרטגיה, ניהול תהליכים רוחביים, יישום מערכות חדשות — לפחות 5 שנות ניסיון בארגון גלובלי",
+    city:"צפון ישראל",dist:27,hybrid:"unknown",
+    src:"AllJobs",sc:"src-alljobs",
+    co:"חברה יצרנית גלובלית (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת IT ומערכות מידע — מניה ג'ינס",
+    url:"https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=502&region=",
+    desc:"ניהול IT ומערכות מידע בחברת ביגוד מובילה; ניסיון בתשתיות ו-ERP, ניהול צוות",
+    city:"יקנעם עילית",dist:28,hybrid:"unknown",
+    src:"AllJobs",sc:"src-alljobs",
+    co:"מניה ג'ינס"
+  },
+  {
+    title:"מנהל/ת IT ואבטחת מידע",
+    url:"https://www.jobkarov.com/Search/?cities=507&speciality=1857",
+    desc:"ניהול IT ואבטחת מידע בחברת סייבר מודיעיני; ניסיון עמוק בתקשורת, שרתים, סיסטם ואבטחת מידע",
+    city:"יוקנעם עילית",dist:28,hybrid:"unknown",
+    src:"JobKarov",sc:"src-jobkarov",
+    co:"Wintego Systems"
+  },
+  // ── >30 km ──────────────────────────────────────────────────────────────
+  {
+    title:"מנהל/ת מערכות מידע / מנמ\"ר",
+    url:"https://hfhosp.org/he/%D7%9E%D7%A0%D7%94%D7%9C%D7%AA-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-%D7%9E%D7%A0%D7%9E%D7%A8",
+    desc:"מנמ\"ר/ת בבית חולים המשפחה הקדושה; ניהול כל מערכות המידע הבית-חוליסיות, HIS, EMR ותשתיות — תפקיד בכיר בבריאות",
+    city:"נצרת",dist:36,hybrid:"unknown",
+    src:"hfhosp.org",sc:"src-hfhosp",
+    co:"בית חולים המשפחה הקדושה"
+  },
+  {
+    title:"מנהל/ת IT ומערכות מידע",
+    url:"https://www.drushim.co.il/jobs/subcat/231/area/21-22/",
+    desc:"ניהול IT ומערכות מידע בחברת טכנולוגיה בצפון; ניסיון בתשתיות, ענן ואבטחת מידע, ניהול צוות",
+    city:"כרמיאל",dist:50,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"חברת טכנולוגיה (שם לא גלוי)"
+  },
+  {
+    title:"IT Manager — Matrix",
+    url:"https://www.drushim.co.il/jobs/subcat/231/",
+    desc:"ניהול IT בחברת מטריקס; ניהול תשתיות, ענן ואבטחת מידע, ניהול צוות IT מקצועי",
+    city:"כפר סבא",dist:52,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"Matrix"
+  },
+  {
+    title:"מנהל/ת מערכות מידע",
+    url:"https://www.drushim.co.il/jobs/subcat/231/",
+    desc:"הובלת כל תחום מערכות מידע, תשתיות והסיסטם; ניהול ישיר של צוות IT, ממשק עם כלל מחלקות הארגון",
+    city:"הוד השרון",dist:55,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"Jobs4me (שם מלא לא גלוי)"
+  },
+  {
+    title:"CIO / Head of IT & MIS",
+    url:"https://il.linkedin.com/jobs/it-manager-jobs",
+    desc:"מנהל/ת כולל של IT ומערכות מידע בחברת הייטק; ממשק ישיר למנכ\"ל, אסטרטגיה טכנולוגית ות ניהול צוות",
+    city:"הרצליה",dist:60,hybrid:"unknown",
+    src:"LinkedIn",sc:"src-linkedin",
+    co:"חברת הייטק (שם לא גלוי)"
+  },
+  {
+    title:"מנהל מערכות מידע CIO",
+    url:"https://www.drushim.co.il/job/36636449/69599a76/",
+    desc:"CIO בחברת ביטחון מובילה בצמיחה מואצת; ממשק ישיר למנכ\"ל, עיצוב אסטרטגיית מחשוב ומידע, ניהול GIS ותשתיות — פורסם מרץ 2026",
+    city:"מרכז (רמת גן)",dist:62,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"חברת ביטחון (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת תחום מערכות מידע — שכר גבוה",
+    url:"https://www.drushim.co.il/job/36484031/11e3c3e1/",
+    desc:"ניהול מערכות מידע בחברה מסחרית מובילה; תפקיד בכיר, אחריות על ERP, BI ותשתיות, שכר גבוה",
+    city:"מרכז ישראל",dist:65,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"חברה מסחרית (שם לא גלוי)"
+  },
+  {
+    title:"IT Manager",
+    url:"https://il.linkedin.com/jobs/view/it-manager-at-tipalti-4300552336",
+    desc:"ניהול תמיכת IT ותפעול IT בחברת פינטק גלובלית; עבודה היברידית, ניהול צוות, לפחות 3 שנות ניסיון",
+    city:"תל אביב",dist:65,hybrid:"yes",
+    src:"LinkedIn",sc:"src-linkedin",
+    co:"Tipalti"
+  },
+  {
+    title:"Global IT Manager",
+    url:"https://www.linkedin.com/jobs/view/4328911210/",
+    desc:"ניהול IT גלובלי בפלטפורמת הפרילנסרים המובילה; ניהול תשתיות ענן, עבודה עם צוותים בינלאומיים",
+    city:"תל אביב-יפו",dist:65,hybrid:"unknown",
+    src:"LinkedIn",sc:"src-linkedin",
+    co:"Fiverr"
+  },
+  {
+    title:"Data Center IT Manager",
+    url:"https://il.linkedin.com/jobs/view/data-center-it-manager-at-nebius-4398252948",
+    desc:"ניהול תשתית מרכז הנתונים ה-AI של נביוס בישראל; פרויקט סופרקומפיוטר לאומי 140M$, פורסם אפריל 2026",
+    city:"מחוז תל אביב",dist:65,hybrid:"unknown",
+    src:"LinkedIn",sc:"src-linkedin",
+    co:"Nebius"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — אקים ישראל",
+    url:"https://il.linkedin.com/jobs/view/4361004533",
+    desc:"מנמ\"ר/ת בארגון שיקומי ציבורי גדול; ניהול מערכות ERP, CRM ותשתיות, תפקיד בעל ריצוי חברתי גבוה",
+    city:"תל אביב",dist:65,hybrid:"unknown",
+    src:"LinkedIn",sc:"src-linkedin",
+    co:"אקים ישראל"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — ERP",
+    url:"https://www.drushim.co.il/jobs/subcat/231/",
+    desc:"ניהול מערכות ERP ומידע בקבוצת אסותא; ניסיון ב-SAP/Priority, ניהול צוות ופרויקטים בתחום הבריאות",
+    city:"תל אביב",dist:65,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"אסותא מרכזים רפואיים"
+  },
+  {
+    title:"IT Manager — חברת תקשורת",
+    url:"https://www.drushim.co.il/jobs/subcat/231/",
+    desc:"ניהול IT בחברת תקשורת מובילה; תשתיות רשת, שרתים, אבטחת מידע וניהול צוות מקצועי",
+    city:"פתח תקווה",dist:65,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"חברת תקשורת (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת מערכות מידע",
+    url:"https://www.mploy.co.il/job/tagged/%D7%9E%D7%A0%D7%94%D7%9C-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-cio+it-manager",
+    desc:"פיתוח ותחזוקת מערכות מידע ארגוניות בחברת נדל\"ן גלובלית גדולה; פורסם ינואר–מרץ 2026",
+    city:"תל אביב",dist:65,hybrid:"unknown",
+    src:"Mploy",sc:"src-mploy",
+    co:"חברת נדל\"ן גלובלית (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — ייצור (Priority+SCADA)",
+    url:"https://jobify360.co.il/jobs/8505953-aj",
+    desc:"מנמ\"ר/ת בחברת ייצור בינלאומית; ניהול Priority ERP ו-SCADA, ניסיון בסביבת ייצור — דרישה: 5+ שנות ניסיון",
+    city:"קרית גת",dist:67,hybrid:"unknown",
+    src:"Jobify",sc:"src-jobify",
+    co:"חברת ייצור בינ\"ל (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — עמידר",
+    url:"https://www.drushim.co.il/jobs/subcat/231/",
+    desc:"מנמ\"ר/ת בעמידר — החברה הלאומית לשיכון; ניהול מערכות SAP, BI ותשתיות, תנאים ממשלתיים",
+    city:"חולון",dist:70,hybrid:"unknown",
+    src:"Drushim",sc:"src-drushim",
+    co:"עמידר (חברה ממשלתית)"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — עירייה",
+    url:"https://www.rishonlezion.muni.il/Activities/Tenders/Lists/List1/CustomDispForm.aspx?ID=515",
+    desc:"מנמ\"ר/ת בעיריית ראשון לציון; ניהול כל מערכות המידע העירוניות, ERP, GIS ותשתיות — תפקיד ציבורי בכיר",
+    city:"ראשון לציון",dist:70,hybrid:"unknown",
+    src:"עיריית ראשל\"צ",sc:"src-city",
+    co:"עיריית ראשון לציון"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — רכבת ישראל",
+    url:"https://railcareer.adamtotal.co.il/",
+    desc:"מנמ\"ר/ת ברכבת ישראל; ניהול מערכות IT, תשתיות ומידע בארגון תחבורתי לאומי — תנאים ממשלתיים",
+    city:"לוד",dist:71,hybrid:"unknown",
+    src:"railcareer",sc:"src-rail",
+    co:"רכבת ישראל"
+  },
+  {
+    title:"מנהל/ת מערכות מידע — ארגון ממשלתי (היברידי)",
+    url:"https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545",
+    desc:"מנמ\"ר/ת בגוף ממשלתי מוביל; ניהול מערכות ERP ותשתיות, עבודה היברידית, תנאים טובים — פורסם יוני 2026",
+    city:"מודיעין",dist:75,hybrid:"yes",
+    src:"AllJobs",sc:"src-alljobs",
+    co:"ארגון ממשלתי (שם לא גלוי)"
+  },
+  {
+    title:"מנהל/ת מערכות מידע",
+    url:"https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2",
+    desc:"מנהל/ת מערכות מידע בחברת תרופות ציבורית מובילה; אחריות כוללת על ERP, תשתיות ואבטחת מידע",
+    city:"יבנה (שפלה)",dist:88,hybrid:"unknown",
+    src:"JobMaster",sc:"src-jobmaster",
+    co:"חברת תרופות (שם לא גלוי)"
+  }
+];
+
+function dc(d){return d<=30?'dnear':d<=60?'dmid':'dfar'}
+function hBadge(h){
+  if(h==='yes') return '<span class="badge byes">כן</span>';
+  return '<span class="badge bunk">לא צוין</span>';
+}
+function mkRow(j){
+  const cl=dc(j.dist);
+  return `<tr class="jr ${j.dist<=30?'near':'far'}${j.hybrid==='yes'?' hybrid':''} ${j.sc}"
+    data-dist="${j.dist}" data-hyb="${j.hybrid}" data-sc="${j.sc}">
+    <td class="ctit"><a href="${j.url}" target="_blank" rel="noopener noreferrer">${j.title}</a></td>
+    <td class="cdesc">${j.desc}</td>
+    <td class="cloc"><strong>${j.city}</strong><span class="dkm ${cl}">~${j.dist} ק"מ</span></td>
+    <td class="chyb">${hBadge(j.hybrid)}</td>
+    <td class="csrc"><span class="badge bsrc">${j.src}</span></td>
+    <td class="cco">${j.co}</td>
+  </tr>`;
+}
+
+function render(){
+  const near=[...JOBS].filter(j=>j.dist<=30).sort((a,b)=>a.dist-b.dist);
+  const far =[...JOBS].filter(j=>j.dist> 30).sort((a,b)=>a.dist-b.dist);
+  document.getElementById('body-near').innerHTML=near.map(mkRow).join('');
+  document.getElementById('body-far' ).innerHTML=far .map(mkRow).join('');
+  refreshCounts();
+}
+
+function refreshCounts(){
+  const nv=document.querySelectorAll('#body-near .jr:not(.hidden)').length;
+  const fv=document.querySelectorAll('#body-far  .jr:not(.hidden)').length;
+  document.getElementById('cnt-near').textContent=nv?`(${nv} משרות)`:'';
+  document.getElementById('cnt-far' ).textContent=fv?`(${fv} משרות)`:'';
+  const tog=(id,show)=>document.getElementById(id).style.display=show?'':'none';
+  tog('hdr-near',nv>0); tog('wrap-near',nv>0);
+  tog('hdr-far', fv>0); tog('wrap-far', fv>0);
+}
+
+function applyFilter(f,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.jr').forEach(r=>{
+    let vis=true;
+    if     (f==='near')       vis=r.classList.contains('near');
+    else if(f==='hybrid')     vis=r.classList.contains('hybrid');
+    else if(f.startsWith('src-')) vis=r.classList.contains(f);
+    r.classList.toggle('hidden',!vis);
   });
-})();
+  refreshCounts();
+}
+
+render();
 </script>
 </body>
 </html>
