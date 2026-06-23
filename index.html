@@ -1,167 +1,298 @@
-<meta charset="utf-8">
-<title>משרות מערכות מידע — לוח אישי</title>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>דרושים — מנהל/ת מערכות מידע | 23.06.2026</title>
 <style>
-  :root{
-    --bg:#0f172a; --panel:#1e293b; --row:#1a2433; --row2:#1e293b; --ink:#e2e8f0; --muted:#94a3b8;
-    --accent:#38bdf8; --good:#34d399; --line:#334155; --near:#0f2e23;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl}
-  header{padding:26px 20px 16px;background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid var(--line)}
-  h1{margin:0 0 6px;font-size:25px}
-  .sub{color:var(--muted);font-size:14px}
-  .meta{color:var(--muted);font-size:12.5px;margin-top:9px;line-height:1.6}
-  .wrap{max-width:1180px;margin:0 auto;padding:18px}
-  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
-  .filters button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:20px;
-    padding:6px 15px;font-size:13.5px;cursor:pointer}
-  .filters button:hover{border-color:var(--accent)}
-  .filters button.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
-  .count{color:var(--muted);font-size:13px;margin:0 0 10px}
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  thead th{position:sticky;top:0;background:#0b1220;color:var(--muted);text-align:right;font-weight:600;
-    padding:11px 12px;border-bottom:2px solid var(--line);font-size:13px;white-space:nowrap}
-  tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
-  tbody tr{background:var(--row)}
-  tbody tr:nth-child(even){background:var(--row2)}
-  tbody tr:hover{background:#26344a}
-  tbody tr.near{background:var(--near)}
-  tbody tr.near:hover{background:#15402f}
-  .title a{color:var(--ink);text-decoration:none;font-weight:600}
-  .title a:hover{color:var(--accent)}
-  .desc{color:var(--muted);font-size:13px;max-width:340px;line-height:1.5}
-  .loc{white-space:nowrap}
-  .km{display:block;color:var(--good);font-size:11.5px;margin-top:3px}
-  .yes{color:var(--good);font-weight:600}
-  .no{color:var(--muted)}
-  .na{color:#64748b;font-size:12px}
-  .src{font-size:12px;background:#334155;padding:3px 9px;border-radius:6px;white-space:nowrap}
-  .secbar{margin:20px 0 8px;font-size:14px;color:var(--good);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}
-  .secbar.far{color:var(--muted)}
-  footer{color:var(--muted);font-size:12px;text-align:center;padding:22px;border-top:1px solid var(--line);margin-top:26px;line-height:1.8}
-  @media(max-width:760px){.desc{max-width:none}}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; direction: rtl; }
+a { color: #58a6ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+#header { background: #161b22; border-bottom: 2px solid #30363d; padding: 24px 20px 16px; text-align: center; }
+#header h1 { font-size: 20px; color: #e6edf3; margin-bottom: 10px; }
+.updated-line { font-size: 17px; font-weight: 700; color: #f0883e; background: #1f1a0e; border: 1px solid #9e6a03; border-radius: 6px; display: inline-block; padding: 6px 18px; margin-bottom: 10px; }
+.sources-line { font-size: 12px; color: #8b949e; margin-top: 4px; }
+
+.stats-bar { background: #161b22; padding: 10px 20px; display: flex; gap: 24px; border-bottom: 1px solid #30363d; flex-wrap: wrap; }
+.stat-item { font-size: 13px; color: #8b949e; }
+.stat-num { color: #e6edf3; font-weight: bold; font-size: 18px; margin-left: 4px; }
+
+.filters { background: #161b22; padding: 12px 20px; border-bottom: 1px solid #30363d; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.filters-label { font-size: 12px; color: #8b949e; margin-left: 6px; white-space: nowrap; }
+.filter-btn { background: #21262d; border: 1px solid #30363d; color: #c9d1d9; padding: 5px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-family: inherit; transition: all 0.15s; }
+.filter-btn:hover { border-color: #58a6ff; color: #58a6ff; }
+.filter-btn.active { background: #0d419d; border-color: #1f6feb; color: #e6edf3; font-weight: bold; }
+
+main { padding: 16px 20px; }
+.section-header { font-size: 14px; font-weight: bold; padding: 10px 16px; border-radius: 8px; margin-bottom: 12px; margin-top: 20px; }
+.section-near { background: #0d2d1a; color: #3fb950; border: 1px solid #238636; }
+.section-far  { background: #1d2127; color: #8b949e; border: 1px solid #30363d; margin-top: 28px; }
+
+.table-wrap { overflow-x: auto; border: 1px solid #30363d; border-radius: 8px; margin-bottom: 8px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+thead th { background: #161b22; color: #8b949e; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; padding: 10px 14px; text-align: right; border-bottom: 1px solid #30363d; white-space: nowrap; }
+tbody tr { border-bottom: 1px solid #1c2128; transition: background 0.1s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: #161b22; }
+tbody tr.near-row { background: rgba(35,134,54,0.06); }
+tbody tr.near-row:hover { background: rgba(35,134,54,0.12); }
+td { padding: 10px 14px; vertical-align: top; font-size: 13px; }
+
+.cell-title { font-weight: 600; min-width: 170px; }
+.cell-title a { color: #58a6ff; font-weight: 600; }
+.cell-desc { color: #8b949e; font-size: 12px; line-height: 1.6; min-width: 210px; max-width: 300px; }
+.cell-location { white-space: nowrap; min-width: 140px; }
+.cell-hybrid { text-align: center; min-width: 80px; }
+.cell-source { min-width: 90px; }
+.cell-company { min-width: 150px; }
+
+.km { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; margin-right: 3px; white-space: nowrap; }
+.km-near    { background: #0d2d1a; color: #3fb950; border: 1px solid #238636; }
+.km-mid     { background: #271d0e; color: #e3b341; border: 1px solid #9e6a03; }
+.km-far     { background: #1d2127; color: #8b949e; border: 1px solid #30363d; }
+.km-unknown { background: #1d2127; color: #484f58; border: 1px solid #21262d; font-style: italic; }
+
+.hb-yes     { color: #3fb950; font-weight: bold; }
+.hb-no      { color: #8b949e; }
+.hb-unknown { color: #484f58; font-style: italic; }
+
+.src { display: inline-block; padding: 2px 9px; border-radius: 12px; font-size: 11px; white-space: nowrap; }
+.src-alljobs  { background: rgba(13,65,157,0.25);  color: #79c0ff; border: 1px solid rgba(56,139,253,0.4); }
+.src-drushim  { background: rgba(110,64,201,0.25); color: #d2a8ff; border: 1px solid rgba(188,140,255,0.35); }
+.src-jobmaster{ background: rgba(158,106,3,0.25);  color: #e3b341; border: 1px solid rgba(158,106,3,0.5); }
+.src-linkedin { background: rgba(10,102,194,0.25); color: #79c0ff; border: 1px solid rgba(10,102,194,0.5); }
+.src-jobify   { background: rgba(26,127,55,0.25);  color: #56d364; border: 1px solid rgba(56,211,100,0.35); }
+.src-jobkarov { background: rgba(218,54,51,0.25);  color: #ff7b72; border: 1px solid rgba(218,54,51,0.5); }
+
+footer { background: #161b22; border-top: 1px solid #30363d; padding: 18px 20px; margin-top: 24px; }
+.footer-notes { list-style: none; }
+.footer-notes li { font-size: 12px; color: #6e7681; padding: 3px 0; }
+.footer-notes li::before { content: "• "; color: #484f58; }
+.footer-links { margin-top: 14px; display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+.footer-links-label { font-size: 12px; color: #8b949e; }
+.footer-links a { font-size: 12px; color: #58a6ff; }
+
+.hidden { display: none !important; }
 </style>
+</head>
+<body>
 
-<header>
-  <div class="wrap" style="padding-bottom:0">
-    <h1>🎯 משרות מערכות מידע — לוח אישי</h1>
-    <div class="sub">מנהל/ת מערכות מידע · CIO · מנהל/ת אפליקציות · IT/IS Manager</div>
-    <div class="meta">
-      מקורות: JobMaster · AllJobs · דרושים IL · LinkedIn &nbsp;|&nbsp; עודכן: 22.06.2026<br>
-      ממוין לפי מרחק אווירי משוער מ<b>צרופה</b> — קודם עד 30 ק"מ, אחר כך לפי מרחק עולה.
-    </div>
-  </div>
-</header>
-
-<div class="wrap">
-  <div class="filters" id="filters">
-    <button class="active" data-f="all">הכל</button>
-    <button data-f="near">עד 30 ק"מ ✓</button>
-    <button data-f="hybrid">היברידי</button>
-    <button data-f="JobMaster">JobMaster</button>
-    <button data-f="AllJobs">AllJobs</button>
-    <button data-f="דרושים">דרושים IL</button>
-  </div>
-  <div class="count" id="count"></div>
-
-  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
-  <table>
-    <thead><tr>
-      <th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר</th><th>חברה</th>
-    </tr></thead>
-    <tbody id="tbody-near"></tbody>
-  </table>
-
-  <div class="secbar far">📌 מעבר ל-30 ק"מ — לפי מרחק עולה</div>
-  <table>
-    <thead><tr>
-      <th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר</th><th>חברה</th>
-    </tr></thead>
-    <tbody id="tbody-far"></tbody>
-  </table>
+<div id="header">
+  <h1>&#128203; &#1500;&#1493;&#1495; &#1502;&#1513;&#1512;&#1493;&#1514; &#1488;&#1497;&#1513;&#1497; &#8212; &#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506; &nbsp;|&nbsp; CIO &nbsp;|&nbsp; &#1502;&#1504;&#1492;&#1500;/&#1514; &#1488;&#1508;&#1500;&#1497;&#1511;&#1510;&#1497;&#1493;&#1514;</h1>
+  <div class="updated-line">&#128260; &#1506;&#1493;&#1491;&#1499;&#1503; &#1500;&#1488;&#1495;&#1512;&#1493;&#1504;&#1492;: Tuesday, 23.06.2026, 11:37</div>
+  <div class="sources-line">&#1502;&#1511;&#1493;&#1512;&#1493;&#1514; &#1513;&#1504;&#1489;&#1491;&#1511;&#1493;: <strong>JobMaster</strong> &nbsp;&middot;&nbsp; <strong>AllJobs</strong> &nbsp;&middot;&nbsp; <strong>Drushim</strong> &nbsp;&middot;&nbsp; <strong>LinkedIn</strong></div>
 </div>
 
+<div class="stats-bar">
+  <div class="stat-item"><span class="stat-num">11</span> &#1502;&#1513;&#1512;&#1493;&#1514; &#1505;&#1492;"&#1499;</div>
+  <div class="stat-item"><span class="stat-num">3</span> &#1506;&#1491; 30 &#1511;"&#1502; &#1502;&#1510;&#1512;&#1493;&#1508;&#1492;</div>
+  <div class="stat-item"><span class="stat-num">0</span> &#1492;&#1497;&#1489;&#1512;&#1497;&#1491;&#1497; &#1502;&#1508;&#1493;&#1512;&#1513;</div>
+</div>
+
+<div class="filters">
+  <span class="filters-label">&#1505;&#1504;&#1503; &#1500;&#1508;&#1497;:</span>
+  <button class="filter-btn active" data-filter="all">&#1492;&#1499;&#1500;</button>
+  <button class="filter-btn" data-filter="near">&#1506;&#1491; 30 &#1511;"&#1502;</button>
+  <button class="filter-btn" data-filter="hybrid">&#1492;&#1497;&#1489;&#1512;&#1497;&#1491;&#1497;</button>
+  <button class="filter-btn" data-filter="alljobs">AllJobs</button>
+  <button class="filter-btn" data-filter="drushim">Drushim</button>
+  <button class="filter-btn" data-filter="jobmaster">JobMaster</button>
+  <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
+  <button class="filter-btn" data-filter="jobify">Jobify</button>
+  <button class="filter-btn" data-filter="jobkarov">JobKarov</button>
+</div>
+
+<main>
+
+<div class="section-header section-near" id="sec-near">&#9989; &#1506;&#1491; 30 &#1511;"&#1502; &#1502;&#1510;&#1512;&#1493;&#1508;&#1492; &#8212; 3 &#1502;&#1513;&#1512;&#1493;&#1514;</div>
+<div class="table-wrap" id="tbl-near">
+<table>
+<thead>
+<tr>
+  <th>&#1513;&#1501; &#1492;&#1502;&#1513;&#1512;&#1492;</th>
+  <th>&#1514;&#1497;&#1488;&#1493;&#1512; &#1492;&#1514;&#1508;&#1511;&#1497;&#1491;</th>
+  <th>&#1502;&#1497;&#1511;&#1493;&#1501;</th>
+  <th>&#1492;&#1497;&#1489;&#1512;&#1497;&#1491;&#1497;</th>
+  <th>&#1488;&#1514;&#1512; &#1492;&#1502;&#1511;&#1493;&#1512;</th>
+  <th>&#1513;&#1501; &#1492;&#1495;&#1489;&#1512;&#1492;</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="near-row job-row" data-dist="12" data-hybrid="no" data-src="alljobs">
+  <td class="cell-title"><a href="https://www.alljobs.co.il/Employer/HP/Default.aspx?cid=113041" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1488;&#1505;&#1496;&#1512;&#1496;&#1490;&#1497;&#1492; &#1496;&#1499;&#1504;&#1493;&#1500;&#1493;&#1490;&#1497;&#1514;, &#1514;&#1513;&#1514;&#1497;&#1493;&#1514; IT, &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506; &#1493;&#1488;&#1489;&#1496;&#1495;&#1514; &#1502;&#1497;&#1491;&#1506;; &#1502;&#1513;&#1512;&#1492; &#1502;&#1500;&#1488;&#1492; &#1502;&#1502;&#1513;&#1512;&#1491;&#1497; &#1492;&#1495;&#1489;&#1512;&#1492; &#1489;&#1508;&#1488;&#1512;&#1511;</td>
+  <td class="cell-location">&#1511;&#1497;&#1505;&#1512;&#1497;&#1492; <span class="km km-near">~12 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
+  <td class="cell-company">&#1511;&#1489;&#1493;&#1510;&#1514; &#1512;&#1497;&#1502;&#1493;&#1503;</td>
+</tr>
+
+<tr class="near-row job-row" data-dist="28" data-hybrid="no" data-src="alljobs">
+  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=&city=&region=10" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1495;&#1500;&#1511;&#1492;, &#1489;&#1504;&#1497;&#1497;&#1514; &#1488;&#1505;&#1496;&#1512;&#1496;&#1490;&#1497;&#1497;&#1514; IT, &#1504;&#1497;&#1492;&#1493;&#1500; &#1514;&#1492;&#1500;&#1497;&#1499;&#1497;&#1501; &#1495;&#1493;&#1510;&#1497;-&#1488;&#1512;&#1490;&#1493;&#1503;, &#1497;&#1497;&#1513;&#1493;&#1501; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1495;&#1491;&#1513;&#1493;&#1514;; 5+ &#1513;&#1504;&#1493;&#1514; &#1504;&#1497;&#1505;&#1497;&#1493;&#1503;, &#1488;&#1512;&#1490;&#1493;&#1503; &#1490;&#1500;&#1493;&#1489;&#1500;&#1497;, &#1488;&#1504;&#1490;&#1500;&#1497;&#1514; &#1490;&#1489;&#1493;&#1492;&#1492;</td>
+  <td class="cell-location">&#1497;&#1511;&#1504;&#1506;&#1501; / &#1510;&#1508;&#1493;&#1503; <span class="km km-near">~28 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1514; &#1497;&#1497;&#1510;&#1493;&#1512; &#1490;&#1500;&#1493;&#1489;&#1500;&#1497;&#1514;</td>
+</tr>
+
+<tr class="near-row job-row" data-dist="28" data-hybrid="no" data-src="alljobs">
+  <td class="cell-title"><a href="https://www.alljobs.co.il/Employer/HP/Default.aspx?cid=240587" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;, Priority ERP, &#1497;&#1497;&#1494;&#1493;&#1501; &#1493;&#1497;&#1497;&#1513;&#1493;&#1501; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1495;&#1491;&#1513;&#1493;&#1514;, &#1497;&#1506;&#1493;&#1509; &#1488;&#1489;&#1496;&#1495;&#1514; &#1502;&#1497;&#1491;&#1506;; 5+ &#1513;&#1504;&#1493;&#1514; &#1504;&#1497;&#1505;&#1497;&#1493;&#1503; &#1489;-Priority</td>
+  <td class="cell-location">&#1497;&#1511;&#1504;&#1506;&#1501; / &#1511;&#1512;&#1497;&#1497;&#1514; &#1488;&#1514;&#1488; <span class="km km-near">~28 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
+  <td class="cell-company">&#1502;&#1504;&#1497;&#1492; &#1490;'&#1497;&#1504;&#1505;</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<div class="section-header section-far" id="sec-far">&#128205; &#1502;&#1506;&#1489;&#1512; &#1500;-30 &#1511;"&#1502; &#1502;&#1510;&#1512;&#1493;&#1508;&#1492; &#8212; &#1500;&#1508;&#1497; &#1502;&#1512;&#1495;&#1511; &#1506;&#1493;&#1500;&#1492;</div>
+<div class="table-wrap" id="tbl-far">
+<table>
+<thead>
+<tr>
+  <th>&#1513;&#1501; &#1492;&#1502;&#1513;&#1512;&#1492;</th>
+  <th>&#1514;&#1497;&#1488;&#1493;&#1512; &#1492;&#1514;&#1508;&#1511;&#1497;&#1491;</th>
+  <th>&#1502;&#1497;&#1511;&#1493;&#1501;</th>
+  <th>&#1492;&#1497;&#1489;&#1512;&#1497;&#1491;&#1497;</th>
+  <th>&#1488;&#1514;&#1512; &#1492;&#1502;&#1511;&#1493;&#1512;</th>
+  <th>&#1513;&#1501; &#1492;&#1495;&#1489;&#1512;&#1492;</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="job-row" data-dist="50" data-hybrid="no" data-src="drushim">
+  <td class="cell-title"><a href="https://www.drushim.co.il/jobs/subcat/231/area/21-22/" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; IT &#1493;&#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;, &#1514;&#1513;&#1514;&#1497;&#1493;&#1514; IT, &#1495;&#1493;&#1502;&#1512;&#1492;/&#1514;&#1493;&#1499;&#1504;&#1492;, &#1514;&#1511;&#1513;&#1493;&#1512;&#1514; &#1493;&#1488;&#1489;&#1496;&#1495;&#1514; &#1502;&#1497;&#1491;&#1506;; &#1504;&#1497;&#1492;&#1493;&#1500; &#1510;&#1493;&#1493;&#1514;; &#1492;&#1505;&#1506;&#1493;&#1514; &#1502;&#1495;&#1497;&#1508;&#1492;, &#1504;&#1492;&#1512;&#1497;&#1492;, &#1511;&#1512;&#1497;&#1493;&#1514;, &#1506;&#1508;&#1493;&#1500;&#1492;, &#1497;&#1511;&#1504;&#1506;&#1501;</td>
+  <td class="cell-location">&#1499;&#1512;&#1502;&#1497;&#1488;&#1500; <span class="km km-mid">~50 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1492; &#1512;&#1508;&#1493;&#1488;&#1497;&#1514; (&#1488;&#1504;&#1493;&#1504;&#1497;&#1502;&#1497;)</td>
+</tr>
+
+<tr class="job-row" data-dist="50" data-hybrid="no" data-src="jobkarov">
+  <td class="cell-title"><a href="https://www.jobkarov.com/Search/?speciality=1857&role=1864&area=-2" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1510;&#1493;&#1493;&#1514; &#1492;&#1502;&#1495;&#1500;&#1511;&#1492; &#1493;&#1497;&#1493;&#1506;&#1510;&#1497;&#1501; &#1495;&#1497;&#1510;&#1493;&#1504;&#1497;&#1497;&#1501;; &#1495;&#1489;&#1512;&#1492; &#1490;&#1500;&#1493;&#1489;&#1500;&#1497;&#1514; &#1506;&#1501; &#1508;&#1506;&#1497;&#1500;&#1493;&#1514; &#1489;&#1490;&#1500;&#1497;&#1500;</td>
+  <td class="cell-location">&#1492;&#1490;&#1500;&#1497;&#1500; <span class="km km-mid">~50 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-jobkarov">JobKarov</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1492; &#1490;&#1500;&#1493;&#1489;&#1500;&#1497;&#1514; (&#1488;&#1504;&#1493;&#1504;&#1497;&#1502;&#1497;)</td>
+</tr>
+
+<tr class="job-row" data-dist="65" data-hybrid="no" data-src="jobify">
+  <td class="cell-title"><a href="https://jobify360.co.il/jobs/8261716-aj" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506; &#1489;&#1512;&#1513;&#1514; &#1495;&#1504;&#1493;&#1497;&#1493;&#1514; &#1505;&#1508;&#1512;&#1497;&#1501; &#1502;&#1493;&#1489;&#1497;&#1500;&#1492; &#1489;&#1497;&#1513;&#1512;&#1488;&#1500;; &#1514;&#1508;&#1511;&#1497;&#1491; &#1489;&#1499;&#1497;&#1512;, &#1488;&#1495;&#1512;&#1497;&#1493;&#1514; &#1499;&#1493;&#1500;&#1500;&#1514; &#1506;&#1500; IT &#1488;&#1512;&#1490;&#1493;&#1504;&#1497;</td>
+  <td class="cell-location">&#1490;&#1493;&#1513; &#1491;&#1503; <span class="km km-far">~65 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-jobify">Jobify</span></td>
+  <td class="cell-company">&#1505;&#1496;&#1497;&#1502;&#1510;&#1511;&#1497;</td>
+</tr>
+
+<tr class="job-row" data-dist="65" data-hybrid="no" data-src="alljobs">
+  <td class="cell-title"><a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500; &#1488;&#1508;&#1500;&#1497;&#1511;&#1510;&#1497;&#1493;&#1514; &#1493;&#1488;&#1504;&#1500;&#1497;&#1505;&#1496; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1488;&#1508;&#1500;&#1497;&#1511;&#1510;&#1497;&#1493;&#1514;, &#1488;&#1504;&#1500;&#1497;&#1494;&#1492; &#1506;&#1505;&#1511;&#1497;&#1514; &#1493;&#1497;&#1497;&#1513;&#1493;&#1501; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514;; &#1495;&#1489;&#1512;&#1492; &#1502;&#1513;&#1508;&#1495;&#1514;&#1497;&#1514;-&#1490;&#1500;&#1493;&#1489;&#1500;&#1497;&#1514; &#1500;&#1508;&#1497;&#1514;&#1493;&#1495; &#1494;&#1504;&#1497;&#1501; &#1489;&#1514;&#1495;&#1493;&#1501; &#1492;&#1508;&#1512;&#1495;&#1504;&#1493;&#1514;</td>
+  <td class="cell-location">&#1502;&#1513;&#1502;&#1512; &#1492;&#1513;&#1489;&#1506;&#1492; <span class="km km-far">~65 &#1511;"&#1502;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1514; &#1494;&#1504;&#1497;&#1501; &#1490;&#1500;&#1493;&#1489;&#1500;&#1497;&#1514;</td>
+</tr>
+
+<tr class="job-row" data-dist="999" data-hybrid="no" data-src="drushim">
+  <td class="cell-title"><a href="https://www.drushim.co.il/job/36636449/69599a76/" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506; CIO</a></td>
+  <td class="cell-desc">&#1506;&#1497;&#1510;&#1493;&#1489; &#1488;&#1505;&#1496;&#1512;&#1496;&#1490;&#1497;&#1497;&#1514; &#1502;&#1495;&#1513;&#1493;&#1489; &#1493;&#1502;&#1497;&#1491;&#1506;, &#1497;&#1497;&#1494;&#1493;&#1501; &#1495;&#1491;&#1513;&#1504;&#1493;&#1514; &#1496;&#1499;&#1504;&#1493;&#1500;&#1493;&#1490;&#1497;&#1514;, &#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; GIS, &#1508;&#1497;&#1514;&#1493;&#1495; &#1493;&#1513;&#1491;&#1512;&#1493;&#1490; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514;; &#1491;&#1497;&#1493;&#1493;&#1495; &#1497;&#1513;&#1497;&#1512; &#1500;&#1502;&#1504;&#1499;"&#1500;</td>
+  <td class="cell-location">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503; <span class="km km-unknown">&#1500;&#1488; &#1497;&#1491;&#1493;&#1506;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1492; &#1489;&#1497;&#1496;&#1495;&#1493;&#1504;&#1497;&#1514; (&#1488;&#1504;&#1493;&#1504;&#1497;&#1502;&#1497;)</td>
+</tr>
+
+<tr class="job-row" data-dist="999" data-hybrid="no" data-src="drushim">
+  <td class="cell-title"><a href="https://www.drushim.co.il/job/36484031/11e3c3e1/" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1514;&#1495;&#1493;&#1501; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1493;&#1514;&#1508;&#1506;&#1493;&#1500; IT, &#1514;&#1499;&#1504;&#1493;&#1503; &#1493;&#1497;&#1497;&#1513;&#1493;&#1501; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1488;&#1512;&#1490;&#1493;&#1504;&#1497;&#1493;&#1514; (ERP, BI, &#1504;&#1497;&#1496;&#1493;&#1512; &#1493;&#1489;&#1511;&#1512;&#1492;); &#1514;&#1508;&#1511;&#1497;&#1491; &#1506;&#1510;&#1502;&#1488;&#1497; &#1493;&#1502;&#1493;&#1489;&#1497;&#1500; &#8212; &#1513;&#1499;&#1512; &#1490;&#1489;&#1493;&#1492;!</td>
+  <td class="cell-location">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503; <span class="km km-unknown">&#1500;&#1488; &#1497;&#1491;&#1493;&#1506;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-drushim">Drushim</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1492; &#1502;&#1505;&#1495;&#1512;&#1497;&#1514; (&#1488;&#1504;&#1493;&#1504;&#1497;&#1502;&#1497;)</td>
+</tr>
+
+<tr class="job-row" data-dist="999" data-hybrid="no" data-src="alljobs">
+  <td class="cell-title"><a href="https://www.alljobs.co.il/Employer/HP/Default.aspx?cid=321223" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506; &#1493;&#1496;&#1499;&#1504;&#1493;&#1500;&#1493;&#1490;&#1497;&#1493;&#1514;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1495;&#1500;&#1511;&#1514; &#1502;"&#1502;, &#1491;&#1497;&#1490;&#1497;&#1496;&#1500;, &#1505;&#1497;&#1497;&#1489;&#1512; &#1493;&#1488;&#1489;&#1496;&#1495;&#1514; &#1502;&#1497;&#1491;&#1506;; &#1496;&#1499;&#1504;&#1493;&#1500;&#1493;&#1490;&#1497;&#1493;&#1514; &#1506;&#1504;&#1503; &#1493;-OT/IT; 3+ &#1513;&#1504;&#1493;&#1514; &#1504;&#1497;&#1505;&#1497;&#1493;&#1503; &#1489;&#1488;&#1512;&#1490;&#1493;&#1503; 300+ &#1506;&#1493;&#1489;&#1491;&#1497;&#1501;</td>
+  <td class="cell-location">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503; <span class="km km-unknown">&#1500;&#1488; &#1497;&#1491;&#1493;&#1506;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-alljobs">AllJobs</span></td>
+  <td class="cell-company">&#1514;&#1504;&#1493;&#1508;&#1492; &#1508;&#1514;&#1512;&#1493;&#1504;&#1493;&#1514; &#1514;&#1495;&#1489;&#1493;&#1512;&#1492;</td>
+</tr>
+
+<tr class="job-row" data-dist="999" data-hybrid="no" data-src="jobify">
+  <td class="cell-title"><a href="https://jobify360.co.il/jobs/7841896-aj" target="_blank" rel="noopener">&#1502;&#1504;&#1492;&#1500;/&#1514; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506;</a></td>
+  <td class="cell-desc">&#1504;&#1497;&#1492;&#1493;&#1500; &#1502;&#1506;&#1512;&#1499;&#1493;&#1514; &#1502;&#1497;&#1491;&#1506; &#1489;&#1495;&#1489;&#1512;&#1514; &#1489;&#1514; &#1513;&#1500; &#1511;&#1489;&#1493;&#1510;&#1492; &#1506;&#1505;&#1511;&#1497;&#1514; &#1502;&#1493;&#1489;&#1497;&#1500;&#1492; &#1489;&#1497;&#1513;&#1512;&#1488;&#1500;; &#1514;&#1508;&#1511;&#1497;&#1491; &#1489;&#1499;&#1497;&#1512;</td>
+  <td class="cell-location">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503; <span class="km km-unknown">&#1500;&#1488; &#1497;&#1491;&#1493;&#1506;</span></td>
+  <td class="cell-hybrid"><span class="hb-unknown">&#1500;&#1488; &#1510;&#1493;&#1497;&#1503;</span></td>
+  <td class="cell-source"><span class="src src-jobify">Jobify</span></td>
+  <td class="cell-company">&#1495;&#1489;&#1512;&#1514; &#1489;&#1514; &#8212; &#1511;&#1489;&#1493;&#1510;&#1492; &#1502;&#1493;&#1489;&#1497;&#1500;&#1492;</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+</main>
+
 <footer>
-  הקישורים מובילים ישירות למודעה במקור — מומלץ לוודא פרטים לפני הגשה.<br>
-  המרחקים אומדן אווירי בלבד (לא מרחק נסיעה). הנתונים נאספו אוטומטית; ייתכנו אי-דיוקים בשם חברה/מיקום.<br>
-  LinkedIn בגרסת אורח החזיר תוצאות חלשות — לחיפוש איכותי שם נדרשת התחברות אישית.
+  <ul class="footer-notes">
+    <li>&#1492;&#1504;&#1514;&#1493;&#1504;&#1497;&#1501; &#1504;&#1488;&#1505;&#1508;&#1493; &#1488;&#1493;&#1496;&#1493;&#1502;&#1496;&#1497;&#1514; &#1502;&#1488;&#1514;&#1512;&#1497; &#1491;&#1512;&#1493;&#1513;&#1497;&#1501; &#1510;&#1497;&#1489;&#1493;&#1512;&#1497;&#1497;&#1501; &#8212; &#1497;&#1513; &#1500;&#1488;&#1502;&#1514; &#1499;&#1500; &#1502;&#1513;&#1512;&#1492; &#1500;&#1508;&#1504;&#1497; &#1492;&#1490;&#1513;&#1514; &#1502;&#1493;&#1506;&#1502;&#1491;&#1493;&#1514;</li>
+    <li>&#1492;&#1502;&#1512;&#1495;&#1511;&#1497;&#1501; &#1492;&#1501; &#1492;&#1506;&#1512;&#1499;&#1493;&#1514; &#1511;&#1493;&#1493;&#1497;&#1493;&#1514; (&#1488;&#1493;&#1493;&#1497;&#1512;&#1497;&#1493;&#1514;) &#1489;&#1500;&#1489;&#1491; &#1493;&#1488;&#1497;&#1504;&#1501; &#1502;&#1512;&#1495;&#1511;&#1497; &#1504;&#1505;&#1497;&#1506;&#1492;</li>
+    <li>&#1495;&#1497;&#1508;&#1493;&#1513; LinkedIn (guest) &#1502;&#1493;&#1490;&#1489;&#1500; &#1489;&#1497;&#1493;&#1514;&#1512; &#1493;&#1506;&#1513;&#1493;&#1497; &#1513;&#1500;&#1488; &#1500;&#1513;&#1511;&#1507; &#1488;&#1514; &#1502;&#1500;&#1493;&#1488; &#1492;&#1502;&#1513;&#1512;&#1493;&#1514; &#1492;&#1494;&#1502;&#1497;&#1504;&#1493;&#1514;</li>
+    <li>&#1502;&#1513;&#1512;&#1493;&#1514; &#1500;&#1500;&#1488; &#1502;&#1497;&#1511;&#1493;&#1501; &#1502;&#1508;&#1493;&#1512;&#1513; &#8212; &#1492;&#1502;&#1512;&#1495;&#1511; &#1502;&#1505;&#1493;&#1502;&#1503; "&#1500;&#1488; &#1497;&#1491;&#1493;&#1506;"</li>
+  </ul>
+  <div class="footer-links">
+    <span class="footer-links-label">&#1495;&#1497;&#1508;&#1493;&#1513; &#1497;&#1513;&#1497;&#1512;:</span>
+    <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545" target="_blank">AllJobs &#8212; &#1502;&#1504;&#1492;&#1500; &#1502;"&#1502; CIO</a>
+    <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?page=1&position=1545&type=37" target="_blank">AllJobs &#8212; &#1492;&#1497;&#1489;&#1512;&#1497;&#1491;&#1497;</a>
+    <a href="https://www.drushim.co.il/jobs/subcat/231/" target="_blank">Drushim &#8212; &#1502;&#1504;&#1492;&#1500; &#1502;"&#1502;</a>
+    <a href="https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2" target="_blank">JobMaster</a>
+    <a href="https://il.linkedin.com/jobs/cio-jobs" target="_blank">LinkedIn &#8212; CIO</a>
+  </div>
 </footer>
 
 <script>
-  const JOBS=[
-    // ---- within 30 km ----
-    {title:"IT Director – Business Applications",company:"חברה חסויה (השמה)",loc:"קיסריה / יוקנעם / חיפה",km:12,hybrid:"na",src:"AllJobs",
-     desc:"הובלה אסטרטגית של מערך האפליקציות העסקיות בארגון",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8689027"},
-    {title:"מנהל/ת מערכות מידע – חברה תעשייתית",company:"לירון ואליס גיוס והשמה",loc:"חיפה / ק.מוצקין / כרמיאל",km:25,hybrid:"no",src:"AllJobs",
-     desc:"ניהול מערך מערכות המידע וה-IT והובלת פרויקטים טכנולוגיים",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8703157"},
-
-    // ---- beyond 30 km ----
-    {title:"מנהל/ת מערכות מידע · CIO",company:"ישומים לבכירים",loc:"עכו",km:45,hybrid:"na",src:"AllJobs",
-     desc:"אחריות מלאה על אסטרטגיית הטכנולוגיה, תשתיות IT ומערכות הארגון",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8639251"},
-    {title:"מנהל/ת מערכות מידע ומחשוב",company:"JOMBA HR",loc:"הוד השרון",km:55,hybrid:"na",src:"דרושים",
-     desc:"ניהול מערכות מידע ומחשוב בחברה מובילה בתחומה",url:"https://www.drushim.co.il/job/37202402/734bcd31/"},
-    {title:"מנהל/ת מערכות מידע (היברידי)",company:"Jomba HR",loc:"הוד השרון",km:55,hybrid:"yes",src:"AllJobs",
-     desc:"5+ שנות ניסיון במערכות מידע, הובלת מערך IT",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8677683"},
-    {title:"מנהל/ת מערכות מידע",company:"אלביט מערכות",loc:"רמת השרון",km:62,hybrid:"na",src:"JobMaster",
-     desc:"הובלת מערכות הליבה החטיבתיות — ERP, MES, PLM",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9781929"},
-    {title:"מנהל/ת אפליקציות ומנתח/ת מערכות",company:"טופ סופטוור",loc:"רמת השרון / חולון",km:62,hybrid:"na",src:"JobMaster",
-     desc:"עבודה עם משתמשים, תהליכים ומערכות מידע במולטינשיונל",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9744554"},
-    {title:"מנהל/ת מערכות מידע, דאטה ויישום AI",company:"זרועות ברקן",loc:"אריאל",km:72,hybrid:"na",src:"דרושים",
-     desc:"הובלת תחום מערכות מידע, דאטה ויישום מערכות AI",url:"https://www.drushim.co.il/job/37334889/0ba1c908/"},
-    {title:"מנהל מערכות מידע ראשי",company:"נת\"ע — תחבורה עירונית",loc:"חולון",km:75,hybrid:"yes",src:"JobMaster",
-     desc:"ניהול מערך מערכות המידע — משרה ציבורית",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9722939"},
-    {title:"מנהל IT",company:"חברה גלובלית (מוצרי צריכה)",loc:"שוהם",km:75,hybrid:"na",src:"JobMaster",
-     desc:"ניהול מערך ה-IT בחברה גלובלית מובילה",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9737902"},
-    {title:"מנהל מערכות מידע ראשי",company:"חברה חסויה",loc:"שוהם",km:75,hybrid:"yes",src:"JobMaster",
-     desc:"ניהול ראשי של מערך מערכות המידע",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9783932"},
-    {title:"Information Systems Manager",company:"וויופוינט השמות",loc:"שוהם / מודיעין / לוד",km:78,hybrid:"na",src:"AllJobs",
-     desc:"Lead and manage the company's enterprise information systems",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8666201"},
-    {title:"מנהל/ת מערכות מידע ו-IT",company:"חברה חסויה",loc:"יבנה",km:88,hybrid:"na",src:"JobMaster",
-     desc:"ניהול מערכות מידע ו-IT, דגש על SAP B1",url:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9791811"},
-    {title:"מנהל מערכות מידע, IT ורשתות",company:"אהרון יוסף ובניו",loc:"גן יבנה",km:88,hybrid:"na",src:"AllJobs",
-     desc:"ניהול מערכות מחשוב, רשתות תקשורת ותשתיות",url:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8642585"},
-    {title:"מנהל/ת מערכות מידע גלובלי",company:"חברה גלובלית",loc:"צפת",km:90,hybrid:"na",src:"JobMaster",
-     desc:"הובלת מערך מערכות המידע הגלובלי — אסטרטגיה, תשתיות, אבטחת מידע",url:"https://www.jobmaster.co.il/jobs/?q=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2&ezor=31"},
-  ];
-
-  const hb={yes:'<span class="yes">כן</span>',no:'<span class="no">לא</span>',na:'<span class="na">לא צוין</span>'};
-  function row(j){
-    return `<tr class="${j.km<=30?'near':''}" data-hybrid="${j.hybrid}" data-src="${j.src}" data-near="${j.km<=30}">
-      <td class="title"><a href="${j.url}" target="_blank">${j.title}</a></td>
-      <td class="desc">${j.desc}</td>
-      <td class="loc">${j.loc}<span class="km">~${j.km} ק"מ</span></td>
-      <td>${hb[j.hybrid]}</td>
-      <td><span class="src">${j.src}</span></td>
-      <td>${j.company}</td></tr>`;
-  }
-  const sorted=[...JOBS].sort((a,b)=>a.km-b.km);
-  document.getElementById('tbody-near').innerHTML=sorted.filter(j=>j.km<=30).map(row).join('');
-  document.getElementById('tbody-far').innerHTML =sorted.filter(j=>j.km>30).map(row).join('');
-
-  const countEl=document.getElementById('count');
-  function applyFilter(f){
-    let n=0;
-    document.querySelectorAll('tbody tr').forEach(tr=>{
-      let show=true;
-      if(f==='near')show=tr.dataset.near==='true';
-      else if(f==='hybrid')show=tr.dataset.hybrid==='yes';
-      else if(f!=='all')show=tr.dataset.src===f;
-      tr.style.display=show?'':'none';
-      if(show)n++;
+(function () {
+  var btns = document.querySelectorAll('.filter-btn');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.dataset.filter;
+      var rows = document.querySelectorAll('.job-row');
+      var visNear = 0, visFar = 0;
+      rows.forEach(function (row) {
+        var dist   = parseFloat(row.dataset.dist);
+        var isNear = dist <= 30;
+        var hybrid = row.dataset.hybrid === 'yes';
+        var src    = row.dataset.src;
+        var show   = (filter === 'all') ? true :
+                     (filter === 'near')   ? isNear :
+                     (filter === 'hybrid') ? hybrid :
+                     (src === filter);
+        if (show) { row.classList.remove('hidden'); if (isNear) visNear++; else visFar++; }
+        else      { row.classList.add('hidden'); }
+      });
+      var sn = document.getElementById('sec-near'), tn = document.getElementById('tbl-near');
+      var sf = document.getElementById('sec-far'),  tf = document.getElementById('tbl-far');
+      if (visNear === 0) { sn.classList.add('hidden'); tn.classList.add('hidden'); }
+      else               { sn.classList.remove('hidden'); tn.classList.remove('hidden'); }
+      if (visFar === 0)  { sf.classList.add('hidden'); tf.classList.add('hidden'); }
+      else               { sf.classList.remove('hidden'); tf.classList.remove('hidden'); }
     });
-    document.querySelectorAll('.secbar').forEach(s=>{
-      const tb=s.nextElementSibling.querySelector('tbody');
-      const any=[...tb.querySelectorAll('tr')].some(tr=>tr.style.display!=='none');
-      s.style.display=any?'':'none';
-      s.nextElementSibling.style.display=any?'':'none';
-    });
-    countEl.textContent=`מציג ${n} משרות`;
-  }
-  document.getElementById('filters').addEventListener('click',e=>{
-    if(e.target.tagName!=='BUTTON')return;
-    document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));
-    e.target.classList.add('active');
-    applyFilter(e.target.dataset.f);
   });
-  applyFilter('all');
+})();
 </script>
+</body>
+</html>
