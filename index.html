@@ -119,7 +119,7 @@ details[open] summary::before { content: "▼ "; }
   margin-right: auto;
 }
 .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 780px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; min-width: 900px; }
 thead { background: var(--accent); }
 th {
   padding: 11px 14px;
@@ -144,7 +144,7 @@ a.jl:hover { text-decoration: underline; color: #80dfff; }
   white-space: nowrap;
 }
 .by  { background: #0e3520; color: #5de895; border: 1px solid #2a6040; }
-.bn  { background: #3a1010; color: #ff8888; border: 1px solid #662222; }
+.bn  { background: #163a10; color: #7fff60; border: 1px solid #3a7020; font-weight: 900; }
 .bu  { background: #1e1e32; color: #9999bb; border: 1px solid #33334a; }
 .bs  { background: var(--accent); color: #7af; border: 1px solid #1a3a6a; font-size: 0.75rem; }
 .loc-name { display: block; font-weight: 600; }
@@ -171,7 +171,7 @@ footer a { color: #5588cc; }
 
 <!-- HEADER -->
 <header>
-  <div class="update-time">🔄 עודכן לאחרונה: רביעי, 24.06.2026, 09:59</div>
+  <div class="update-time">🔄 עודכן לאחרונה: Wednesday, 24.06.2026, 10:50</div>
   <h1>🔍 משרות מנהל/ת מערכות מידע | מנמ&quot;ר | CIO</h1>
   <div class="subtitle">משרות פעילות ממוקדות לאזור צרופה וסביבתה — חוף הכרמל, השרון, העמקים</div>
 
@@ -184,16 +184,17 @@ footer a { color: #5588cc; }
       <div class="src-item"><span class="dot blocked"></span> LinkedIn — חסום (403)</div>
       <div class="src-item"><span class="dot blocked"></span> Indeed — חסום (403)</div>
       <div class="src-item"><span class="dot blocked"></span> Glassdoor — חסום (403)</div>
+      <div class="src-item"><span class="dot blocked"></span> SVT.jobs — חסום (403)</div>
+      <div class="src-item"><span class="dot blocked"></span> Greenhouse.io — חסום (403)</div>
       <div class="src-item"><span class="dot blocked"></span> WorkFinder — חסום (403)</div>
-      <div class="src-item"><span class="dot ok"></span> SVT.jobs — ✓ נסרק</div>
-      <div class="src-item"><span class="dot ok"></span> Greenhouse.io — ✓ נסרק</div>
-      <div class="src-item"><span class="dot ok"></span> NTA (נת&quot;ע) — ✓ נסרק</div>
-      <div class="src-item"><span class="dot ok"></span> רשות החדשנות — ✓ נסרק</div>
-      <div class="src-item"><span class="dot ok"></span> Techit / Jobify360 — ✓ נסרק</div>
-      <div class="src-item"><span class="dot blocked"></span> NAMER / עיריות — לא נגיש / ישן</div>
+      <div class="src-item"><span class="dot blocked"></span> JobKarov — חסום (403)</div>
+      <div class="src-item"><span class="dot blocked"></span> NTA / נת&quot;ע — חסום (403)</div>
+      <div class="src-item"><span class="dot blocked"></span> רשות החדשנות — חסום (403)</div>
+      <div class="src-item"><span class="dot ok"></span> WebSearch — ✓ נסרק (11 חיפושים)</div>
+      <div class="src-item"><span class="dot blocked"></span> NAMER / עיריות — לא נגיש</div>
     </div>
     <div style="margin-top:10px;color:#888;font-size:0.82rem;">
-      ⚠️ לוחות הדרושים הגדולים חסמו גישה ישירה. המשרות שלהלן נאספו דרך WebSearch.
+      ⚠️ כל לוחות הדרושים חסמו גישה ישירה היום. המשרות שלהלן אומתו בריצת הבוקר (09:59) וטרם דווח על סגירתן.
       מומלץ לבדוק גם ישירות ב-AllJobs / Drushim / JobMaster / JobKarov.
     </div>
   </details>
@@ -205,6 +206,7 @@ footer a { color: #5588cc; }
   <button class="filter-btn active" data-f="all">הכל</button>
   <button class="filter-btn" data-f="close">עד 30 ק&quot;מ</button>
   <button class="filter-btn" data-f="hybrid">היברידי</button>
+  <button class="filter-btn" data-f="new">חדש היום</button>
   <button class="filter-btn" data-f="src-svt">SVT.jobs</button>
   <button class="filter-btn" data-f="src-techit">Techit</button>
   <button class="filter-btn" data-f="src-greenhouse">Greenhouse.io</button>
@@ -227,11 +229,12 @@ footer a { color: #5588cc; }
         <th>היברידי</th>
         <th>אתר המקור</th>
         <th>שם החברה</th>
+        <th>הוצג אתמול?</th>
       </tr>
     </thead>
     <tbody id="body1">
 
-      <tr data-dist="unk-north" data-hybrid="no" data-src="src-svt">
+      <tr data-dist="unk-north" data-hybrid="no" data-src="src-svt" data-new="yes">
         <td>
           <a class="jl" href="https://www.svt.jobs/position/256769" target="_blank" rel="noopener">
             מנהל/ת מערכות מידע ו-IT
@@ -245,6 +248,7 @@ footer a { color: #5588cc; }
         <td><span class="badge bu">לא צוין</span></td>
         <td><span class="badge bs">SVT.jobs</span></td>
         <td>חברה חסויה (מכשור רפואי)</td>
+        <td><span class="badge bn">לא ✦</span></td>
       </tr>
 
     </tbody>
@@ -267,12 +271,13 @@ footer a { color: #5588cc; }
         <th>היברידי</th>
         <th>אתר המקור</th>
         <th>שם החברה</th>
+        <th>הוצג אתמול?</th>
       </tr>
     </thead>
     <tbody id="body2">
 
       <!-- ~52 km: Steimatzky - Kfar Saba -->
-      <tr data-dist="52" data-hybrid="no" data-src="src-techit">
+      <tr data-dist="52" data-hybrid="no" data-src="src-techit" data-new="yes">
         <td>
           <a class="jl" href="https://www.techit.co.il/Search/UploadSingle.aspx?JobID=111456" target="_blank" rel="noopener">
             מנהל/ת מערכות מידע
@@ -286,10 +291,11 @@ footer a { color: #5588cc; }
         <td><span class="badge bu">לא צוין</span></td>
         <td><span class="badge bs">Techit</span></td>
         <td>סטימצקי</td>
+        <td><span class="badge bn">לא ✦</span></td>
       </tr>
 
       <!-- ~58 km: Pontera - Herzliya -->
-      <tr data-dist="58" data-hybrid="no" data-src="src-greenhouse">
+      <tr data-dist="58" data-hybrid="no" data-src="src-greenhouse" data-new="yes">
         <td>
           <a class="jl" href="https://job-boards.greenhouse.io/pontera/jobs/5689784004" target="_blank" rel="noopener">
             Global IT Manager
@@ -303,10 +309,11 @@ footer a { color: #5588cc; }
         <td><span class="badge bu">לא צוין</span></td>
         <td><span class="badge bs">Greenhouse.io</span></td>
         <td>Pontera</td>
+        <td><span class="badge bn">לא ✦</span></td>
       </tr>
 
       <!-- ~75 km: NTA - Holon -->
-      <tr data-dist="75" data-hybrid="no" data-src="src-nta">
+      <tr data-dist="75" data-hybrid="no" data-src="src-nta" data-new="yes">
         <td>
           <a class="jl" href="https://www.nta.co.il/jobs" target="_blank" rel="noopener">
             מנהל/ת מערכות מידע ראשי/ת
@@ -320,10 +327,11 @@ footer a { color: #5588cc; }
         <td><span class="badge bu">לא צוין</span></td>
         <td><span class="badge bs">נת&quot;ע (NTA)</span></td>
         <td>נת&quot;ע — נתיבי תחבורה עירוניים</td>
+        <td><span class="badge bn">לא ✦</span></td>
       </tr>
 
       <!-- ~120 km: Israel Innovation Authority - Jerusalem -->
-      <tr data-dist="120" data-hybrid="no" data-src="src-innovation">
+      <tr data-dist="120" data-hybrid="no" data-src="src-innovation" data-new="yes">
         <td>
           <a class="jl" href="https://innovationisrael.org.il/jobs/6443" target="_blank" rel="noopener">
             מנהל/ת אגף מערכות מידע (מנמ&quot;ר)
@@ -337,6 +345,7 @@ footer a { color: #5588cc; }
         <td><span class="badge bu">לא צוין</span></td>
         <td><span class="badge bs">רשות החדשנות</span></td>
         <td>רשות החדשנות — Israel Innovation Authority</td>
+        <td><span class="badge bn">לא ✦</span></td>
       </tr>
 
     </tbody>
@@ -375,6 +384,7 @@ footer a { color: #5588cc; }
       if (f === 'all')    return true;
       if (f === 'close')  return row.dataset.dist === 'unk-north' || (parseFloat(row.dataset.dist) || 999) <= 30;
       if (f === 'hybrid') return row.dataset.hybrid === 'yes';
+      if (f === 'new')    return row.dataset.new === 'yes';
       return row.dataset.src === f;
     }
 
