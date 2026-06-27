@@ -155,6 +155,7 @@ const html = `<meta charset="utf-8">
  <span class="stamp">🔄 עודכן לאחרונה: ${esc(dFull)}</span>
  <div class="note">${esc(note)}</div>
  <div class="sub">מנהל/ת מערכות מידע · מנמ"ר · CIO · מנהל/ת אפליקציות · IT/IS Manager &nbsp;|&nbsp; ממוין לפי מרחק מצרופה · רץ אוטומטית ב-GitHub Actions</div>
+ <div style="margin-top:8px;font-size:14px"><a href="guide.html" target="_blank" style="color:var(--accent);font-weight:600;text-decoration:none">📘 לביצוע שינויים בפיתוח ↗</a></div>
 </div></header>
 <div class="wrap">
  <div class="filters" id="filters">
