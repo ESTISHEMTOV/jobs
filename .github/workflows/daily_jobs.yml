@@ -1,0 +1,28 @@
+name: Daily Jobs Refresh
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: daily-jobs
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Refresh jobs page
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: node scripts/refresh.mjs
+      - name: Commit & push if changed
+        run: |
+          git config user.name "Jobs Bot"
+          git config user.email "jobs-bot@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then echo "No changes."; else git commit -m "Daily job refresh (GitHub Actions)"; git push; fi
