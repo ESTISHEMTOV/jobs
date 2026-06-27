@@ -85,8 +85,13 @@ async function callGemini() {
 // Guard: only allow known site-SEARCH URLs; anything else (fabricated ID paths, civi, blanks) -> Google search.
 function safeUrl(j) {
   const u = (j.url || '').trim();
+  const src = (j.source || '').toLowerCase();
+  const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q);
+  // Civi & GovJobs have no reliable direct/search URL — use a Google search SCOPED to their site so the top hit is the real posting.
+  if (src.includes('civi')) return g(`${j.title || ''} ${j.company || ''} site:civi.co.il OR site:app.civi.co.il`);
+  if (src.includes('gov')) return g(`${j.title || ''} ${j.company || ''} site:govojobs.co.il`);
   const allowed = /^https:\/\/(www\.jobmaster\.co\.il\/jobs\/\?q=|www\.alljobs\.co\.il\/SearchResultsGuest|www\.drushim\.co\.il\/jobs\/search\/|www\.linkedin\.com\/jobs\/search|www\.google\.com\/search)/i.test(u);
-  return allowed ? u : 'https://www.google.com/search?q=' + encodeURIComponent(`${j.title || ''} ${j.company || ''} דרושים`);
+  return allowed ? u : g(`${j.title || ''} ${j.company || ''} דרושים`);
 }
 let jobs = [];
 try { jobs = await callGemini(); } catch (err) { console.error('Gemini failed:', err.message); }
