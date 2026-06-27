@@ -114,12 +114,15 @@ function safeUrl(j) {
   const u = (j.url || '').trim();
   if (realUrls.has(u)) return u;   // genuine direct listing URL extracted from a board page → use it
   const src = (j.source || '').toLowerCase();
-  const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q);
-  // Civi & GovJobs have no reliable direct/search URL — use a Google search SCOPED to their site so the top hit is the real posting.
-  if (src.includes('civi')) return g(`${j.title || ''} ${j.company || ''} site:civi.co.il OR site:app.civi.co.il`);
-  if (src.includes('gov')) return g(`${j.title || ''} ${j.company || ''} site:govojobs.co.il`);
+  const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q.replace(/\s+/g, ' ').trim());
+  // For sources with no real/fetched URL: a Google search that actually RETURNS results.
+  const co = (j.company && !/חסוי|confidential/i.test(j.company)) ? j.company : '';  // drop "חברה חסויה" filler from the query
+  const base = `${j.title || ''} ${co}`;
+  if (src.includes('civi')) return g(`${base} site:civi.co.il`);                      // Civi postings are indexed by Google
+  if (src.includes('linkedin') || /linkedin\.com/i.test(u)) return g(`${base} site:linkedin.com/jobs`);
+  if (src.includes('gov')) return g(`${base} דרושים מכרז`);                           // govojobs indexing unreliable → softer query that still returns results
   const allowed = /^https:\/\/(www\.jobmaster\.co\.il\/jobs\/\?q=|www\.alljobs\.co\.il\/SearchResultsGuest|www\.drushim\.co\.il\/jobs\/search\/|www\.linkedin\.com\/jobs\/search|www\.google\.com\/search)/i.test(u);
-  return allowed ? u : g(`${j.title || ''} ${j.company || ''} דרושים`);
+  return allowed ? u : g(`${base} דרושים`);
 }
 let jobs = [];
 try { jobs = await callGemini(); } catch (err) { console.error('Gemini failed:', err.message); }
