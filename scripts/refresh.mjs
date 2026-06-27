@@ -45,6 +45,7 @@ Extract CURRENTLY-OPEN such jobs primarily from the BOARD TEXT below (it is real
 RULES:
 - MANAGER-LEVEL IS/IT/CIO/applications only (heading the information-systems function). Skip junior/implementer/developer/sales roles even if titled "מנהל מערכות מידע" — verify it is truly an IS/IT MANAGEMENT role.
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
+- Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, IT/IS manager).
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
 - HYBRID: set "yes"/"no" from the listing; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
