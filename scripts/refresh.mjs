@@ -40,7 +40,7 @@ const PROMPT = `You extract job listings for a Hebrew job-search landing page. R
 
 JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, Information System Manager, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere.
 
-Use BOTH the board text below AND Google Search to find CURRENTLY-OPEN such jobs in Israel (include civi.co.il/app.civi.co.il, GovJobs, municipal tenders, Greenhouse, LinkedIn, etc.).
+Extract CURRENTLY-OPEN such jobs primarily from the BOARD TEXT below (it is real and current). You MAY also add a few openings you are confident are currently open from your own knowledge (civi.co.il, GovJobs, municipal tenders, Greenhouse, LinkedIn) — but NEVER invent a URL: if unsure of the exact listing URL, use a site search link for the title.
 
 RULES:
 - MANAGER-LEVEL IS/IT/CIO/applications only. Skip junior/implementer/developer/sales roles even if titled "מנהל מערכות מידע" — verify it is truly an IS/IT management role.
@@ -53,11 +53,11 @@ RULES:
 
 Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<JobMaster|AllJobs|דרושים|Indeed|LinkedIn|Civi|GovJobs|name>", "url": "https://..."}. Aim for 8-20 quality items. Return ONLY the JSON array.
 
-BOARD TEXT:${corpus || '\n(all boards blocked today — rely on Google Search)'}`;
+BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
 async function callGemini() {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${KEY}`;
-  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], tools: [{ google_search: {} }], generationConfig: { temperature: 0.2 } };
+  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2 } };
   const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(120000) });
   if (!r.ok) throw new Error('Gemini HTTP ' + r.status + ' ' + (await r.text()).slice(0, 300));
   const j = await r.json();
