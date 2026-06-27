@@ -1,308 +1,58 @@
 <meta charset="utf-8">
 <title>משרות מערכות מידע — לוח אישי</title>
-<meta name="description" content="לוח משרות יומי אישי: מנהל מערכות מידע, מנמ\"ר, CIO — מעודכן אוטומטית מדי יום">
 <style>
-  :root{
-    --bg:#0f172a;--panel:#1e293b;--row:#1a2433;--row2:#1e293b;
-    --ink:#e2e8f0;--muted:#94a3b8;--accent:#38bdf8;
-    --good:#34d399;--warn:#fbbf24;--line:#334155;--near-bg:#0f2e23;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl;min-height:100vh}
-
-  header{padding:20px 20px 14px;background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:2px solid var(--line)}
-  h1{font-size:22px;margin-bottom:6px}
-  .stamp{display:inline-flex;align-items:center;gap:6px;background:#064e3b;color:#a7f3d0;
-    border:1px solid #10b981;border-radius:8px;padding:5px 12px;font-size:15px;font-weight:600;margin-bottom:10px}
-  .agent-link{display:block;font-size:12px;color:var(--muted);margin-top:4px}
-  .agent-link a{color:var(--accent);text-decoration:none}
-  .agent-link a:hover{text-decoration:underline}
-  .source-note{font-size:12px;color:var(--muted);margin-top:6px;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:6px 10px;display:inline-block}
-
-  .filters{padding:12px 20px;display:flex;flex-wrap:wrap;gap:8px;background:#111827;border-bottom:1px solid var(--line)}
-  .filter-btn{cursor:pointer;border:1px solid var(--line);border-radius:20px;padding:5px 14px;
-    font-size:13px;background:#1e293b;color:var(--ink);transition:all .15s}
-  .filter-btn:hover{border-color:var(--accent);color:var(--accent)}
-  .filter-btn.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:700}
-
-  .section-title{padding:12px 20px 6px;font-size:13px;font-weight:700;color:var(--accent);
-    text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--line)}
-  .section-near .section-title{background:#0a1f14}
-  .section-far .section-title{background:#0f172a}
-
-  .table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  thead th{background:#1e293b;color:var(--muted);font-weight:600;font-size:12px;
-    padding:8px 10px;text-align:right;border-bottom:2px solid var(--line);white-space:nowrap}
-  tbody tr{border-bottom:1px solid var(--line);transition:background .1s}
-  tbody tr:nth-child(even){background:var(--row2)}
-  tbody tr:nth-child(odd){background:var(--row)}
-  tbody tr:hover{background:#243249}
-  tbody tr.near-row{border-right:3px solid #10b981}
-  td{padding:9px 10px;vertical-align:top}
-  td.title-cell a{color:var(--accent);text-decoration:none;font-weight:600}
-  td.title-cell a:hover{text-decoration:underline}
-  td.desc-cell{color:#cbd5e1;font-size:13px;max-width:280px}
-  td.loc-cell{white-space:nowrap}
-  td.km-badge{white-space:nowrap}
-  .km{display:inline-block;background:#1e3a5f;color:#93c5fd;border-radius:12px;
-    padding:2px 8px;font-size:12px;font-weight:600}
-  .km.close{background:#064e3b;color:#6ee7b7}
-  .hybrid-yes{color:#34d399;font-weight:700}
-  .hybrid-no{color:var(--muted)}
-  .hybrid-unknown{color:#64748b;font-style:italic}
-  .source-tag{display:inline-block;background:#1e293b;border:1px solid var(--line);border-radius:10px;
-    padding:2px 8px;font-size:11px;color:var(--muted)}
-  .new-today{color:var(--good);font-weight:700}
-  .seen-yesterday{color:#475569;font-size:12px}
-  .company-cell{color:#cbd5e1;font-size:13px}
-
-  footer{padding:16px 20px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);
-    background:#0a0f1a;margin-top:20px;line-height:1.6}
-
-  @media(max-width:700px){
-    thead th:nth-child(3),thead th:nth-child(4),td:nth-child(3),td:nth-child(4){display:none}
-    td.desc-cell{max-width:140px;font-size:12px}
-  }
+ :root{--bg:#0f172a;--panel:#1e293b;--row:#1a2433;--row2:#1e293b;--ink:#e2e8f0;--muted:#94a3b8;--accent:#38bdf8;--good:#34d399;--line:#334155;--near:#0f2e23;}
+ *{box-sizing:border-box}body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl}
+ header{padding:24px 20px 14px;background:linear-gradient(135deg,#1e293b,#0f172a);border-bottom:1px solid var(--line)}
+ h1{margin:0 0 8px;font-size:24px}.stamp{display:inline-block;background:#064e3b;color:#a7f3d0;border:1px solid #10b981;border-radius:8px;padding:6px 14px;font-size:15px;font-weight:700}
+ .sub{color:var(--muted);font-size:13.5px;margin-top:8px}.note{color:#fbbf24;font-size:12.5px;margin-top:6px}
+ .wrap{max-width:1240px;margin:0 auto;padding:18px}
+ .filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+ .filters button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:6px 15px;font-size:13.5px;cursor:pointer}
+ .filters button.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
+ .count{color:var(--muted);font-size:13px;margin:0 0 10px}
+ table{width:100%;border-collapse:collapse;font-size:14px}
+ thead th{position:sticky;top:0;background:#0b1220;color:var(--muted);text-align:right;font-weight:600;padding:11px 12px;border-bottom:2px solid var(--line);font-size:13px;white-space:nowrap}
+ tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}tbody tr{background:var(--row)}tbody tr:nth-child(even){background:var(--row2)}tbody tr:hover{background:#26344a}tbody tr.near{background:var(--near)}
+ .title a{color:var(--ink);text-decoration:none;font-weight:600}.title a:hover{color:var(--accent)}
+ .desc{color:var(--muted);font-size:13px;max-width:320px;line-height:1.5}.loc{white-space:nowrap}.km{display:block;color:var(--good);font-size:11.5px;margin-top:3px}
+ .yes{color:var(--good);font-weight:600}.no{color:var(--muted)}.na{color:#64748b;font-size:12px}
+ .src{font-size:12px;background:#334155;padding:3px 9px;border-radius:6px;white-space:nowrap}
+ .new{background:var(--good);color:#063527;font-weight:700;padding:3px 9px;border-radius:6px;font-size:12px}.old{color:var(--muted);font-size:12px}
+ .secbar{margin:20px 0 8px;font-size:14px;color:var(--good);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}.secbar.far{color:var(--muted)}
+ footer{color:var(--muted);font-size:12px;text-align:center;padding:22px;border-top:1px solid var(--line);margin-top:26px;line-height:1.8}
+ @media(max-width:820px){.desc{max-width:none}}
 </style>
-
-<header>
-  <h1>🖥️ לוח משרות — מנהל מערכות מידע / מנמ"ר / CIO</h1>
-  <div class="stamp">🔄 עודכן לאחרונה: יום שישי, 26.06.2026, 07:03</div>
-  <div class="agent-link">
-    🛠️ <a href="https://claude.ai/code/routines/trig_01Fv41GjpwpDeob1iJqZUGsM" target="_blank">מעקב ריצות הסוכן</a>
-    <span style="color:#475569">&nbsp;(נפתח בחשבון claude.ai שלך)</span>
-  </div>
-  <div class="source-note">
-    ⚠️ <strong>הערת מקורות היום:</strong>
-    JobMaster, AllJobs, Drushim, LinkedIn, Indeed — נחסמו לגישה ישירה (403).
-    הנתונים נאספו דרך חיפושי Google בלבד. Jomba HR, רשות החדשנות ו-LinkedIn — נגישים חלקית.
-    יש לאמת כל משרה לפני הגשה.
-  </div>
-</header>
-
-<div class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">הכל (8)</button>
-  <button class="filter-btn" data-filter="near">עד 30 ק"מ (1)</button>
-  <button class="filter-btn" data-filter="new">חדש היום (0)</button>
-  <button class="filter-btn" data-filter="hybrid">היברידי (0)</button>
-  <button class="filter-btn" data-filter="src-LinkedIn">LinkedIn</button>
-  <button class="filter-btn" data-filter="src-AllJobs">AllJobs</button>
-  <button class="filter-btn" data-filter="src-Drushim">Drushim</button>
-  <button class="filter-btn" data-filter="src-JobMaster">JobMaster</button>
-  <button class="filter-btn" data-filter="src-JombaHR">Jomba HR</button>
-  <button class="filter-btn" data-filter="src-Innovation">רשות החדשנות</button>
+<header><div class="wrap" style="padding-bottom:0">
+ <h1>🎯 משרות מערכות מידע — לוח אישי</h1>
+ <span class="stamp">🔄 עודכן לאחרונה: יום שבת, 27.06.2026, 16:02</span>
+ <div class="note">⚠ הערה: היום נטענו ישירות 3/4 לוחות; Indeed היו חסומים — הושלם דרך חיפוש.</div>
+ <div class="sub">מנהל/ת מערכות מידע · מנמ"ר · CIO · מנהל/ת אפליקציות · IT/IS Manager &nbsp;|&nbsp; ממוין לפי מרחק מצרופה · רץ אוטומטית ב-GitHub Actions</div>
+</div></header>
+<div class="wrap">
+ <div class="filters" id="filters">
+  <button class="active" data-f="all">הכל</button>
+  <button data-f="near">עד 30 ק"מ ✓</button>
+  <button data-f="new">חדש היום</button>
+  <button data-f="hybrid">היברידי</button>
+  
+ </div>
+ <div class="count" id="count"></div>
+ <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
+  <tbody><tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr></tbody></table>
+ <div class="secbar far">📌 מעבר ל-30 ק"מ — לפי מרחק עולה</div>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
+  <tbody></tbody></table>
 </div>
-
-<!-- ===== עד 30 ק"מ ===== -->
-<div class="section-near">
-  <div class="section-title">📍 עד 30 ק"מ מצרופה</div>
-  <div class="table-wrap">
-    <table id="table-near">
-      <thead>
-        <tr>
-          <th>שם המשרה</th>
-          <th>תיאור התפקיד</th>
-          <th>מיקום</th>
-          <th>היברידי</th>
-          <th>אתר מקור</th>
-          <th>שם החברה</th>
-          <th>הוצג אתמול?</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Technion — 25km -->
-        <tr class="near-row" data-src="LinkedIn" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://il.linkedin.com/jobs/view/4257664313" target="_blank">
-              ראש מחלקת תשתיות ותפעול
-            </a>
-          </td>
-          <td class="desc-cell">ניהול אגף תשתיות IT, דאטה סנטר, HPC ורשתות תקשורת במרכז המחשוב של הטכניון; 7+ שנות ניסיון</td>
-          <td class="loc-cell">חיפה<br><span class="km close">~25 ק"מ</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">LinkedIn</span></td>
-          <td class="company-cell">הטכניון – מכון טכנולוגי לישראל</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<!-- ===== מעבר ל-30 ק"מ ===== -->
-<div class="section-far">
-  <div class="section-title">🗺️ מעבר ל-30 ק"מ — לפי מרחק עולה</div>
-  <div class="table-wrap">
-    <table id="table-far">
-      <thead>
-        <tr>
-          <th>שם המשרה</th>
-          <th>תיאור התפקיד</th>
-          <th>מיקום</th>
-          <th>היברידי</th>
-          <th>אתר מקור</th>
-          <th>שם החברה</th>
-          <th>הוצג אתמול?</th>
-        </tr>
-      </thead>
-      <tbody>
-
-        <!-- יעל גרופ — 65km -->
-        <tr data-src="JobMaster" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://www.jobmaster.co.il/jobs/checkhevra.asp?cs=GUSRGWBCPCWTNUVOKTMSEGGIT" target="_blank">
-              מנהל מערכות מידע
-            </a>
-          </td>
-          <td class="desc-cell">ניהול תחום מערכות המידע בחברת IT ופתרונות עסקיים מובילה; ניהול צוות ותהליכי אינטגרציה</td>
-          <td class="loc-cell">תל אביב<br><span class="km">~65 ק"מ</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">JobMaster</span></td>
-          <td class="company-cell">יעל גרופ</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-        <!-- זרועות ברקן — 72km -->
-        <tr data-src="Drushim" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://www.drushim.co.il/%D7%93%D7%A8%D7%95%D7%A9%D7%99%D7%9D-178109-%D7%96%D7%A8%D7%95%D7%A2%D7%95%D7%AA-%D7%91%D7%A8%D7%A7%D7%9F/" target="_blank">
-              מנהל מערכות מידע דאטה ו-AI
-            </a>
-          </td>
-          <td class="desc-cell">סמנכ"ל תפעול ומערכות מידע; Priority, Excel, EDI, SQL ואבטחת מידע; ניהול בכיר בחברה תעשייתית</td>
-          <td class="loc-cell">ברקן<br><span class="km">~72 ק"מ</span></td>
-          <td><span class="hybrid-no">לא</span></td>
-          <td><span class="source-tag">Drushim</span></td>
-          <td class="company-cell">זרועות ברקן</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-        <!-- נת"ע — 75km -->
-        <tr data-src="AllJobs" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=%D7%9E%D7%A0%D7%94%D7%9C+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2+%D7%A8%D7%90%D7%A9%D7%99" target="_blank">
-              מנהל מערכות מידע ראשי
-            </a>
-          </td>
-          <td class="desc-cell">CIO בחברה ממשלתית לתחבורה עירונית; BI, ERP, SharePoint; ניהול ספקים חיצוניים; 5+ שנות ניסיון</td>
-          <td class="loc-cell">חולון<br><span class="km">~75 ק"מ</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">AllJobs</span></td>
-          <td class="company-cell">נת"ע – נתיבי תחבורה עירוניים</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-        <!-- רשות החדשנות — 120km -->
-        <tr data-src="Innovation" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://innovationisrael.org.il/jobs/6443" target="_blank">
-              מנהל/ת אגף מערכות מידע (מנמ"ר)
-            </a>
-          </td>
-          <td class="desc-cell">ניהול אגף מערכות המידע ברשות הממשלתית; הובלת אסטרטגיית IT ותכנון ארוך טווח</td>
-          <td class="loc-cell">ירושלים<br><span class="km">~120 ק"מ</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">רשות החדשנות</span></td>
-          <td class="company-cell">רשות החדשנות – Israel Innovation Authority</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-        <!-- Jomba HR — unknown city, sort last -->
-        <tr data-src="JombaHR" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://www.jomba.co.il/job-offers?category_id=38" target="_blank">
-              מנהל מערכות מידע ומחשוב
-            </a>
-          </td>
-          <td class="desc-cell">ניהול מערכת המידע הארגונית; גיוס דרך חברת ההשמה Jomba HR — פרטי החברה חסויים</td>
-          <td class="loc-cell"><span style="color:#64748b">לא צוין</span><br><span class="km" style="background:#1e293b;color:#64748b">—</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">Jomba HR</span></td>
-          <td class="company-cell">חברה חסויה (גיוס: Jomba HR)</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-        <!-- CIO בריאות — unknown city -->
-        <tr data-src="AllJobs" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=CIO" target="_blank">
-              CIO – ארגון בריאות
-            </a>
-          </td>
-          <td class="desc-cell">מנהל/ת מערכות מידע ראשי לארגון בריאות מוביל; ניהול IS ואסטרטגיה דיגיטלית</td>
-          <td class="loc-cell"><span style="color:#64748b">לא צוין</span><br><span class="km" style="background:#1e293b;color:#64748b">—</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">AllJobs</span></td>
-          <td class="company-cell">חברה חסויה</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-        <!-- CIO IT דיגיטלי — unknown city -->
-        <tr data-src="Drushim" data-hybrid="no" data-new="no">
-          <td class="title-cell">
-            <a href="https://www.drushim.co.il/jobs/search/%D7%9E%D7%A0%D7%94%D7%9C%20%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA%20%D7%9E%D7%99%D7%93%D7%A2/" target="_blank">
-              CIO/מנהל IT – תהליכים דיגיטליים
-            </a>
-          </td>
-          <td class="desc-cell">הובלת טרנספורמציה דיגיטלית ותהליכי IT בארגון; פיתוח אסטרטגיית מידע ותכניות עבודה</td>
-          <td class="loc-cell"><span style="color:#64748b">לא צוין</span><br><span class="km" style="background:#1e293b;color:#64748b">—</span></td>
-          <td><span class="hybrid-unknown">לא צוין</span></td>
-          <td><span class="source-tag">Drushim</span></td>
-          <td class="company-cell">חברה חסויה</td>
-          <td><span class="seen-yesterday">כן</span></td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<footer>
-  <p>⚠️ <strong>הנתונים נאספים אוטומטית</strong> ועשויים להיות חלקיים. יש לאמת כל משרה באתר המקור לפני הגשה.</p>
-  <p>📏 <strong>מרחקים משוערים</strong> מצרופה, חוף הכרמל. &nbsp;|&nbsp;
-     🕐 עדכון יומי אוטומטי. &nbsp;|&nbsp;
-     🔗 קישורי AllJobs מובילים לחיפוש כללי (לא לדף ספציפי) לפי מדיניות האתר.</p>
-  <p>📋 מקורות שנבדקו היום: AllJobs, Drushim, JobMaster, LinkedIn, Jomba HR, רשות החדשנות —
-     <span style="color:#f87171">גישה ישירה נחסמה (403) לכולם</span>; נאספו דרך חיפוש Google בלבד.</p>
-</footer>
-
+<footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ כל בוקר ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
 <script>
-(function(){
-  var activeFilter = 'all';
-  var allRows = document.querySelectorAll('tbody tr');
-
-  function applyFilter(f){
-    activeFilter = f;
-    document.querySelectorAll('.filter-btn').forEach(function(b){
-      b.classList.toggle('active', b.dataset.filter === f);
-    });
-    allRows.forEach(function(row){
-      var show = true;
-      if(f === 'near')   show = row.classList.contains('near-row');
-      else if(f === 'new')    show = row.dataset.new === 'yes';
-      else if(f === 'hybrid') show = row.dataset.hybrid === 'yes';
-      else if(f.startsWith('src-')){
-        var src = f.replace('src-','');
-        show = row.dataset.src === src;
-      }
-      row.style.display = show ? '' : 'none';
-    });
-    // Hide section headers if all rows hidden
-    ['table-near','table-far'].forEach(function(tid){
-      var tbl = document.getElementById(tid);
-      if(!tbl) return;
-      var section = tbl.closest('.section-near,.section-far');
-      if(!section) return;
-      var vis = tbl.querySelectorAll('tbody tr:not([style*="display: none"])').length;
-      section.style.display = vis === 0 ? 'none' : '';
-    });
-  }
-
-  document.getElementById('filters').addEventListener('click', function(e){
-    if(e.target.classList.contains('filter-btn')){
-      applyFilter(e.target.dataset.filter);
-    }
-  });
-})();
+ const countEl=document.getElementById('count');
+ function apply(f){let n=0;document.querySelectorAll('tbody tr').forEach(tr=>{if(!tr.dataset.src&&f!=='all'){return;}let s=true;
+  if(f==='near')s=tr.dataset.near==='true';else if(f==='new')s=tr.dataset.new==='true';else if(f==='hybrid')s=tr.dataset.hyb==='yes';else if(f!=='all')s=tr.dataset.src===f;
+  tr.style.display=s?'':'none';if(s&&tr.dataset.src)n++;});
+  document.querySelectorAll('.secbar').forEach(sb=>{const tb=sb.nextElementSibling.querySelector('tbody');const any=[...tb.querySelectorAll('tr')].some(t=>t.dataset.src&&t.style.display!=='none');sb.style.display=any?'':'none';sb.nextElementSibling.style.display=any?'':'none';});
+  countEl.textContent='מציג '+n+' משרות';}
+ document.getElementById('filters').addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('active'));e.target.classList.add('active');apply(e.target.dataset.f);});
+ apply('all');
 </script>
