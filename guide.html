@@ -1,0 +1,85 @@
+<meta charset="utf-8">
+<title>מדריך תחזוקה — לוח המשרות</title>
+<style>
+  :root{--bg:#0f172a;--panel:#1e293b;--ink:#e2e8f0;--muted:#94a3b8;--accent:#38bdf8;--good:#34d399;--line:#334155;--code:#0b1220;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);direction:rtl;line-height:1.7}
+  .wrap{max-width:860px;margin:0 auto;padding:22px}
+  h1{font-size:25px;margin:0 0 4px}
+  h2{font-size:19px;color:var(--accent);margin:28px 0 8px;border-bottom:1px solid var(--line);padding-bottom:6px}
+  .lead{color:var(--muted);font-size:14px;margin-bottom:8px}
+  a{color:var(--accent)}
+  .back{display:inline-block;margin-bottom:14px;font-size:14px}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:14px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:right;vertical-align:top}
+  th{background:var(--code);color:var(--muted)}
+  code,pre{background:var(--code);border:1px solid var(--line);border-radius:6px}
+  code{padding:2px 6px;font-size:13px}
+  pre{padding:12px;overflow-x:auto;direction:ltr;text-align:left;font-size:13px;line-height:1.5}
+  ol,ul{padding-inline-start:22px}
+  li{margin:5px 0}
+  .tip{background:#0f2e23;border:1px solid #10b981;border-radius:8px;padding:12px 14px;margin:10px 0}
+  .warn{background:#3a2a08;border:1px solid #fbbf24;border-radius:8px;padding:12px 14px;margin:10px 0}
+  footer{color:var(--muted);font-size:12px;text-align:center;padding:24px;border-top:1px solid var(--line);margin-top:30px}
+</style>
+
+<div class="wrap">
+  <a class="back" href="index.html">→ חזרה ללוח המשרות</a>
+  <h1>🛠️ מדריך תחזוקה — לוח המשרות</h1>
+  <div class="lead">איך לשנות את הלוח בעצמך — גם בלי Claude. הכול חי במאגר ה-GitHub שלך.</div>
+
+  <h2>איך זה עובד</h2>
+  <ul>
+    <li>כל בוקר ב-<b>07:00</b> (שעון ישראל) רץ אוטומטית <b>GitHub Action</b>.</li>
+    <li>הוא מריץ סקריפט שאוסף משרות ומבקש ממודל בינה (<b>Gemini</b>, חינמי) לסנן ולסדר אותן.</li>
+    <li>התוצאה נשמרת, ו-GitHub Pages מציג את העמוד. <b>אין תלות בשום חשבון חיצוני.</b></li>
+  </ul>
+
+  <h2>הקבצים (ומה מותר לערוך)</h2>
+  <table>
+    <tr><th>קובץ</th><th>מה זה</th><th>לערוך?</th></tr>
+    <tr><td><code>scripts/refresh.mjs</code></td><td>המוח — כל המקורות והכללים</td><td>✅ כן</td></tr>
+    <tr><td><code>.github/workflows/daily-jobs.yml</code></td><td>התזמון (שעה)</td><td>✅ רק השעה</td></tr>
+    <tr><td><code>index.html</code></td><td>העמוד עצמו</td><td>❌ נוצר אוטומטית — לא לגעת</td></tr>
+    <tr><td><code>data/*.json</code></td><td>זיכרון "הוצג אתמול"</td><td>❌ לא לגעת</td></tr>
+  </table>
+
+  <h2>⭐ הדרך הכי קלה לשנות (מומלץ)</h2>
+  <ol>
+    <li>פותחים את <code>scripts/refresh.mjs</code> ב-GitHub ומעתיקים את <b>כל</b> התוכן.</li>
+    <li>מדביקים לכל עוזר AI שיש לך (ChatGPT / Gemini / Claude / כל אחד) וכותבים מה רוצים, למשל:<br>
+      <i>"זה סקריפט שאוסף משרות. תוסיף לי את האתר X כמקור נוסף, ותחזיר לי את הקובץ המלא."</i></li>
+    <li>מעתיקים את הקובץ שחזר → ב-GitHub לוחצים על העיפרון ✏️ בקובץ <code>scripts/refresh.mjs</code> → מוחקים הכול → מדביקים את החדש → <b>Commit changes</b>.</li>
+  </ol>
+
+  <h2>להוסיף אתר מקור — ידנית</h2>
+  <p>בראש <code>scripts/refresh.mjs</code> יש רשימה בשם <code>BOARDS</code>. כל שורה = <code>['שם', 'כתובת חיפוש']</code>. מוסיפים שורה:</p>
+  <pre>const BOARDS = [
+  ['JobMaster', 'https://www.jobmaster.co.il/jobs/?q=מנהל מערכות מידע'],
+  ['AllJobs',   'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל מערכות מידע'],
+  // ↓ הוסיפי שורה כזו עם האתר החדש:
+  ['שם-האתר',  'https://כתובת-החיפוש/?q=מנהל מערכות מידע'],
+];</pre>
+  <p>שומרים (Commit) — ובהרצה הבאה האתר ייכלל.</p>
+
+  <h2>פעולות נפוצות</h2>
+  <ul>
+    <li><b>לשנות שעת ריצה:</b> בקובץ <code>.github/workflows/daily-jobs.yml</code>, השורה <code>cron: '0 4 * * *'</code> היא ב-UTC (04:00 UTC = 07:00 בישראל). ל-08:00 בישראל → <code>'0 5 * * *'</code>.</li>
+    <li><b>להריץ עכשיו (ידנית):</b> לשונית <b>Actions</b> → <b>Daily Jobs Refresh</b> → <b>Run workflow</b>.</li>
+    <li><b>להחליף מפתח Gemini:</b> מפתח חדש ב-<a href="https://aistudio.google.com/apikey" target="_blank">aistudio.google.com/apikey</a> → ואז Settings → Secrets and variables → Actions → <code>GEMINI_API_KEY</code> → Update.</li>
+    <li><b>לבדוק אם הריצה הצליחה:</b> לשונית <b>Actions</b> — ✓ ירוק = הצליח.</li>
+    <li><b>לשנות תפקידים מבוקשים / אזורים / סינונים:</b> בדרך הקלה למעלה — בקשי מעוזר AI לערוך את הכללים ב-<code>scripts/refresh.mjs</code>.</li>
+  </ul>
+
+  <div class="tip"><b>טיפ:</b> אחרי כל שינוי — לכי ל-Actions → Run workflow כדי לראות את התוצאה מיד (אחרת זה יתעדכן ממילא בבוקר הבא).</div>
+
+  <h2>תקלות נפוצות</h2>
+  <ul>
+    <li><b>העמוד לא התעדכן:</b> ב-Actions יש ריצה אדומה? לרוב זה מפתח Gemini שפג/חרג ממכסה — צרי מפתח חדש ועדכני את ה-Secret.</li>
+    <li><b>הדפדפן מציג גרסה ישנה:</b> רענון קשיח — <b>Ctrl+F5</b>.</li>
+    <li><b>קישור משרה מוביל ל-0 תוצאות:</b> נדיר; הקישורים הם חיפושים באתר המקור — חפשי שם לפי שם החברה.</li>
+  </ul>
+
+  <a class="back" href="index.html">→ חזרה ללוח המשרות</a>
+  <footer>מדריך זה נשמר במאגר שלך (guide.html) ותמיד זמין מהעמוד הראשי.</footer>
+</div>
