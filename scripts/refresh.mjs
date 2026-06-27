@@ -80,13 +80,19 @@ async function callGemini() {
   throw new Error('All Gemini models failed. Last error -> ' + lastErr);
 }
 
+// Guard: only allow known site-SEARCH URLs; anything else (fabricated ID paths, civi, blanks) -> Google search.
+function safeUrl(j) {
+  const u = (j.url || '').trim();
+  const allowed = /^https:\/\/(www\.jobmaster\.co\.il\/jobs\/\?q=|www\.alljobs\.co\.il\/SearchResultsGuest|www\.drushim\.co\.il\/jobs\/search\/|www\.linkedin\.com\/jobs\/search|www\.google\.com\/search)/i.test(u);
+  return allowed ? u : 'https://www.google.com/search?q=' + encodeURIComponent(`${j.title || ''} ${j.company || ''} דרושים`);
+}
 let jobs = [];
 try { jobs = await callGemini(); } catch (err) { console.error('Gemini failed:', err.message); }
-jobs = (jobs || []).filter(j => j && j.title && j.url).map(j => ({
+jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   title: String(j.title).trim(), company: String(j.company || 'לא צוין').trim(),
   location: String(j.location || '').trim(), km: Number.isFinite(+j.km) ? +j.km : 40,
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
-  desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: String(j.url).trim(),
+  desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
 
 // ---- "shown yesterday" state ----
