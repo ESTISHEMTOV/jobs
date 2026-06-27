@@ -23,15 +23,25 @@ const BOARDS = [
 ];
 
 const loaded = [], blocked = [];
+const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
 let corpus = '';
 for (const [name, url] of BOARDS) {
   try {
     const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'he-IL,he;q=0.9,en;q=0.8' }, signal: AbortSignal.timeout(25000) });
     if (!r.ok) { blocked.push(name); continue; }
-    const txt = (await r.text())
-      .replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ')
-      .replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, 12000);
+    let raw = (await r.text()).replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
+    // Keep REAL job-listing links inline as "text [URL:...]" before stripping tags.
+    raw = raw.replace(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
+      let abs = ''; try { abs = new URL(href, url).href; } catch {}
+      const t = inner.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      if (abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/)/i.test(abs)) {
+        realUrls.add(abs);
+        return ` ${t} [URL:${abs}] `;
+      }
+      return ' ' + t + ' ';
+    });
+    const txt = raw.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, 14000);
     loaded.push(name);
   } catch { blocked.push(name); }
 }
@@ -50,7 +60,7 @@ RULES:
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
 - HYBRID: set "yes"/"no" from the listing; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
 - DEDUPE the same job across sources.
-- LINK (CRITICAL — you DO NOT know real listing IDs and must not guess them): NEVER output a URL that contains a numeric job id or a slug path (e.g. /jobs/8707895/..., /job/123/abc/, civi.co.il/jobs?q=...). Such URLs are ALWAYS fabricated and broken. Output ONLY a SEARCH URL built from a SHORT query — the COMPANY name if it is a real named employer, otherwise "מנהל מערכות מידע" + the city. The query must be short enough to return results (never the full job title). Use EXACTLY these formats:
+- LINK (CRITICAL): If the job in the BOARD TEXT is followed by a real link in the form [URL:https://...], USE THAT EXACT URL — it is the genuine direct listing. ONLY if a job has NO [URL:...] next to it, build a search link (below). NEVER invent or guess a URL with an id/slug that did not appear as [URL:...] — fabricated links are broken. For jobs without a real [URL:...], output a SEARCH URL built from a SHORT query — the COMPANY name if it is a real named employer, otherwise "מנהל מערכות מידע" + the city. The query must be short enough to return results (never the full job title). Use EXACTLY these formats:
    • JobMaster → https://www.jobmaster.co.il/jobs/?q=<short query>
    • AllJobs or svt.jobs → https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=<short query>
    • Drushim → https://www.drushim.co.il/jobs/search/<short query>/
@@ -85,6 +95,7 @@ async function callGemini() {
 // Guard: only allow known site-SEARCH URLs; anything else (fabricated ID paths, civi, blanks) -> Google search.
 function safeUrl(j) {
   const u = (j.url || '').trim();
+  if (realUrls.has(u)) return u;   // genuine direct listing URL extracted from a board page → use it
   const src = (j.source || '').toLowerCase();
   const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q);
   // Civi & GovJobs have no reliable direct/search URL — use a Google search SCOPED to their site so the top hit is the real posting.
