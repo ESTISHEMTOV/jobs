@@ -14,7 +14,23 @@ const g = (type) => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, day: '2-dig
 const D = `${g('day')}.${g('month')}.${g('year')}`;                          // 25.06.2026
 const dFull = new Intl.DateTimeFormat('he-IL', { timeZone: TZ, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(now);
 
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36';
+const UAS = [
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36',
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15',
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0',
+];
+const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+// Fetch a URL, retrying up to 3x with rotating User-Agents + backoff — raises the odds of getting past a board's anti-bot block.
+async function fetchHtml(url) {
+  for (let i = 0; i < UAS.length; i++) {
+    try {
+      const r = await fetch(url, { headers: { 'User-Agent': UAS[i], 'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 'Accept-Language': 'he-IL,he;q=0.9,en;q=0.8', 'Referer': 'https://www.google.com/' }, signal: AbortSignal.timeout(25000) });
+      if (r.ok) { if (i > 0) console.log(`  (${url} loaded on attempt ${i + 1})`); return await r.text(); }
+    } catch {}
+    if (i < UAS.length - 1) await sleep(2500 * (i + 1));
+  }
+  return null;
+}
 const BOARDS = [
   ['JobMaster', 'https://www.jobmaster.co.il/jobs/?q=מנהל מערכות מידע'],
   ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל מערכות מידע'],
@@ -26,10 +42,10 @@ const loaded = [], blocked = [];
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
 let corpus = '';
 for (const [name, url] of BOARDS) {
+  const html = await fetchHtml(url);   // up to 3 attempts with rotating User-Agents
+  if (!html) { blocked.push(name); continue; }
   try {
-    const r = await fetch(url, { headers: { 'User-Agent': UA, 'Accept-Language': 'he-IL,he;q=0.9,en;q=0.8' }, signal: AbortSignal.timeout(25000) });
-    if (!r.ok) { blocked.push(name); continue; }
-    let raw = (await r.text()).replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
+    let raw = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
     // Keep REAL job-listing links inline as "text [URL:...]" before stripping tags.
     raw = raw.replace(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
       let abs = ''; try { abs = new URL(href, url).href; } catch {}
