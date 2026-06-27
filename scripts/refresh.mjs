@@ -5,7 +5,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 
 const KEY = process.env.GEMINI_API_KEY;
 if (!KEY) { console.error('Missing GEMINI_API_KEY secret'); process.exit(1); }
-const MODEL = 'gemini-2.0-flash';
+const MODELS = ['gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-2.0-flash-lite', 'gemini-1.5-flash', 'gemini-1.5-flash-8b'];
 const TZ = 'Asia/Jerusalem';
 const now = new Date();
 const part = (t, opts) => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, ...opts }).format(now);
@@ -56,15 +56,22 @@ Each array item = {"title": "...", "company": "...", "location": "...", "km": <n
 BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
 async function callGemini() {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${KEY}`;
   const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2 } };
-  const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(120000) });
-  if (!r.ok) throw new Error('Gemini HTTP ' + r.status + ' ' + (await r.text()).slice(0, 300));
-  const j = await r.json();
-  const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
-  const s = text.indexOf('['), e = text.lastIndexOf(']');
-  if (s < 0 || e < 0) throw new Error('No JSON array in Gemini reply: ' + text.slice(0, 300));
-  return JSON.parse(text.slice(s, e + 1));
+  let lastErr = '';
+  for (const m of MODELS) {
+    try {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${KEY}`;
+      const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(120000) });
+      if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 600)}`; console.error('TRY ' + lastErr); continue; }
+      const j = await r.json();
+      const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
+      const s = text.indexOf('['), e = text.lastIndexOf(']');
+      if (s < 0 || e < 0) { lastErr = `${m}: no JSON array in reply :: ${text.slice(0, 300)}`; console.error('TRY ' + lastErr); continue; }
+      console.log('Gemini OK via model ' + m);
+      return JSON.parse(text.slice(s, e + 1));
+    } catch (e) { lastErr = `${m}: ${e.message}`; console.error('TRY ' + lastErr); }
+  }
+  throw new Error('All Gemini models failed. Last error -> ' + lastErr);
 }
 
 let jobs = [];
