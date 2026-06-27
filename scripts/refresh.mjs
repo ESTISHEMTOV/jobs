@@ -139,8 +139,8 @@ const rowsHtml = list => list.map(j => `<tr class="${j.km <= 30 ? 'near' : ''}" 
 const sources = [...new Set(jobs.map(j => j.source).filter(Boolean))];
 const srcButtons = sources.map(s => `<button data-f="${esc(s)}">${esc(s)}</button>`).join('');
 const note = blocked.length
-  ? `⚠ הערה: היום נטענו ישירות ${loaded.length}/${BOARDS.length} לוחות; ${blocked.join(', ')} היו חסומים — הושלם דרך חיפוש.`
-  : `כל הלוחות נטענו בהצלחה.`;
+  ? `⚠ הערה: ${loaded.length}/${BOARDS.length} לוחות נטענו ישירות היום (${loaded.join(', ')}). ${blocked.join(', ')} חסמו גישה אוטומטית ולכן לא נסרקו ישירות.`
+  : `כל הלוחות נטענו ישירות בהצלחה.`;
 
 const html = `<meta charset="utf-8">
 <title>משרות מערכות מידע — לוח אישי</title>
