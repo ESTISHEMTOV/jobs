@@ -117,7 +117,8 @@ function safeUrl(j) {
   const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q.replace(/\s+/g, ' ').trim());
   // For sources with no real/fetched URL: a Google search that actually RETURNS results.
   const co = (j.company && !/חסוי|confidential/i.test(j.company)) ? j.company : '';  // drop "חברה חסויה" filler from the query
-  const base = `${j.title || ''} ${co}`;
+  const loc = (j.location && !/מרחוק|היבריד|רב.?אזורי|לא צוין|מרכז|צפון|דרום|שרון|עמק/i.test(j.location)) ? j.location : '';  // add a concrete city for precision
+  const base = `${j.title || ''} ${co} ${loc}`;
   if (src.includes('civi')) return g(`${base} site:civi.co.il`);                      // Civi postings are indexed by Google
   if (src.includes('linkedin') || /linkedin\.com/i.test(u)) return g(`${base} site:linkedin.com/jobs`);
   if (src.includes('gov')) return g(`${base} דרושים מכרז`);                           // govojobs indexing unreliable → softer query that still returns results
