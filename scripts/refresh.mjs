@@ -47,7 +47,7 @@ for (const [name, url] of BOARDS) {
   try {
     let raw = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
     // Keep REAL job-listing links inline as "text [URL:...]" before stripping tags.
-    raw = raw.replace(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
+    raw = raw.replace(/<a\s[^>]*href\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
       let abs = ''; try { abs = new URL(href, url).href; } catch {}
       const t = inner.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
       if (abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/)/i.test(abs)) {
