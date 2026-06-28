@@ -66,7 +66,7 @@ const PROMPT = `You extract job listings for a Hebrew job-search landing page. R
 
 JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, Information System Manager, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere.
 
-Extract CURRENTLY-OPEN such jobs primarily from the BOARD TEXT below (it is real and current). You MAY also add a few openings you are confident are currently open from your own knowledge (civi.co.il, GovJobs, municipal tenders, Greenhouse, LinkedIn) — but NEVER invent a URL: if unsure of the exact listing URL, use a site search link for the title.
+Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally appear in that BOARD TEXT — so it is real, currently open, and has a working link. Do NOT add any job from your own knowledge/memory, and do NOT include LinkedIn / Civi / GovJobs / Greenhouse / municipal jobs unless they actually appear in the BOARD TEXT. If a job is not in the BOARD TEXT, leave it out. (Better fewer real jobs than any job whose link doesn't reach it.)
 
 RULES:
 - MANAGER-LEVEL IS/IT/CIO/applications only (heading the information-systems function). Skip junior/implementer/developer/sales roles even if titled "מנהל מערכות מידע" — verify it is truly an IS/IT MANAGEMENT role.
