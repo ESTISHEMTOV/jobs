@@ -74,7 +74,7 @@ Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally
 
 RULES:
 - STRICT ROLE WHITELIST — include a job ONLY if its title is essentially one of these (the person HEADS the IS/IT/applications function): מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, מנהל/ת יישומים (applications MANAGER), מנהל/ת IT, Head of Information Systems, Head of IT, IT/IS Manager, Business Applications Manager.
-- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE. When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it.
+- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it.
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
 - Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, IT/IS manager).
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
@@ -140,6 +140,21 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
 }));
 // Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
 jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
+
+// Expiry check: open each direct-listing page and DROP jobs marked removed/expired/closed.
+const EXPIRED = /משרה זו הוסרה|הוסרה מהלוח|פג תוקף|המשרה אוישה|לא נמצאה|no longer accepting|כבר לא מקבלים מועמדים/i;
+const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);
+const checked = [];
+for (const j of jobs) {
+  if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
+  try {
+    const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
+    const t = r.ok ? await r.text() : '';
+    if (EXPIRED.test(t)) { console.log('DROPPED expired: ' + j.title + ' | ' + j.url); continue; }
+  } catch { /* on error, keep the job */ }
+  checked.push(j);
+}
+jobs = checked;
 
 // ---- "shown yesterday" state ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
