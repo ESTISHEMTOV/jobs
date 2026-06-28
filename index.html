@@ -27,7 +27,7 @@
  <h1>🎯 משרות מערכות מידע — לוח אישי</h1>
  <span class="stamp">🔄 עודכן לאחרונה: יום ראשון, 28.06.2026</span>
  <div class="guide"><a href="guide.html" target="_blank">📘 לביצוע שינויים בפיתוח ↗</a></div>
- <div class="sub">מנהל/ת מערכות מידע · מנמ"ר · CIO · מנהל/ת אפליקציות · IT/IS Manager &nbsp;|&nbsp; ממוין לפי מרחק מצרופה · קישורים ישירים למשרה</div>
+ <div class="sub">מנהל/ת מערכות מידע · מנמ"ר · CIO · מנהל/ת אפליקציות/יישומים · Head of IT/IS &nbsp;|&nbsp; עד ~65 ק"מ מצרופה (או היברידי) · קישורים ישירים</div>
 </div></header>
 <div class="wrap">
  <div class="filters" id="filters">
@@ -40,23 +40,24 @@
  <div class="count" id="count"></div>
  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead><tbody id="tb-near"></tbody></table>
- <div class="secbar far">📌 מעבר ל-30 ק"מ — לפי מרחק עולה</div>
+ <div class="secbar far">📌 30–65 ק"מ / היברידי — לפי מרחק עולה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead><tbody id="tb-far"></tbody></table>
 </div>
-<footer>כל הקישורים הם ישירים למשרה (נבדקו). הנתונים נאספו מהלוחות — מומלץ לוודא במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.</footer>
+<footer>כל הקישורים ישירים למשרה (נבדקו). מוצגות רק משרות עד ~65 ק"מ מצרופה (או היברידיות). מומלץ לוודא במקור לפני הגשה.</footer>
 <script>
 const JOBS=[
  {t:"מנהל/ת מערכות מידע — חברה תעשייתית",co:"לירון ואליס (השמה)",loc:"חיפה / כרמיאל",km:25,hyb:"na",src:"AllJobs",d:"ניהול מערך מערכות המידע וה-IT, הובלת פרויקטים",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8703157"},
  {t:"מנהל/ת מערכות מידע",co:"JOMBA HR",loc:"הוד השרון",km:55,hyb:"na",src:"AllJobs",d:"ניהול מערכות מידע ומחשוב בחברה מובילה",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8677683"},
+ {t:"Head of Information Systems & Processes",co:"חברה פרטית",loc:"הוד השרון / ת״א",km:55,hyb:"na",src:"AllJobs",d:"הובלת מערכות המידע והתהליכים הטכנולוגיים בארגון",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8688615"},
+ {t:"מנהל/ת יישומים",co:"לין ביכלר (השמה)",loc:"רעננה / מרכז",km:58,hyb:"na",src:"AllJobs",d:"ניהול תחום היישומים בארגון מוביל",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8704565"},
  {t:"מנהל/ת מערכות מידע — חברת מזון",co:"חברה יצרנית",loc:"לא צוין",km:65,hyb:"na",src:"AllJobs",d:"ניהול מערכות המידע בחברה יצרנית בתחום המזון",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8707899"},
  {t:"מנהל/ת מערכות מידע – CIO",co:"ארגון רפואי",loc:"תל אביב",km:65,hyb:"na",src:"דרושים",d:"ניהול מחלקת מערכות המידע בארגון רפואי גדול",u:"https://www.drushim.co.il/job/37442410/53781f5c/"},
- {t:"מנהל/ת מערכות מידע, דאטה ו-AI",co:"זרועות ברקן",loc:"אריאל",km:72,hyb:"yes",src:"דרושים",d:"הובלת מערכות מידע, דאטה ויישום AI — עבודה היברידית",u:"https://www.drushim.co.il/job/37334889/0ba1c908/"},
- {t:"Information Systems Manager",co:"וויופוינט השמות",loc:"שוהם / מרכז",km:75,hyb:"na",src:"AllJobs",d:"Lead and manage the company's enterprise information systems",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8666201"},
- {t:"מנהל/ת תחום יישומים (אפליקציות)",co:"מרכז רפואי שמיר (אסף הרופא)",loc:"באר יעקב",km:75,hyb:"na",src:"AllJobs",d:"ניהול תחום היישומים באגף מערכות המידע",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8705979"},
- {t:"מנהל/ת מערכות מידע",co:"חברה מובילה",loc:"באר יעקב",km:75,hyb:"na",src:"JobMaster",d:"ניהול מערכות המידע בחברה מובילה",u:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9771720"},
- {t:"מנהל/ת אגף תפעול ומערכות מידע",co:"מועצה מקומית גדרה",loc:"גדרה",km:95,hyb:"na",src:"AllJobs",d:"ניהול אגף תפעול ומערכות מידע ברשות המקומית",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8649885"},
- {t:"מנהל מערכות מידע, IT ורשתות",co:"חברה חסויה",loc:"אשדוד",km:120,hyb:"na",src:"AllJobs",d:"ניהול מערכות מחשוב, IT ורשתות תקשורת",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8642585"},
- {t:"מנהל/ת מערכות מידע — חטיבת תפעול",co:"מפעל ביטחוני",loc:"דימונה",km:160,hyb:"na",src:"JobMaster",d:"ניהול מערכות המידע בחטיבת התפעול במפעל ביטחוני",u:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9798261"}
+ {t:"מוביל/ת מערכות מידע עסקיות",co:"חברה חסויה",loc:"לא צוין",km:65,hyb:"na",src:"AllJobs",d:"הובלת מערכות המידע העסקיות בארגון",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8711931"},
+ {t:"מנהל/ת IT ומערכות מידע",co:"חברה חסויה",loc:"לא צוין",km:65,hyb:"na",src:"AllJobs",d:"ניהול מערך ה-IT ומערכות המידע בארגון",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8665650"},
+ {t:"מנהל/ת IT ומערכות מידע — חברה מובילה",co:"חברה חסויה",loc:"לא צוין",km:65,hyb:"na",src:"AllJobs",d:"הובלה טכנולוגית של ארגון גדול",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8663055"},
+ {t:"מנהל/ת יישומים — יבואנית רכב",co:"חברה חסויה",loc:"מרכז",km:65,hyb:"na",src:"AllJobs",d:"ניהול תחום היישומים (שכר ~35K)",u:"https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8696122"},
+ {t:"מנהל/ת יישומים",co:"חברה חסויה",loc:"לא צוין",km:65,hyb:"na",src:"JobMaster",d:"ניהול תחום היישומים בארגון",u:"https://www.jobmaster.co.il/jobs/checknum.asp?key=9798285"},
+ {t:"מנהל/ת מערכות מידע, דאטה ו-AI",co:"זרועות ברקן",loc:"אריאל",km:72,hyb:"yes",src:"דרושים",d:"הובלת מערכות מידע, דאטה ויישום AI — עבודה היברידית",u:"https://www.drushim.co.il/job/37334889/0ba1c908/"}
 ];
 const hb={yes:'<span class="yes">כן</span>',no:'<span class="no">לא</span>',na:'<span class="na">לא צוין</span>'};
 function row(j){return `<tr class="${j.km<=30?'near':''}" data-src="${j.src}" data-near="${j.km<=30}">
