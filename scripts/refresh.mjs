@@ -36,6 +36,9 @@ const BOARDS = [
   ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל מערכות מידע'],
   ['דרושים', 'https://www.drushim.co.il/jobs/search/מנהל מערכות מידע/'],
   ['Indeed', 'https://il.indeed.com/jobs?q=מנהל מערכות מידע&l=חיפה'],
+  ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל יישומים עסקיים'],
+  ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=Head of IT'],
+  ['JobMaster', 'https://www.jobmaster.co.il/jobs/?q=מנהל יישומים'],
 ];
 
 const loaded = [], blocked = [];
@@ -64,7 +67,7 @@ for (const [name, url] of BOARDS) {
 
 const PROMPT = `You extract job listings for a Hebrew job-search landing page. Return ONLY a JSON array (no markdown, no prose).
 
-JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, Information System Manager, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere.
+JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, מנהל/ת יישומים עסקיים, Information System Manager, Head of Information Systems, Head of IT, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere.
 
 Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally appear in that BOARD TEXT — so it is real, currently open, and has a working link. Do NOT add any job from your own knowledge/memory, and do NOT include LinkedIn / Civi / GovJobs / Greenhouse / municipal jobs unless they actually appear in the BOARD TEXT. If a job is not in the BOARD TEXT, leave it out. (Better fewer real jobs than any job whose link doesn't reach it.)
 
