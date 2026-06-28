@@ -68,7 +68,7 @@ for (const [name, url] of BOARDS) {
 
 const PROMPT = `You extract job listings for a Hebrew job-search landing page. Return ONLY a JSON array (no markdown, no prose).
 
-JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, מנהל/ת יישומים עסקיים, Business Applications Manager, Information System Manager, Head of Information Systems, Head of IT, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere.
+JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, מנהל/ת יישומים עסקיים, Business Applications Manager, Information System Manager, Head of Information Systems, Head of IT, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere. DISTANCE LIMIT: EXCLUDE any job more than ~65 km from Tzrufa — i.e. central & southern Israel (Tel Aviv & south, Petah Tikva, Holon, Bat Yam, Be'er Yaakov, Yavne, Rishon, Rehovot, Ness Ziona, Gedera, Ashdod, Ashkelon, Kiryat Gat, Beer Sheva, Dimona, Jerusalem, Modiin, Lod, Ramla, Shoham) — UNLESS the job is hybrid/remote. Keep only north / valleys / Sharon (≤~65 km) or hybrid.
 
 Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally appear in that BOARD TEXT — so it is real, currently open, and has a working link. Do NOT add any job from your own knowledge/memory, and do NOT include LinkedIn / Civi / GovJobs / Greenhouse / municipal jobs unless they actually appear in the BOARD TEXT. If a job is not in the BOARD TEXT, leave it out. (Better fewer real jobs than any job whose link doesn't reach it.)
 
@@ -137,6 +137,8 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
+// Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
+jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
 
 // ---- "shown yesterday" state ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
