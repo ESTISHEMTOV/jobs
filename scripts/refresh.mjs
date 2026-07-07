@@ -164,7 +164,8 @@ jobs = checked;
 
 // ---- "shown yesterday" state ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
-const titleKey = j => `${norm(j.title)}|${norm(j.company)}`;
+const normCo = c => norm(c).replace(/^(קבוצת|קבוצה|חברת|רשת|חב')\s+/, '').trim();   // "קבוצת HOT" == "HOT"
+const titleKey = j => `${norm(j.title)}|${normCo(j.company)}`;
 // STABLE listing id from the URL (survives recruiter title edits between days), or null if it's only a search link.
 const idKey = j => {
   const u = j.url || '';
@@ -176,8 +177,17 @@ const idKey = j => {
 };
 // Each job carries BOTH keys; two jobs are "the same" if EITHER matches — so a day that stored only titles still matches a day that has ids, and vice-versa.
 const keysOf = j => { const k = [titleKey(j)]; const id = idKey(j); if (id) k.push(id); return k; };
-// DEDUPE identical postings (same stable listing id if present, else same normalized title|company).
-{ const seen = new Set(); jobs = jobs.filter(j => { const k = idKey(j) || titleKey(j); if (seen.has(k)) return false; seen.add(k); return true; }); }
+// DEDUPE — drop a posting if EITHER its stable id OR its title|company was already seen. This catches the SAME job listed on
+// two boards (different ids) as well as exact repeats. Keeps the first (usually the direct-link source).
+{ const seenId = new Set(), seenT = new Set();
+  jobs = jobs.filter(j => {
+    const id = idKey(j), t = titleKey(j);
+    if ((id && seenId.has(id)) || seenT.has(t)) return false;
+    if (id) seenId.add(id);
+    seenT.add(t);
+    return true;
+  });
+}
 const readJson = async p => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; } };
 let T = await readJson('data/jobs-today.json');
 let Y = await readJson('data/jobs-yesterday.json');
