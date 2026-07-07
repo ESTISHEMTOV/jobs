@@ -76,7 +76,9 @@ RULES:
 - STRICT ROLE WHITELIST — include a job ONLY if its title is essentially one of these (the person HEADS the IS/IT/applications function): מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, מנהל/ת יישומים (applications MANAGER), מנהל/ת IT, Head of Information Systems, Head of IT, IT/IS Manager, Business Applications Manager.
 - STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it.
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
-- Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, IT/IS manager).
+- EXCLUDE information-SECURITY / cyber roles — they are NOT information-systems management: מנהל/ת אבטחת מידע, CISO, CISCO/CICO (mis-spellings of CISO), Information Security Manager/Officer, סייבר / Cyber, SOC, מנהל/ת סיכוני סייבר, GRC. Even if the title contains "מערכות מידע", if the role is about SECURITY, drop it.
+- Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, DBA / infrastructure-only, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, מנהל/ת אפליקציות, IT/IS manager).
+- COVERAGE: scan the ENTIRE board text top to bottom, not only the first listings. Include EVERY qualifying role — northern jobs AND Sharon/Center jobs within ~65 km (e.g. Hod Hasharon, Kfar Saba, Herzliya, Tel Aviv) and hybrid roles. Do not stop after a few near-Haifa results.
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
 - HYBRID: set "yes"/"no" from the listing; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
@@ -96,8 +98,8 @@ Each array item = {"title": "...", "company": "...", "location": "...", "km": <n
 BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
 async function callGemini() {
-  // thinkingBudget:0 disables 2.5-flash "thinking" — it was the cause of the >120s timeouts; this makes replies fast & reliable.
-  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 0 } } };
+  // thinkingBudget capped (not the unbounded default that caused >120s timeouts) — enough reasoning to be thorough & classify correctly, still fast.
+  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 3000 } } };
   let lastErr = '';
   for (const m of MODELS) {
     for (let attempt = 1; attempt <= 3; attempt++) {   // retry the SAME (working) model on timeout/5xx instead of falling to a dead quota
@@ -171,6 +173,8 @@ const keyOf = j => {
   if ((m = u.match(/drushim\.co\.il\/job\/(\d+)/i))) return 'dr:' + m[1];
   return `${norm(j.title)}|${norm(j.company)}`;
 };
+// DEDUPE identical postings (same stable listing id, or same normalized title|company) — keeps the page clean of repeats.
+{ const seen = new Set(); jobs = jobs.filter(j => { const k = keyOf(j); if (seen.has(k)) return false; seen.add(k); return true; }); }
 const readJson = async p => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; } };
 let T = await readJson('data/jobs-today.json');
 let Y = await readJson('data/jobs-yesterday.json');
