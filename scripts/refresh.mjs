@@ -61,7 +61,7 @@ for (const [name, url] of BOARDS) {
       return ' ' + t + ' ';
     });
     const txt = raw.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, 9000);
+    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, 14000);
     loaded.push(name);
   } catch { blocked.push(name); }
 }
@@ -162,7 +162,15 @@ jobs = checked;
 
 // ---- "shown yesterday" state ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
-const keyOf = j => `${norm(j.title)}|${norm(j.company)}`;
+// Prefer the STABLE listing id from the URL (survives recruiter title edits between days); fall back to title|company.
+const keyOf = j => {
+  const u = j.url || '';
+  let m;
+  if ((m = u.match(/checknum\.asp\?key=(\d+)/i))) return 'jm:' + m[1];
+  if ((m = u.match(/UploadSingle\.aspx\?JobID=(\d+)/i))) return 'aj:' + m[1];
+  if ((m = u.match(/drushim\.co\.il\/job\/(\d+)/i))) return 'dr:' + m[1];
+  return `${norm(j.title)}|${norm(j.company)}`;
+};
 const readJson = async p => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; } };
 let T = await readJson('data/jobs-today.json');
 let Y = await readJson('data/jobs-yesterday.json');
