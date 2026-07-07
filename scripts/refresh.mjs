@@ -164,25 +164,28 @@ jobs = checked;
 
 // ---- "shown yesterday" state ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
-// Prefer the STABLE listing id from the URL (survives recruiter title edits between days); fall back to title|company.
-const keyOf = j => {
+const titleKey = j => `${norm(j.title)}|${norm(j.company)}`;
+// STABLE listing id from the URL (survives recruiter title edits between days), or null if it's only a search link.
+const idKey = j => {
   const u = j.url || '';
   let m;
   if ((m = u.match(/checknum\.asp\?key=(\d+)/i))) return 'jm:' + m[1];
   if ((m = u.match(/UploadSingle\.aspx\?JobID=(\d+)/i))) return 'aj:' + m[1];
   if ((m = u.match(/drushim\.co\.il\/job\/(\d+)/i))) return 'dr:' + m[1];
-  return `${norm(j.title)}|${norm(j.company)}`;
+  return null;
 };
-// DEDUPE identical postings (same stable listing id, or same normalized title|company) — keeps the page clean of repeats.
-{ const seen = new Set(); jobs = jobs.filter(j => { const k = keyOf(j); if (seen.has(k)) return false; seen.add(k); return true; }); }
+// Each job carries BOTH keys; two jobs are "the same" if EITHER matches — so a day that stored only titles still matches a day that has ids, and vice-versa.
+const keysOf = j => { const k = [titleKey(j)]; const id = idKey(j); if (id) k.push(id); return k; };
+// DEDUPE identical postings (same stable listing id if present, else same normalized title|company).
+{ const seen = new Set(); jobs = jobs.filter(j => { const k = idKey(j) || titleKey(j); if (seen.has(k)) return false; seen.add(k); return true; }); }
 const readJson = async p => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; } };
 let T = await readJson('data/jobs-today.json');
 let Y = await readJson('data/jobs-yesterday.json');
 if (T && T.date && T.date !== D) Y = T;          // new day → roll over
 if (!Y) Y = { date: '', keys: [] };
 const ySet = new Set((Y.keys || []));
-jobs.forEach(j => { j.ystd = ySet.has(keyOf(j)); });
-const todayState = { date: D, keys: jobs.map(keyOf) };
+jobs.forEach(j => { j.ystd = keysOf(j).some(k => ySet.has(k)); });   // shown yesterday if ANY of its keys was seen yesterday
+const todayState = { date: D, keys: jobs.flatMap(keysOf) };
 
 // ---- render fixed template ----
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
