@@ -1,11 +1,11 @@
-// Daily jobs refresh — runs in GitHub Actions, powered by the free Gemini API.
+﻿// Daily jobs refresh — runs in GitHub Actions, powered by the free Gemini API.
 // Fetches Israeli job boards, asks Gemini to extract relevant manager-level IS/IT roles,
 // then renders a FIXED Hebrew RTL template (so column layout can never break).
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 
 const KEY = process.env.GEMINI_API_KEY;
 if (!KEY) { console.error('Missing GEMINI_API_KEY secret'); process.exit(1); }
-const MODELS = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-2.0-flash-lite'];
+const MODELS = ['gemini-2.5-flash', 'gemini-2.5-flash-lite'];
 const TZ = 'Asia/Jerusalem';
 const now = new Date();
 const part = (t, opts) => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, ...opts }).format(now);
@@ -61,7 +61,7 @@ for (const [name, url] of BOARDS) {
       return ' ' + t + ' ';
     });
     const txt = raw.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, 14000);
+    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, 9000);
     loaded.push(name);
   } catch { blocked.push(name); }
 }
@@ -96,20 +96,24 @@ Each array item = {"title": "...", "company": "...", "location": "...", "km": <n
 BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
 async function callGemini() {
-  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2 } };
+  // thinkingBudget:0 disables 2.5-flash "thinking" — it was the cause of the >120s timeouts; this makes replies fast & reliable.
+  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 0 } } };
   let lastErr = '';
   for (const m of MODELS) {
-    try {
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${KEY}`;
-      const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(120000) });
-      if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 600)}`; console.error('TRY ' + lastErr); continue; }
-      const j = await r.json();
-      const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
-      const s = text.indexOf('['), e = text.lastIndexOf(']');
-      if (s < 0 || e < 0) { lastErr = `${m}: no JSON array in reply :: ${text.slice(0, 300)}`; console.error('TRY ' + lastErr); continue; }
-      console.log('Gemini OK via model ' + m);
-      return JSON.parse(text.slice(s, e + 1));
-    } catch (e) { lastErr = `${m}: ${e.message}`; console.error('TRY ' + lastErr); }
+    for (let attempt = 1; attempt <= 3; attempt++) {   // retry the SAME (working) model on timeout/5xx instead of falling to a dead quota
+      try {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${KEY}`;
+        const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
+        if (r.status === 429) { lastErr = `${m}: HTTP 429 (no free quota)`; console.error('TRY ' + lastErr); break; }  // quota won't recover on retry → next model
+        if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 400)}`; console.error(`TRY ${lastErr} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
+        const j = await r.json();
+        const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
+        const s = text.indexOf('['), e = text.lastIndexOf(']');
+        if (s < 0 || e < 0) { lastErr = `${m}: no JSON array in reply :: ${text.slice(0, 300)}`; console.error(`TRY ${lastErr} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
+        console.log(`Gemini OK via model ${m} (attempt ${attempt})`);
+        return JSON.parse(text.slice(s, e + 1));
+      } catch (e) { lastErr = `${m}: ${e.message}`; console.error(`TRY ${lastErr} (attempt ${attempt})`); await sleep(2000 * attempt); }
+    }
   }
   throw new Error('All Gemini models failed. Last error -> ' + lastErr);
 }
@@ -244,8 +248,15 @@ const html = `<meta charset="utf-8">
  apply('all');
 </script>`;
 
+// SAFETY: never replace a good page with an empty one. If today produced 0 jobs (Gemini failed / all filtered / boards blocked),
+// keep yesterday's page & state untouched so the user still sees the last good listings.
+if (jobs.length === 0) {
+  console.log('0 jobs produced today — keeping the previous page, NOT overwriting index.html.');
+  process.exit(0);
+}
 await mkdir('data', { recursive: true });
 await writeFile('index.html', html, 'utf8');
 await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
 console.log(`Done: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30km), loaded ${loaded.join(',') || 'none'}, blocked ${blocked.join(',') || 'none'}`);
+
