@@ -175,7 +175,7 @@ Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally
 RULES:
 - STRICT ROLE WHITELIST — include a job ONLY if its title is essentially one of these (the person HEADS the IS/IT/applications/technology function): מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, מנהל/ת יישומים (applications MANAGER), מנהל/ת IT, Head of Information Systems, Head of IT, IT/IS Manager, Information Systems Manager / Information System Manager, IS Manager, Business Applications Manager.
 - COMBINED TITLES count: if the title includes a whitelisted role alongside others (e.g. "CIO / CTO / Chief AI Officer", "CIO & VP Operations"), INCLUDE it. Contract / freelance / fractional roles count too.
-- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it — EXCEPT for jobs within 30 km (GROUP 1): for those, when in doubt INCLUDE.
+- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it — EXCEPT for jobs within 30 km (GROUP 1): for those, when in doubt INCLUDE (the STRICT BLACKLIST below still applies to them).
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
 - EXCLUDE information-SECURITY / cyber roles — they are NOT information-systems management: מנהל/ת אבטחת מידע, CISO, CISCO/CICO (mis-spellings of CISO), Information Security Manager/Officer, סייבר / Cyber, SOC, מנהל/ת סיכוני סייבר, GRC. Even if the title contains "מערכות מידע", if the role is about SECURITY, drop it.
 - Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, DBA / infrastructure-only, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications / technology broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, IT/IS manager).
@@ -189,13 +189,14 @@ RULES:
    • AllJobs or svt.jobs → https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=<short query>
    • Drushim → https://www.drushim.co.il/jobs/search/<short query>/
    • LinkedIn → https://www.linkedin.com/jobs/search?keywords=<short query>&location=Israel
-   • Civi, GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
+   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב (added sites) → leave "url" EMPTY ("") — the page links to that site's jobs page.
+   • GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
    LinkedIn locations look like "Haifa, Haifa District, Israel" — use the city. LinkedIn "Hybrid"/"Remote" in the card = hybrid "yes".
   URL-encode the query. When unsure, prefer the Google search format. Every link MUST lead to a non-empty results page.
 - DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
-Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<JobMaster|AllJobs|דרושים|Indeed|LinkedIn|Civi|GovJobs|name>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
+Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
 
 BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
@@ -237,14 +238,14 @@ function safeUrl(j) {
   const u = (j.url || '').trim();
   if (realUrls.has(u)) return u;   // genuine direct listing URL extracted from a board page → use it
   const src = (j.source || '').toLowerCase();
-  const site = MORE_SITES.find(([n, v]) => (v || '').trim() && src.includes(n.toLowerCase()));
+  const hostKey = (v) => { try { return new URL(v).hostname.split('.').find(x => !['www', 'app', 'jobs'].includes(x)) || ''; } catch { return ''; } };
+  const site = MORE_SITES.find(([n, v]) => (v || '').trim() && (src.includes(n.toLowerCase()) || (hostKey(v) && (src.includes(hostKey(v)) || u.includes(hostKey(v))))));
   if (site) return site[1].trim();   // added site with no per-job link → open that site's jobs page
   const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q.replace(/\s+/g, ' ').trim());
   // For sources with no real/fetched URL: a Google search that actually RETURNS results.
   const co = (j.company && !/חסוי|confidential/i.test(j.company)) ? j.company : '';  // drop "חברה חסויה" filler from the query
-  const loc = (j.location && !/מרחוק|היבריד|רב.?אזורי|לא צוין|מרכז|צפון|דרום|שרון|עמק/i.test(j.location)) ? j.location : '';  // add a concrete city for precision
+  const loc = (j.location && j.location !== 'na' && !/מרחוק|היבריד|רב.?אזורי|לא צוין|מרכז|צפון|דרום|שרון|עמק/i.test(j.location)) ? j.location : '';  // add a concrete city for precision
   const base = `${j.title || ''} ${co} ${loc}`;
-  if (src.includes('civi')) return g(`${base} site:civi.co.il`);                      // Civi postings are indexed by Google
   if (src.includes('linkedin') || /linkedin\.com/i.test(u)) return g(`${base} site:linkedin.com/jobs`);
   if (src.includes('gov')) return g(`${base} דרושים מכרז`);                           // govojobs indexing unreliable → softer query that still returns results
   const allowed = /^https:\/\/(www\.jobmaster\.co\.il\/jobs\/\?q=|www\.alljobs\.co\.il\/SearchResultsGuest|www\.drushim\.co\.il\/jobs\/search\/|www\.linkedin\.com\/jobs\/search|www\.google\.com\/search)/i.test(u);
@@ -266,6 +267,7 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
+jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });   // Civi is the platform behind השועלה — show one source name
 // Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // LinkedIn: mark as hybrid every job that appeared in the Hybrid/Remote-filtered search.
