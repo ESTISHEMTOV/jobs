@@ -160,16 +160,16 @@ async function callGemini() {
     for (let attempt = 1; attempt <= 3; attempt++) {   // retry the SAME (working) model on timeout/5xx instead of falling to a dead quota
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${KEY}`;
-        const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(90000) });
-        if (r.status === 429) { lastErr = `${m}: HTTP 429 (no free quota)`; console.error('TRY ' + lastErr); break; }  // quota won't recover on retry → next model
-        if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 400)}`; console.error(`TRY ${lastErr} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
+        const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(170000) });
+        if (r.status === 429) { lastErr = `${m}: HTTP 429 (no free quota)`; console.log('::warning::Gemini ' + lastErr); break; }  // quota won't recover on retry → next model
+        if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 400)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
         const j = await r.json();
         const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
         const s = text.indexOf('['), e = text.lastIndexOf(']');
-        if (s < 0 || e < 0) { lastErr = `${m}: no JSON array in reply :: ${text.slice(0, 300)}`; console.error(`TRY ${lastErr} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
+        if (s < 0 || e < 0) { lastErr = `${m}: no JSON array in reply :: ${text.slice(0, 300)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
         console.log(`Gemini OK via model ${m} (attempt ${attempt})`);
         return JSON.parse(text.slice(s, e + 1));
-      } catch (e) { lastErr = `${m}: ${e.message}`; console.error(`TRY ${lastErr} (attempt ${attempt})`); await sleep(2000 * attempt); }
+      } catch (e) { lastErr = `${m}: ${e.message}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); }
     }
   }
   throw new Error('All Gemini models failed. Last error -> ' + lastErr);
@@ -193,8 +193,9 @@ function safeUrl(j) {
   const allowed = /^https:\/\/(www\.jobmaster\.co\.il\/jobs\/\?q=|www\.alljobs\.co\.il\/SearchResultsGuest|www\.drushim\.co\.il\/jobs\/search\/|www\.linkedin\.com\/jobs\/search|www\.google\.com\/search)/i.test(u);
   return allowed ? u : g(`${base} דרושים`);
 }
-let jobs = [];
-try { jobs = await callGemini(); } catch (err) { console.error('Gemini failed:', err.message); }
+let jobs = [], geminiError = '';
+try { jobs = await callGemini(); } catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
+const rawCount = (jobs || []).length;
 jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   title: String(j.title).trim(), company: String(j.company || 'לא צוין').trim(),
   location: String(j.location || '').trim(), km: Number.isFinite(+j.km) ? +j.km : 40,
@@ -339,12 +340,16 @@ const html = `<meta charset="utf-8">
 // SAFETY: never replace a good page with an empty one. If today produced 0 jobs (Gemini failed / all filtered / boards blocked),
 // keep yesterday's page & state untouched so the user still sees the last good listings.
 if (jobs.length === 0) {
-  console.log('0 jobs produced today — keeping the previous page, NOT overwriting index.html.');
-  process.exit(0);
+  const why = geminiError
+    ? `Gemini failed — ${geminiError}`
+    : `Gemini returned ${rawCount} jobs, 0 left after filtering. Boards loaded: ${loaded.length}/${BOARDS.length}.`;
+  console.log(`::${geminiError ? 'error' : 'warning'}::Page NOT updated (previous page kept). ${why}`);
+  process.exit(geminiError ? 1 : 0);   // Gemini failure → red X in Actions, so it is visible
 }
 await mkdir('data', { recursive: true });
 await writeFile('index.html', html, 'utf8');
 await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
+console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30 km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
 console.log(`Done: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30km), loaded ${loaded.join(',') || 'none'}, blocked ${blocked.join(',') || 'none'}`);
 
