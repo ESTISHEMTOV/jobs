@@ -55,16 +55,16 @@ const BOARDS = [
   ['Indeed', 'https://il.indeed.com/jobs?q=Information Systems Manager&l=חיפה'],
   ['Indeed', 'https://il.indeed.com/jobs?q=IS Manager&l=חיפה'],
   // LinkedIn — public guest job search (no login needed). f_TPR=r2592000 = posted in the last 30 days.
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=IT Manager&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Head of IT&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=מנהל מערכות מידע&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Business Applications Manager&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=CIO&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Chief Information Officer&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=מנהל טכנולוגיות&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Information Systems Manager&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Information System Manager&location=Israel&f_TPR=r2592000'],
-  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords="IS Manager"&location=Israel&f_TPR=r2592000'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=IT Manager&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Head of IT&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=מנהל מערכות מידע&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Business Applications Manager&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=CIO&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Chief Information Officer&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=מנהל טכנולוגיות&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Information Systems Manager&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Information System Manager&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
+  ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords="IS Manager"&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
 ];
 
 // ===== אתרים נוספים — הדביקי בין הגרשיים את כתובת עמוד החיפוש/המשרות של כל אתר =====
@@ -96,6 +96,7 @@ for (const [name, url] of BOARDS) {
   const html = await fetchHtml(url);   // up to 3 attempts with rotating User-Agents
   if (!html) { blocked.push(name); continue; }
   try {
+    const linksBefore = realUrls.size;
     let raw = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
     // Keep REAL job-listing links inline as "text [URL:...]" before stripping tags.
     raw = raw.replace(/<a\s[^>]*href\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
@@ -113,18 +114,20 @@ for (const [name, url] of BOARDS) {
     if (txt.length < 300) { empty.push(name); continue; }
     if (corpus.length > CORPUS_MAX) { trimmed.push(name); continue; }   // stay inside Gemini free-tier input limits
     corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, PER_BOARD);
+    console.log(`  ${name}: ${txt.length} chars, ${realUrls.size - linksBefore} direct links | ${decodeURI(url).slice(0, 110)}`);
     loaded.push(name);
   } catch { blocked.push(name); }
 }
 
 const PROMPT = `You extract job listings for a Hebrew job-search landing page. Return ONLY a JSON array (no markdown, no prose).
 
-JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, Information Systems Manager, IS Manager, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, מנהל/ת יישומים עסקיים, Business Applications Manager, Information System Manager, Head of Information Systems, Head of IT, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere. DISTANCE LIMIT: EXCLUDE any job more than ~65 km from Tzrufa — i.e. central & southern Israel (Tel Aviv & south, Petah Tikva, Holon, Bat Yam, Be'er Yaakov, Yavne, Rishon, Rehovot, Ness Ziona, Gedera, Ashdod, Ashkelon, Kiryat Gat, Beer Sheva, Dimona, Jerusalem, Modiin, Lod, Ramla, Shoham) — UNLESS the job is hybrid/remote. Keep only north / valleys / Sharon (≤~65 km) or hybrid. If a job's location CANNOT be determined from the listing, EXCLUDE it (do NOT guess a distance and do NOT default it to near). Also EXCLUDE any listing marked removed/expired ("משרה זו הוסרה", "פג תוקף", closed).
+JOB SEEKER: lives in צרופה (Tzrufa), Hof HaCarmel, northern Israel (near Zichron Yaakov/Hadera). Wants MANAGER-LEVEL roles only: מנהל/ת מערכות מידע, Information Systems Manager, IS Manager, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, מנהל/ת יישומים עסקיים, Business Applications Manager, Information System Manager, Head of Information Systems, Head of IT, IT/IS manager. Target areas: north, the Sharon, the valleys (העמקים), plus hybrid roles anywhere. DISTANCE LIMIT: up to 65 km from Tzrufa INCLUSIVE, using the DISTANCE table below. Tel Aviv, Petah Tikva and a region-only "Center District" / "מרכז" are AT the limit (65 km) → INCLUDE them. EXCLUDE places beyond 65 km (Holon, Bat Yam, Be'er Yaakov, Yavne, Rishon, Rehovot, Ness Ziona, Gedera, Ashdod, Ashkelon, Kiryat Gat, Beer Sheva, Dimona, Jerusalem, Modiin, Lod, Ramla, Shoham) — UNLESS the job is hybrid/remote. If a job's location CANNOT be determined from the listing, EXCLUDE it (do NOT guess a distance and do NOT default it to near). Also EXCLUDE any listing marked removed/expired ("משרה זו הוסרה", "פג תוקף", closed).
 
 Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally appear in that BOARD TEXT — so it is real, currently open, and has a working link. Do NOT add any job from your own knowledge/memory, and do NOT include Civi / GovJobs / Greenhouse / municipal jobs unless they actually appear in the BOARD TEXT. If a job is not in the BOARD TEXT, leave it out. (Better fewer real jobs than any job whose link doesn't reach it.)
 
 RULES:
 - STRICT ROLE WHITELIST — include a job ONLY if its title is essentially one of these (the person HEADS the IS/IT/applications/technology function): מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, מנהל/ת יישומים (applications MANAGER), מנהל/ת IT, Head of Information Systems, Head of IT, IT/IS Manager, Information Systems Manager / Information System Manager, IS Manager, Business Applications Manager.
+- COMBINED TITLES count: if the title includes a whitelisted role alongside others (e.g. "CIO / CTO / Chief AI Officer", "CIO & VP Operations"), INCLUDE it. Contract / freelance / fractional roles count too.
 - STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it.
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
 - EXCLUDE information-SECURITY / cyber roles — they are NOT information-systems management: מנהל/ת אבטחת מידע, CISO, CISCO/CICO (mis-spellings of CISO), Information Security Manager/Officer, סייבר / Cyber, SOC, מנהל/ת סיכוני סייבר, GRC. Even if the title contains "מערכות מידע", if the role is about SECURITY, drop it.
@@ -132,7 +135,7 @@ RULES:
 - COVERAGE: scan the ENTIRE board text top to bottom, not only the first listings. Include EVERY qualifying role — northern jobs AND Sharon/Center jobs within ~65 km (e.g. Hod Hasharon, Kfar Saba, Herzliya, Tel Aviv) and hybrid roles. Do not stop after a few near-Haifa results.
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
-- HYBRID: set "yes"/"no" from the listing; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
+- HYBRID: set "yes"/"no" from the listing. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
 - DEDUPE the same job across sources.
 - LINK (CRITICAL): If the job in the BOARD TEXT is followed by a real link in the form [URL:https://...], USE THAT EXACT URL — it is the genuine direct listing. ONLY if a job has NO [URL:...] next to it, build a search link (below). NEVER invent or guess a URL with an id/slug that did not appear as [URL:...] — fabricated links are broken. For jobs without a real [URL:...], output a SEARCH URL built from a SHORT query — the recruiter/agency or company name if one is shown (e.g. YifaTalent, לירון ואליס) — that is the BEST query; otherwise a short core role phrase from the title (e.g. "מוביל מערכות מידע", "מנהל מערכות מידע"). DO NOT add a city/region to the query — the listing's location wording often differs (e.g. it says "אזור צפון" but you'd write "חיפה") and that zeroes out the search. Keep the query short (never the full job title). Use EXACTLY these formats:
    • JobMaster → https://www.jobmaster.co.il/jobs/?q=<short query>
@@ -291,7 +294,7 @@ const html = `<meta charset="utf-8">
  .yes{color:var(--good);font-weight:600}.no{color:var(--muted)}.na{color:#64748b;font-size:12px}
  .src{font-size:12px;background:#334155;padding:3px 9px;border-radius:6px;white-space:nowrap}
  .new{background:var(--good);color:#063527;font-weight:700;padding:3px 9px;border-radius:6px;font-size:12px}.old{color:var(--muted);font-size:12px}
- .secbar{margin:20px 0 8px;font-size:14px;color:var(--good);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}.secbar.far{color:var(--muted)}
+ .secbar{margin:20px 0 8px;font-size:14px;color:var(--good);font-weight:600;border-bottom:1px solid var(--line);padding-bottom:6px}.secbar.far{color:var(--muted)}.secbar.hyb{color:var(--accent)}
  footer{color:var(--muted);font-size:12px;text-align:center;padding:22px;border-top:1px solid var(--line);margin-top:26px;line-height:1.8}
  @media(max-width:820px){.desc{max-width:none}}
 </style>
@@ -314,9 +317,12 @@ const html = `<meta charset="utf-8">
  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table>
- <div class="secbar far">📌 מעבר ל-30 ק"מ — לפי מרחק עולה</div>
+ <div class="secbar hyb">🏠 מעבר ל-30 ק"מ — היברידי · לפי מרחק עולה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30))}</tbody></table>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table>
+ <div class="secbar far">📌 מעבר ל-30 ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table>
 </div>
 <footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ כל בוקר ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
 <script>
