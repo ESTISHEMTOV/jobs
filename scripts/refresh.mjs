@@ -66,6 +66,14 @@ const BOARDS = [
   ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=Information System Manager&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
   ['LinkedIn', 'https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords="IS Manager"&location=Israel&geoId=101620260&f_TPR=r2592000&sortBy=DD'],
 ];
+// LinkedIn returns only the first ~10 results per search, so Israel-wide searches can be crowded out by central jobs.
+// PRIORITY GROUP 1 (≤30 km): extra LinkedIn searches limited to the near regions.
+const LI = (kw, loc) => `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=${kw}&location=${loc}&f_TPR=r2592000&sortBy=DD`;
+for (const loc of ['Haifa District, Israel', 'Northern District, Israel'])
+  for (const kw of ['מערכות מידע', 'Information Systems', 'IT Manager', 'CIO']) BOARDS.push(['LinkedIn', LI(kw, loc)]);
+// PRIORITY GROUP 2 (>30 km hybrid): a Hybrid/Remote-only version (f_WT=2,3) of each Israel-wide LinkedIn search.
+// Its jobs go to Gemini AND are marked hybrid in code (LinkedIn cards don't show Hybrid/Remote).
+for (const [, u] of [...BOARDS]) if (/jobs-guest/.test(u) && /geoId=101620260/.test(u)) BOARDS.push(['LinkedIn', u + '&f_WT=2%2C3']);
 
 // ===== אתרים נוספים — הדביקי בין הגרשיים את כתובת עמוד החיפוש/המשרות של כל אתר =====
 // אתר שהכתובת שלו ריקה ('') פשוט מדולג. אפשר להוסיף כמה שורות לאותו אתר (למשל חיפוש נוסף).
@@ -88,14 +96,18 @@ const sameHost = (a, b) => { try { const h = new URL(a).hostname.replace(/^www\.
 const looksLikeJob = (abs) => { try { const x = new URL(abs); return /\d{3,}|job|career|position|vacanc|misra|משר/i.test(decodeURIComponent(x.pathname + x.search)); } catch { return false; } };
 
 const loaded = [], blocked = [], empty = [], trimmed = [];
-const CORPUS_MAX = 380000;   // max characters of board text sent to Gemini in one run (free-tier input limits)
-const PER_BOARD = Math.min(14000, Math.floor(CORPUS_MAX / BOARDS.length));   // fair share per search, so no source is cut off   // empty = page loaded but had almost no text (site builds its list with JavaScript)
+const CORPUS_MAX = 380000;    // max characters of board text sent to Gemini in one run (free-tier input limits)
+const MAX_PER_BOARD = 20000;  // max characters from any single search page
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
-let corpus = '';
+const liHybrid = new Set();   // LinkedIn job ids seen in Hybrid/Remote-filtered searches
+const pages = [];             // { name, url, txt } per loaded search
+let lastLi = 0;
 for (const [name, url] of BOARDS) {
+  if (/linkedin\.com/i.test(url)) { const w = 1500 - (Date.now() - lastLi); if (w > 0) await sleep(w); lastLi = Date.now(); }   // pace LinkedIn requests
   const html = await fetchHtml(url);   // up to 3 attempts with rotating User-Agents
   if (!html) { blocked.push(name); continue; }
   try {
+    if (/f_WT=2/.test(url)) for (const m of html.matchAll(/jobs\/view\/(?:[^\/?"'\s]*-)?(\d{6,})/g)) liHybrid.add(m[1]);
     const linksBefore = realUrls.size;
     let raw = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
     // Keep REAL job-listing links inline as "text [URL:...]" before stripping tags.
@@ -112,12 +124,47 @@ for (const [name, url] of BOARDS) {
     });
     const txt = raw.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
     if (txt.length < 300) { empty.push(name); continue; }
-    if (corpus.length > CORPUS_MAX) { trimmed.push(name); continue; }   // stay inside Gemini free-tier input limits
-    corpus += `\n\n===== ${name} (${url}) =====\n` + txt.slice(0, PER_BOARD);
+    pages.push({ name, url, txt });
     console.log(`  ${name}: ${txt.length} chars, ${realUrls.size - linksBefore} direct links | ${decodeURI(url).slice(0, 110)}`);
     loaded.push(name);
   } catch { blocked.push(name); }
 }
+// Fit all text into Gemini's limit WITHOUT dropping any source: small pages stay whole, the remaining budget is split evenly among the big ones.
+let budget = CORPUS_MAX, left = pages.length, cap = MAX_PER_BOARD;
+for (const len of pages.map(p => p.txt.length).sort((x, y) => x - y)) {
+  const share = Math.min(MAX_PER_BOARD, Math.floor(budget / Math.max(left, 1)));
+  if (len <= share) { budget -= len; left--; } else { cap = share; break; }
+}
+let corpus = '';
+for (const p of pages) corpus += `\n\n===== ${p.name} (${p.url}) =====\n` + p.txt.slice(0, cap);
+console.log(`  Text per search capped at ${cap} chars; total sent to Gemini: ${corpus.length} chars.`);
+console.log(`  LinkedIn hybrid/remote job ids found: ${liHybrid.size}`);
+
+// ===== יישובים עד 30 ק"מ מצרופה — המרחק כאן קובע (אומדן אווירי). משרה באחד מהם תמיד בקבוצה הראשונה =====
+const NEAR = [
+  [['זכרון יעקב', 'זכרון', 'Zichron', 'Zikhron'], 5], [['צרופה', 'Tzrufa'], 0], [['פוריידיס', 'Fureidis'], 3],
+  [['עין הוד', 'Ein Hod'], 4], [['מעגן מיכאל', 'Maagan Michael'], 5], [['ג\'סר א-זרקא', 'Jisr'], 7],
+  [['בנימינה', 'Binyamina'], 8], [['עתלית', 'Atlit'], 8], [['גבעת עדה', 'Givat Ada'], 10], [['אור עקיבא', 'Or Akiva'], 10],
+  [['דלית אל כרמל', 'דאלית אל כרמל', 'Daliyat'], 11], [['עוספיא', 'Isfiya'], 13], [['פרדס חנה', 'Pardes Hanna', 'Pardes Hana'], 12],
+  [['כרכור', 'Karkur'], 13], [['קיסריה', 'Caesarea'], 12], [['חדרה', 'Hadera'], 15], [['טירת כרמל', 'Tirat Carmel'], 15],
+  [['עין שמר', 'Ein Shemer'], 18], [['אום אל פחם', 'אום אל-פחם', 'Umm al-Fahm'], 21], [['נשר', 'Nesher'], 22],
+  [['חיפה', 'Haifa'], 25], [['יקנעם', 'Yokneam', 'Yoqneam'], 28], [['קריית טבעון', 'קרית טבעון', 'Kiryat Tivon'], 28],
+  [['עמק חפר', 'Emek Hefer'], 28], [['חוף הכרמל', 'Hof HaCarmel'], 5], [['מגידו', 'Megiddo'], 25],
+];
+const nearKm = (loc) => { let best = null; const L = String(loc || '').toLowerCase();
+  for (const [names, km] of NEAR) if (names.some(n => L.includes(n.toLowerCase()))) best = best === null ? km : Math.min(best, km);
+  return best; };
+// Excerpts of the board text around every mention of a near place → a second, focused Gemini pass (so no near job is missed).
+let nearCorpus = '';
+{ const re = new RegExp(NEAR.flatMap(([n]) => n).map(x => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'gi');
+  for (const p of pages) {
+    const spans = [];
+    for (const m of p.txt.matchAll(re)) { const a = Math.max(0, m.index - 700), b = Math.min(p.txt.length, m.index + 500);
+      if (spans.length && a <= spans[spans.length - 1][1]) spans[spans.length - 1][1] = b; else spans.push([a, b]); }
+    if (spans.length) nearCorpus += `\n\n===== ${p.name} (${p.url}) =====\n` + spans.map(([a, b]) => p.txt.slice(a, b)).join(' … ');
+  }
+  nearCorpus = nearCorpus.slice(0, 120000);
+  console.log(`  Near-place excerpts for the focused pass: ${nearCorpus.length} chars.`); }
 
 const PROMPT = `You extract job listings for a Hebrew job-search landing page. Return ONLY a JSON array (no markdown, no prose).
 
@@ -128,14 +175,14 @@ Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally
 RULES:
 - STRICT ROLE WHITELIST — include a job ONLY if its title is essentially one of these (the person HEADS the IS/IT/applications/technology function): מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, מנהל/ת יישומים (applications MANAGER), מנהל/ת IT, Head of Information Systems, Head of IT, IT/IS Manager, Information Systems Manager / Information System Manager, IS Manager, Business Applications Manager.
 - COMBINED TITLES count: if the title includes a whitelisted role alongside others (e.g. "CIO / CTO / Chief AI Officer", "CIO & VP Operations"), INCLUDE it. Contract / freelance / fractional roles count too.
-- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it.
+- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it — EXCEPT for jobs within 30 km (GROUP 1): for those, when in doubt INCLUDE.
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
 - EXCLUDE information-SECURITY / cyber roles — they are NOT information-systems management: מנהל/ת אבטחת מידע, CISO, CISCO/CICO (mis-spellings of CISO), Information Security Manager/Officer, סייבר / Cyber, SOC, מנהל/ת סיכוני סייבר, GRC. Even if the title contains "מערכות מידע", if the role is about SECURITY, drop it.
 - Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, DBA / infrastructure-only, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications / technology broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, IT/IS manager).
 - COVERAGE: scan the ENTIRE board text top to bottom, not only the first listings. Include EVERY qualifying role — northern jobs AND Sharon/Center jobs within ~65 km (e.g. Hod Hasharon, Kfar Saba, Herzliya, Tel Aviv) and hybrid roles. Do not stop after a few near-Haifa results.
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
-- HYBRID: set "yes"/"no" from the listing. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
+- HYBRID: a board section whose URL contains "f_WT=2" lists ONLY Hybrid/Remote jobs → every job from that section is hybrid "yes". Otherwise set "yes"/"no" from the listing. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
 - DEDUPE the same job across sources.
 - LINK (CRITICAL): If the job in the BOARD TEXT is followed by a real link in the form [URL:https://...], USE THAT EXACT URL — it is the genuine direct listing. ONLY if a job has NO [URL:...] next to it, build a search link (below). NEVER invent or guess a URL with an id/slug that did not appear as [URL:...] — fabricated links are broken. For jobs without a real [URL:...], output a SEARCH URL built from a SHORT query — the recruiter/agency or company name if one is shown (e.g. YifaTalent, לירון ואליס) — that is the BEST query; otherwise a short core role phrase from the title (e.g. "מוביל מערכות מידע", "מנהל מערכות מידע"). DO NOT add a city/region to the query — the listing's location wording often differs (e.g. it says "אזור צפון" but you'd write "חיפה") and that zeroes out the search. Keep the query short (never the full job title). Use EXACTLY these formats:
    • JobMaster → https://www.jobmaster.co.il/jobs/?q=<short query>
@@ -148,13 +195,13 @@ RULES:
 - DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
-Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<JobMaster|AllJobs|דרושים|Indeed|LinkedIn|Civi|GovJobs|name>", "url": "https://..."}. Aim for 8-20 quality items. Return ONLY the JSON array.
+Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<JobMaster|AllJobs|דרושים|Indeed|LinkedIn|Civi|GovJobs|name>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
 
 BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
-async function callGemini() {
+async function callGemini(promptText) {
   // thinkingBudget capped (not the unbounded default that caused >120s timeouts) — enough reasoning to be thorough & classify correctly, still fast.
-  const body = { contents: [{ role: 'user', parts: [{ text: PROMPT }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 3000 } } };
+  const body = { contents: [{ role: 'user', parts: [{ text: promptText }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 32768, thinkingConfig: { thinkingBudget: 3000 } } };
   let lastErr = '';
   for (const m of MODELS) {
     for (let attempt = 1; attempt <= 3; attempt++) {   // retry the SAME (working) model on timeout/5xx instead of falling to a dead quota
@@ -165,10 +212,20 @@ async function callGemini() {
         if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 400)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
         const j = await r.json();
         const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
-        const s = text.indexOf('['), e = text.lastIndexOf(']');
-        if (s < 0 || e < 0) { lastErr = `${m}: no JSON array in reply :: ${text.slice(0, 300)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
-        console.log(`Gemini OK via model ${m} (attempt ${attempt})`);
-        return JSON.parse(text.slice(s, e + 1));
+        const fin = j.candidates?.[0]?.finishReason || '';
+        const s = text.indexOf('[');
+        let arr = null;
+        if (s >= 0) {
+          const e = text.lastIndexOf(']');
+          if (e > s) { try { arr = JSON.parse(text.slice(s, e + 1)); } catch {} }
+          if (!arr) {   // reply cut off mid-way → keep every COMPLETE job object (items are flat, so the last '}' closes a whole item)
+            const k = text.lastIndexOf('}');
+            if (k > s) { try { arr = JSON.parse(text.slice(s, k + 1) + ']'); console.log(`::warning::Gemini reply was cut off (${fin || 'unknown'}) — kept the ${arr.length} complete jobs; the last (lowest-priority) ones may be missing.`); } catch {} }
+          }
+        }
+        if (!Array.isArray(arr)) { lastErr = `${m}: no JSON array in reply (${fin}) :: ${text.slice(0, 300)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
+        console.log(`Gemini OK via model ${m} (attempt ${attempt}), ${arr.length} jobs${fin && fin !== 'STOP' ? ', finish=' + fin : ''}`);
+        return arr;
       } catch (e) { lastErr = `${m}: ${e.message}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); }
     }
   }
@@ -194,7 +251,14 @@ function safeUrl(j) {
   return allowed ? u : g(`${base} דרושים`);
 }
 let jobs = [], geminiError = '';
-try { jobs = await callGemini(); } catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
+try { jobs = await callGemini(PROMPT); } catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
+// Focused pass on GROUP 1: only the excerpts around near places, inclusive when in doubt. Its jobs are ADDED (duplicates are removed below).
+if (nearCorpus && !geminiError) {
+  const NEAR_PROMPT = PROMPT.slice(0, PROMPT.lastIndexOf('BOARD TEXT:')) +
+    `FOCUS FOR THIS PASS: the BOARD TEXT below contains ONLY excerpts around places within 30 km of Tzrufa. List EVERY job in it that is LOCATED in such a place and fits the roles — completeness is critical here; when unsure whether a title qualifies, INCLUDE it. Ignore jobs whose location is elsewhere.\n\nBOARD TEXT:` + nearCorpus;
+  try { const extra = await callGemini(NEAR_PROMPT); console.log(`  Focused near pass: ${extra.length} jobs`); jobs = [...(jobs || []), ...extra]; }
+  catch (err) { console.log(`::warning::Focused near pass failed (main results still used): ${err.message.slice(0, 200)}`); }
+}
 const rawCount = (jobs || []).length;
 jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   title: String(j.title).trim(), company: String(j.company || 'לא צוין').trim(),
@@ -202,6 +266,10 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
+// Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
+jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
+// LinkedIn: mark as hybrid every job that appeared in the Hybrid/Remote-filtered search.
+jobs.forEach(j => { const m = (j.url || '').match(/linkedin\.com\/jobs\/view\/(?:[^\/?]*-)?(\d+)/i); if (m && liHybrid.has(m[1])) j.hybrid = 'yes'; });
 // Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
 jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
 
