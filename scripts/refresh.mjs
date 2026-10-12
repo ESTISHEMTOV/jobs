@@ -83,6 +83,7 @@ const MORE_SITES = [
   ['Aman',     'https://www.aman.co.il/careers/all/?category=%25d7%259e%25d7%25a2%25d7%25a8%25d7%259b%25d7%2595%25d7%25aa-%25d7%259e%25d7%2599%25d7%2593%25d7%25a2&location=&s='],  // מסונן: מערכות מידע
   ['Norterra', 'https://www.norterra.co.il/jobs'],
   ["ג'וב קרוב", 'https://www.jobkarov.com/Search/?speciality=1857&role=1864%2C3387'],  // מסונן: מערכות מידע
+  ['זיוה בן פורת', 'https://www.zivabenporat.com/jobs'],
 ];
 const MORE_HOSTS = new Set();
 for (const [n, u] of MORE_SITES) {
@@ -189,14 +190,14 @@ RULES:
    • AllJobs or svt.jobs → https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=<short query>
    • Drushim → https://www.drushim.co.il/jobs/search/<short query>/
    • LinkedIn → https://www.linkedin.com/jobs/search?keywords=<short query>&location=Israel
-   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב (added sites) → leave "url" EMPTY ("") — the page links to that site's jobs page.
+   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב, זיוה בן פורת (added sites) → leave "url" EMPTY ("") — the page links to that site's jobs page.
    • GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
    LinkedIn locations look like "Haifa, Haifa District, Israel" — use the city. LinkedIn "Hybrid"/"Remote" in the card = hybrid "yes".
   URL-encode the query. When unsure, prefer the Google search format. Every link MUST lead to a non-empty results page.
 - DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Rehovot 85, Ness Ziona 83, Gedera 100, Ashdod 100, Ashkelon 115, Lod 75, Ramla 78, Bat Yam 75, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Region only: "שפלה"/Shfela 90, "דרום"/South 140, "אזור ירושלים" 120. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
-Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
+Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra, זיוה בן פורת>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
 
 BOARD TEXT:${corpus}`;
 
@@ -233,13 +234,17 @@ async function callGemini(promptText, models = MODELS) {
   throw new Error('All Gemini models failed. Last error -> ' + lastErr);
 }
 
+// Which added site a job belongs to — by its name (Hebrew/English, spaces ignored) or by the site's domain.
+const squash = x => String(x || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
+const hostKey = (v) => { try { return new URL(v).hostname.split('.').find(x => !['www', 'app', 'jobs'].includes(x)) || ''; } catch { return ''; } };
+const siteOf = (j) => { const src = squash(j.source), u = String(j.url || '').toLowerCase();
+  return MORE_SITES.find(([n, v]) => (v || '').trim() && ((squash(n) && src.includes(squash(n))) || (hostKey(v) && (src.includes(hostKey(v)) || u.includes(hostKey(v) + '.'))))); };
 // Guard: only allow known site-SEARCH URLs; anything else (fabricated ID paths, civi, blanks) -> Google search.
 function safeUrl(j) {
   const u = (j.url || '').trim();
   if (realUrls.has(u)) return u;   // genuine direct listing URL extracted from a board page → use it
   const src = (j.source || '').toLowerCase();
-  const hostKey = (v) => { try { return new URL(v).hostname.split('.').find(x => !['www', 'app', 'jobs'].includes(x)) || ''; } catch { return ''; } };
-  const site = MORE_SITES.find(([n, v]) => (v || '').trim() && (src.includes(n.toLowerCase()) || (hostKey(v) && (src.includes(hostKey(v)) || u.includes(hostKey(v))))));
+  const site = siteOf(j);
   if (site) return site[1].trim();   // added site with no per-job link → open that site's jobs page
   const g = (q) => 'https://www.google.com/search?q=' + encodeURIComponent(q.replace(/\s+/g, ' ').trim());
   // For sources with no real/fetched URL: a Google search that actually RETURNS results.
@@ -273,7 +278,7 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
-jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });   // Civi is the platform behind השועלה — show one source name
+jobs.forEach(j => { const st = siteOf(j); if (st) j.source = st[0]; });   // one source name per added site (e.g. "Civi"/"Ziva Ben Porat" → the Hebrew site name)
 // ---- job identity keys (used by carry-over, dedupe and the "appeared before" history) ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
 const normCo = c => norm(c).replace(/^(קבוצת|קבוצה|חברת|רשת|חב')\s+/, '').trim();   // "קבוצת HOT" == "HOT"
