@@ -96,6 +96,7 @@ const loaded = [], blocked = [], empty = [], trimmed = [];
 const CORPUS_MAX = 380000;    // max characters of board text sent to Gemini in one run (free-tier input limits)
 const MAX_PER_BOARD = 20000;  // max characters from any single search page
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
+const srcTitle = new Map();   // LinkedIn listing URL → the real job title as written on the search card
 const pages = [];             // { name, url, txt } per loaded search
 let lastLi = 0;
 for (const [name, url] of BOARDS) {
@@ -113,6 +114,7 @@ for (const [name, url] of BOARDS) {
       const extraJob = abs && MORE_HOSTS.size && MORE_HOSTS.has(new URL(url).hostname.replace(/^www\./, '')) && sameHost(abs, url) && new URL(abs).pathname !== new URL(url).pathname && looksLikeJob(abs) && t.length >= 4;
       if (extraJob || abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/|linkedin\.com\/jobs\/view\/)/i.test(abs)) {
         realUrls.add(abs);
+        if (/linkedin\.com\/jobs\/view\//i.test(abs) && t.length >= 3 && !srcTitle.has(abs)) srcTitle.set(abs, t);
         return ` ${t} [URL:${abs}] `;
       }
       return ' ' + t + ' ';
@@ -176,6 +178,7 @@ RULES:
 - COVERAGE: scan the ENTIRE board text top to bottom, not only the first listings. Include EVERY qualifying role — northern jobs AND Sharon/Center jobs within ~65 km (e.g. Hod Hasharon, Kfar Saba, Herzliya, Tel Aviv) and hybrid roles. Do not stop after a few near-Haifa results.
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
+- TITLE: copy the job title EXACTLY as written in the BOARD TEXT — never rephrase, translate, shorten or "upgrade" it (e.g. do NOT turn "IT Team Lead" into "IT Manager").
 - HYBRID: set "yes"/"no" from the listing. LinkedIn search cards usually do NOT state the work mode → use "na" for them unless the card text itself says Hybrid/Remote/On-site. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
 - DEDUPE the same job across sources.
 - LINK (CRITICAL): If the job in the BOARD TEXT is followed by a real link in the form [URL:https://...], USE THAT EXACT URL — it is the genuine direct listing. ONLY if a job has NO [URL:...] next to it, build a search link (below). NEVER invent or guess a URL with an id/slug that did not appear as [URL:...] — fabricated links are broken. For jobs without a real [URL:...], output a SEARCH URL built from a SHORT query — the recruiter/agency or company name if one is shown (e.g. YifaTalent, לירון ואליס) — that is the BEST query; otherwise a short core role phrase from the title (e.g. "מוביל מערכות מידע", "מנהל מערכות מידע"). DO NOT add a city/region to the query — the listing's location wording often differs (e.g. it says "אזור צפון" but you'd write "חיפה") and that zeroes out the search. Keep the query short (never the full job title). Use EXACTLY these formats:
@@ -278,10 +281,13 @@ const BROAD = /מערכות מידע|information systems|information technology(
 const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|help ?desk|service ?desk|תמיכה|\bsupport\b|developer|מפתח|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור/i;
 const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bCISO\b/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
 const droppedTitles = [];
-jobs = jobs.filter(j => { const t = j.title;
+const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
   const bad = TITLE_BLOCK.test(t) || (NARROW.test(t) && !BROAD.test(t.replace(/information technology infrastructure/ig, '')));
-  if (bad) droppedTitles.push(t); return !bad; });
-if (droppedTitles.length) console.log(`::notice::Dropped by title rules (${droppedTitles.length}): ${droppedTitles.join(' · ').slice(0, 900)}`);
+  if (bad) droppedTitles.push(t); return !bad; }); };
+// Gemini sometimes rewrites/"upgrades" titles (e.g. "IT Team Lead" → "IT Manager") → restore the real LinkedIn card title first.
+const fixedTitles = [];
+jobs.forEach(j => { const t = srcTitle.get(j.url); if (t && t.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${t}`); j.title = t; } });
+applyTitleRules();
 
 // LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
 // Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
@@ -302,11 +308,17 @@ for (const j of jobs) {
   liRead++;
   if (EXPIRED.test(h)) { j.expired = true; console.log('DROPPED expired: ' + j.title + ' | ' + j.url); continue; }
   const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const h1 = (h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1];
+  const pageTitle = h1 ? h1.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
+  if (pageTitle && pageTitle.length <= 150 && pageTitle.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${pageTitle}`); j.title = pageTitle; }
   const yes = /"jobLocationType"\s*:\s*"TELECOMMUTE"/i.test(h) || HYB_YES.test(t), no = HYB_NO.test(t);
   j.hybrid = yes && !no ? 'yes' : (no && !yes ? 'no' : 'na');
   if (j.hybrid === 'yes') liYes++; else if (j.hybrid === 'no') liNo++;
 }
 jobs = jobs.filter(j => !j.expired);
+applyTitleRules();   // again, with the real titles from the job pages
+if (fixedTitles.length) console.log(`::notice::Titles corrected to the real LinkedIn title (${fixedTitles.length}): ${fixedTitles.join(' · ').slice(0, 900)}`);
+if (droppedTitles.length) console.log(`::notice::Dropped by title rules (${droppedTitles.length}): ${droppedTitles.join(' · ').slice(0, 900)}`);
 console.log(`::notice::LinkedIn work-mode check: read ${liRead} job pages — ${liYes} hybrid/remote, ${liNo} on-site, the rest not stated.`);
 // Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
 jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
