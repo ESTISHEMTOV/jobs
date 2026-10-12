@@ -266,6 +266,22 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
 jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });   // Civi is the platform behind השועלה — show one source name
+// CARRY-OVER: Gemini's output varies between runs, so a still-listed job can vanish for one run. Keep jobs that were REALLY found
+// in the last 2 days but are missing now. They go through ALL the checks below again (title rules, distance, LinkedIn page, expiry).
+const matchKey = j => (/checknum|UploadSingle|drushim\.co\.il\/job\/|linkedin\.com\/jobs\/view\//i.test(j.url || '') ? String(j.url).split('?')[0] : '')
+  || (String(j.title || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '') + '|' + String(j.company || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ''));
+const CARRY_DAYS = 2;
+const isoToday = D.split('.').reverse().join('-');
+let prevShown = []; try { prevShown = JSON.parse(await readFile('data/jobs-shown.json', 'utf8')); } catch {}
+jobs.forEach(j => { j.lastReal = isoToday; });
+{ const nowKeys = new Set(jobs.map(matchKey));
+  const cutC = new Date(Date.parse(isoToday) - CARRY_DAYS * 864e5).toISOString().slice(0, 10);
+  const carried = (Array.isArray(prevShown) ? prevShown : []).filter(p => p && p.title && p.lastReal >= cutC && !nowKeys.has(matchKey(p)));
+  if (carried.length) {
+    console.log(`::notice::Kept ${carried.length} job(s) found in the last ${CARRY_DAYS} days but missing from this run's Gemini output: ${carried.map(p => p.title).join(' · ').slice(0, 700)}`);
+    jobs.push(...carried.map(p => ({ title: p.title, company: p.company || '', location: p.location || '', km: Number.isFinite(+p.km) ? +p.km : 40,
+      hybrid: ['yes', 'no', 'na'].includes(p.hybrid) ? p.hybrid : 'na', desc: p.desc || '', source: p.source || '', url: p.url || '', lastReal: p.lastReal, carried: true })));
+  } }
 // Far places: a location ONLY in the Shfela / south / Jerusalem gets at least its real distance (so a non-hybrid job there is dropped).
 const FAR = [[/שפלה|shfela|shephelah/i, 90], [/רחובות|rehovot/i, 85], [/נס ציונה|ness ziona/i, 83], [/גדרה|gedera/i, 100], [/יבנה|yavne/i, 88],
   [/אשדוד|ashdod/i, 100], [/אשקלון|ashkelon/i, 115], [/קרי?ית גת|kiryat gat/i, 140], [/באר שבע|beer ?sheva|be'er sheva/i, 160],
@@ -497,6 +513,7 @@ await mkdir('data', { recursive: true });
 await writeFile('index.html', html, 'utf8');
 await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'utf8');
 await writeFile('data/seen.json', JSON.stringify(H), 'utf8');
+await writeFile('data/jobs-shown.json', JSON.stringify(jobs.map(j => ({ title: j.title, company: j.company, location: j.location, km: j.km, hybrid: j.hybrid, desc: j.desc, source: j.source, url: j.url, lastReal: j.lastReal || isoToday })), null, 1), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
 console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30 km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
 console.log(`Done: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30km), loaded ${loaded.join(',') || 'none'}, blocked ${blocked.join(',') || 'none'}`);
