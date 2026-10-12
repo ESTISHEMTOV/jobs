@@ -1,24 +1,101 @@
 [
  {
-  "title": "מנהל/ת מערכות מידע לתפקיד ניהולי בכיר ולהובלת תחום מערכות המידע בארגון חינוכי מוביל",
+  "title": "מנהל/ת אפליקציה",
+  "company": "חברה חסויה",
+  "location": "יקנעם עילית",
+  "km": 28,
+  "hybrid": "na",
+  "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "מנהל.ת טכנולוגי.ת בנושאי AI",
+  "company": "רפאל",
+  "location": "כרמיאל",
+  "km": 50,
+  "hybrid": "no",
+  "desc": "סמכות טכנולוגית והנדסית חטיבתית וארגונית בתחומי AI ו?GenAI לרבות טיפוח מוקדי ידע, פיתוח יכולות מתקדמות וקידום חדשנות.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38670494/32f3e947/",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "מנהל/ת מערכות מידע",
+  "company": "חברה חסויה",
+  "location": "נתניה",
+  "km": 55,
+  "hybrid": "na",
+  "desc": "לחברת מזון תעשייתית בנתניה נדרש: - תואר ראשון. - ניסיון מעל 5 שנים בניהול מערכות מידע בחברות תעשייה מורכבות.",
+  "source": "עץ השדה",
+  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "דרוש /ה מנהל IT - ניהול 5 עובדים",
+  "company": "חברה חסויה",
+  "location": "ראש העין",
+  "km": 58,
+  "hybrid": "na",
+  "desc": "אנו מחפשים מנהל טכנולוגי (IT- CIO ) בעל/ת ניסיון של 3 שנות ניסיון בעל/ת ניסיון ניהולי - יכולת לנהל צוות טכנולוגי (5 עובדים) וקבלני משנה.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851068",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "Group CIO לקבוצת חברות ציבורית מובילה במשק",
+  "company": "יערה פיינר-אבחון והשמה",
+  "location": "הרצליה",
+  "km": 58,
+  "hybrid": "no",
+  "desc": "תפקיד מטה אסטרטגי הכולל אחריות על גיבוש והובלת אסטרטגיית מערכות המידע והחדשנות של הקבוצה, לצד ניהול צוות המטה והובלה מקצועית מטריציונית של מנהלי מערכות המידע בחברות הקבוצה.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8803299",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "Head of Systems",
+  "company": "השועלה",
+  "location": "מרחוק/היברידי",
+  "km": 0,
+  "hybrid": "yes",
+  "desc": "להובלת תחום תשתיות הסיסטם בארגון גדול, עם אחריות מקצה לקצה על מערכות Production קריטיות, שרידות, ענן, גיבויים ו־DR.",
+  "source": "השועלה",
+  "url": "https://app.civi.co.il/?promos&lang=he&id=LNTRFP75FN&src=9601&fallback=1&p=1&r=20&o=date_opened%2Cd&f=job_code,1021%2B1012&l=",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "נת\"ע מגייסת מנהל/ת מערכות מידע ראשי/ת",
+  "company": "נת\"ע - נתיבי תחבורה עירוניים להסעת המונים בע\"מ",
+  "location": "חולון",
+  "km": 75,
+  "hybrid": "yes",
+  "desc": "ניהול כולל, תכנון ויישום מערכות מ...",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9858582",
+  "lastReal": "2026-10-12"
+ },
+ {
+  "title": "דרוש /ה מנהל /ת מערכות מידע לתפקיד ניהולי בכיר ולהובלת תחום מערכות המידע בארגון חינוכי מוביל",
   "company": "חברה חסויה",
   "location": "טירת כרמל",
   "km": 15,
-  "hybrid": "no",
-  "desc": "גיבוש והובלת אסטרטגיית מערכות המידע בהתאם ליעדי הרשת. אחריות על מערכות מידע, תשתיות, תקשורת, ענן, אבטחת מידע ותמיכה טכנולוגית.",
+  "hybrid": "na",
+  "desc": "אנו מחפשים מנהיג.ה בעל.ת ראייה אסטרטגית ועסקית, ניסיון ניהולי משמעותי, חשיבה מערכתית, יכולת הובלת שינוי ותודעת שירות גבוהה.",
   "source": "AllJobs",
   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8842175",
   "lastReal": "2026-10-12"
  },
  {
-  "title": "לחברה מובילה בחיפה דרוש /ה מנהל /ת אפליקציה",
-  "company": "חברה חסויה",
+  "title": "מנהל/ת מערכות תשתיתיות ואינטגרציה לחיפה",
+  "company": "חברת השמה / כח אדם",
   "location": "חיפה",
   "km": 25,
-  "hybrid": "no",
-  "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
+  "hybrid": "yes",
+  "desc": "אחראי/ת על הקמה, ניהול ותחזוקה של תשתיות אינטגרציה והנדסת נתונים בארגון - כולל מערכות ETL, תזמון תהליכים.",
   "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
   "lastReal": "2026-10-12"
  },
  {
@@ -30,17 +107,6 @@
   "desc": "ניסיון מעל 5 שנים בניהול מערכות מידע בחברות תעשייה מורכבות. רקע בענף המזון: יתרון. היכרות עם מערכות BI. פריורטי- חובה.",
   "source": "עץ השדה",
   "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
-  "lastReal": "2026-10-12"
- },
- {
-  "title": "נת&quot;ע מגייסת מנהל/ת מערכות מידע ראשי/ת",
-  "company": "נת&quot;ע - נתיבי תחבורה עירוניים להסעת המונים בע&quot;מ",
-  "location": "חולון",
-  "km": 75,
-  "hybrid": "yes",
-  "desc": "ניהול כולל, תכנון ויישום מערכות מידע, תשתיות, תקשורת, אבטחת מידע, מערכות ליבה ופרויקטים טכנולוגיים.",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9858582",
   "lastReal": "2026-10-12"
  },
  {
@@ -209,28 +275,6 @@
   "lastReal": "2026-10-12"
  },
  {
-  "title": "מנהל/ת מערכות תשתיתיות ואינטגרציה לחיפה",
-  "company": "חברה חסויה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "yes",
-  "desc": "אחראי/ת על הקמה, ניהול ותחזוקה של תשתיות אינטגרציה והנדסת נתונים בארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
-  "lastReal": "2026-10-12"
- },
- {
-  "title": "Head of Systems",
-  "company": "השועלה",
-  "location": "na",
-  "km": 0,
-  "hybrid": "na",
-  "desc": "להובלת תחום תשתיות הסיסטם בארגון גדול, עם אחריות מקצה לקצה על מערכות Production קריטיות, שרידות, ענן, גיבויים ו־DR.",
-  "source": "השועלה",
-  "url": "https://app.civi.co.il/?promos&lang=he&id=LNTRFP75FN&src=9601&fallback=1&p=1&r=20&o=date_opened%2Cd&f=job_code,1021%2B1012&l=",
-  "lastReal": "2026-10-12"
- },
- {
   "title": "Head of MIS",
   "company": "Cloudinary",
   "location": "Ramat Yishai",
@@ -261,17 +305,6 @@
   "desc": "Lead technology strategy, innovation, and development across the organization.",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/head-of-technology-at-amdocs-4471721963",
-  "lastReal": "2026-10-12"
- },
- {
-  "title": "מנהל/ת מערכות מידע",
-  "company": "חברה חסויה",
-  "location": "נתניה",
-  "km": 55,
-  "hybrid": "no",
-  "desc": "ניהול מערכות מידע בחברת מזון תעשייתית, כולל ERP Priority ו-BI.",
-  "source": "עץ השדה",
-  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
   "lastReal": "2026-10-12"
  }
 ]
