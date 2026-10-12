@@ -71,9 +71,6 @@ const BOARDS = [
 const LI = (kw, loc) => `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search?keywords=${kw}&location=${loc}&f_TPR=r2592000&sortBy=DD`;
 for (const loc of ['Haifa District, Israel', 'Northern District, Israel'])
   for (const kw of ['מערכות מידע', 'Information Systems', 'IT Manager', 'CIO']) BOARDS.push(['LinkedIn', LI(kw, loc)]);
-// PRIORITY GROUP 2 (>30 km hybrid): a Hybrid/Remote-only version (f_WT=2,3) of each Israel-wide LinkedIn search.
-// Its jobs go to Gemini AND are marked hybrid in code (LinkedIn cards don't show Hybrid/Remote).
-for (const [, u] of [...BOARDS]) if (/jobs-guest/.test(u) && /geoId=101620260/.test(u)) BOARDS.push(['LinkedIn', u + '&f_WT=2%2C3']);
 
 // ===== אתרים נוספים — הדביקי בין הגרשיים את כתובת עמוד החיפוש/המשרות של כל אתר =====
 // אתר שהכתובת שלו ריקה ('') פשוט מדולג. אפשר להוסיף כמה שורות לאותו אתר (למשל חיפוש נוסף).
@@ -99,7 +96,6 @@ const loaded = [], blocked = [], empty = [], trimmed = [];
 const CORPUS_MAX = 380000;    // max characters of board text sent to Gemini in one run (free-tier input limits)
 const MAX_PER_BOARD = 20000;  // max characters from any single search page
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
-const liHybrid = new Set();   // LinkedIn job ids seen in Hybrid/Remote-filtered searches
 const pages = [];             // { name, url, txt } per loaded search
 let lastLi = 0;
 for (const [name, url] of BOARDS) {
@@ -107,7 +103,6 @@ for (const [name, url] of BOARDS) {
   const html = await fetchHtml(url);   // up to 3 attempts with rotating User-Agents
   if (!html) { blocked.push(name); continue; }
   try {
-    if (/f_WT=2/.test(url)) for (const m of html.matchAll(/jobs\/view\/(?:[^\/?"'\s]*-)?(\d{6,})/g)) liHybrid.add(m[1]);
     const linksBefore = realUrls.size;
     let raw = html.replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ');
     // Keep REAL job-listing links inline as "text [URL:...]" before stripping tags.
@@ -138,7 +133,6 @@ for (const len of pages.map(p => p.txt.length).sort((x, y) => x - y)) {
 let corpus = '';
 for (const p of pages) corpus += `\n\n===== ${p.name} (${p.url}) =====\n` + p.txt.slice(0, cap);
 console.log(`  Text per search capped at ${cap} chars; total sent to Gemini: ${corpus.length} chars.`);
-console.log(`  LinkedIn hybrid/remote job ids found: ${liHybrid.size}`);
 
 // ===== יישובים עד 30 ק"מ מצרופה — המרחק כאן קובע (אומדן אווירי). משרה באחד מהם תמיד בקבוצה הראשונה =====
 const NEAR = [
@@ -182,7 +176,7 @@ RULES:
 - COVERAGE: scan the ENTIRE board text top to bottom, not only the first listings. Include EVERY qualifying role — northern jobs AND Sharon/Center jobs within ~65 km (e.g. Hod Hasharon, Kfar Saba, Herzliya, Tel Aviv) and hybrid roles. Do not stop after a few near-Haifa results.
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
-- HYBRID: a board section whose URL contains "f_WT=2" lists ONLY Hybrid/Remote jobs → every job from that section is hybrid "yes". Otherwise set "yes"/"no" from the listing. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
+- HYBRID: set "yes"/"no" from the listing. LinkedIn search cards usually do NOT state the work mode → use "na" for them unless the card text itself says Hybrid/Remote/On-site. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
 - DEDUPE the same job across sources.
 - LINK (CRITICAL): If the job in the BOARD TEXT is followed by a real link in the form [URL:https://...], USE THAT EXACT URL — it is the genuine direct listing. ONLY if a job has NO [URL:...] next to it, build a search link (below). NEVER invent or guess a URL with an id/slug that did not appear as [URL:...] — fabricated links are broken. For jobs without a real [URL:...], output a SEARCH URL built from a SHORT query — the recruiter/agency or company name if one is shown (e.g. YifaTalent, לירון ואליס) — that is the BEST query; otherwise a short core role phrase from the title (e.g. "מוביל מערכות מידע", "מנהל מערכות מידע"). DO NOT add a city/region to the query — the listing's location wording often differs (e.g. it says "אזור צפון" but you'd write "חיפה") and that zeroes out the search. Keep the query short (never the full job title). Use EXACTLY these formats:
    • JobMaster → https://www.jobmaster.co.il/jobs/?q=<short query>
@@ -270,14 +264,46 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
 jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });   // Civi is the platform behind השועלה — show one source name
 // Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
-// LinkedIn: mark as hybrid every job that appeared in the Hybrid/Remote-filtered search.
-jobs.forEach(j => { const m = (j.url || '').match(/linkedin\.com\/jobs\/view\/(?:[^\/?]*-)?(\d+)/i); if (m && liHybrid.has(m[1])) j.hybrid = 'yes'; });
+// Title rules enforced in code (Gemini doesn't always obey the blacklist).
+const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
+const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|help ?desk|service ?desk|תמיכה|\bsupport\b|developer|מפתח|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור/i;
+const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bCISO\b/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
+const droppedTitles = [];
+jobs = jobs.filter(j => { const t = j.title;
+  const bad = TITLE_BLOCK.test(t) || (NARROW.test(t) && !BROAD.test(t.replace(/information technology infrastructure/ig, '')));
+  if (bad) droppedTitles.push(t); return !bad; });
+if (droppedTitles.length) console.log(`::notice::Dropped by title rules (${droppedTitles.length}): ${droppedTitles.join(' · ').slice(0, 900)}`);
+
+// LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
+// Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
+const EXPIRED = /משרה זו הוסרה|הוסרה מהלוח|פג תוקף|המשרה אוישה|לא נמצאה|no longer accepting|כבר לא מקבלים מועמדים/i;
+const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
+const HYB_NO = /\bon[\s-]?site\b|from the office|מהמשרד|במשרדי החברה|לא היברידי|ללא עבודה מהבית/i;
+let liRead = 0, liYes = 0, liNo = 0;
+for (const j of jobs) {
+  const m = (j.url || '').match(/linkedin\.com\/jobs\/view\/(?:[^\/?]*-)?(\d+)/i);
+  if (!m) { if (/linkedin/i.test(j.source)) j.hybrid = 'na'; continue; }   // LinkedIn job we can't open → Gemini's guess isn't trusted
+  await sleep(1200);   // pace LinkedIn requests
+  let h = '';
+  for (const u of [j.url, `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${m[1]}`]) {
+    try { const r = await fetch(u, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'en-US,en;q=0.9,he;q=0.8' }, signal: AbortSignal.timeout(15000) });
+      if (r.ok) { h = await r.text(); if (h.length > 2000) break; } } catch {}
+  }
+  if (!h) { j.hybrid = 'na'; continue; }   // couldn't read the page → can't confirm hybrid
+  liRead++;
+  if (EXPIRED.test(h)) { j.expired = true; console.log('DROPPED expired: ' + j.title + ' | ' + j.url); continue; }
+  const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const yes = /"jobLocationType"\s*:\s*"TELECOMMUTE"/i.test(h) || HYB_YES.test(t), no = HYB_NO.test(t);
+  j.hybrid = yes && !no ? 'yes' : (no && !yes ? 'no' : 'na');
+  if (j.hybrid === 'yes') liYes++; else if (j.hybrid === 'no') liNo++;
+}
+jobs = jobs.filter(j => !j.expired);
+console.log(`::notice::LinkedIn work-mode check: read ${liRead} job pages — ${liYes} hybrid/remote, ${liNo} on-site, the rest not stated.`);
 // Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
 jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
 
 // Expiry check: open each direct-listing page and DROP jobs marked removed/expired/closed.
-const EXPIRED = /משרה זו הוסרה|הוסרה מהלוח|פג תוקף|המשרה אוישה|לא נמצאה|no longer accepting|כבר לא מקבלים מועמדים/i;
-const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\/|linkedin\.com\/jobs\/view\//i.test(u);
+const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
 const checked = [];
 for (const j of jobs) {
   if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
@@ -305,7 +331,17 @@ const idKey = j => {
   return null;
 };
 // Each job carries BOTH keys; two jobs are "the same" if EITHER matches — so a day that stored only titles still matches a day that has ids, and vice-versa.
-const keysOf = j => { const k = [titleKey(j)]; const id = idKey(j); if (id) k.push(id); return k; };
+// LOOSE key: tolerant to small wording changes between runs (gender markers, job codes, punctuation, company suffixes).
+const coreTitle = t => String(t || '').toLowerCase()
+  .replace(/\([^)]*\)/g, ' ')                                  // (1234), (ת)
+  .replace(/[a-z]*-?\d[\w-]*/g, ' ')                           // job codes: 17725, JB-5480
+  .replace(/(\S)\s*[\/.]\s*(ת|ית|ה)(?=\s|$)/g, '$1')            // מנהל/ת, מנהל.ת, מנהל /ת → מנהל
+  .replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim();
+const coreCo = c => { const x = String(c || '').toLowerCase().replace(/חסוי|חסויה|confidential|חברה חסויה|לא צוין|^na$/g, '')
+  .replace(/\b(ltd|inc|israel|group)\b|בע"?מ|ישראל|^(קבוצת|חברת|רשת)\s+/g, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim(); return x; };
+const looseKey = j => { const co = coreCo(j.company);
+  return 'L:' + coreTitle(j.title) + '|' + (co || ('@' + String(j.location || '').toLowerCase().split(/[,\s]+/)[0])); };   // no company → use first location word
+const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); return k; };
 // DEDUPE — drop a posting if EITHER its stable id OR its title|company was already seen. This catches the SAME job listed on
 // two boards (different ids) as well as exact repeats. Keeps the first (usually the direct-link source).
 { const seenId = new Set(), seenT = new Set();
@@ -320,10 +356,26 @@ const keysOf = j => { const k = [titleKey(j)]; const id = idKey(j); if (id) k.pu
 const readJson = async p => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; } };
 let T = await readJson('data/jobs-today.json');
 let Y = await readJson('data/jobs-yesterday.json');
-if (T && T.date && T.date !== D) Y = T;          // new day → roll over
+if (T && T.date && T.date !== D) Y = T;          // new day → roll over (kept for compatibility)
 if (!Y) Y = { date: '', keys: [] };
-const ySet = new Set((Y.keys || []));
-jobs.forEach(j => { j.ystd = keysOf(j).some(k => ySet.has(k)); });   // shown yesterday if ANY of its keys was seen yesterday
+// HISTORY: every key ever shown in the last 45 days → { f: first-seen date, l: last-seen date } (ISO yyyy-mm-dd).
+// "Appeared before" = first seen on an EARLIER day, in ANY run (not only the previous day's last run).
+const iso = d => (d || '').split('.').reverse().join('-');   // 25.06.2026 → 2026-06-25
+const TODAY = iso(D);
+let H = await readJson('data/seen.json');
+if (!H || typeof H !== 'object') {   // first run with history → seed from the old state files
+  H = {};
+  for (const st of [Y, T]) if (st && st.date && Array.isArray(st.keys)) for (const k of st.keys) {
+    const d = iso(st.date);
+    const ks = [k];   // old "title|company" keys → also derive the loose key (when the company is known)
+    if (!/^(L:|jm:|aj:|dr:|li:)/.test(k) && k.includes('|')) { const [t, c] = k.split('|'); if (coreCo(c)) ks.push(looseKey({ title: t, company: c })); }
+    for (const x of ks) { if (!H[x]) H[x] = { f: d, l: d }; else { if (d < H[x].f) H[x].f = d; if (d > H[x].l) H[x].l = d; } } }
+}
+jobs.forEach(j => { j.ystd = keysOf(j).some(k => H[k] && H[k].f < TODAY); });
+for (const j of jobs) for (const k of keysOf(j)) { if (!H[k]) H[k] = { f: TODAY, l: TODAY }; else H[k].l = TODAY; }
+{ const cut = new Date(Date.parse(TODAY) - 45 * 864e5).toISOString().slice(0, 10);
+  for (const k of Object.keys(H)) if (!H[k] || H[k].l < cut) delete H[k]; }
+console.log(`  New today: ${jobs.filter(j => !j.ystd).length} of ${jobs.length} (history holds ${Object.keys(H).length} keys).`);
 const todayState = { date: D, keys: jobs.flatMap(keysOf) };
 
 // ---- render fixed template ----
@@ -386,13 +438,13 @@ const html = `<meta charset="utf-8">
  </div>
  <div class="count" id="count"></div>
  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
- <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table>
  <div class="secbar hyb">🏠 מעבר ל-30 ק"מ — היברידי · לפי מרחק עולה</div>
- <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table>
  <div class="secbar far">📌 מעבר ל-30 ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
- <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הוצג אתמול?</th></tr></thead>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table>
 </div>
 <footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ כל בוקר ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
@@ -419,6 +471,7 @@ if (jobs.length === 0) {
 await mkdir('data', { recursive: true });
 await writeFile('index.html', html, 'utf8');
 await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'utf8');
+await writeFile('data/seen.json', JSON.stringify(H), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
 console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30 km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
 console.log(`Done: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30km), loaded ${loaded.join(',') || 'none'}, blocked ${blocked.join(',') || 'none'}`);
