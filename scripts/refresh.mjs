@@ -197,11 +197,11 @@ Each array item = {"title": "...", "company": "...", "location": "...", "km": <n
 
 BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
 
-async function callGemini(promptText) {
+async function callGemini(promptText, models = MODELS) {
   // thinkingBudget capped (not the unbounded default that caused >120s timeouts) — enough reasoning to be thorough & classify correctly, still fast.
   const body = { contents: [{ role: 'user', parts: [{ text: promptText }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 32768, thinkingConfig: { thinkingBudget: 3000 } } };
   let lastErr = '';
-  for (const m of MODELS) {
+  for (const m of models) {
     for (let attempt = 1; attempt <= 3; attempt++) {   // retry the SAME (working) model on timeout/5xx instead of falling to a dead quota
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${KEY}`;
@@ -249,7 +249,8 @@ function safeUrl(j) {
   return allowed ? u : g(`${base} דרושים`);
 }
 let jobs = [], geminiError = '';
-try { jobs = await callGemini(PROMPT); } catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
+try { jobs = await callGemini(PROMPT, [MODELS[0]]); }   // main pass: strong model only — the fallback model misses whole sources, better to keep the previous page
+ catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
 // Focused pass on GROUP 1: only the excerpts around near places, inclusive when in doubt. Its jobs are ADDED (duplicates are removed below).
 if (nearCorpus && !geminiError) {
   const NEAR_PROMPT = PROMPT.slice(0, PROMPT.lastIndexOf('BOARD TEXT:')) +
@@ -268,7 +269,7 @@ jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });  
 // Far places: a location ONLY in the Shfela / south / Jerusalem gets at least its real distance (so a non-hybrid job there is dropped).
 const FAR = [[/שפלה|shfela|shephelah/i, 90], [/רחובות|rehovot/i, 85], [/נס ציונה|ness ziona/i, 83], [/גדרה|gedera/i, 100], [/יבנה|yavne/i, 88],
   [/אשדוד|ashdod/i, 100], [/אשקלון|ashkelon/i, 115], [/קרי?ית גת|kiryat gat/i, 140], [/באר שבע|beer ?sheva|be'er sheva/i, 160],
-  [/ירושלים|jerusalem/i, 120], [/מודיעין|modiin/i, 85], [/ראשון לציון|rishon/i, 80], [/דרום|south district/i, 140]];
+  [/ירושלים|jerusalem/i, 120], [/בית.?שמש|beit.?shemesh/i, 110], [/חולון|holon/i, 75], [/בת.?ים|bat.?yam/i, 75], [/(^|[\s,])לוד|\blod\b/i, 75], [/רמלה|ramla/i, 78], [/מודיעין|modiin/i, 85], [/ראשון לציון|rishon/i, 80], [/דרום|south district/i, 140]];
 const MID = /תל.?אביב|tel.?aviv|פתח.?תקו|petah|הרצליה|herzliya|רמת.?גן|ramat.?gan|גבעתיים|givatayim|בני.?ברק|bnei.?brak|רעננה|ra'?anana|כפר.?סבא|kfar.?saba|נתניה|netanya|הוד.?השרון|hod.?hasharon|ראש.?העין|rosh.?ha|אור.?יהודה|or.?yehuda|מרכז|center/i;   // multi-location with a nearer city → keep nearest
 const cityPart = l => String(l || '').replace(/,?\s*(center|central|tel aviv|haifa|north(ern)?|south(ern)?|jerusalem)\s+district\b.*$/i, '').replace(/,?\s*מחוז\s+\S+.*$/, '').replace(/,?\s*israel\s*$/i, '');   // "Rishon LeZion, Center District, Israel" → "Rishon LeZion"
 jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !== null || MID.test(loc)) return;
@@ -308,7 +309,7 @@ for (const j of jobs) {
   liRead++;
   if (EXPIRED.test(h)) { j.expired = true; console.log('DROPPED expired: ' + j.title + ' | ' + j.url); continue; }
   const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-  const h1 = (h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [])[1];
+  const h1 = (h.match(/<h1[^>]*class="[^"]*(top-card-layout__title|topcard__title|job-title)[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) || [])[2];   // job-title heading only
   const pageTitle = h1 ? h1.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
   if (pageTitle && pageTitle.length <= 150 && pageTitle.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${pageTitle}`); j.title = pageTitle; }
   const yes = /"jobLocationType"\s*:\s*"TELECOMMUTE"/i.test(h) || HYB_YES.test(t), no = HYB_NO.test(t);
