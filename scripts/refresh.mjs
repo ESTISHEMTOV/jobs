@@ -187,7 +187,7 @@ RULES:
    • GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
    LinkedIn locations look like "Haifa, Haifa District, Israel" — use the city. LinkedIn "Hybrid"/"Remote" in the card = hybrid "yes".
   URL-encode the query. When unsure, prefer the Google search format. Every link MUST lead to a non-empty results page.
-- DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
+- DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Rehovot 85, Ness Ziona 83, Gedera 100, Ashdod 100, Ashkelon 115, Lod 75, Ramla 78, Bat Yam 75, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Region only: "שפלה"/Shfela 90, "דרום"/South 140, "אזור ירושלים" 120. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
 Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
@@ -262,6 +262,15 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
 jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });   // Civi is the platform behind השועלה — show one source name
+// Far places: a location ONLY in the Shfela / south / Jerusalem gets at least its real distance (so a non-hybrid job there is dropped).
+const FAR = [[/שפלה|shfela|shephelah/i, 90], [/רחובות|rehovot/i, 85], [/נס ציונה|ness ziona/i, 83], [/גדרה|gedera/i, 100], [/יבנה|yavne/i, 88],
+  [/אשדוד|ashdod/i, 100], [/אשקלון|ashkelon/i, 115], [/קרי?ית גת|kiryat gat/i, 140], [/באר שבע|beer ?sheva|be'er sheva/i, 160],
+  [/ירושלים|jerusalem/i, 120], [/מודיעין|modiin/i, 85], [/ראשון לציון|rishon/i, 80], [/דרום|south district/i, 140]];
+const MID = /תל.?אביב|tel.?aviv|פתח.?תקו|petah|הרצליה|herzliya|רמת.?גן|ramat.?gan|גבעתיים|givatayim|בני.?ברק|bnei.?brak|רעננה|ra'?anana|כפר.?סבא|kfar.?saba|נתניה|netanya|הוד.?השרון|hod.?hasharon|ראש.?העין|rosh.?ha|אור.?יהודה|or.?yehuda|מרכז|center/i;   // multi-location with a nearer city → keep nearest
+const cityPart = l => String(l || '').replace(/,?\s*(center|central|tel aviv|haifa|north(ern)?|south(ern)?|jerusalem)\s+district\b.*$/i, '').replace(/,?\s*מחוז\s+\S+.*$/, '').replace(/,?\s*israel\s*$/i, '');   // "Rishon LeZion, Center District, Israel" → "Rishon LeZion"
+jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !== null || MID.test(loc)) return;
+  const f = FAR.filter(([re]) => re.test(loc)).map(([, km]) => km);
+  if (f.length) j.km = Math.max(j.km, Math.min(...f)); });
 // Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
@@ -336,7 +345,10 @@ const coreTitle = t => String(t || '').toLowerCase()
   .replace(/\([^)]*\)/g, ' ')                                  // (1234), (ת)
   .replace(/[a-z]*-?\d[\w-]*/g, ' ')                           // job codes: 17725, JB-5480
   .replace(/(\S)\s*[\/.]\s*(ת|ית|ה)(?=\s|$)/g, '$1')            // מנהל/ת, מנהל.ת, מנהל /ת → מנהל
-  .replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim();
+  .replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim()
+  .split(' ').filter(w => !['ת', 'ית', 'ה'].includes(w))      // stray gender markers ("מנהל ת")
+  .map(w => /^[\u05d0-\u05ea]{4,}$/.test(w) ? w.replace(/ית$|ת$/, '') : w)   // מנהלת / סגןית (slash already removed) → מנהל / סגן
+  .join(' ');
 const coreCo = c => { const x = String(c || '').toLowerCase().replace(/חסוי|חסויה|confidential|חברה חסויה|לא צוין|^na$/g, '')
   .replace(/\b(ltd|inc|israel|group)\b|בע"?מ|ישראל|^(קבוצת|חברת|רשת)\s+/g, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim(); return x; };
 const looseKey = j => { const co = coreCo(j.company);
