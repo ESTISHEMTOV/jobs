@@ -20,6 +20,9 @@ const UAS = [
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0',
 ];
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
+const decodeEntities = s => String(s || '').replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&#0*39;|&apos;|&#x0*27;/gi, "'")
+  .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi, (m, n) => String.fromCodePoint(parseInt(n, 16))).replace(/&amp;/g, '&');
+const safeDecodeURI = u => { try { return decodeURI(u); } catch { return u; } };
 // Fetch a URL, retrying up to 3x with rotating User-Agents + backoff — raises the odds of getting past a board's anti-bot block.
 async function fetchHtml(url) {
   for (let i = 0; i < UAS.length; i++) {
@@ -110,7 +113,7 @@ for (const [name, url] of BOARDS) {
     raw = raw.replace(/<a\s[^>]*href\s*=\s*["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (m, href, inner) => {
       let abs = ''; try { abs = new URL(href.replace(/&amp;/g, '&'), url).href; } catch {}
       if (/linkedin\.com\/jobs\/view\//i.test(abs)) abs = abs.split('?')[0];   // drop LinkedIn refId/trackingId
-      const t = inner.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      const t = decodeEntities(inner.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
       const extraJob = abs && MORE_HOSTS.size && MORE_HOSTS.has(new URL(url).hostname.replace(/^www\./, '')) && sameHost(abs, url) && new URL(abs).pathname !== new URL(url).pathname && looksLikeJob(abs) && t.length >= 4;
       if (extraJob || abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/|linkedin\.com\/jobs\/view\/)/i.test(abs)) {
         realUrls.add(abs);
@@ -119,10 +122,10 @@ for (const [name, url] of BOARDS) {
       }
       return ' ' + t + ' ';
     });
-    const txt = raw.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    const txt = decodeEntities(raw.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
     if (txt.length < 300) { empty.push(name); continue; }
     pages.push({ name, url, txt });
-    console.log(`  ${name}: ${txt.length} chars, ${realUrls.size - linksBefore} direct links | ${decodeURI(url).slice(0, 110)}`);
+    console.log(`  ${name}: ${txt.length} chars, ${realUrls.size - linksBefore} direct links | ${safeDecodeURI(url).slice(0, 110)}`);
     loaded.push(name);
   } catch { blocked.push(name); }
 }
@@ -195,7 +198,7 @@ RULES:
 
 Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
 
-BOARD TEXT:${corpus || '\n(no board text loaded today — rely on your own knowledge, but do not invent URLs)'}`;
+BOARD TEXT:${corpus}`;
 
 async function callGemini(promptText, models = MODELS) {
   // thinkingBudget capped (not the unbounded default that caused >120s timeouts) — enough reasoning to be thorough & classify correctly, still fast.
@@ -249,8 +252,13 @@ function safeUrl(j) {
   return allowed ? u : g(`${base} דרושים`);
 }
 let jobs = [], geminiError = '';
+if (!pages.length) {   // nothing loaded → don't ask Gemini (it would invent jobs); keep the previous page
+  console.log(`::error::Page NOT updated (previous page kept). No board could be loaded (blocked: ${[...new Set(blocked)].join(', ')}).`);
+  process.exit(1);
+}
 try { jobs = await callGemini(PROMPT, [MODELS[0]]); }   // main pass: strong model only — the fallback model misses whole sources, better to keep the previous page
  catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
+if (geminiError) { console.log(`::error::Page NOT updated (previous page kept). Gemini failed — ${geminiError}`); process.exit(1); }
 // Focused pass on GROUP 1: only the excerpts around near places, inclusive when in doubt. Its jobs are ADDED (duplicates are removed below).
 if (nearCorpus && !geminiError) {
   const NEAR_PROMPT = PROMPT.slice(0, PROMPT.lastIndexOf('BOARD TEXT:')) +
@@ -266,95 +274,7 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
 jobs.forEach(j => { if (/civi/i.test(j.source)) j.source = 'השועלה'; });   // Civi is the platform behind השועלה — show one source name
-// CARRY-OVER: Gemini's output varies between runs, so a still-listed job can vanish for one run. Keep jobs that were REALLY found
-// in the last 2 days but are missing now. They go through ALL the checks below again (title rules, distance, LinkedIn page, expiry).
-const matchKey = j => (/checknum|UploadSingle|drushim\.co\.il\/job\/|linkedin\.com\/jobs\/view\//i.test(j.url || '') ? String(j.url).split('?')[0] : '')
-  || (String(j.title || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '') + '|' + String(j.company || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ''));
-const CARRY_DAYS = 2;
-const isoToday = D.split('.').reverse().join('-');
-let prevShown = []; try { prevShown = JSON.parse(await readFile('data/jobs-shown.json', 'utf8')); } catch {}
-jobs.forEach(j => { j.lastReal = isoToday; });
-{ const nowKeys = new Set(jobs.map(matchKey));
-  const cutC = new Date(Date.parse(isoToday) - CARRY_DAYS * 864e5).toISOString().slice(0, 10);
-  const carried = (Array.isArray(prevShown) ? prevShown : []).filter(p => p && p.title && p.lastReal >= cutC && !nowKeys.has(matchKey(p)));
-  if (carried.length) {
-    console.log(`::notice::Kept ${carried.length} job(s) found in the last ${CARRY_DAYS} days but missing from this run's Gemini output: ${carried.map(p => p.title).join(' · ').slice(0, 700)}`);
-    jobs.push(...carried.map(p => ({ title: p.title, company: p.company || '', location: p.location || '', km: Number.isFinite(+p.km) ? +p.km : 40,
-      hybrid: ['yes', 'no', 'na'].includes(p.hybrid) ? p.hybrid : 'na', desc: p.desc || '', source: p.source || '', url: p.url || '', lastReal: p.lastReal, carried: true })));
-  } }
-// Far places: a location ONLY in the Shfela / south / Jerusalem gets at least its real distance (so a non-hybrid job there is dropped).
-const FAR = [[/שפלה|shfela|shephelah/i, 90], [/רחובות|rehovot/i, 85], [/נס ציונה|ness ziona/i, 83], [/גדרה|gedera/i, 100], [/יבנה|yavne/i, 88],
-  [/אשדוד|ashdod/i, 100], [/אשקלון|ashkelon/i, 115], [/קרי?ית גת|kiryat gat/i, 140], [/באר שבע|beer ?sheva|be'er sheva/i, 160],
-  [/ירושלים|jerusalem/i, 120], [/בית.?שמש|beit.?shemesh/i, 110], [/חולון|holon/i, 75], [/בת.?ים|bat.?yam/i, 75], [/(^|[\s,])לוד|\blod\b/i, 75], [/רמלה|ramla/i, 78], [/מודיעין|modiin/i, 85], [/ראשון לציון|rishon/i, 80], [/דרום|south district/i, 140]];
-const MID = /תל.?אביב|tel.?aviv|פתח.?תקו|petah|הרצליה|herzliya|רמת.?גן|ramat.?gan|גבעתיים|givatayim|בני.?ברק|bnei.?brak|רעננה|ra'?anana|כפר.?סבא|kfar.?saba|נתניה|netanya|הוד.?השרון|hod.?hasharon|ראש.?העין|rosh.?ha|אור.?יהודה|or.?yehuda|מרכז|center/i;   // multi-location with a nearer city → keep nearest
-const cityPart = l => String(l || '').replace(/,?\s*(center|central|tel aviv|haifa|north(ern)?|south(ern)?|jerusalem)\s+district\b.*$/i, '').replace(/,?\s*מחוז\s+\S+.*$/, '').replace(/,?\s*israel\s*$/i, '');   // "Rishon LeZion, Center District, Israel" → "Rishon LeZion"
-jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !== null || MID.test(loc)) return;
-  const f = FAR.filter(([re]) => re.test(loc)).map(([, km]) => km);
-  if (f.length) j.km = Math.max(j.km, Math.min(...f)); });
-// Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
-jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
-// Title rules enforced in code (Gemini doesn't always obey the blacklist).
-const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
-const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|help ?desk|service ?desk|תמיכה|\bsupport\b|developer|מפתח|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור/i;
-const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bCISO\b/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
-const droppedTitles = [];
-const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
-  const bad = TITLE_BLOCK.test(t) || (NARROW.test(t) && !BROAD.test(t.replace(/information technology infrastructure/ig, '')));
-  if (bad) droppedTitles.push(t); return !bad; }); };
-// Gemini sometimes rewrites/"upgrades" titles (e.g. "IT Team Lead" → "IT Manager") → restore the real LinkedIn card title first.
-const fixedTitles = [];
-jobs.forEach(j => { const t = srcTitle.get(j.url); if (t && t.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${t}`); j.title = t; } });
-applyTitleRules();
-
-// LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
-// Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
-const EXPIRED = /משרה זו הוסרה|הוסרה מהלוח|פג תוקף|המשרה אוישה|לא נמצאה|no longer accepting|כבר לא מקבלים מועמדים/i;
-const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
-const HYB_NO = /\bon[\s-]?site\b|from the office|מהמשרד|במשרדי החברה|לא היברידי|ללא עבודה מהבית/i;
-let liRead = 0, liYes = 0, liNo = 0;
-for (const j of jobs) {
-  const m = (j.url || '').match(/linkedin\.com\/jobs\/view\/(?:[^\/?]*-)?(\d+)/i);
-  if (!m) { if (/linkedin/i.test(j.source)) j.hybrid = 'na'; continue; }   // LinkedIn job we can't open → Gemini's guess isn't trusted
-  await sleep(1200);   // pace LinkedIn requests
-  let h = '';
-  for (const u of [j.url, `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${m[1]}`]) {
-    try { const r = await fetch(u, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'en-US,en;q=0.9,he;q=0.8' }, signal: AbortSignal.timeout(15000) });
-      if (r.ok) { h = await r.text(); if (h.length > 2000) break; } } catch {}
-  }
-  if (!h) { j.hybrid = 'na'; continue; }   // couldn't read the page → can't confirm hybrid
-  liRead++;
-  if (EXPIRED.test(h)) { j.expired = true; console.log('DROPPED expired: ' + j.title + ' | ' + j.url); continue; }
-  const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
-  const h1 = (h.match(/<h1[^>]*class="[^"]*(top-card-layout__title|topcard__title|job-title)[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) || [])[2];   // job-title heading only
-  const pageTitle = h1 ? h1.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
-  if (pageTitle && pageTitle.length <= 150 && pageTitle.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${pageTitle}`); j.title = pageTitle; }
-  const yes = /"jobLocationType"\s*:\s*"TELECOMMUTE"/i.test(h) || HYB_YES.test(t), no = HYB_NO.test(t);
-  j.hybrid = yes && !no ? 'yes' : (no && !yes ? 'no' : 'na');
-  if (j.hybrid === 'yes') liYes++; else if (j.hybrid === 'no') liNo++;
-}
-jobs = jobs.filter(j => !j.expired);
-applyTitleRules();   // again, with the real titles from the job pages
-if (fixedTitles.length) console.log(`::notice::Titles corrected to the real LinkedIn title (${fixedTitles.length}): ${fixedTitles.join(' · ').slice(0, 900)}`);
-if (droppedTitles.length) console.log(`::notice::Dropped by title rules (${droppedTitles.length}): ${droppedTitles.join(' · ').slice(0, 900)}`);
-console.log(`::notice::LinkedIn work-mode check: read ${liRead} job pages — ${liYes} hybrid/remote, ${liNo} on-site, the rest not stated.`);
-// Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
-jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
-
-// Expiry check: open each direct-listing page and DROP jobs marked removed/expired/closed.
-const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
-const checked = [];
-for (const j of jobs) {
-  if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
-  try {
-    const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
-    const t = r.ok ? await r.text() : '';
-    if (EXPIRED.test(t)) { console.log('DROPPED expired: ' + j.title + ' | ' + j.url); continue; }
-  } catch { /* on error, keep the job */ }
-  checked.push(j);
-}
-jobs = checked;
-
-// ---- "shown yesterday" state ----
+// ---- job identity keys (used by carry-over, dedupe and the "appeared before" history) ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
 const normCo = c => norm(c).replace(/^(קבוצת|קבוצה|חברת|רשת|חב')\s+/, '').trim();   // "קבוצת HOT" == "HOT"
 const titleKey = j => `${norm(j.title)}|${normCo(j.company)}`;
@@ -383,16 +303,103 @@ const coreCo = c => { const x = String(c || '').toLowerCase().replace(/חסוי|
 const looseKey = j => { const co = coreCo(j.company);
   return 'L:' + coreTitle(j.title) + '|' + (co || ('@' + String(j.location || '').toLowerCase().split(/[,\s]+/)[0])); };   // no company → use first location word
 const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); return k; };
+// CARRY-OVER: Gemini's output varies between runs, so a still-listed job can vanish for one run. Keep jobs that were REALLY found
+// in the last 2 days but are missing now. They go through ALL the checks below again (title rules, distance, LinkedIn page, expiry).
+const CARRY_DAYS = 2;
+const isoToday = D.split('.').reverse().join('-');
+let prevShown = []; try { prevShown = JSON.parse(await readFile('data/jobs-shown.json', 'utf8')); } catch {}
+jobs.forEach(j => { j.lastReal = isoToday; });
+{ const nowKeys = new Set(jobs.flatMap(keysOf));
+  const cutC = new Date(Date.parse(isoToday) - CARRY_DAYS * 864e5).toISOString().slice(0, 10);
+  const carried = (Array.isArray(prevShown) ? prevShown : []).filter(p => p && p.title && p.lastReal >= cutC && !keysOf(p).some(k => nowKeys.has(k)));
+  if (carried.length) {
+    console.log(`::notice::Kept ${carried.length} job(s) found in the last ${CARRY_DAYS} days but missing from this run's Gemini output: ${carried.map(p => p.title).join(' · ').slice(0, 700)}`);
+    jobs.push(...carried.map(p => ({ title: p.title, company: p.company || '', location: p.location || '', km: Number.isFinite(+p.km) ? +p.km : 40,
+      hybrid: ['yes', 'no', 'na'].includes(p.hybrid) ? p.hybrid : 'na', desc: p.desc || '', source: p.source || '', url: (p.url || '').trim() || safeUrl(p), lastReal: p.lastReal, carried: true })));
+  } }
+// Far places: a location ONLY in the Shfela / south / Jerusalem gets at least its real distance (so a non-hybrid job there is dropped).
+const FAR = [[/שפלה|shfela|shephelah/i, 90], [/רחובות|rehovot/i, 85], [/נס ציונה|ness ziona/i, 83], [/גדרה|gedera/i, 100], [/יבנה|yavne/i, 88],
+  [/אשדוד|ashdod/i, 100], [/אשקלון|ashkelon/i, 115], [/קרי?ית גת|kiryat gat/i, 140], [/באר שבע|beer ?sheva|be'er sheva/i, 160],
+  [/ירושלים|jerusalem/i, 120], [/בית.?שמש|beit.?shemesh/i, 110], [/חולון|holon/i, 75], [/בת.?ים|bat.?yam/i, 75], [/(^|[\s,])לוד|\blod\b/i, 75], [/רמלה|ramla/i, 78], [/מודיעין|modiin/i, 85], [/ראשון לציון|rishon/i, 80], [/דרום|south district/i, 140]];
+const MID = /תל.?אביב|tel.?aviv|פתח.?תקו|petah|הרצליה|herzliya|רמת.?גן|ramat.?gan|גבעתיים|givatayim|בני.?ברק|bnei.?brak|רעננה|ra'?anana|כפר.?סבא|kfar.?saba|נתניה|netanya|הוד.?השרון|hod.?hasharon|ראש.?העין|rosh.?ha|אור.?יהודה|or.?yehuda|מרכז|center/i;   // multi-location with a nearer city → keep nearest
+const cityPart = l => String(l || '').replace(/,?\s*(center|central|tel aviv|haifa|north(ern)?|south(ern)?|jerusalem)\s+district\b.*$/i, '').replace(/,?\s*מחוז\s+\S+.*$/, '').replace(/,?\s*israel\s*$/i, '');   // "Rishon LeZion, Center District, Israel" → "Rishon LeZion"
+jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !== null || MID.test(loc)) return;
+  const f = FAR.filter(([re]) => re.test(loc)).map(([, km]) => km);
+  if (f.length) j.km = Math.max(j.km, Math.min(...f)); });
+// Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
+jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
+// Title rules enforced in code (Gemini doesn't always obey the blacklist).
+const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
+const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור/i;   // never a fit
+const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b/i;   // support roles — dropped unless the title is ALSO broad IS/IT management
+const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bCISO\b/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
+const droppedTitles = [];
+const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
+  // judge "broad" WITHOUT the narrow words: "Head of IT Infrastructure" → "Head of" (narrow), "מנהל/ת מערכות מידע ואבטחת מידע" → still broad
+  const broad = BROAD.test(t.replace(/(information technology|\bit)\s+infrastructure|infrastructure|תשתיות(\s+(it|מחשוב))?|(information\s+)?security|אבטחת מידע|סייבר|cyber|\bCISO\b/ig, ' '));
+  const bad = TITLE_BLOCK.test(t) || ((NARROW.test(t) || SOFT_BLOCK.test(t)) && !broad);
+  if (bad) droppedTitles.push(t); return !bad; }); };
+// Gemini sometimes rewrites/"upgrades" titles (e.g. "IT Team Lead" → "IT Manager") → restore the real LinkedIn card title first.
+const fixedTitles = [];
+jobs.forEach(j => { const t = srcTitle.get(j.url); if (t && t.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${t}`); j.title = t; } });
+applyTitleRules();
+
+// LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
+// Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
+// Specific "closed" phrases only, tested on VISIBLE text (scripts/styles removed) — generic words like "לא נמצאה" appear on valid pages too.
+const EXPIRED = /משרה זו הוסרה|המשרה הוסרה|הוסרה מהלוח|המשרה אוישה|המשרה אינה פעילה|משרה זו אינה פעילה|המשרה לא נמצאה|המשרה אינה קיימת|תוקף המשרה פג|no longer accepting applications|this job is no longer available|כבר לא מקבלים מועמדים/i;
+const visibleText = h => decodeEntities(String(h || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
+const expiredDrops = [];
+const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
+const HYB_NO = /\bon[\s-]?site\b|from the office|מהמשרד|במשרדי החברה|לא היברידי|ללא עבודה מהבית/i;
+let liRead = 0, liYes = 0, liNo = 0;
+for (const j of jobs) {
+  const m = (j.url || '').match(/linkedin\.com\/jobs\/view\/(?:[^\/?]*-)?(\d+)/i);
+  if (!m) { if (/linkedin/i.test(j.source)) j.hybrid = 'na'; continue; }   // LinkedIn job we can't open → Gemini's guess isn't trusted
+  await sleep(1200);   // pace LinkedIn requests
+  let h = '';
+  for (const u of [j.url, `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${m[1]}`]) {
+    try { const r = await fetch(u, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'en-US,en;q=0.9,he;q=0.8' }, signal: AbortSignal.timeout(15000) });
+      if (r.ok) { h = await r.text(); if (h.length > 2000) break; } } catch {}
+  }
+  if (!h) { j.hybrid = 'na'; continue; }   // couldn't read the page → can't confirm hybrid
+  liRead++;
+  if (EXPIRED.test(visibleText(h))) { j.expired = true; expiredDrops.push(j.title); continue; }
+  const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
+  const h1 = (h.match(/<h1[^>]*class="[^"]*(top-card-layout__title|topcard__title|job-title)[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) || [])[2];   // job-title heading only
+  const pageTitle = h1 ? h1.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
+  if (pageTitle && pageTitle.length <= 150 && pageTitle.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${pageTitle}`); j.title = pageTitle; }
+  const yes = /"jobLocationType"\s*:\s*"TELECOMMUTE"/i.test(h) || HYB_YES.test(t), no = HYB_NO.test(t);
+  j.hybrid = yes && !no ? 'yes' : (no && !yes ? 'no' : 'na');
+  if (j.hybrid === 'yes') liYes++; else if (j.hybrid === 'no') liNo++;
+}
+jobs = jobs.filter(j => !j.expired);
+applyTitleRules();   // again, with the real titles from the job pages
+if (fixedTitles.length) console.log(`::notice::Titles corrected to the real LinkedIn title (${fixedTitles.length}): ${fixedTitles.join(' · ').slice(0, 900)}`);
+if (droppedTitles.length) console.log(`::notice::Dropped by title rules (${droppedTitles.length}): ${droppedTitles.join(' · ').slice(0, 900)}`);
+console.log(`::notice::LinkedIn work-mode check: read ${liRead} job pages — ${liYes} hybrid/remote, ${liNo} on-site, the rest not stated.`);
+// Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
+jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
+
+// Expiry check: open each direct-listing page and DROP jobs marked removed/expired/closed.
+const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
+const checked = [];
+for (const j of jobs) {
+  if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
+  try {
+    const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
+    const t = r.ok ? visibleText(await r.text()) : '';
+    if (EXPIRED.test(t)) { expiredDrops.push(j.title); continue; }
+  } catch { /* on error, keep the job */ }
+  checked.push(j);
+}
+jobs = checked;
+if (expiredDrops.length) console.log(`::notice::Dropped as closed/removed at the source (${expiredDrops.length}): ${expiredDrops.join(' · ').slice(0, 900)}`);
+
 // DEDUPE — drop a posting if EITHER its stable id OR its title|company was already seen. This catches the SAME job listed on
 // two boards (different ids) as well as exact repeats. Keeps the first (usually the direct-link source).
-{ const seenId = new Set(), seenT = new Set();
-  jobs = jobs.filter(j => {
-    const id = idKey(j), t = titleKey(j);
-    if ((id && seenId.has(id)) || seenT.has(t)) return false;
-    if (id) seenId.add(id);
-    seenT.add(t);
-    return true;
-  });
+{ const seen = new Set();   // same job if ANY key matches: listing id, exact title|company, or the tolerant (loose) key
+  jobs = jobs.filter(j => { const ks = keysOf(j); if (ks.some(k => seen.has(k))) return false; ks.forEach(k => seen.add(k)); return true; });
 }
 const readJson = async p => { try { return JSON.parse(await readFile(p, 'utf8')); } catch { return null; } };
 let T = await readJson('data/jobs-today.json');
@@ -437,7 +444,10 @@ const note = (blocked.length
   ? `⚠ הערה: ${loaded.length}/${BOARDS.length} חיפושים נטענו ישירות היום (${[...new Set(loaded)].join(', ')}). ${[...new Set(blocked)].join(', ')} חסמו גישה אוטומטית ולכן לא נסרקו ישירות.`
   : `כל הלוחות נטענו ישירות בהצלחה.`) + emptyNote + trimNote;
 
-const html = `<meta charset="utf-8">
+const html = `<!doctype html>
+<html lang="he" dir="rtl">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>משרות מערכות מידע — לוח אישי</title>
 <style>
  :root{--bg:#0f172a;--panel:#1e293b;--row:#1a2433;--row2:#1e293b;--ink:#e2e8f0;--muted:#94a3b8;--accent:#38bdf8;--good:#34d399;--line:#334155;--near:#0f2e23;}
@@ -450,7 +460,7 @@ const html = `<meta charset="utf-8">
  .filters button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:6px 15px;font-size:13.5px;cursor:pointer}
  .filters button.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
  .count{color:var(--muted);font-size:13px;margin:0 0 10px}
- table{width:100%;border-collapse:collapse;font-size:14px}
+ .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
  thead th{position:sticky;top:0;background:#0b1220;color:var(--muted);text-align:right;font-weight:600;padding:11px 12px;border-bottom:2px solid var(--line);font-size:13px;white-space:nowrap}
  tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}tbody tr{background:var(--row)}tbody tr:nth-child(even){background:var(--row2)}tbody tr:hover{background:#26344a}tbody tr.near{background:var(--near)}
  .title a{color:var(--ink);text-decoration:none;font-weight:600}.title a:hover{color:var(--accent)}
@@ -479,16 +489,16 @@ const html = `<meta charset="utf-8">
  </div>
  <div class="count" id="count"></div>
  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
- <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table>
+ <div class="tw"><table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table></div>
  <div class="secbar hyb">🏠 מעבר ל-30 ק"מ — היברידי · לפי מרחק עולה</div>
- <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table>
+ <div class="tw"><table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table></div>
  <div class="secbar far">📌 מעבר ל-30 ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
- <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table>
+ <div class="tw"><table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table></div>
 </div>
-<footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ כל בוקר ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
+<footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ 3 פעמים ביום ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
 <script>
  const countEl=document.getElementById('count');
  function apply(f){let n=0;document.querySelectorAll('tbody tr').forEach(tr=>{if(!tr.dataset.src&&f!=='all'){return;}let s=true;
