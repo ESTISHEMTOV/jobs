@@ -1,13 +1,112 @@
 [
  {
-  "title": "מנהל/ת IT Hands-On",
-  "company": "פזל שיבוץ עובדים",
+  "title": "מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
+  "company": "חסוי",
+  "location": "יקנעם עילית",
+  "km": 28,
+  "hybrid": "no",
+  "desc": "אחריות כוללת על מערך ה־IT הארגוני, תשתיות המחשוב, התקשורת ואבטחת המידע בחברה ותיקה ומובילה.",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת אפליקציה",
+  "company": "חברה חסויה",
+  "location": "חיפה",
+  "km": 25,
+  "hybrid": "no",
+  "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל.ת מערכות מידע",
+  "company": "חברת מזון תעשייתית",
+  "location": "נתניה",
+  "km": 45,
+  "hybrid": "no",
+  "desc": "ניהול מערכות מידע בחברות תעשייה מורכבות, רקע בענף המזון, היכרות עם מערכות BI, פריורטי- חובה.",
+  "source": "עץ השדה",
+  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל /ת מערכות מידע ( CIO / IT Manager )",
+  "company": "זיו השמות",
+  "location": "חדרה",
+  "km": 15,
+  "hybrid": "no",
+  "desc": "אחריות כוללת על ניהול, פיתוח והובלת מערכות המידע בארגון בענף הבנייה והיזמות.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38745582/63109751/",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל/ת מחלקת ERP",
+  "company": "MalamTeam",
+  "location": "בני ברק",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "אחראי על מערכות ERP בעולמות הכספים, כ\"א, לוגיסטיקה ואדמיניסטציה. ניהול תקציב המחלקה, הטמעות מערכות חדשות וטכנולוגיות מבוססות AI.",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9896516",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל/ת מחלקת ERP וחדשנות AI",
+  "company": "קבוצת Aman",
+  "location": "בני ברק",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "הובלת מחלקה המונה כ־50 עובדים, האחראית על מערכות ERP בתחומי הכספים, משאבי האנוש, הלוגיסטיקה והאדמיניסטרציה, כולל פעילות AI ארגונית.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38727760/aa34afed/",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל.ת מחלקת ERP ( SAP ) לחברה באזור המרכז (היברידי)",
+  "company": "peax talent",
+  "location": "מרכז",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "הובלת מערכות הליבה בעולמות הכספים, משאבי האנוש, הלוגיסטיקה והאדמיניסטרציה, ניהול מחלקה של כ-50 עובדים והטמעת מערכות חדשות וטכנולוגיות מבוססות AI.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8850674",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל/ת מוצר טכנולוגי",
+  "company": "בינת סמך",
+  "location": "בני ברק",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "ניהול והובלת מוצרים טכנולוגיים מורכבים בתחום מערכות המידע ויישומי הליבה הארגוניים, משלב איסוף הדרישות ואפיון הצרכים העסקיים ועד לפיתוח, יישום והטמעה.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8857382",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "דרוש /ה מנהל /ת מוצר לחברה מובילה!",
+  "company": "עידור מחשבים בע\"מ",
   "location": "תל אביב יפו",
   "km": 65,
-  "hybrid": "na",
-  "desc": "לחברת טכנולוגיה יציבה ומובילה דרוש/ה מנהל/ת IT Hands-On לניהול כלל פעילות ה-IT בארגון.",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9892843",
+  "hybrid": "yes",
+  "desc": "ניהול מחזור חיי המוצר מקצה לקצה, הגדרה ואופטימיזציה של מסעות משתמש ומשפכים דיגיטליים מורכבים, כולל אינטגרציות בין מערכות שונות.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8850426",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "דרוש /ה BI Solution Business Architect",
+  "company": "One DatAI",
+  "location": "פתח תקווה",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "השתלבות בתפקיד מרכזי בעולמות ה- data וה- BI, ניתוח ואפיון תהליכים עסקיים חוצי ארגון, תרגום צרכים עסקיים לדרישות data ו- BI.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8811366",
   "lastReal": "2026-10-16"
  },
  {
@@ -19,17 +118,6 @@
   "desc": "IT Manager role at CloudZone.",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/it-manager-at-cloudzone-4478312247",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "IT Manager",
-  "company": "Airobotics",
-  "location": "Petah Tikva",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "IT Manager role at Airobotics.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/it-manager-at-airobotics-4477504561",
   "lastReal": "2026-10-16"
  },
  {
@@ -52,6 +140,39 @@
   "desc": "IT Manager role at Daylight Security.",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/it-manager-at-daylight-security-4474529086",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "IT Manager, AI Ops",
+  "company": "Lemonade",
+  "location": "Tel Aviv-Yafo",
+  "km": 65,
+  "hybrid": "na",
+  "desc": "IT Manager, AI Ops role at Lemonade.",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/it-manager-ai-ops-at-lemonade-4455707658",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "Director of Global IT",
+  "company": "monday.com",
+  "location": "Tel Aviv-Yafo",
+  "km": 65,
+  "hybrid": "no",
+  "desc": "Director of Global IT role at monday.com.",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/director-of-global-it-at-monday-com-4470926827",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "Director of Technology & Innovation",
+  "company": "HonestReporting",
+  "location": "Tel Aviv District, Israel",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "Director of Technology & Innovation role at HonestReporting.",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/director-of-technology-innovation-at-honestreporting-4477330108",
   "lastReal": "2026-10-16"
  },
  {
@@ -88,25 +209,36 @@
   "lastReal": "2026-10-16"
  },
  {
-  "title": "Director of Technology & Innovation",
-  "company": "HonestReporting",
-  "location": "Tel Aviv District, Israel",
+  "title": "מנהל/ת IT - ניהול 5 עובדים",
+  "company": "חברה חסויה",
+  "location": "ראש העין",
   "km": 65,
-  "hybrid": "yes",
-  "desc": "Director of Technology & Innovation role at HonestReporting.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/director-of-technology-innovation-at-honestreporting-4477330108",
+  "hybrid": "no",
+  "desc": "מנהל טכנולוגי (IT- CIO) בעל/ת ניסיון ניהולי, ידע בשירותים טכנולוגיים, פיתוח ויישום אסטרטגיות טכנולוגיות.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851068",
   "lastReal": "2026-10-16"
  },
  {
-  "title": "Director of Global IT",
-  "company": "monday.com",
-  "location": "Tel Aviv-Yafo",
+  "title": "מנהל/ת IT Hands-On",
+  "company": "פזל שיבוץ עובדים",
+  "location": "תל אביב יפו",
   "km": 65,
-  "hybrid": "no",
-  "desc": "Director of Global IT role at monday.com.",
+  "hybrid": "na",
+  "desc": "לחברת טכנולוגיה יציבה ומובילה דרוש/ה מנהל/ת IT Hands-On לניהול כלל פעילות ה-IT בארגון.",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9892843",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "IT Manager",
+  "company": "Airobotics",
+  "location": "Petah Tikva",
+  "km": 65,
+  "hybrid": "na",
+  "desc": "IT Manager role at Airobotics.",
   "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/director-of-global-it-at-monday-com-4470926827",
+  "url": "https://il.linkedin.com/jobs/view/it-manager-at-airobotics-4477504561",
   "lastReal": "2026-10-16"
  },
  {
@@ -187,50 +319,6 @@
   "lastReal": "2026-10-16"
  },
  {
-  "title": "דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
-  "company": "חסוי",
-  "location": "יקנעם עילית",
-  "km": 28,
-  "hybrid": "na",
-  "desc": "לחברה ותיקה ומובילה דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע לתפקיד מרכזי, עצמאי ו־Hands-On, הכולל אחריות כוללת על מערך ה־IT הארגוני, תשתיות המחשוב, התקשורת ואבטחת...",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "לחברה מובילה בחיפה דרוש /ה מנהל /ת אפליקציה",
-  "company": "חברה חסויה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "no",
-  "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "מנהל/ת מערכות מידע",
-  "company": "חברת מזון תעשייתית",
-  "location": "נתניה",
-  "km": 40,
-  "hybrid": "no",
-  "desc": "לחברת מזון תעשייתית בנתניה נדרש: - תואר ראשון. - ניסיון מעל 5 שנים בניהול מערכות מידע בחברות תעשייה מורכבות.",
-  "source": "עץ השדה",
-  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "מנהל /ת מערכות מידע ( CIO / IT Manager )",
-  "company": "זיו השמות",
-  "location": "חדרה",
-  "km": 15,
-  "hybrid": "no",
-  "desc": "אחריות כוללת על ניהול, פיתוח והובלת מערכות המידע בארגון, תוך התאמתן לצורכי הפעילות העסקית בענף הבנייה והיזמות.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38745582/63109751/",
-  "lastReal": "2026-10-15"
- },
- {
   "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע",
   "company": "חברה חסויה",
   "location": "הרצליה",
@@ -261,17 +349,6 @@
   "desc": "הובלת מערך מערכות המידע בהיבטי כוח אדם, תקציב, תכולה ולו\"ז אחריות על מערכות הארגון data Center, ERP, CRM ועוד.",
   "source": "AllJobs",
   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "דרוש /ה מנהל IT - ניהול 5 עובדים",
-  "company": "חברה חסויה",
-  "location": "הרצליה",
-  "km": 58,
-  "hybrid": "no",
-  "desc": "אנו מחפשים מנהל טכנולוגי (IT- CIO ) בעל/ת ניסיון של 3 שנות ניסיון בעל/ת ניסיון ניהולי - יכולת לנהל צוות טכנולוגי (5 עובדים) וקבלני משנה",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851068",
   "lastReal": "2026-10-15"
  },
  {
@@ -330,28 +407,6 @@
   "lastReal": "2026-10-15"
  },
  {
-  "title": "מנהל.ת מחלקת ERP וחדשנות AI",
-  "company": "קבוצת Aman",
-  "location": "בני ברק",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "הובלת מחלקה המונה כ־50 עובדים, האחראית על מערכות ERP בתחומי הכספים, משאבי האנוש, הלוגיסטיקה והאדמיניסטרציה.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38727760/aa34afed/",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "IT Manager, AI Ops",
-  "company": "Lemonade",
-  "location": "Tel Aviv-Yafo",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "Manage IT operations with a focus on AI and automation.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/it-manager-ai-ops-at-lemonade-4455707658",
-  "lastReal": "2026-10-15"
- },
- {
   "title": "Information Technology Manager",
   "company": "Confidential",
   "location": "Ramat Gan",
@@ -396,17 +451,6 @@
   "lastReal": "2026-10-15"
  },
  {
-  "title": "מנהל/ת מוצר טכנולוגי",
-  "company": "בינת סמך.",
-  "location": "תל אביב",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "ניהול מוצרים טכנולוגיים מורכבים מקצה לקצה, בדגש על עולמות הסייבר, הדאטה ומערכות המידע, תוך הובלת תהליכים טכנולוגיים רחבי היקף.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38472343/1e8473cd/",
-  "lastReal": "2026-10-15"
- },
- {
   "title": "מנהל.ת מוצר טכנולוגי בעולמות התפעול",
   "company": "אמרל בע\"מ",
   "location": "יקנעם עילית",
@@ -437,17 +481,6 @@
   "desc": "הקמה, בנייה והובלה של מערך הפרויקטים וה-Delivery מקצה לקצה, כולל ניהול צוות ולקוחות, ובניית מתודולוגיות עבודה.",
   "source": "AllJobs",
   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8807284",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "מנהל.ת מחלקת ERP ( SAP ) לחברה באזור המרכז (היברידי)",
-  "company": "peax talent",
-  "location": "תל אביב יפו",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "הובלת מערכות הליבה בעולמות הכספים, משאבי האנוש, הלוגיסטיקה והאדמיניסטרציה, כולל ניהול מחלקה של כ-50 עובדים והטמעת מערכות חדשות.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8850674",
   "lastReal": "2026-10-15"
  },
  {
@@ -482,17 +515,6 @@
   "source": "AllJobs",
   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
   "lastReal": "2026-10-15"
- },
- {
-  "title": "מנהל מחלקת ERP",
-  "company": "MalamTeam",
-  "location": "בני ברק",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "-אחראי על מערכות ERP בעולמות הכספים, כ\"א, לוגיסטיקה ואדמיניסטציה. -ניהול תקציב המחלקה, הכולל כח אדם וספקים -אחראי על הטמעות מערכות חדשות וטכנולוגיות מבו...",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9896516",
-  "lastReal": "2026-10-14"
  },
  {
   "title": "Head of ERP Department (1007903)",
