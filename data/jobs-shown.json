@@ -1,24 +1,112 @@
 [
  {
-  "title": "מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
-  "company": "חסוי",
+  "title": "דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
+  "company": "חברה חסויה",
   "location": "יקנעם עילית",
   "km": 28,
   "hybrid": "no",
-  "desc": "אחריות כוללת על מערך ה־IT הארגוני, תשתיות המחשוב, התקשורת ואבטחת המידע בחברה ותיקה ומובילה.",
+  "desc": "אחריות כוללת על מערך ה־IT הארגוני, תשתיות המחשוב, התקשורת ואבטחת המידע.",
   "source": "JobMaster",
   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920",
   "lastReal": "2026-10-16"
  },
  {
-  "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת אפליקציה",
+  "title": "לחברה מובילה דרוש /ה מנהל.ת מערכות מידע",
+  "company": "Jobs.ai",
+  "location": "כפר סבא",
+  "km": 52,
+  "hybrid": "na",
+  "desc": "הובלת מערך מערכות המידע בהיבטי כוח אדם, תקציב, תכולה ולו\"ז.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע",
+  "company": "חברה חסויה",
+  "location": "הרצליה",
+  "km": 58,
+  "hybrid": "na",
+  "desc": "ניהול מערכות המידע, תשתיות ותקשורת בחברה. אחריות על מערכות ERP.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8819358",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל מחלקת ERP",
+  "company": "MalamTeam",
+  "location": "בני ברק",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "אחראי על מערכות ERP בעולמות הכספים, כ\"א, לוגיסטיקה ואדמיניסטציה.",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9896516",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל /ת מערכות מידע וטכנולוגיות",
+  "company": "תנופה פתרונות תחבורה בע\"מ",
+  "location": "אור יהודה",
+  "km": 65,
+  "hybrid": "na",
+  "desc": "ניהול מחלקת מערכות מידע וטכנולוגיות לרבות דיגיטל, הגנת הסייבר ואבטחת מידע.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8847717",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "לחברה מובילה דרוש /ה מנהל /ת IT (משרה 1234)",
+  "company": "חברה חסויה",
+  "location": "תל אביב יפו",
+  "km": 65,
+  "hybrid": "na",
+  "desc": "ניהול והובלת תחום הIT בארגון, כולל אחריות על מערכות מידע, תשתיות, אבטחת מידע והובלת פרויקטים טכנולוגיים.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8765668",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל /ת מערכות מידע ( CIO / IT Manager )",
+  "company": "זיו השמות",
+  "location": "אור עקיבא",
+  "km": 10,
+  "hybrid": "na",
+  "desc": "אחריות כוללת על ניהול, פיתוח והובלת מערכות המידע בארגון, תוך התאמתן לצורכי הפעילות העסקית בענף הבנייה והיזמות.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38745582/63109751/",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל/ת מערכות תשתיתיות ואינטגרציה לחיפה",
   "company": "חברה חסויה",
   "location": "חיפה",
   "km": 25,
-  "hybrid": "no",
+  "hybrid": "yes",
+  "desc": "אחראי/ת על הקמה, ניהול ותחזוקה של תשתיות אינטגרציה והנדסת נתונים בארגון.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "לחברה מובילה בחיפה דרוש /ה מנהל /ת אפליקציה",
+  "company": "חברה חסויה",
+  "location": "חיפה",
+  "km": 25,
+  "hybrid": "na",
   "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
   "source": "AllJobs",
   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
+  "lastReal": "2026-10-16"
+ },
+ {
+  "title": "מנהל/ת יישום מערכות מידע",
+  "company": "קבוצת עפיפי טכנולוגיות תחבורה ותיירות",
+  "location": "נצרת",
+  "km": 28,
+  "hybrid": "na",
+  "desc": "הובלת תהליכים עסקיים וטכנולוגיים מקצה לקצה, עבודה...",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9772092",
   "lastReal": "2026-10-16"
  },
  {
@@ -30,28 +118,6 @@
   "desc": "ניהול מערכות מידע בחברות תעשייה מורכבות, רקע בענף המזון, היכרות עם מערכות BI, פריורטי- חובה.",
   "source": "עץ השדה",
   "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "מנהל /ת מערכות מידע ( CIO / IT Manager )",
-  "company": "זיו השמות",
-  "location": "חדרה",
-  "km": 15,
-  "hybrid": "no",
-  "desc": "אחריות כוללת על ניהול, פיתוח והובלת מערכות המידע בארגון בענף הבנייה והיזמות.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38745582/63109751/",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "מנהל/ת מחלקת ERP",
-  "company": "MalamTeam",
-  "location": "בני ברק",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "אחראי על מערכות ERP בעולמות הכספים, כ\"א, לוגיסטיקה ואדמיניסטציה. ניהול תקציב המחלקה, הטמעות מערכות חדשות וטכנולוגיות מבוססות AI.",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9896516",
   "lastReal": "2026-10-16"
  },
  {
@@ -319,39 +385,6 @@
   "lastReal": "2026-10-16"
  },
  {
-  "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע",
-  "company": "חברה חסויה",
-  "location": "הרצליה",
-  "km": 58,
-  "hybrid": "no",
-  "desc": "ניהול מערכות המידע, תשתיות ותקשורת בחברה. אחריות על מערכות ERP התנהלות מול ספקים ונותני שירות.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8819358",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "לחברה מובילה דרוש /ה מנהל /ת IT (משרה 1234)",
-  "company": "חברה חסויה",
-  "location": "תל אביב יפו",
-  "km": 65,
-  "hybrid": "no",
-  "desc": "לחברה מובילה דרוש/ה מנהל /ת מערכות מידע לניהול והובלת תחום הIT בארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8765668",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "דרוש /ה מנהל.ת מערכות מידע",
-  "company": "Jobs.ai",
-  "location": "כפר סבא",
-  "km": 52,
-  "hybrid": "no",
-  "desc": "הובלת מערך מערכות המידע בהיבטי כוח אדם, תקציב, תכולה ולו\"ז אחריות על מערכות הארגון data Center, ERP, CRM ועוד.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143",
-  "lastReal": "2026-10-15"
- },
- {
   "title": "מנמ\"ר /ית לחברת נדל\"ן בתחום הנכסים המניבים",
   "company": "השמה גרופ גיוס ויעוץ בע\"מ",
   "location": "הרצליה",
@@ -503,17 +536,6 @@
   "desc": "Lead information systems for Coralogix.",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/vp-information-systems-at-coralogix-4478561167",
-  "lastReal": "2026-10-15"
- },
- {
-  "title": "מנהל/ת מערכות תשתיתיות ואינטגרציה לחיפה",
-  "company": "חברת השמה / כח אדם",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "yes",
-  "desc": "אחראי/ת על הקמה, ניהול ותחזוקה של תשתיות אינטגרציה והנדסת נתונים בארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
   "lastReal": "2026-10-15"
  },
  {
