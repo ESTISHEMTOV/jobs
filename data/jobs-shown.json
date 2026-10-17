@@ -1,5 +1,82 @@
 [
  {
+  "title": "מנהל/ת אפליקציות ו-AI",
+  "company": "Alpa Cosmetics Group",
+  "location": "Karmiel",
+  "km": 50,
+  "hybrid": "na",
+  "desc": "מנהל/ת אפליקציות ו-AI לניהול, הטמעה, תפעול ושיפור מתמשך של מערכות AI בארגון.",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/%D7%9E%D7%A0%D7%94%D7%9C-%D7%AA-%D7%90%D7%A4%D7%9C%D7%99%D7%A7%D7%A6%D7%99%D7%95%D7%AA-%D7%95-ai-at-alpa-cosmetics-group-4473488170",
+  "lastReal": "2026-10-17"
+ },
+ {
+  "title": "מנהל /ת מערכות מידע ( CIO / IT Manager )",
+  "company": "זיו השמות",
+  "location": "חדרה",
+  "km": 15,
+  "hybrid": "no",
+  "desc": "אחריות כוללת על ניהול, פיתוח והובלת מערכות המידע בארגון, תוך התאמתן לצורכי הפעילות העסקית בענף הבנייה והיזמות.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38745582/63109751/",
+  "lastReal": "2026-10-17"
+ },
+ {
+  "title": "מנהל.ת מערכות מידע",
+  "company": "חברת מזון תעשייתית",
+  "location": "נתניה",
+  "km": 45,
+  "hybrid": "no",
+  "desc": "ניסיון מעל 5 שנים בניהול מערכות מידע בחברות תעשייה מורכבות, רקע בענף המזון: יתרון, היכרות עם מערכות BI, פריורטי- חובה.",
+  "source": "עץ השדה",
+  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
+  "lastReal": "2026-10-17"
+ },
+ {
+  "title": "מנהל.ת מערכות מידע",
+  "company": "Jobs.ai",
+  "location": "כפר סבא",
+  "km": 52,
+  "hybrid": "no",
+  "desc": "הובלת מערך מערכות המידע בהיבטי כוח אדם, תקציב, תכולה ולו\"ז, אחריות על מערכות הארגון data Center, ERP, CRM ועוד.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143",
+  "lastReal": "2026-10-17"
+ },
+ {
+  "title": "מנהל IT - ניהול 5 עובדים",
+  "company": "חברה חסויה",
+  "location": "כפר סבא",
+  "km": 52,
+  "hybrid": "no",
+  "desc": "מנהל טכנולוגי (IT- CIO) בעל/ת ניסיון של 3 שנות ניסיון בעל/ת ניסיון ניהולי - יכולת לנהל צוות טכנולוגי (5 עובדים) וקבלני משנה.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851068",
+  "lastReal": "2026-10-17"
+ },
+ {
+  "title": "מנהל/ת מערכות תשתיתיות ואינטגרציה לחיפה",
+  "company": "חברת השמה / כח אדם",
+  "location": "חיפה",
+  "km": 25,
+  "hybrid": "yes",
+  "desc": "אחראי/ת על הקמה, ניהול ותחזוקה של תשתיות אינטגרציה והנדסת נתונים בארגון.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
+  "lastReal": "2026-10-17"
+ },
+ {
+  "title": "לחברה מובילה בחיפה דרוש /ה מנהל /ת אפליקציה",
+  "company": "חברה חסויה",
+  "location": "חיפה",
+  "km": 25,
+  "hybrid": "na",
+  "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
+  "lastReal": "2026-10-17"
+ },
+ {
   "title": "דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
   "company": "חברה חסויה",
   "location": "יקנעם עילית",
@@ -8,17 +85,6 @@
   "desc": "אחריות כוללת על מערך ה־IT הארגוני, תשתיות המחשוב, התקשורת ואבטחת המידע.",
   "source": "JobMaster",
   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "לחברה מובילה דרוש /ה מנהל.ת מערכות מידע",
-  "company": "Jobs.ai",
-  "location": "כפר סבא",
-  "km": 52,
-  "hybrid": "na",
-  "desc": "הובלת מערך מערכות המידע בהיבטי כוח אדם, תקציב, תכולה ולו\"ז.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143",
   "lastReal": "2026-10-16"
  },
  {
@@ -66,39 +132,6 @@
   "lastReal": "2026-10-16"
  },
  {
-  "title": "מנהל /ת מערכות מידע ( CIO / IT Manager )",
-  "company": "זיו השמות",
-  "location": "אור עקיבא",
-  "km": 10,
-  "hybrid": "na",
-  "desc": "אחריות כוללת על ניהול, פיתוח והובלת מערכות המידע בארגון, תוך התאמתן לצורכי הפעילות העסקית בענף הבנייה והיזמות.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38745582/63109751/",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "מנהל/ת מערכות תשתיתיות ואינטגרציה לחיפה",
-  "company": "חברה חסויה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "yes",
-  "desc": "אחראי/ת על הקמה, ניהול ותחזוקה של תשתיות אינטגרציה והנדסת נתונים בארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836875",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "לחברה מובילה בחיפה דרוש /ה מנהל /ת אפליקציה",
-  "company": "חברה חסויה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "na",
-  "desc": "אחריות מלאה על כלל היישומים והאפליקציות בארגון, כולל תחזוקה, טיפול בתקלות וניהול ספקי תוכנה וגורמי IT.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851126",
-  "lastReal": "2026-10-16"
- },
- {
   "title": "מנהל/ת יישום מערכות מידע",
   "company": "קבוצת עפיפי טכנולוגיות תחבורה ותיירות",
   "location": "נצרת",
@@ -107,17 +140,6 @@
   "desc": "הובלת תהליכים עסקיים וטכנולוגיים מקצה לקצה, עבודה...",
   "source": "JobMaster",
   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9772092",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "מנהל.ת מערכות מידע",
-  "company": "חברת מזון תעשייתית",
-  "location": "נתניה",
-  "km": 45,
-  "hybrid": "no",
-  "desc": "ניהול מערכות מידע בחברות תעשייה מורכבות, רקע בענף המזון, היכרות עם מערכות BI, פריורטי- חובה.",
-  "source": "עץ השדה",
-  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
   "lastReal": "2026-10-16"
  },
  {
@@ -275,17 +297,6 @@
   "lastReal": "2026-10-16"
  },
  {
-  "title": "מנהל/ת IT - ניהול 5 עובדים",
-  "company": "חברה חסויה",
-  "location": "ראש העין",
-  "km": 65,
-  "hybrid": "no",
-  "desc": "מנהל טכנולוגי (IT- CIO) בעל/ת ניסיון ניהולי, ידע בשירותים טכנולוגיים, פיתוח ויישום אסטרטגיות טכנולוגיות.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8851068",
-  "lastReal": "2026-10-16"
- },
- {
   "title": "מנהל/ת IT Hands-On",
   "company": "פזל שיבוץ עובדים",
   "location": "תל אביב יפו",
@@ -349,17 +360,6 @@
   "desc": "Data Center Manager role at DriveNets.",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/data-center-manager-at-drivenets-4477993458",
-  "lastReal": "2026-10-16"
- },
- {
-  "title": "מנהל/ת אפליקציות ו-AI",
-  "company": "Alpa Cosmetics Group",
-  "location": "Karmiel",
-  "km": 50,
-  "hybrid": "na",
-  "desc": "מנהל/ת אפליקציות ו-AI role at Alpa Cosmetics Group.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/%D7%9E%D7%A0%D7%94%D7%9C-%D7%AA-%D7%90%D7%A4%D7%9C%D7%99%D7%A7%D7%A6%D7%99%D7%95%D7%AA-%D7%95-ai-at-alpa-cosmetics-group-4473488170",
   "lastReal": "2026-10-16"
  },
  {
@@ -537,115 +537,5 @@
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/vp-information-systems-at-coralogix-4478561167",
   "lastReal": "2026-10-15"
- },
- {
-  "title": "Head of ERP Department (1007903)",
-  "company": "Elad Software Systems",
-  "location": "Center District, Israel",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "Head of ERP Department (1007903)",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/head-of-erp-department-1007903-at-elad-software-systems-4478382521",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מנהל /ת IT וסיסטם מנוסה",
-  "company": "OMC שירותי מיחשוב ותקשורת",
-  "location": "קרית ביאליק",
-  "km": 35,
-  "hybrid": "no",
-  "desc": "OMC Group, מספקיות שירותי הענן המובילות בישראל, מחפשת מנהל /ת IT וסיסטם מנוסה, עצמאי/ת ו-Hands-On, לאחריות כוללת על מערך הit הפנימי של הארגון, המונה כ-200 עובדים.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8778328",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מנהל/ת מחלקת ERP וחדשנות AI",
-  "company": "QPOINT Technologies",
-  "location": "בני ברק",
-  "km": 65,
-  "hybrid": "no",
-  "desc": "לארגון גדול ומוביל דרוש/ה מנהל/ת מחלקת ERP לתפקיד ניהולי בכיר הכולל אחריות על מערכות מידע בתחומי הכספים, משאבי האנוש, הלוגיסטיקה והאדמיניסטרציה. התפקיד כולל ניהול מחלקה המונה כ-50 עובדים, לרבות מנהלים, הובלת פרויקטים רוחביים ואסטרטגיים, הטמעת מערכות וטכנולוגיות AI, בניית תוכניות עבודה, ניהול תקציב וספקים ואחריות על זמינות המערכות ותחזוקתן.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38699412/623ab4c1/",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מנהל/ת דאטה ודיגיטל",
-  "company": "Ackerstein",
-  "location": "Herzliya",
-  "km": 58,
-  "hybrid": "na",
-  "desc": "מנהל/ת דאטה ודיגיטל",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/%D7%9E%D7%A0%D7%94%D7%9C-%D7%AA-%D7%93%D7%90%D7%98%D7%94-%D7%95%D7%93%D7%99%D7%92%D7%99%D7%98%D7%9C-at-ackerstein-4476669195",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מנהל/ת מעבדת מחשוב לחקר ימי יישומי בראשות פרופ&rsquo; יצחק מקובסקי בבית הספר למדעי הים",
-  "company": "אוניברסיטת חיפה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "na",
-  "desc": "ניהול מעבדה התומכת מחשובית במחקר ימי יישומי תמיכה במחשוב ובמשתמשים, סטודנטים, סגל אקדמי ומנהלי הדרכת סטודנטים ביצוע מטלות בהתאם לצרכים משתנים עבודה עפ\"י...",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9874691",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מנהל.ת מערכות מידע, ארגון ושיטות",
-  "company": "חברה חסויה",
-  "location": "יהוד מונוסון ו פתח תקווה",
-  "km": 65,
-  "hybrid": "no",
-  "desc": "הובלת תחומי מערכות המידע, ארגון ושיטות, אבטחת המידע והאיכות, לצד הובלת תהליכים חוצי ארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8764464",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "Head of Systems",
-  "company": "השועלה",
-  "location": "na",
-  "km": 0,
-  "hybrid": "na",
-  "desc": "להובלת תחום תשתיות הסיסטם בארגון גדול, עם אחריות מקצה לקצה על מערכות Production קריטיות, שרידות, ענן, גיבויים ו־DR.",
-  "source": "השועלה",
-  "url": "https://app.civi.co.il/?promos&lang=he&id=LNTRFP75FN&src=9601&fallback=1&p=1&r=20&o=date_opened%2Cd&f=job_code,1021%2B1012&l=",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מיישמ/ת WMS",
-  "company": "Decathlon",
-  "location": "קיסריה",
-  "km": 12,
-  "hybrid": "na",
-  "desc": "דקטלון ישראל ממשיכה לצמוח - אנחנו מחפשים מיישמ/ת WMS!",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38470652/dcab62d7/",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מנהל /ת מערכות מידע",
-  "company": "חברה חסויה",
-  "location": "טירת כרמל",
-  "km": 15,
-  "hybrid": "na",
-  "desc": "לתפקיד ניהולי בכיר ולהובלת תחום מערכות המידע בארגון חינוכי מוביל",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8842175",
-  "lastReal": "2026-10-14"
- },
- {
-  "title": "מיישמ.ת פיננסי",
-  "company": "חברת השמה / כח אדם",
-  "location": "חיפה וסביבתה",
-  "km": 25,
-  "hybrid": "na",
-  "desc": "אחריות על ניתוח, יישום, תחזוקה ושיפור מערכות מידע התומכות בתהליכים עסקיים בתחומים פיננסים שונים",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8818175",
-  "lastReal": "2026-10-14"
  }
 ]
