@@ -84,6 +84,7 @@ const MORE_SITES = [
   ['Norterra', 'https://www.norterra.co.il/jobs'],
   ["ג'וב קרוב", 'https://www.jobkarov.com/Search/?speciality=1857&role=1864%2C3387'],  // מסונן: מערכות מידע
   ['זיוה בן פורת', 'https://www.zivabenporat.com/jobs'],
+  ['Sharon Careers', 'https://sharoncareers.site/?search_category=172'],  // מסונן: מערכות מידע
 ];
 const MORE_HOSTS = new Set();
 for (const [n, u] of MORE_SITES) {
@@ -190,14 +191,14 @@ RULES:
    • AllJobs or svt.jobs → https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=<short query>
    • Drushim → https://www.drushim.co.il/jobs/search/<short query>/
    • LinkedIn → https://www.linkedin.com/jobs/search?keywords=<short query>&location=Israel
-   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב, זיוה בן פורת (added sites) → leave "url" EMPTY ("") — the page links to that site's jobs page.
+   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב, זיוה בן פורת, Sharon Careers (added sites) → leave "url" EMPTY ("") — the page links to that site's jobs page.
    • GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
    LinkedIn locations look like "Haifa, Haifa District, Israel" — use the city. LinkedIn "Hybrid"/"Remote" in the card = hybrid "yes".
   URL-encode the query. When unsure, prefer the Google search format. Every link MUST lead to a non-empty results page.
 - DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Rehovot 85, Ness Ziona 83, Gedera 100, Ashdod 100, Ashkelon 115, Lod 75, Ramla 78, Bat Yam 75, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Region only: "שפלה"/Shfela 90, "דרום"/South 140, "אזור ירושלים" 120. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
-Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra, זיוה בן פורת>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
+Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra, זיוה בן פורת, Sharon Careers>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
 
 BOARD TEXT:${corpus}`;
 
@@ -238,7 +239,8 @@ async function callGemini(promptText, models = MODELS) {
 const squash = x => String(x || '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '');
 const hostKey = (v) => { try { return new URL(v).hostname.split('.').find(x => !['www', 'app', 'jobs'].includes(x)) || ''; } catch { return ''; } };
 const siteOf = (j) => { const src = squash(j.source), u = String(j.url || '').toLowerCase();
-  return MORE_SITES.find(([n, v]) => (v || '').trim() && ((squash(n) && src.includes(squash(n))) || (hostKey(v) && (src.includes(hostKey(v)) || u.includes(hostKey(v) + '.'))))); };
+  const head = n => squash(n).slice(0, 8);   // first 8 letters are enough — tolerates typos like "sharon careeres"
+  return MORE_SITES.find(([n, v]) => (v || '').trim() && ((head(n) && src.includes(head(n))) || (hostKey(v) && (src.includes(hostKey(v).slice(0, 8)) || u.includes(hostKey(v) + '.'))))); };
 // Guard: only allow known site-SEARCH URLs; anything else (fabricated ID paths, civi, blanks) -> Google search.
 function safeUrl(j) {
   const u = (j.url || '').trim();
@@ -449,10 +451,7 @@ const note = (blocked.length
   ? `⚠ הערה: ${loaded.length}/${BOARDS.length} חיפושים נטענו ישירות היום (${[...new Set(loaded)].join(', ')}). ${[...new Set(blocked)].join(', ')} חסמו גישה אוטומטית ולכן לא נסרקו ישירות.`
   : `כל הלוחות נטענו ישירות בהצלחה.`) + emptyNote + trimNote;
 
-const html = `<!doctype html>
-<html lang="he" dir="rtl">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+const html = `<meta charset="utf-8">
 <title>משרות מערכות מידע — לוח אישי</title>
 <style>
  :root{--bg:#0f172a;--panel:#1e293b;--row:#1a2433;--row2:#1e293b;--ink:#e2e8f0;--muted:#94a3b8;--accent:#38bdf8;--good:#34d399;--line:#334155;--near:#0f2e23;}
@@ -465,7 +464,7 @@ const html = `<!doctype html>
  .filters button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:20px;padding:6px 15px;font-size:13.5px;cursor:pointer}
  .filters button.active{background:var(--accent);color:#0f172a;border-color:var(--accent);font-weight:600}
  .count{color:var(--muted);font-size:13px;margin:0 0 10px}
- .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+ table{width:100%;border-collapse:collapse;font-size:14px}
  thead th{position:sticky;top:0;background:#0b1220;color:var(--muted);text-align:right;font-weight:600;padding:11px 12px;border-bottom:2px solid var(--line);font-size:13px;white-space:nowrap}
  tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}tbody tr{background:var(--row)}tbody tr:nth-child(even){background:var(--row2)}tbody tr:hover{background:#26344a}tbody tr.near{background:var(--near)}
  .title a{color:var(--ink);text-decoration:none;font-weight:600}.title a:hover{color:var(--accent)}
@@ -494,14 +493,14 @@ const html = `<!doctype html>
  </div>
  <div class="count" id="count"></div>
  <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
- <div class="tw"><table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table></div>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table>
  <div class="secbar hyb">🏠 מעבר ל-30 ק"מ — היברידי · לפי מרחק עולה</div>
- <div class="tw"><table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table></div>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table>
  <div class="secbar far">📌 מעבר ל-30 ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
- <div class="tw"><table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table></div>
+ <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table>
 </div>
 <footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ 3 פעמים ביום ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
 <script>
