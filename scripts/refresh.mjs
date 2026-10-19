@@ -455,7 +455,7 @@ const sorted = [...jobs].sort((a, b) => a.km - b.km);
 const rowsHtml = list => list.map(j => `<tr class="${j.km <= 30 ? 'near' : ''}" data-src="${esc(j.source)}" data-hyb="${j.hybrid}" data-near="${j.km <= 30}" data-new="${!j.ystd}">
   <td class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></td>
   <td class="desc">${esc(j.desc)}</td>
-  <td class="loc">${esc(j.location)}<span class="km">~${j.km} ק"מ</span></td>
+  <td class="loc${String(j.location).length > 28 ? ' long' : ''}">${esc(j.location)}<span class="km">~${j.km} ק"מ</span></td>
   <td>${hb[j.hybrid]}</td><td><span class="src">${esc(j.source)}</span></td><td>${esc(j.company)}</td>
   <td>${j.ystd ? '<span class="old">כן</span>' : '<span class="new">לא · חדש</span>'}</td></tr>`).join('');
 const sources = [...new Set(jobs.map(j => j.source).filter(Boolean))];
@@ -483,7 +483,7 @@ const html = `<meta charset="utf-8">
  thead th{position:sticky;top:0;background:#0b1220;color:var(--muted);text-align:right;font-weight:600;padding:11px 12px;border-bottom:2px solid var(--line);font-size:13px;white-space:nowrap}
  tbody td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}tbody tr{background:var(--row)}tbody tr:nth-child(even){background:var(--row2)}tbody tr:hover{background:#26344a}tbody tr.near{background:var(--near)}
  .title a{color:var(--ink);text-decoration:none;font-weight:600}.title a:hover{color:var(--accent)}
- .desc{color:var(--muted);font-size:13px;max-width:320px;line-height:1.5}.loc{white-space:nowrap}.km{display:block;color:var(--good);font-size:11.5px;margin-top:3px}
+ .desc{color:var(--muted);font-size:13px;max-width:320px;line-height:1.5}.loc{white-space:nowrap}.loc.long{white-space:normal;min-width:120px;max-width:170px}.km{display:block;color:var(--good);font-size:11.5px;margin-top:3px}
  .yes{color:var(--good);font-weight:600}.no{color:var(--muted)}.na{color:#64748b;font-size:12px}
  .src{font-size:12px;background:#334155;padding:3px 9px;border-radius:6px;white-space:nowrap}
  .new{background:var(--good);color:#063527;font-weight:700;padding:3px 9px;border-radius:6px;font-size:12px}.old{color:var(--muted);font-size:12px}
