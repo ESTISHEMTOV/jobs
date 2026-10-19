@@ -202,30 +202,45 @@ Each array item = {"title": "...", "company": "...", "location": "...", "km": <n
 
 BOARD TEXT:${corpus}`;
 
+// Parse Gemini's reply into a job array, repairing the usual breakages instead of failing the whole run:
+// code fences, unescaped quotes in Hebrew abbreviations (בע"מ, מנכ"ל, אזה"ת), a cut-off reply, or one broken item.
+function parseJobs(text, fin) {
+  const t = String(text || '').replace(/```(?:json)?/gi, '')
+    .replace(/([\u05d0-\u05ea])"(?=[\u05d0-\u05ea])/g, '$1״');   // Hebrew letter " Hebrew letter → gershayim (never a JSON delimiter)
+  const s = t.indexOf('['); if (s < 0) return null;
+  const e = t.lastIndexOf(']');
+  if (e > s) { try { const a = JSON.parse(t.slice(s, e + 1)); if (Array.isArray(a)) return a; } catch {} }
+  // fallback: parse item by item (items are flat objects), keep every one that parses
+  const items = []; let bad = 0;
+  for (const m of t.slice(s).matchAll(/\{[^{}]*\}/g)) { try { items.push(JSON.parse(m[0])); } catch { bad++; } }
+  if (items.length) { console.log(`::warning::Gemini reply needed repair (${fin || 'unknown'}) — kept ${items.length} jobs${bad ? `, skipped ${bad} unreadable` : ''}.`); return items; }
+  return null;
+}
+// 429 = rate limit. Per-MINUTE limit → wait the delay Gemini asks for and retry; per-DAY quota → no point waiting.
+async function handle429(r, m) {
+  const body = await r.text().catch(() => '');
+  const daily = /PerDay/i.test(body);
+  const delay = Math.min(90, (+((body.match(/"retryDelay"\s*:\s*"(\d+)/) || [])[1]) || 60) + 3);
+  console.log(`::warning::Gemini ${m}: HTTP 429 (${daily ? 'daily free quota used up' : `per-minute limit — waiting ${delay}s and retrying`})`);
+  if (!daily) await sleep(delay * 1000);
+  return daily;
+}
+
 async function callGemini(promptText, models = MODELS) {
   // thinkingBudget capped (not the unbounded default that caused >120s timeouts) — enough reasoning to be thorough & classify correctly, still fast.
-  const body = { contents: [{ role: 'user', parts: [{ text: promptText }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 32768, thinkingConfig: { thinkingBudget: 3000 } } };
+  const body = { contents: [{ role: 'user', parts: [{ text: promptText }] }], generationConfig: { temperature: 0.2, maxOutputTokens: 32768, responseMimeType: 'application/json', thinkingConfig: { thinkingBudget: 3000 } } };   // strict JSON → quotes are escaped
   let lastErr = '';
   for (const m of models) {
     for (let attempt = 1; attempt <= 3; attempt++) {   // retry the SAME (working) model on timeout/5xx instead of falling to a dead quota
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent?key=${KEY}`;
         const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: AbortSignal.timeout(170000) });
-        if (r.status === 429) { lastErr = `${m}: HTTP 429 (no free quota)`; console.log('::warning::Gemini ' + lastErr); break; }  // quota won't recover on retry → next model
+        if (r.status === 429) { const daily = await handle429(r, m); lastErr = `${m}: HTTP 429 (${daily ? 'daily free quota used up' : 'per-minute limit'})`; if (daily) break; continue; }
         if (!r.ok) { lastErr = `${m}: HTTP ${r.status} :: ${(await r.text()).slice(0, 400)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
         const j = await r.json();
         const text = (j.candidates?.[0]?.content?.parts || []).map(p => p.text || '').join('');
         const fin = j.candidates?.[0]?.finishReason || '';
-        const s = text.indexOf('[');
-        let arr = null;
-        if (s >= 0) {
-          const e = text.lastIndexOf(']');
-          if (e > s) { try { arr = JSON.parse(text.slice(s, e + 1)); } catch {} }
-          if (!arr) {   // reply cut off mid-way → keep every COMPLETE job object (items are flat, so the last '}' closes a whole item)
-            const k = text.lastIndexOf('}');
-            if (k > s) { try { arr = JSON.parse(text.slice(s, k + 1) + ']'); console.log(`::warning::Gemini reply was cut off (${fin || 'unknown'}) — kept the ${arr.length} complete jobs; the last (lowest-priority) ones may be missing.`); } catch {} }
-          }
-        }
+        const arr = parseJobs(text, fin);
         if (!Array.isArray(arr)) { lastErr = `${m}: no JSON array in reply (${fin}) :: ${text.slice(0, 300)}`; console.log(`::warning::Gemini ${lastErr.replace(/\s+/g, ' ').slice(0, 300)} (attempt ${attempt})`); await sleep(2000 * attempt); continue; }
         console.log(`Gemini OK via model ${m} (attempt ${attempt}), ${arr.length} jobs${fin && fin !== 'STOP' ? ', finish=' + fin : ''}`);
         return arr;
