@@ -397,7 +397,7 @@ applyTitleRules();
 // LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
 // Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
 // Specific "closed" phrases only, tested on VISIBLE text (scripts/styles removed) — generic words like "לא נמצאה" appear on valid pages too.
-const EXPIRED = /(ה?משרה|ה?מודעה)( זו| זאת| שחיפשת| המבוקשת)? (הוסרה|נמחקה|נסגרה|אוישה|אינה פעילה|לא פעילה|כבר אינה פעילה|כבר לא פעילה|אינה קיימת|לא קיימת|לא נמצאה|אינה זמינה|כבר לא רלוונטית)|הוסרה מהלוח|הוסרה מהאתר|תוקף (המשרה|המודעה) פג|no longer accepting applications|this job is no longer available|job (has been )?(removed|closed|expired)|כבר לא מקבלים מועמדים/i;
+const EXPIRED = /(ה?משרה|ה?מודעה)( זו| זאת| שחיפשת| המבוקשת)? (הוסרה|נמחקה|נסגרה|אוישה|אינה פעילה|לא פעילה|כבר אינה פעילה|כבר לא פעילה|אינה קיימת|לא קיימת|לא נמצאה|אינה זמינה|כבר לא רלוונטית)|הוסרה מהלוח|הוסרה מהאתר|תוקף (המשרה|המודעה) פג|(no longer|not currently|not|isn.?t|is not) (accepting|taking) (new )?applications|applications? (are|is)? ?(now )?closed|(לא|כבר לא|אינה|אינו) (מקבל(ת|ים)?|מקבלים כעת) (מועמדויות|מועמדים|בקשות)|this job is no longer available|job (has been )?(removed|closed|expired)|כבר לא מקבלים מועמדים/i;
 const visibleText = h => decodeEntities(String(h || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 const expiredDrops = [];
 const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
@@ -410,11 +410,12 @@ for (const j of jobs) {
   let h = '';
   for (const u of [j.url, `https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/${m[1]}`]) {
     try { const r = await fetch(u, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'en-US,en;q=0.9,he;q=0.8' }, signal: AbortSignal.timeout(15000) });
-      if (r.ok) { h = await r.text(); if (h.length > 2000) break; } } catch {}
+      if (r.ok) { h += ' ' + await r.text(); if (/top-card-layout__title|topcard__title/.test(h)) break; } } catch {}   // no job card yet → also read the jobPosting endpoint
   }
+  h = h.trim();
   if (!h) { j.hybrid = 'na'; continue; }   // couldn't read the page → can't confirm hybrid
   liRead++;
-  if (EXPIRED.test(visibleText(h))) { j.expired = true; expiredDrops.push(j.title); continue; }
+  { const vt = visibleText(h), mx = vt.match(EXPIRED); if (mx) { j.expired = true; expiredDrops.push(`${j.title} ["${mx[0]}"]`); continue; } }
   const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
   const h1 = (h.match(/<h1[^>]*class="[^"]*(top-card-layout__title|topcard__title|job-title)[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) || [])[2];   // job-title heading only
   const pageTitle = h1 ? h1.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
@@ -488,7 +489,7 @@ for (const j of jobs) {
     const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
     const raw = r.ok ? await r.text() : '';
     const t = visibleText(raw);
-    if (EXPIRED.test(t)) { expiredDrops.push(j.title); continue; }
+    if (j.carried) { const mx = t.match(EXPIRED); if (mx) { const i = t.indexOf(mx[0]); expiredDrops.push(`${j.title} ["…${t.slice(Math.max(0, i - 25), i + mx[0].length + 25).trim()}…"]`); continue; } }   // only carried-over jobs: a job found in this run came from live search results
     // Does the link really lead to THIS job? Compare the page's job title with the recorded title.
     const cands = pageJobTitles(raw).map(t => ({ t, ov: overlap(t, j.title) })).sort((a, b) => b.ov - a.ov);
     const pt = cands.length && cands[0].ov >= 0.5 ? cands[0].t : (cands.length === 1 ? cands[0].t : '');   // best match, or the page's single job title
