@@ -76,6 +76,11 @@ const LI = (kw, loc) => `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJob
 for (const loc of ['Haifa District, Israel', 'Northern District, Israel'])
   for (const kw of ['מערכות מידע', 'Information Systems', 'IT Manager', 'CIO']) BOARDS.push(['LinkedIn', LI(kw, loc)]);
 
+// ===== תיקוני מיקום ידניים — משרה עם כמה סניפים שהאתר לא מציג במלואם. מזהה המשרה (מהקישור) → [מיקום להצגה, ק"מ] =====
+const MANUAL_LOCATIONS = {
+  'jobmaster.co.il/jobs/checknum.asp?key=9906695': ['טירת כרמל/בני ברק', 15],   // גשם החזקות — סניפים בטירת כרמל ובבני ברק
+};
+
 // ===== אתרים נוספים — הדביקי בין הגרשיים את כתובת עמוד החיפוש/המשרות של כל אתר =====
 // אתר שהכתובת שלו ריקה ('') פשוט מדולג. אפשר להוסיף כמה שורות לאותו אתר (למשל חיפוש נוסף).
 const MORE_SITES = [
@@ -120,7 +125,11 @@ for (const [name, url] of BOARDS) {
       const extraJob = abs && MORE_HOSTS.size && MORE_HOSTS.has(new URL(url).hostname.replace(/^www\./, '')) && sameHost(abs, url) && new URL(abs).pathname !== new URL(url).pathname && looksLikeJob(abs) && t.length >= 4;
       if (extraJob || abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/|linkedin\.com\/jobs\/view\/)/i.test(abs)) {
         realUrls.add(abs);
-        if (/linkedin\.com\/jobs\/view\//i.test(abs) && t.length >= 3 && !srcTitle.has(abs)) srcTitle.set(abs, t);
+        if (/linkedin\.com\/jobs\/view\//i.test(abs) && !srcTitle.has(abs)) {
+          const sr = inner.match(/<span[^>]*sr-only[^>]*>([\s\S]*?)<\/span>/i) || inner.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
+          const ct = sr ? decodeEntities(sr[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim() : t;
+          if (ct.length >= 3 && ct.length <= 120 && !/(ago|לפני)\s*\S*\s*(שעות|ימים|hours?|days?)|applicants|מועמדים/i.test(ct)) srcTitle.set(abs, ct);   // never the whole card text
+        }
         return ` ${t} [URL:${abs}] `;
       }
       return ' ' + t + ' ';
@@ -148,7 +157,7 @@ const NEAR = [
   [['עין הוד', 'Ein Hod'], 4], [['מעגן מיכאל', 'Maagan Michael'], 5], [['ג\'סר א-זרקא', 'Jisr'], 7],
   [['בנימינה', 'Binyamina'], 8], [['עתלית', 'Atlit'], 8], [['גבעת עדה', 'Givat Ada'], 10], [['אור עקיבא', 'Or Akiva'], 10],
   [['דלית אל כרמל', 'דאלית אל כרמל', 'Daliyat'], 11], [['עוספיא', 'Isfiya'], 13], [['פרדס חנה', 'Pardes Hanna', 'Pardes Hana'], 12],
-  [['כרכור', 'Karkur'], 13], [['קיסריה', 'Caesarea'], 12], [['חדרה', 'Hadera'], 15], [['טירת כרמל', 'Tirat Carmel'], 15],
+  [['כרכור', 'Karkur'], 13], [['קיסריה', 'Caesarea'], 12], [['חדרה', 'Hadera'], 15], [['טירת כרמל', 'טירת הכרמל', 'Tirat Carmel', 'Tirat HaCarmel'], 15],
   [['עין שמר', 'Ein Shemer'], 18], [['אום אל פחם', 'אום אל-פחם', 'Umm al-Fahm'], 21], [['נשר', 'Nesher'], 22],
   [['חיפה', 'Haifa'], 25], [['יקנעם', 'Yokneam', 'Yoqneam'], 28], [['קריית טבעון', 'קרית טבעון', 'Kiryat Tivon'], 28],
   [['עמק חפר', 'Emek Hefer'], 28], [['חוף הכרמל', 'Hof HaCarmel'], 5], [['מגידו', 'Megiddo'], 25],
@@ -357,6 +366,8 @@ const cityPart = l => String(l || '').replace(/,?\s*(center|central|tel aviv|hai
 jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !== null || MID.test(loc)) return;
   const f = FAR.filter(([re]) => re.test(loc)).map(([, km]) => km);
   if (f.length) j.km = Math.max(j.km, Math.min(...f)); });
+// Manual location fixes (see MANUAL_LOCATIONS at the top)
+jobs.forEach(j => { for (const [k, [loc, km]] of Object.entries(MANUAL_LOCATIONS)) if (String(j.url || '').includes(k)) { j.location = loc; j.km = km; } });
 // Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
@@ -399,7 +410,7 @@ for (const j of jobs) {
   const t = h.replace(/<script(?![^>]*ld\+json)[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ');
   const h1 = (h.match(/<h1[^>]*class="[^"]*(top-card-layout__title|topcard__title|job-title)[^"]*"[^>]*>([\s\S]*?)<\/h1>/i) || [])[2];   // job-title heading only
   const pageTitle = h1 ? h1.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
-  if (pageTitle && pageTitle.length <= 150 && pageTitle.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${pageTitle}`); j.title = pageTitle; }
+  if (pageTitle && pageTitle.length <= 120 && !/(ago|לפני)\s*\S*\s*(שעות|ימים|hours?|days?)|applicants|מועמדים/i.test(pageTitle) && pageTitle.toLowerCase() !== j.title.toLowerCase()) { fixedTitles.push(`${j.title} → ${pageTitle}`); j.title = pageTitle; }
   const yes = /"jobLocationType"\s*:\s*"TELECOMMUTE"/i.test(h) || HYB_YES.test(t), no = HYB_NO.test(t);
   j.hybrid = yes && !no ? 'yes' : (no && !yes ? 'no' : 'na');
   if (j.hybrid === 'yes') liYes++; else if (j.hybrid === 'no') liNo++;
@@ -413,17 +424,19 @@ console.log(`::notice::LinkedIn work-mode check: read ${liRead} job pages — ${
 // Direct-listing pages (JobMaster / AllJobs / Drushim): DROP jobs marked removed/closed, and find a NEARER BRANCH —
 // a near place (≤45 km list) written right next to the job's stated location, e.g. "טירת כרמל ובני ברק" → "טירת כרמל/בני ברק".
 // Runs BEFORE the distance cap, so a far listing with a near branch isn't dropped.
-const nearerBranch = (j, t) => {
+// Visible text split into LINES at block boundaries (paragraphs, list items, cells, line breaks) — filters/city lists become separate lines.
+const visibleLines = h => decodeEntities(String(h || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ')
+  .replace(/<(br|\/p|\/li|\/div|\/td|\/th|\/tr|\/h\d|\/option|\/dd|\/dt)\b[^>]*>/gi, '\n').replace(/<[^>]+>/g, ' '))
+  .split('\n').map(x => x.replace(/\s+/g, ' ').trim()).filter(Boolean);
+const PLACE_WORDS = /תל.?אביב|tel.?aviv|פתח.?תקו|petah|הרצליה|herzliya|רמת.?גן|ramat.?gan|בני.?ברק|bnei.?brak|ראשון|rishon|ירושלים|jerusalem|רחובות|לוד|רמלה|חולון|בת.?ים|מודיעין|ראש.?העין|כפר.?סבא|רעננה|הוד.?השרון|אשדוד|באר.?שבע|נתניה|חיפה|חדרה|יקנעם|קיסריה/gi;
+const nearerBranch = (j, lines) => {
   if (nearKm(j.location) !== null) return null;   // already has a near place
   const locWords = String(j.location || '').split(/[\/,|]| ו(?=[\u05d0-\u05ea])/).map(x => x.trim()).filter(x => x.length >= 3 && !/מספר מקומות|israel|district/i.test(x));
   let best = null;
-  for (const lw of locWords) {
-    let i = t.indexOf(lw);
-    while (i >= 0) {
-      const win = t.slice(Math.max(0, i - 120), i + lw.length + 120);   // same sentence/line as the stated location
-      for (const [names, km] of NEAR) for (const n of names) if (n.length >= 3 && win.includes(n) && (!best || km < best.km)) best = { name: n, km };
-      i = t.indexOf(lw, i + lw.length);
-    }
+  for (const line of lines) {
+    if (line.length > 160 || !locWords.some(w => line.includes(w))) continue;          // only a short line that states the job's location
+    if ((line.match(PLACE_WORDS) || []).length > 4) continue;                             // a list of many cities (filter/menu) → ignore
+    for (const [names, km] of NEAR) for (const n of names) if (n.length >= 3 && line.includes(n) && (!best || km < best.km)) best = { name: n, km, line };
   }
   return best;
 };
@@ -434,10 +447,11 @@ for (const j of jobs) {
   if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
   try {
     const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
-    const t = r.ok ? visibleText(await r.text()) : '';
+    const raw = r.ok ? await r.text() : '';
+    const t = visibleText(raw);
     if (EXPIRED.test(t)) { expiredDrops.push(j.title); continue; }
-    const nb = t && nearerBranch(j, t);
-    if (nb && nb.km < j.km) { branchFixes.push(`${j.title}: ${j.location} → ${nb.name}/${j.location}`); j.location = `${nb.name}/${j.location}`; j.km = nb.km; }
+    const nb = raw && nearerBranch(j, visibleLines(raw));
+    if (nb && nb.km < j.km) { branchFixes.push(`${j.title}: ${j.location} → ${nb.name}/${j.location} [line: "${nb.line.slice(0, 80)}"]`); j.location = `${nb.name}/${j.location}`; j.km = nb.km; }
   } catch { /* on error, keep the job */ }
   checked.push(j);
 }
