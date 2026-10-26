@@ -76,10 +76,11 @@ const LI = (kw, loc) => `https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJob
 for (const loc of ['Haifa District, Israel', 'Northern District, Israel'])
   for (const kw of ['מערכות מידע', 'Information Systems', 'IT Manager', 'CIO']) BOARDS.push(['LinkedIn', LI(kw, loc)]);
 
-// ===== תיקוני מיקום ידניים — משרה עם כמה סניפים שהאתר לא מציג במלואם. מזהה המשרה (מהקישור) → [מיקום להצגה, ק"מ] =====
-const MANUAL_LOCATIONS = {
-  'jobmaster.co.il/jobs/checknum.asp?key=9906695': ['טירת כרמל/בני ברק', 15],   // גשם החזקות — סניפים בטירת כרמל ובבני ברק
-};
+// ===== תיקוני מיקום ידניים — משרה שהמודעה לא מציינת בה את המיקום הנכון/את כל הסניפים =====
+// כל שורה: מזהה בקישור, מילה משם החברה, [מיקום להצגה, ק"מ]. מספיק שאחד מהשניים יתאים (הקישור או שם החברה + "מערכות מידע"/IT בכותרת).
+const MANUAL_LOCATIONS = [
+  { url: 'checknum.asp?key=9906695', company: 'גשם', set: ['טירת כרמל/בני ברק', 15] },   // גשם החזקות — סניפים בטירת כרמל ובבני ברק
+];
 
 // ===== אתרים נוספים — הדביקי בין הגרשיים את כתובת עמוד החיפוש/המשרות של כל אתר =====
 // אתר שהכתובת שלו ריקה ('') פשוט מדולג. אפשר להוסיף כמה שורות לאותו אתר (למשל חיפוש נוסף).
@@ -198,6 +199,8 @@ RULES:
 - COVERAGE: scan the ENTIRE board text top to bottom, not only the first listings. Include EVERY qualifying role — northern jobs AND Sharon/Center jobs within ~65 km (e.g. Hod Hasharon, Kfar Saba, Herzliya, Tel Aviv) and hybrid roles. Do not stop after a few near-Haifa results.
 - ACCURACY: use only facts that really appear; never invent a company or city. Recruiter/placement postings (השמה/גיוס/משאבי אנוש) → company = recruiter name or "חברה חסויה"; never attribute to a similarly-named real company.
 - FRESHNESS: only currently-open jobs; exclude "No longer accepting"/"כבר לא מקבלים מועמדים"/"המשרה אוישה" and anything older than ~8 weeks. Municipal/tender pages: include ONLY if a date within ~8 weeks is shown.
+- URL PAIRING: a job's "url" must be the [URL:...] that appears right next to THAT job's own title in the BOARD TEXT — never a URL that belongs to a neighbouring job.
+- LOCATION: take it from the job's LOCATION field as shown on the board (the city listed next to the job, e.g. "ראש העין"), NOT from a city mentioned inside the title or description (e.g. "לחברה מובילה בקיסריה"). Use a city from the title/description ONLY when no location is listed. Never put the location or the sector into "company".
 - TITLE: copy the job title EXACTLY as written in the BOARD TEXT — never rephrase, translate, shorten or "upgrade" it (e.g. do NOT turn "IT Team Lead" into "IT Manager").
 - HYBRID: set "yes"/"no" from the listing. LinkedIn search cards usually do NOT state the work mode → use "na" for them unless the card text itself says Hybrid/Remote/On-site. "no" = On-site / On site / Onsite / "עבודה מהמשרד" / "במשרדי החברה" / "לא היברידי" / "ללא עבודה מהבית". "yes" = Hybrid / היברידי / Remote / "מרחוק" / "עבודה מהבית" / "ימים מהבית". Words like "Full-time" / "משרה מלאה" say nothing about hybrid; on Drushim the hybrid flag may be hidden under the "משרה מלאה ועוד" expander. Use "na" only if truly not stated.
 - DEDUPE the same job across sources.
@@ -310,6 +313,7 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
+jobs.forEach(j => { j.title = String(j.title || '').replace(/^[\u05d0-\u05ea]\.?\s+(?=[\u05d0-\u05ea]{2})/, '').trim(); });   // stray letter at the start ("ה. לחברה…")
 jobs.forEach(j => { const st = siteOf(j); if (st) j.source = st[0]; });   // one source name per added site (e.g. "Civi"/"Ziva Ben Porat" → the Hebrew site name)
 // ---- job identity keys (used by carry-over, dedupe and the "appeared before" history) ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
@@ -342,7 +346,8 @@ const looseKey = j => { const co = coreCo(j.company);
 const isSitePage = u => MORE_SITES.some(([, v]) => (v || '').trim() && String(u || '').replace(/\/$/, '') === v.trim().replace(/\/$/, ''));
 const directUrlKey = j => { const u = String(j.url || '').split('#')[0];
   return /^https?:\/\//.test(u) && !/google\.com\/search|linkedin\.com\/jobs\/search|jobs-guest/i.test(u) && !isSitePage(u) && !/[?&](q|freetxt|keywords|search_category)=/i.test(u) ? 'u:' + u.replace(/\/$/, '') : ''; };
-const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); const du = directUrlKey(j); if (du) k.push(du); return k; };
+const longTitleKey = j => { const ct = coreTitle(j.title); return ct.split(' ').length >= 5 ? 'T:' + ct + '|' + String(j.location || '').toLowerCase().split(/[\/,\s]+/)[0] : ''; };
+const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); const du = directUrlKey(j); if (du) k.push(du); const lt = longTitleKey(j); if (lt) k.push(lt); return k; };
 // CARRY-OVER: Gemini's output varies between runs, so a still-listed job can vanish for one run. Keep jobs that were REALLY found
 // in the last 2 days but are missing now. They go through ALL the checks below again (title rules, distance, LinkedIn page, expiry).
 const CARRY_DAYS = 2;
@@ -367,18 +372,21 @@ jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !==
   const f = FAR.filter(([re]) => re.test(loc)).map(([, km]) => km);
   if (f.length) j.km = Math.max(j.km, Math.min(...f)); });
 // Manual location fixes (see MANUAL_LOCATIONS at the top)
-jobs.forEach(j => { for (const [k, [loc, km]] of Object.entries(MANUAL_LOCATIONS)) if (String(j.url || '').includes(k)) { j.location = loc; j.km = km; } });
+jobs.forEach(j => { for (const m of MANUAL_LOCATIONS) {
+  const byUrl = m.url && String(j.url || '').includes(m.url);
+  const byCo = m.company && String(j.company || '').includes(m.company) && /מערכות מידע|\bIT\b|information/i.test(j.title);
+  if (byUrl || byCo) { j.location = m.set[0]; j.km = m.set[1]; j.manual = true; } } });
 // Near places: distance fixed in code (never let a wrong estimate push a near job out of GROUP 1).
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
 const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
-const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
+const TITLE_BLOCK = /team ?lead|ראש[\/.]?ת?\s*צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
 const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b/i;   // support roles — dropped unless the title is ALSO broad IS/IT management
-const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bMIS\b|\bcloud\b|ענן/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
+const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bMIS\b|\bcloud\b|ענן|\bBI\b|business intelligence/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
 const droppedTitles = [];
 const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
   // judge "broad" WITHOUT the narrow words: "Head of IT Infrastructure" → "Head of" (narrow), "מנהל/ת מערכות מידע ואבטחת מידע" → still broad
-  const broad = BROAD.test(t.replace(/(information technology|\bit)\s+infrastructure|infrastructure|תשתיות(\s+(it|מחשוב))?|(information\s+)?security|אבטחת מידע|סייבר|cyber|\bCISO\b|\bMIS\b|\bcloud\b|ענן/ig, ' '));
+  const broad = BROAD.test(t.replace(/(information technology|\bit)\s+infrastructure|infrastructure|תשתיות(\s+(it|מחשוב))?|(information\s+)?security|אבטחת מידע|סייבר|cyber|\bCISO\b|\bMIS\b|\bcloud\b|ענן|\bBI\b|business intelligence/ig, ' '));
   const bad = TITLE_BLOCK.test(t) || ((NARROW.test(t) || SOFT_BLOCK.test(t)) && !broad);
   if (bad) droppedTitles.push(t); return !bad; }); };
 // Gemini sometimes rewrites/"upgrades" titles (e.g. "IT Team Lead" → "IT Manager") → restore the real LinkedIn card title first.
@@ -389,7 +397,7 @@ applyTitleRules();
 // LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
 // Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
 // Specific "closed" phrases only, tested on VISIBLE text (scripts/styles removed) — generic words like "לא נמצאה" appear on valid pages too.
-const EXPIRED = /משרה זו הוסרה|המשרה הוסרה|הוסרה מהלוח|המשרה אוישה|המשרה אינה פעילה|משרה זו אינה פעילה|המשרה לא נמצאה|המשרה אינה קיימת|תוקף המשרה פג|no longer accepting applications|this job is no longer available|כבר לא מקבלים מועמדים/i;
+const EXPIRED = /(ה?משרה|ה?מודעה)( זו| זאת| שחיפשת| המבוקשת)? (הוסרה|נמחקה|נסגרה|אוישה|אינה פעילה|לא פעילה|כבר אינה פעילה|כבר לא פעילה|אינה קיימת|לא קיימת|לא נמצאה|אינה זמינה|כבר לא רלוונטית)|הוסרה מהלוח|הוסרה מהאתר|תוקף (המשרה|המודעה) פג|no longer accepting applications|this job is no longer available|job (has been )?(removed|closed|expired)|כבר לא מקבלים מועמדים/i;
 const visibleText = h => decodeEntities(String(h || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 const expiredDrops = [];
 const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
@@ -440,7 +448,38 @@ const nearerBranch = (j, lines) => {
   }
   return best;
 };
-const branchFixes = [];
+const branchFixes = [], locFixes = [], mismatchDrops = [];
+// The job title as shown on the job page (first <h1> that looks like a job title).
+const ROLE_WORD = /מנהל|דרוש|ראש[\s\/]|רכז|נציג|מהנדס|מפתח|יועץ|אחראי|סמנכ|manager|head of|director|lead|officer|engineer|analyst|specialist|\bCIO\b|\bCTO\b/i;
+const IS_IT = /מערכות מידע|\bIT\b|טכנולוג|אפליקציות|יישומים|מחשוב|מנמ"?ר|information|technology|systems|digital|דיגיטל|\bCIO\b|\bCTO\b|\bdata\b|דאטה|\bERP\b|\bSAP\b|priority|פריוריטי/i;
+const BANNER = /[?!]|הצטרפ|משרות|חיפוש|join|careers|\bjobs\b|we.?re hiring/i;
+const pageJobTitles = raw => [...String(raw || '').matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)]
+  .map(m => decodeEntities(m[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim())
+  .filter(t => t.length >= 5 && t.length <= 150 && ROLE_WORD.test(t) && !BANNER.test(t));
+// Content words of a title (generic words like "לחברה מובילה דרוש/ה מנהל/ת" removed) and their overlap.
+const GENERIC = new Set(['לחבר', 'חבר', 'מובילה', 'מוביל', 'דרוש', 'דרושה', 'מנהל', 'ראש', 'בכיר', 'בכירה', 'ארגון', 'לארגון', 'גדול', 'גדולה', 'the', 'of', 'and', 'for', 'manager', 'head', 'senior', 'director', 'בעמ']);
+const contentWords = t => new Set(coreTitle(t).split(' ').filter(w => w.length >= 2 && !GENERIC.has(w)));
+const overlap = (a, b) => { const A = contentWords(a), B = contentWords(b); if (!A.size || !B.size) return 1; let n = 0; for (const w of A) if (B.has(w)) n++; return n / Math.min(A.size, B.size); };
+// Known distances for cities a job page may state (≤45 km list + the central/southern cities from the distance table).
+const CITY_KM = [...NEAR.map(([names, km]) => [names, km]),
+  [['תל אביב', 'Tel Aviv'], 65], [['פתח תקווה', 'פתח תקוה', 'Petah Tikva'], 65], [['רמת גן', 'Ramat Gan'], 63], [['גבעתיים', 'Givatayim'], 64],
+  [['בני ברק', 'Bnei Brak'], 64], [['הרצליה', 'Herzliya'], 58], [['רעננה', "Ra'anana", 'Raanana'], 55], [['כפר סבא', 'Kfar Saba'], 52],
+  [['הוד השרון', 'Hod Hasharon'], 55], [['ראש העין', "Rosh Ha'Ayin", 'Rosh HaAyin'], 57], [['רמת השרון', 'Ramat Hasharon'], 62],
+  [['אור יהודה', 'Or Yehuda'], 66], [['יהוד', 'Yehud'], 66], [['כרמיאל', 'Karmiel'], 50], [['חולון', 'Holon'], 75], [['בת ים', 'Bat Yam'], 75],
+  [['לוד', 'Lod'], 75], [['רמלה', 'Ramla'], 78], [['ראשון לציון', 'Rishon'], 80], [['רחובות', 'Rehovot'], 85], [['נס ציונה', 'Ness Ziona'], 83],
+  [['מודיעין', 'Modiin'], 85], [['שוהם', 'Shoham'], 75], [['אריאל', 'Ariel'], 72], [['ירושלים', 'Jerusalem'], 120], [['אשדוד', 'Ashdod'], 100],
+  [['באר שבע', 'Beer Sheva'], 160], [['צפת', 'Tzfat', 'Safed'], 90]];
+// The job page's own location field ("מיקום: ראש העין", "אזור: ...", "מקום עבודה: ...", "Location: ...").
+const statedLocation = lines => {
+  for (const line of lines) {
+    const m = line.match(/^(מיקום(\s+ה?משרה)?|אזור(\s+עבודה)?|עיר|מקום(\s+ה)?עבודה|location)\s*[:：]\s*(.{2,60})$/i);
+    if (!m) continue;
+    const val = m[m.length - 1].trim();
+    const hits = CITY_KM.flatMap(([names, km]) => names.filter(n => val.includes(n)).map(n => ({ name: n, km })));
+    if (hits.length) { hits.sort((a, b) => a.km - b.km); return { text: [...new Set(hits.map(h => h.name))].join('/'), km: hits[0].km, line }; }
+  }
+  return null;
+};
 const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
 const checked = [];
 for (const j of jobs) {
@@ -450,12 +489,26 @@ for (const j of jobs) {
     const raw = r.ok ? await r.text() : '';
     const t = visibleText(raw);
     if (EXPIRED.test(t)) { expiredDrops.push(j.title); continue; }
-    const nb = raw && nearerBranch(j, visibleLines(raw));
+    // Does the link really lead to THIS job? Compare the page's job title with the recorded title.
+    const cands = pageJobTitles(raw).map(t => ({ t, ov: overlap(t, j.title) })).sort((a, b) => b.ov - a.ov);
+    const pt = cands.length && cands[0].ov >= 0.5 ? cands[0].t : (cands.length === 1 ? cands[0].t : '');   // best match, or the page's single job title
+    if (pt) {
+      if (!IS_IT.test(pt) && overlap(pt, j.title) < 0.5) { mismatchDrops.push(`${j.title} → link is "${pt}"`); continue; }   // link points to a different, non-IS job
+      if (IS_IT.test(pt) && coreTitle(pt) !== coreTitle(j.title)) { fixedTitles.push(`${j.title} → ${pt}`); j.title = pt; }   // the page is the truth (title rules re-run below)
+    }
+    const lines = raw ? visibleLines(raw) : [];
+    const sl = statedLocation(lines);   // the page states the job's location → it wins, and no branch search
+    if (sl) { if (sl.text !== j.location && !j.manual) { locFixes.push(`${j.title}: ${j.location} → ${sl.text} [line: "${sl.line.slice(0, 60)}"]`); j.location = sl.text; j.km = sl.km; } }
+    const nb = !sl && raw && nearerBranch(j, lines);
     if (nb && nb.km < j.km) { branchFixes.push(`${j.title}: ${j.location} → ${nb.name}/${j.location} [line: "${nb.line.slice(0, 80)}"]`); j.location = `${nb.name}/${j.location}`; j.km = nb.km; }
   } catch { /* on error, keep the job */ }
   checked.push(j);
 }
 jobs = checked;
+{ const before = droppedTitles.length; applyTitleRules();   // titles taken from the job pages must pass the title rules too
+  if (droppedTitles.length > before) console.log(`::notice::Dropped by title rules after reading the job page (${droppedTitles.length - before}): ${droppedTitles.slice(before).join(' · ').slice(0, 600)}`); }
+if (mismatchDrops.length) console.log(`::notice::Dropped — the link leads to a different, non-IS job (${mismatchDrops.length}): ${mismatchDrops.join(' · ').slice(0, 900)}`);
+if (locFixes.length) console.log(`::notice::Location taken from the job page's location field (${locFixes.length}): ${locFixes.join(' · ').slice(0, 900)}`);
 if (branchFixes.length) console.log(`::notice::Nearer branch found on the job page (${branchFixes.length}): ${branchFixes.join(' · ').slice(0, 900)}`);
 if (expiredDrops.length) console.log(`::notice::Dropped as closed/removed at the source (${expiredDrops.length}): ${expiredDrops.join(' · ').slice(0, 900)}`);
 
