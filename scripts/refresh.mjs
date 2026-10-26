@@ -19,6 +19,7 @@ const UAS = [
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15',
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:126.0) Gecko/20100101 Firefox/126.0',
 ];
+const NEAR_KM = 45;   // section 1 = up to this distance; sections 2/3 = beyond it (hybrid / not hybrid)
 const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
 const decodeEntities = s => String(s || '').replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&#0*39;|&apos;|&#x0*27;/gi, "'")
   .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi, (m, n) => String.fromCodePoint(parseInt(n, 16))).replace(/&amp;/g, '&');
@@ -141,7 +142,7 @@ let corpus = '';
 for (const p of pages) corpus += `\n\n===== ${p.name} (${p.url}) =====\n` + p.txt.slice(0, cap);
 console.log(`  Text per search capped at ${cap} chars; total sent to Gemini: ${corpus.length} chars.`);
 
-// ===== יישובים עד 30 ק"מ מצרופה — המרחק כאן קובע (אומדן אווירי). משרה באחד מהם תמיד בקבוצה הראשונה =====
+// ===== יישובים עד 45 ק"מ מצרופה — המרחק כאן קובע (אומדן). משרה באחד מהם תמיד בקבוצה הראשונה =====
 const NEAR = [
   [['זכרון יעקב', 'זכרון', 'Zichron', 'Zikhron'], 5], [['צרופה', 'Tzrufa'], 0], [['פוריידיס', 'Fureidis'], 3],
   [['עין הוד', 'Ein Hod'], 4], [['מעגן מיכאל', 'Maagan Michael'], 5], [['ג\'סר א-זרקא', 'Jisr'], 7],
@@ -151,6 +152,11 @@ const NEAR = [
   [['עין שמר', 'Ein Shemer'], 18], [['אום אל פחם', 'אום אל-פחם', 'Umm al-Fahm'], 21], [['נשר', 'Nesher'], 22],
   [['חיפה', 'Haifa'], 25], [['יקנעם', 'Yokneam', 'Yoqneam'], 28], [['קריית טבעון', 'קרית טבעון', 'Kiryat Tivon'], 28],
   [['עמק חפר', 'Emek Hefer'], 28], [['חוף הכרמל', 'Hof HaCarmel'], 5], [['מגידו', 'Megiddo'], 25],
+  // 30–45 km (section 1 now goes up to 45 km)
+  [['רמת ישי', 'Ramat Yishai'], 30], [['קריית אתא', 'קרית אתא', 'Kiryat Ata'], 33], [['קריית ים', 'קרית ים', 'Kiryat Yam'], 33],
+  [['הקריות', 'Krayot', 'Kiryat Bialik', 'קריית ביאליק', 'קרית ביאליק', 'קריית מוצקין', 'קרית מוצקין', 'Kiryat Motzkin'], 35],
+  [['מגדל העמק', 'Migdal HaEmek'], 35], [['נתניה', 'Netanya'], 38], [['כפר יונה', 'Kfar Yona'], 40], [['נצרת', 'Nazareth'], 42],
+  [['נוף הגליל', 'Nof HaGalil'], 43], [['עכו', 'Akko', 'Acre'], 45], [['עפולה', 'Afula'], 45], [['אבן יהודה', 'Even Yehuda'], 45],
 ];
 const nearKm = (loc) => { let best = null; const L = String(loc || '').toLowerCase();
   for (const [names, km] of NEAR) if (names.some(n => L.includes(n.toLowerCase()))) best = best === null ? km : Math.min(best, km);
@@ -176,7 +182,7 @@ Extract jobs ONLY from the BOARD TEXT below. EVERY job you output MUST literally
 RULES:
 - STRICT ROLE WHITELIST — include a job ONLY if its title is essentially one of these (the person HEADS the IS/IT/applications/technology function): מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, מנהל/ת יישומים (applications MANAGER), מנהל/ת IT, Head of Information Systems, Head of IT, IT/IS Manager, Information Systems Manager / Information System Manager, IS Manager, Business Applications Manager.
 - COMBINED TITLES count: if the title includes a whitelisted role alongside others (e.g. "CIO / CTO / Chief AI Officer", "CIO & VP Operations"), INCLUDE it. Contract / freelance / fractional roles count too.
-- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it — EXCEPT for jobs within 30 km (GROUP 1): for those, when in doubt INCLUDE (the STRICT BLACKLIST below still applies to them).
+- STRICT BLACKLIST — do NOT include (even if "מערכות מידע"/"IT" appears in the title): IT Risk / GRC / compliance, finance / FP&A, CISO / InfoSec / information security (also "CISO & Head of IT"), MIS-only, cloud-only (Head of Cloud), מנהל/ת פרויקטים / Project Manager / PMO / Portfolio / Delivery (Lead/Manager/Excellence), מנתח/ת מערכות / Systems Analyst, מיישם/ת / Implementer, אחראי/ת (coordinator — not a manager), ראש צוות / team lead, מפתח/ת / developer, תמיכה / Help Desk / Support, מנהל/ת מוצר / Product, sales, CCoE, מנהל/ת יישום של מערכת בודדת (single-system rollout — e.g. "מנהל מערכת Priority/SAP", "מנהל/ת מחלקת יישום", "מנהל/ת יישום מערכות"). (DO include "מנהל/ת אפליקציות/יישומים" that HEADS the applications domain.) When in doubt whether a title is a true IS/IT-MANAGEMENT role vs a project/analyst/coordinator role, EXCLUDE it — EXCEPT for jobs within ${NEAR_KM} km (GROUP 1): for those, when in doubt INCLUDE (the STRICT BLACKLIST below still applies to them).
 - EXCLUDE support / help-desk / service-desk roles and their team leads — e.g. "ראש צוות תמיכה", "מנהל מוקד Help Desk", "תמיכה טכנית", "מוקד שירות", system administrator, NOC team lead. These are operational support, NOT information-systems management — do NOT include them.
 - EXCLUDE information-SECURITY / cyber roles — they are NOT information-systems management: מנהל/ת אבטחת מידע, CISO, CISCO/CICO (mis-spellings of CISO), Information Security Manager/Officer, סייבר / Cyber, SOC, מנהל/ת סיכוני סייבר, GRC. Even if the title contains "מערכות מידע", if the role is about SECURITY, drop it.
 - Also EXCLUDE narrow specialty-domain roles that are NOT the IS/IT-management function: CCoE / "Cloud Center of Excellence" / "מנהל תחום CCOE", pure cloud-platform leads, DBA / infrastructure-only, and similar single-domain titles. Include a role ONLY if it heads information systems / IT / applications / technology broadly (מנהל/ת מערכות מידע, מנמ"ר, CIO, Chief Information Officer, מנהל/ת טכנולוגיות, מנהל/ת אפליקציות, IT/IS manager).
@@ -191,14 +197,14 @@ RULES:
    • AllJobs or svt.jobs → https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=<short query>
    • Drushim → https://www.drushim.co.il/jobs/search/<short query>/
    • LinkedIn → https://www.linkedin.com/jobs/search?keywords=<short query>&location=Israel
-   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב, זיוה בן פורת, Sharon Careers (added sites) → leave "url" EMPTY ("") — the page links to that site's jobs page.
+   • השועלה, עץ השדה, Aman, Norterra, ג'וב קרוב, זיוה בן פורת, Sharon Careers (added sites) → use the [URL:...] shown right next to that job in the BOARD TEXT if there is one; otherwise leave "url" EMPTY ("").
    • GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
    LinkedIn locations look like "Haifa, Haifa District, Israel" — use the city. LinkedIn "Hybrid"/"Remote" in the card = hybrid "yes".
   URL-encode the query. When unsure, prefer the Google search format. Every link MUST lead to a non-empty results page.
 - DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Rehovot 85, Ness Ziona 83, Gedera 100, Ashdod 100, Ashkelon 115, Lod 75, Ramla 78, Bat Yam 75, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Region only: "שפלה"/Shfela 90, "דרום"/South 140, "אזור ירושלים" 120. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
-Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra, זיוה בן פורת, Sharon Careers>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ 30 (any hybrid status); GROUP 2 = km > 30 AND hybrid "yes"; GROUP 3 = km > 30 and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
+Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra, זיוה בן פורת, Sharon Careers>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ ${NEAR_KM} (any hybrid status); GROUP 2 = km > ${NEAR_KM} AND hybrid "yes"; GROUP 3 = km > ${NEAR_KM} and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
 
 BOARD TEXT:${corpus}`;
 
@@ -284,7 +290,7 @@ if (geminiError) { console.log(`::error::Page NOT updated (previous page kept). 
 // Focused pass on GROUP 1: only the excerpts around near places, inclusive when in doubt. Its jobs are ADDED (duplicates are removed below).
 if (nearCorpus && !geminiError) {
   const NEAR_PROMPT = PROMPT.slice(0, PROMPT.lastIndexOf('BOARD TEXT:')) +
-    `FOCUS FOR THIS PASS: the BOARD TEXT below contains ONLY excerpts around places within 30 km of Tzrufa. List EVERY job in it that is LOCATED in such a place and fits the roles — completeness is critical here; when unsure whether a title qualifies, INCLUDE it. Ignore jobs whose location is elsewhere.\n\nBOARD TEXT:` + nearCorpus;
+    `FOCUS FOR THIS PASS: the BOARD TEXT below contains ONLY excerpts around places within ${NEAR_KM} km of Tzrufa. List EVERY job in it that is LOCATED in such a place and fits the roles — completeness is critical here; when unsure whether a title qualifies, INCLUDE it. Ignore jobs whose location is elsewhere.\n\nBOARD TEXT:` + nearCorpus;
   try { const extra = await callGemini(NEAR_PROMPT); console.log(`  Focused near pass: ${extra.length} jobs`); jobs = [...(jobs || []), ...extra]; }
   catch (err) { console.log(`::warning::Focused near pass failed (main results still used): ${err.message.slice(0, 200)}`); }
 }
@@ -324,7 +330,10 @@ const coreCo = c => { const x = String(c || '').toLowerCase().replace(/חסוי|
   .replace(/\b(ltd|inc|israel|group)\b|בע"?מ|ישראל|^(קבוצת|חברת|רשת)\s+/g, ' ').replace(/[^\p{L}\p{N}]+/gu, ' ').replace(/\s+/g, ' ').trim(); return x; };
 const looseKey = j => { const co = coreCo(j.company);
   return 'L:' + coreTitle(j.title) + '|' + (co || ('@' + String(j.location || '').toLowerCase().split(/[,\s]+/)[0])); };   // no company → use first location word
-const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); return k; };
+const isSitePage = u => MORE_SITES.some(([, v]) => (v || '').trim() && String(u || '').replace(/\/$/, '') === v.trim().replace(/\/$/, ''));
+const directUrlKey = j => { const u = String(j.url || '').split('#')[0];
+  return /^https?:\/\//.test(u) && !/google\.com\/search|linkedin\.com\/jobs\/search|jobs-guest/i.test(u) && !isSitePage(u) && !/[?&](q|freetxt|keywords|search_category)=/i.test(u) ? 'u:' + u.replace(/\/$/, '') : ''; };
+const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); const du = directUrlKey(j); if (du) k.push(du); return k; };
 // CARRY-OVER: Gemini's output varies between runs, so a still-listed job can vanish for one run. Keep jobs that were REALLY found
 // in the last 2 days but are missing now. They go through ALL the checks below again (title rules, distance, LinkedIn page, expiry).
 const CARRY_DAYS = 2;
@@ -352,13 +361,13 @@ jobs.forEach(j => { const loc = cityPart(j.location); if (nearKm(j.location) !==
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
 const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
-const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור/i;   // never a fit
+const TITLE_BLOCK = /team ?lead|ראש(ת)? צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
 const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b/i;   // support roles — dropped unless the title is ALSO broad IS/IT management
-const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bCISO\b/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
+const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bMIS\b|\bcloud\b|ענן/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
 const droppedTitles = [];
 const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
   // judge "broad" WITHOUT the narrow words: "Head of IT Infrastructure" → "Head of" (narrow), "מנהל/ת מערכות מידע ואבטחת מידע" → still broad
-  const broad = BROAD.test(t.replace(/(information technology|\bit)\s+infrastructure|infrastructure|תשתיות(\s+(it|מחשוב))?|(information\s+)?security|אבטחת מידע|סייבר|cyber|\bCISO\b/ig, ' '));
+  const broad = BROAD.test(t.replace(/(information technology|\bit)\s+infrastructure|infrastructure|תשתיות(\s+(it|מחשוב))?|(information\s+)?security|אבטחת מידע|סייבר|cyber|\bCISO\b|\bMIS\b|\bcloud\b|ענן/ig, ' '));
   const bad = TITLE_BLOCK.test(t) || ((NARROW.test(t) || SOFT_BLOCK.test(t)) && !broad);
   if (bad) droppedTitles.push(t); return !bad; }); };
 // Gemini sometimes rewrites/"upgrades" titles (e.g. "IT Team Lead" → "IT Manager") → restore the real LinkedIn card title first.
@@ -420,6 +429,12 @@ if (expiredDrops.length) console.log(`::notice::Dropped as closed/removed at the
 
 // DEDUPE — drop a posting if EITHER its stable id OR its title|company was already seen. This catches the SAME job listed on
 // two boards (different ids) as well as exact repeats. Keeps the first (usually the direct-link source).
+{ const words = j => new Set(coreTitle(j.title).split(' ').filter(Boolean));
+  const sub = (a, b) => a.size > 0 && [...a].every(w => b.has(w));
+  jobs = jobs.filter(j => { if (!isSitePage(j.url)) return true;
+    const wj = words(j);
+    return !jobs.some(k => k !== j && k.source === j.source && !isSitePage(k.url) && (sub(words(k), wj) || sub(wj, words(k)))); });
+}
 { const seen = new Set();   // same job if ANY key matches: listing id, exact title|company, or the tolerant (loose) key
   jobs = jobs.filter(j => { const ks = keysOf(j); if (ks.some(k => seen.has(k))) return false; ks.forEach(k => seen.add(k)); return true; });
 }
@@ -452,7 +467,7 @@ const todayState = { date: D, keys: jobs.flatMap(keysOf) };
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const hb = { yes: '<span class="yes">כן</span>', no: '<span class="no">לא</span>', na: '<span class="na">לא צוין</span>' };
 const sorted = [...jobs].sort((a, b) => a.km - b.km);
-const rowsHtml = list => list.map(j => `<tr class="${j.km <= 30 ? 'near' : ''}" data-src="${esc(j.source)}" data-hyb="${j.hybrid}" data-near="${j.km <= 30}" data-new="${!j.ystd}">
+const rowsHtml = list => list.map(j => `<tr class="${j.km <= NEAR_KM ? 'near' : ''}" data-src="${esc(j.source)}" data-hyb="${j.hybrid}" data-near="${j.km <= NEAR_KM}" data-new="${!j.ystd}">
   <td class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></td>
   <td class="desc">${esc(j.desc)}</td>
   <td class="loc${String(j.location).length > 28 ? ' long' : ''}">${esc(j.location)}<span class="km">~${j.km} ק"מ</span></td>
@@ -501,21 +516,21 @@ const html = `<meta charset="utf-8">
 <div class="wrap">
  <div class="filters" id="filters">
   <button class="active" data-f="all">הכל</button>
-  <button data-f="near">עד 30 ק"מ ✓</button>
+  <button data-f="near">עד ${NEAR_KM} ק"מ ✓</button>
   <button data-f="new">חדש היום</button>
   <button data-f="hybrid">היברידי</button>
   ${srcButtons}
  </div>
  <div class="count" id="count"></div>
- <div class="secbar">📍 עד 30 ק"מ מצרופה</div>
+ <div class="secbar">📍 עד ${NEAR_KM} ק"מ מצרופה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km <= 30)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד 30 ק"מ</td></tr>'}</tbody></table>
- <div class="secbar hyb">🏠 מעבר ל-30 ק"מ — היברידי · לפי מרחק עולה</div>
+  <tbody>${rowsHtml(sorted.filter(j => j.km <= NEAR_KM)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד ${NEAR_KM} ק"מ</td></tr>'}</tbody></table>
+ <div class="secbar hyb">🏠 מעבר ל-${NEAR_KM} ק"מ — היברידי · לפי מרחק עולה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid === 'yes'))}</tbody></table>
- <div class="secbar far">📌 מעבר ל-30 ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > NEAR_KM && j.hybrid === 'yes'))}</tbody></table>
+ <div class="secbar far">📌 מעבר ל-${NEAR_KM} ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
-  <tbody>${rowsHtml(sorted.filter(j => j.km > 30 && j.hybrid !== 'yes'))}</tbody></table>
+  <tbody>${rowsHtml(sorted.filter(j => j.km > NEAR_KM && j.hybrid !== 'yes'))}</tbody></table>
 </div>
 <footer>הנתונים נאספים אוטומטית — מומלץ לוודא כל מודעה במקור לפני הגשה. המרחקים אומדן אווירי מצרופה.<br>רץ 3 פעמים ביום ב-GitHub Actions (Gemini), ללא תלות בחשבונות חיצוניים.</footer>
 <script>
@@ -544,6 +559,6 @@ await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'ut
 await writeFile('data/seen.json', JSON.stringify(H), 'utf8');
 await writeFile('data/jobs-shown.json', JSON.stringify(jobs.map(j => ({ title: j.title, company: j.company, location: j.location, km: j.km, hybrid: j.hybrid, desc: j.desc, source: j.source, url: j.url, lastReal: j.lastReal || isoToday })), null, 1), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
-console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30 km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
-console.log(`Done: ${jobs.length} jobs (${jobs.filter(j => j.km <= 30).length} within 30km), loaded ${loaded.join(',') || 'none'}, blocked ${blocked.join(',') || 'none'}`);
+console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= NEAR_KM).length} within ${NEAR_KM} km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
+console.log(`Done: ${jobs.length} jobs (${jobs.filter(j => j.km <= NEAR_KM).length} within ${NEAR_KM}km), loaded ${loaded.join(',') || 'none'}, blocked ${blocked.join(',') || 'none'}`);
 
