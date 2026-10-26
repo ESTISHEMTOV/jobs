@@ -201,7 +201,7 @@ RULES:
    • GovJobs, municipal, or anything else → https://www.google.com/search?q=<short query including the company name> (URL-encoded)
    LinkedIn locations look like "Haifa, Haifa District, Israel" — use the city. LinkedIn "Hybrid"/"Remote" in the card = hybrid "yes".
   URL-encode the query. When unsure, prefer the Google search format. Every link MUST lead to a non-empty results page.
-- DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Rehovot 85, Ness Ziona 83, Gedera 100, Ashdod 100, Ashkelon 115, Lod 75, Ramla 78, Bat Yam 75, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Region only: "שפלה"/Shfela 90, "דרום"/South 140, "אזור ירושלים" 120. Multi-location → nearest city. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
+- DISTANCE km from Tzrufa by stated city: Caesarea 12, Zichron Yaakov 5, Hadera 15, Pardes Hanna 12, Binyamina 8, Or Akiva 10, Yokneam 28, Haifa 25, Akko 45, Afula 45, Karmiel 50, Hod Hasharon 55, Ramat Hasharon 62, Kfar Saba 52, Tel Aviv 65, Petah Tikva 65, Herzliya 58, Holon 75, Shoham 75, Ariel 72, Modiin 85, Yavne 88, Tzfat 90, Rishon LeZion 80, Rehovot 85, Ness Ziona 83, Gedera 100, Ashdod 100, Ashkelon 115, Lod 75, Ramla 78, Bat Yam 75, Jerusalem 120, Kiryat Gat 140, Beer Sheva 160. Region only: "שפלה"/Shfela 90, "דרום"/South 140, "אזור ירושלים" 120. Multi-location / several branches (e.g. "סניפים בטירת כרמל ובבני ברק") → "location" lists ALL of them, nearest first, joined by "/" (e.g. "טירת כרמל/בני ברק"), and "km" = the NEAREST one. Hybrid/remote with no fixed city → location "מרחוק/היברידי", km 0.
 - LOCATION ACCURACY (IMPORTANT): use the location EXACTLY as the source states it. NEVER relocate a job to a closer/northern city or guess a city. If only a region is given, keep it and use its distance: מרכז / Center District ~65, השרון ~58, צפון / North ~40, ירושלים ~120, דרום / South ~140. For a job you add from your own memory (e.g. a LinkedIn role) where you are NOT sure of its CURRENT city — OMIT it rather than guess a location.
 
 Each array item = {"title": "...", "company": "...", "location": "...", "km": <number>, "hybrid": "yes"|"no"|"na", "desc": "<one short Hebrew line>", "source": "<EXACTLY the board name from the ===== header of the section the job came from, e.g. JobMaster, AllJobs, דרושים, LinkedIn, השועלה, עץ השדה, Aman, Norterra, זיוה בן פורת, Sharon Careers>", "url": "https://..."}. PRIORITIES (most important first): GROUP 1 = km ≤ ${NEAR_KM} (any hybrid status); GROUP 2 = km > ${NEAR_KM} AND hybrid "yes"; GROUP 3 = km > ${NEAR_KM} and not hybrid. Include EVERY qualifying job — there is NO maximum count. Completeness matters most for GROUP 1, then GROUP 2 — never omit a qualifying GROUP 1 or GROUP 2 job. Output the array in that order: all GROUP 1 jobs (km ascending), then GROUP 2 (km ascending), then GROUP 3 (km ascending). Return ONLY the JSON array.
@@ -409,10 +409,25 @@ applyTitleRules();   // again, with the real titles from the job pages
 if (fixedTitles.length) console.log(`::notice::Titles corrected to the real LinkedIn title (${fixedTitles.length}): ${fixedTitles.join(' · ').slice(0, 900)}`);
 if (droppedTitles.length) console.log(`::notice::Dropped by title rules (${droppedTitles.length}): ${droppedTitles.join(' · ').slice(0, 900)}`);
 console.log(`::notice::LinkedIn work-mode check: read ${liRead} job pages — ${liYes} hybrid/remote, ${liNo} on-site, the rest not stated.`);
-// Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
-jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
 
-// Expiry check: open each direct-listing page and DROP jobs marked removed/expired/closed.
+// Direct-listing pages (JobMaster / AllJobs / Drushim): DROP jobs marked removed/closed, and find a NEARER BRANCH —
+// a near place (≤45 km list) written right next to the job's stated location, e.g. "טירת כרמל ובני ברק" → "טירת כרמל/בני ברק".
+// Runs BEFORE the distance cap, so a far listing with a near branch isn't dropped.
+const nearerBranch = (j, t) => {
+  if (nearKm(j.location) !== null) return null;   // already has a near place
+  const locWords = String(j.location || '').split(/[\/,|]| ו(?=[\u05d0-\u05ea])/).map(x => x.trim()).filter(x => x.length >= 3 && !/מספר מקומות|israel|district/i.test(x));
+  let best = null;
+  for (const lw of locWords) {
+    let i = t.indexOf(lw);
+    while (i >= 0) {
+      const win = t.slice(Math.max(0, i - 120), i + lw.length + 120);   // same sentence/line as the stated location
+      for (const [names, km] of NEAR) for (const n of names) if (n.length >= 3 && win.includes(n) && (!best || km < best.km)) best = { name: n, km };
+      i = t.indexOf(lw, i + lw.length);
+    }
+  }
+  return best;
+};
+const branchFixes = [];
 const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
 const checked = [];
 for (const j of jobs) {
@@ -421,11 +436,17 @@ for (const j of jobs) {
     const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
     const t = r.ok ? visibleText(await r.text()) : '';
     if (EXPIRED.test(t)) { expiredDrops.push(j.title); continue; }
+    const nb = t && nearerBranch(j, t);
+    if (nb && nb.km < j.km) { branchFixes.push(`${j.title}: ${j.location} → ${nb.name}/${j.location}`); j.location = `${nb.name}/${j.location}`; j.km = nb.km; }
   } catch { /* on error, keep the job */ }
   checked.push(j);
 }
 jobs = checked;
+if (branchFixes.length) console.log(`::notice::Nearer branch found on the job page (${branchFixes.length}): ${branchFixes.join(' · ').slice(0, 900)}`);
 if (expiredDrops.length) console.log(`::notice::Dropped as closed/removed at the source (${expiredDrops.length}): ${expiredDrops.join(' · ').slice(0, 900)}`);
+
+// Distance cap: keep only jobs within ~65 km of Tzrufa, OR hybrid (which can be anywhere).
+jobs = jobs.filter(j => j.km <= 65 || j.hybrid === 'yes');
 
 // DEDUPE — drop a posting if EITHER its stable id OR its title|company was already seen. This catches the SAME job listed on
 // two boards (different ids) as well as exact repeats. Keeps the first (usually the direct-link source).
