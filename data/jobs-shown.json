@@ -1,24 +1,13 @@
 [
  {
-  "title": "מנהל/ת מערכות מידע לחברה מובילה בתחום חומרי בניה, בקיסריה.",
-  "company": "קפסולה פתרונות משאבי אנוש בע\"מ",
-  "location": "פרדס חנה כרכור",
-  "km": 12,
+  "title": "מנהל/ת אפליקציות עסקיות וחדשנות",
+  "company": "מכון תימה",
+  "location": "חיפה",
+  "km": 25,
   "hybrid": "na",
-  "desc": "אחריות כוללת על מערכות המידע, התשתיות הטכנולוגיות, היישומים העסקיים והרציפות התפעולית בארגון.",
+  "desc": "דרוש/ה מנהל/ת אפליקציות עסקיות וחדשנות לתפקיד מרכזי המחבר בין הפעילות העסקית של הרשת לבין מערכות המידע והפתרונות הטכנולוגיים התומכים בה.",
   "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9922302",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "מנהל/ת אפליקציות ומערכות מידע | Priority",
-  "company": "Talent acquisition",
-  "location": "עמק חפר",
-  "km": 15,
-  "hybrid": "na",
-  "desc": "בעלות מלאה על מערכת ה-Priority: תפעול, תחזוקה ופיתוח שוטף, אפיון, יישום והטמעה של תהליכים ומודולים חדשים.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38844743/c6ce5b03/",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9900370",
   "lastReal": "2026-11-13"
  },
  {
@@ -26,21 +15,10 @@
   "company": "קפסולה פתרונות",
   "location": "פרדס חנה-כרכור",
   "km": 12,
-  "hybrid": "na",
+  "hybrid": "no",
   "desc": "אחריות כוללת על מערכות המידע, התשתיות הטכנולוגיות, היישומים העסקיים והרציפות התפעולית בארגון.",
   "source": "דרושים",
   "url": "https://www.drushim.co.il/job/38997446/a2d58a1f/",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » הנדסה » מנהל /ת יישומים, data ו-AI",
-  "company": "IT Solutions LTD",
-  "location": "כפר סבא",
-  "km": 52,
-  "hybrid": "no",
-  "desc": "ניהול והובלת מערכות הליבה העסקיות, לרבות Billing, BI, CRM, ERP, MDM ופורטלים דיגיטליים.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893941",
   "lastReal": "2026-11-13"
  },
  {
@@ -49,20 +27,108 @@
   "location": "נתניה",
   "km": 38,
   "hybrid": "no",
-  "desc": "Lead our IT infrastructure, business systems, and security operations at our Center district site.",
+  "desc": "We are seeking a hands-on IT Information Systems Manager to lead our IT infrastructure, business systems, and security operations at our Center district site.",
   "source": "AllJobs",
   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877902",
   "lastReal": "2026-11-13"
  },
  {
+  "title": "דרושים » מערכות מידע » C.I.O מנהל מערכות מידע -תעשייה מסורתית גלובלית",
+  "company": "ישומים לבכירים",
+  "location": "כרמיאל",
+  "km": 50,
+  "hybrid": "no",
+  "desc": "מנהל/ת מערכות מידע (CIO), חברות תעשייתיות גלובליות עם יחידות שיווק ברחבי העולם.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8889223",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » מערכות מידע » סמנכ\"ל מערכות מידע לחברה יצרנית באזור נהריה",
+  "company": "Jobs.ai",
+  "location": "כרמיאל",
+  "km": 50,
+  "hybrid": "no",
+  "desc": "ניהול מערכות מידע (CIO) הינו בעל תפקיד בכיר בחברה חברות תעשייתיות גלובליות עם יחידות שיווק ברחבי העולם.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893724",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "מנהל/ת מערכות מידע",
+  "company": "חברת מזון תעשייתית",
+  "location": "נתניה",
+  "km": 38,
+  "hybrid": "na",
+  "desc": "ניסיון מעל 5 שנים בניהול מערכות מידע בחברות תעשייה מורכבות. רקע בענף המזון: יתרון.",
+  "source": "עץ השדה",
+  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » מערכות מידע » Head of ERP & Information Systems",
+  "company": "One DatAI",
+  "location": "רחובות",
+  "km": 85,
+  "hybrid": "yes",
+  "desc": "לחברת פארמה יצרנית גלובלית, בעלת פעילות בישראל, בארה\"ב ובאירופה, דרוש/ה Head of ERP & Information Systems לתפקיד ניהולי בכיר ומשמעותי.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8868775",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » מערכות מידע » מנהל /ת מערכות מידע ( מנמ\"ר ) - ארגון חברתי - תל אביב",
+  "company": "SVT JOBS",
+  "location": "תל אביב",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "לארגון חברתי דרוש/ה מנהל /ת מערכות מידע להובלת התחום בארגון. התפקיד מתאים גם לסגן/ית מנמ\"ר או למנהל/ת צוות במערכות מידע המעוניינים להתקדם לתפקיד מנמ\"ר ראשון.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8897939",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » הנדסה » מנהל /ת יישומים, data ו-AI",
+  "company": "IT Solutions LTD",
+  "location": "כפר סבא",
+  "km": 52,
+  "hybrid": "no",
+  "desc": "לחברה מובילה בתחום האנרגיה דרוש/ה מנהל /ת יישומים, data ו-AI לתפקיד מרכזי המשלב ניהול מערכות מידע ארגוניות, הובלת פרויקטים טכנולוגיים חוצי ארגון וקידום חדשנות.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893941",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » מערכות מידע » מנהל IT - חברה גלובאלית יצרנית",
+  "company": "אינטגרל פתרונות משאבי אנוש בע\"מ",
+  "location": "ראש העין",
+  "km": 65,
+  "hybrid": "no",
+  "desc": "לחברה גלובאלית בתחום המכשור הרפואי גלובלית דרוש/ה מנהל /ת מערכות מידע להובלת המערכות העסקיות בארגון.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8867702",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » מחשבים ורשתות » דרוש /ה מנהל IT - ניהול 2 עובדים",
+  "company": "חברה חסויה",
+  "location": "רעננה",
+  "km": 55,
+  "hybrid": "no",
+  "desc": "אנו מחפשים מנהל טכנולוגי (IT- CIO) בעל/ת ניסיון של 3 שנות ניסיון בעל/ת ניסיון ניהולי - יכולת לנהל צוות טכנולוגי (2 עובדים) וקבלני משנה.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8887748",
+  "lastReal": "2026-11-13"
+ },
+ {
   "title": "מנהל/ת מערכות מידע ומוביל/ה טכנולוגי/ת",
   "company": "חסוי",
-  "location": "פתח תקווה/בני ברק/רמת גן",
+  "location": "בני ברק/פתח תקווה/רמת גן",
   "km": 65,
   "hybrid": "na",
-  "desc": "לתפקיד משמעותי בארגון ציבורי גדול באזור המרכז, אנו מחפשים מנהיג/ה טכנולוגי/ת עם ראייה עסקית רחבה.",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9917267",
+  "desc": "לתפקיד משמעותי בארגון ציבורי גדול באזור המרכז, אנו מחפשים מנהיג/ה טכנולוגי/ת עם ראייה עסקית רחבה, יכולות ניהול והובלת שינוי.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38834388/7c913850/",
   "lastReal": "2026-11-13"
  },
  {
@@ -70,21 +136,32 @@
   "company": "מועצה אזורית משגב",
   "location": "משגב",
   "km": 40,
-  "hybrid": "na",
-  "desc": "ניהול/ת יחידת טכנולוגיות דיגיטליות ומידע ראשי (מנמ\"ר) בכפיפות למנכ\"לית המועצה.",
+  "hybrid": "no",
+  "desc": "למועצה אזורית משגב דרוש/ה: מנהל/ת יחידת טכנולוגיות דיגיטליות ומידע ראשי (מנמ\"ר).",
   "source": "דרושים",
   "url": "https://www.drushim.co.il/job/39000505/95ad7b40/",
   "lastReal": "2026-11-13"
  },
  {
-  "title": "IT Manager",
-  "company": "Ness Technologies | נס טכנולוגיות",
-  "location": "Herzliya",
-  "km": 58,
-  "hybrid": "na",
-  "desc": "IT Manager role at Ness Technologies.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/it-manager-at-ness-technologies-%D7%A0%D7%A1-%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%95%D7%AA-4484943627",
+  "title": "מנהל/ת אפליקציות ומערכות מידע | Priority",
+  "company": "S Talent acquisition",
+  "location": "עמק חפר",
+  "km": 28,
+  "hybrid": "no",
+  "desc": "לחברת בנייה ותיקה ומובילה באזור השרון, דרוש/ה מנהל/ת אפליקציות ומערכות מידע לתפקיד חדש, עצמאי ובעל השפעה ישירה על פעילות הארגון.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38844743/c6ce5b03/",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "סגן/ית מנהל מערכות מידע",
+  "company": "השועלה",
+  "location": "נתניה",
+  "km": 38,
+  "hybrid": "no",
+  "desc": "לחברה מובילה בתחום הנדל\"ן והפיתוח העסקי דרוש/ה סגן/ית מנהל מערכות מידע הזדמנות להשתלב בתפקיד ניהולי משמעותי.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/39049221/cad29d47/",
   "lastReal": "2026-11-13"
  },
  {
@@ -93,7 +170,7 @@
   "location": "Center District, Israel",
   "km": 65,
   "hybrid": "na",
-  "desc": "Information Technology Manager role at Magenta Medical Ltd.",
+  "desc": "Information Technology Manager at Magenta Medical Ltd.",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/information-technology-manager-at-magenta-medical-ltd-4482669768",
   "lastReal": "2026-11-13"
@@ -104,9 +181,20 @@
   "location": "Tel Aviv District, Israel",
   "km": 65,
   "hybrid": "na",
-  "desc": "IT Manager role at CloudZone.",
+  "desc": "IT Manager at CloudZone",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/it-manager-at-cloudzone-4489928790",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "IT Manager",
+  "company": "Ness Technologies | נס טכנולוגיות",
+  "location": "Herzliya",
+  "km": 58,
+  "hybrid": "na",
+  "desc": "IT Manager at Ness Technologies | נס טכנולוגיות",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/it-manager-at-ness-technologies-%D7%A0%D7%A1-%D7%98%D7%9B%D7%A0%D7%95%D7%9C%D7%95%D7%92%D7%99%D7%95%D7%AA-4484943627",
   "lastReal": "2026-11-13"
  },
  {
@@ -115,64 +203,9 @@
   "location": "Tel Aviv District, Israel",
   "km": 65,
   "hybrid": "na",
-  "desc": "IT manager role at a confidential company.",
+  "desc": "IT manager at Confidential",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/it-manager-at-confidential-4479907967",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "IT Manager - 243659",
-  "company": "Experis Israel",
-  "location": "Netanya",
-  "km": 38,
-  "hybrid": "na",
-  "desc": "IT Manager role at Experis Israel.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/it-manager-243659-at-experis-israel-4485597329",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Information Systems Manager",
-  "company": "Rapyd",
-  "location": "Tel Aviv-Yafo",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "Information Systems Manager role at Rapyd.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/information-systems-manager-at-rapyd-4486981117",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Business Applications Manager",
-  "company": "Taboola",
-  "location": "Tel Aviv-Yafo",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "Business Applications Manager role at Taboola.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/business-applications-manager-at-taboola-4464302469",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Business Applications Manager",
-  "company": "Personetics",
-  "location": "Givatayim",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "Business Applications Manager role at Personetics.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/business-applications-manager-at-personetics-4483391246",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Head of Technology",
-  "company": "Amdocs",
-  "location": "Raanana",
-  "km": 58,
-  "hybrid": "na",
-  "desc": "Head of Technology role at Amdocs.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/head-of-technology-at-amdocs-4482902413",
   "lastReal": "2026-11-13"
  },
  {
@@ -181,141 +214,163 @@
   "location": "Center District, Israel",
   "km": 65,
   "hybrid": "na",
-  "desc": "Director of Information Technology role at iLeadX - Executive search.",
+  "desc": "Director of Information Technology at iLeadX - Executive search",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/director-of-information-technology-at-ileadx-executive-search-4481081787",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Director of Global IT",
-  "company": "monday.com",
-  "location": "Tel Aviv-Yafo",
-  "km": 65,
-  "hybrid": "no",
-  "desc": "Director of Global IT role at monday.com.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/director-of-global-it-at-monday-com-4470926827",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מערכות מידע » מנהל /ת מערכות מידע ( מנמ\"ר ) - ארגון חברתי - תל אביב",
-  "company": "SVT JOBS",
-  "location": "תל אביב",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "לארגון חברתי דרוש/ה מנהל /ת מערכות מידע להובלת התחום בארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8897939",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מערכות מידע » מנהל /ת מערכות מידע (מנמר) -לארגון חברתי בתל אביב 1139013",
-  "company": "ריבי גיוס והשמה",
-  "location": "תל אביב",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "להובלת התחום בארגון. התפקיד משלב ניהול צוות וספקים, הובלת פרויקטים והטמעות, אחריות על מערכות המידע והסביבה הטכנולוגית.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8896784",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מערכות מידע » מנהל /ת מחלקת מערכות מידע ויישומים עסקיים",
-  "company": "CyWayz Recruitment & Outsourcing",
-  "location": "תל אביב/פתח תקווה",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "חברה מצליחה, ותיקה ומובילה בתחום הרכב מחפשת מנהל /ת מחלקת מערכות מידע לתפקיד מרכזי המשלב הובלה עסקית וטכנולוגית.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8889044",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Business Applications & Information Systems Department Manager",
-  "company": "CyWayz Recruitment",
-  "location": "Rishon LeZion",
-  "km": 80,
-  "hybrid": "yes",
-  "desc": "Business Applications & Information Systems Department Manager role at CyWayz Recruitment.",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/business-applications-information-systems-department-manager-at-cywayz-recruitment-4483043600",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מערכות מידע » מנהל IT - חברה גלובאלית יצרנית",
-  "company": "אינטגרל פתרונות משאבי אנוש בע\"מ",
-  "location": "ראש העין",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "לחברה גלובאלית בתחום המכשור הרפואי גלובלית דרוש/ה מנהל /ת מערכות מידע להובלת המערכות העסקיות בארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8867702",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "מנהל /ת מערך salesforce לחברה ציבורית מובילה במשק",
-  "company": "יערה פיינר-אבחון והשמה",
-  "location": "חולון",
-  "km": 75,
-  "hybrid": "yes",
-  "desc": "תפקיד ניהולי טכנולוגי בכיר הכולל אחריות כוללת על מערכות salesforce והובלת מחלקה המונה כ30 עובדים.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882538",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "סמנכ\"ל /ית טכנולוגיות לקבוצה מסחרית דיגיטלית - תנאים מצוינים!",
-  "company": "Human league",
-  "location": "תל אביב",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "לקבוצה מובילה דרוש/ה מנהל /ת טכנולוגי/ת בעל/ת הבנה עסקית ויכולת ביצוע, להובלת הטכנולוגיה.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8874601",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מחשבים ורשתות » דרוש /ה מנהל IT - ניהול 2 עובדים",
-  "company": "חברה חסויה",
-  "location": "רעננה",
-  "km": 55,
-  "hybrid": "no",
-  "desc": "אנו מחפשים מנהל טכנולוגי (IT- CIO ) בעל/ת ניסיון של 3 שנות ניסיון בעל/ת ניסיון ניהולי.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8887748",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מחשבים ורשתות » IT Manager - One man show",
-  "company": "פיקארו- גיוס והשמה להייטק",
-  "location": "תל אביב",
-  "km": 65,
-  "hybrid": "yes",
-  "desc": "ניהול מערך הIT מקצה לקצה, בכפיפות לCTO. תפקיד Hands-on עם אחריות רחבה ואוטונומיה גבוהה.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882290",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » בכירים » Group CIO לקבוצת חברות ציבורית מובילה במשק",
-  "company": "יערה פיינר-אבחון והשמה",
-  "location": "תל אביב",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "תפקיד מטה אסטרטגי הכולל אחריות על גיבוש והובלת אסטרטגיית מערכות המידע והחדשנות של הקבוצה.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8803299",
   "lastReal": "2026-11-13"
  },
  {
   "title": "Head of IT, Infrastructure & Security",
   "company": "Edikted",
   "location": "Ramat Gan",
-  "km": 65,
+  "km": 0,
   "hybrid": "na",
-  "desc": "Head of IT, Infrastructure & Security role at Edikted.",
+  "desc": "Head of IT, Infrastructure & Security at Edikted",
   "source": "LinkedIn",
   "url": "https://il.linkedin.com/jobs/view/head-of-it-infrastructure-security-at-edikted-4487232418",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Director of Global IT",
+  "company": "monday.com",
+  "location": "Tel Aviv-Yafo",
+  "km": 0,
+  "hybrid": "no",
+  "desc": "Director of Global IT at monday.com",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/director-of-global-it-at-monday-com-4470926827",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "IT Manager - 243659",
+  "company": "Experis Israel",
+  "location": "Netanya",
+  "km": 38,
+  "hybrid": "na",
+  "desc": "IT Manager - 243659 at Experis Israel",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/it-manager-243659-at-experis-israel-4485597329",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Business Applications Manager",
+  "company": "Taboola",
+  "location": "Tel Aviv-Yafo",
+  "km": 65,
+  "hybrid": "yes",
+  "desc": "Business Applications Manager at Taboola",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/business-applications-manager-at-taboola-4464302469",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Business Applications & Information Systems Department Manager",
+  "company": "CyWayz Recruitment",
+  "location": "ראשון לציון",
+  "km": 80,
+  "hybrid": "yes",
+  "desc": "Business Applications & Information Systems Department Manager at CyWayz Recruitment",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/business-applications-information-systems-department-manager-at-cywayz-recruitment-4483043600",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Business Applications Manager",
+  "company": "Personetics",
+  "location": "Givatayim",
+  "km": 0,
+  "hybrid": "na",
+  "desc": "Business Applications Manager at Personetics",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/business-applications-manager-at-personetics-4483391246",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Business Systems & Product Manager",
+  "company": "Extreme",
+  "location": "Tel Aviv District, Israel",
+  "km": 0,
+  "hybrid": "na",
+  "desc": "Business Systems & Product Manager at Extreme",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/business-systems-product-manager-at-extreme-4484437708",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Head of Technology",
+  "company": "Amdocs",
+  "location": "Raanana",
+  "km": 0,
+  "hybrid": "na",
+  "desc": "Head of Technology at Amdocs",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/head-of-technology-at-amdocs-4482902413",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "Information Systems Manager",
+  "company": "Rapyd",
+  "location": "Tel Aviv-Yafo",
+  "km": 0,
+  "hybrid": "na",
+  "desc": "Information Systems Manager at Rapyd",
+  "source": "LinkedIn",
+  "url": "https://il.linkedin.com/jobs/view/information-systems-manager-at-rapyd-4486981117",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » הנדסה » מנהל /ת מערכות מידע - אזה\"ת צפוני קיסריה",
+  "company": "חברה חסויה",
+  "location": "קיסריה",
+  "km": 12,
+  "hybrid": "no",
+  "desc": "לחברה תעשייתית הממוקמת באזהת צפוני קיסריה דרוש/ה מנהל /ת מערכות מידע לתפקיד המשלב ניהול צוות, אחריות על מערכות המידע בארגון והובלת שיפור תהליכים עסקיים ותפעוליים.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8870497",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » בכירים » סמנכ\"ל /ית מערכות מידע וטכנולוגיה ( CIO )",
+  "company": "חברה חסויה",
+  "location": "נתניה",
+  "km": 38,
+  "hybrid": "na",
+  "desc": "הזדמנות להוביל את האסטרטגיה הטכנולוגית והדיגיטלית של אחת החברות המובילות במשק, ולהיות שותף/ה מרכזי/ת בעיצוב העתיד העסקי והטכנולוגי של הארגון.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877946",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "דרושים » מערכות מידע » סגן מנהל מערכות מידע - קיסריה",
+  "company": "חברה חסויה",
+  "location": "קיסריה",
+  "km": 12,
+  "hybrid": "na",
+  "desc": "תפקיד מרכזי בניהול מערך תפעול וטכנולוגיה, בשותפות עם הנהלת האגף. התפקיד כולל הובלת תהליכים טכנולוגיים אוטומטיים ומערכתיים, ניהול וקידום עסקים מתקדמים עם מערכות C -Agent ו- C -Bot, הטמעת ארכיטקטורה וניהול שינויים, וניהול צוות עובדים.",
+  "source": "AllJobs",
+  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895404",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "אנחנו מגייסים מנהל/ת מערכת מידע Priority",
+  "company": "קפסולה פתרונות",
+  "location": "פרדס חנה-כרכור",
+  "km": 12,
+  "hybrid": "na",
+  "desc": "אחריות כוללת על מערכות המידע, התשתיות הטכנולוגיות, היישומים העסקיים והרציפות התפעולית בארגון.",
+  "source": "דרושים",
+  "url": "https://www.drushim.co.il/job/38934860/44cf26e3/",
+  "lastReal": "2026-11-13"
+ },
+ {
+  "title": "מנהל/ת מערכות מידע לחברה מובילה בתחום חומרי בניה, בקיסריה.",
+  "company": "קפסולה פתרונות משאבי אנוש בע\"מ",
+  "location": "פרדס חנה כרכור",
+  "km": 12,
+  "hybrid": "na",
+  "desc": "אחריות כוללת על מערכות המידע, התשתיות הטכנולוגיות, היישומים העסקיים והרציפות התפעולית בארגון.",
+  "source": "JobMaster",
+  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9922302",
   "lastReal": "2026-11-13"
  },
  {
@@ -341,39 +396,6 @@
   "lastReal": "2026-11-13"
  },
  {
-  "title": "דרושים » רכש ולוגיסטיקה » מנהל /ת מערכות מידע - אזה\"ת צפוני קיסריה",
-  "company": "חברה חסויה",
-  "location": "קיסריה",
-  "km": 12,
-  "hybrid": "no",
-  "desc": "לחברה תעשייתית הממוקמת באזהת צפוני קיסריה דרוש/ה מנהל /ת מערכות מידע לתפקיד המשלב ניהול צוות, אחריות על מערכות המידע בארגון והובלת שיפור תהליכים עסקיים ותפעוליים.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8870497",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מערכות מידע » סגן מנהל מערכות מידע - קיסריה",
-  "company": "חברה חסויה",
-  "location": "קיסריה",
-  "km": 12,
-  "hybrid": "no",
-  "desc": "תפקיד מרכזי בניהול מערך תפעול וטכנולוגיה, בשותפות עם הנהלת האגף.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895404",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "אנחנו מגייסים מנהל/ת מערכת מידע Priority",
-  "company": "קפסולה פתרונות",
-  "location": "פרדס חנה-כרכור",
-  "km": 12,
-  "hybrid": "no",
-  "desc": "אחריות כוללת על מערכות המידע, התשתיות הטכנולוגיות, היישומים העסקיים והרציפות התפעולית בארגון.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/38934860/44cf26e3/",
-  "lastReal": "2026-11-13"
- },
- {
   "title": "מנהל/ת תחום טכנולוגיה למחלבת תל יוסף",
   "company": "Job-time",
   "location": "חדרה",
@@ -396,50 +418,6 @@
   "lastReal": "2026-11-13"
  },
  {
-  "title": "דרושים » מערכות מידע » סמנכ\"ל.ית מערכות מידע לחברה יצרנית באזור נהריה",
-  "company": "מיטב משאבי אנוש ותוכנה - MeitavJob",
-  "location": "כרמיאל",
-  "km": 50,
-  "hybrid": "no",
-  "desc": "התפקיד מכיל אחריות מלאה על אסטרטגיית הטכנולוגיה, תשתיות ה-IT, מערכות ה- ERP, הסייבר, הדיגיטציה ועוד, תוך ניהול צוות מקצועי בארץ ותיאום IT עם חברות הבת הבינלאומיות.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8891281",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » מחשבים ורשתות » מנהל /ת אפליקציות עסקיות וחדשנות",
-  "company": "מכון תימה- המכון לאבחון יעוץ והשמה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "no",
-  "desc": "דרוש/ה מנהל /ת אפליקציות עסקיות וחדשנות לתפקיד מרכזי המחבר בין הפעילות העסקית של הרשת לבין מערכות המידע והפתרונות הטכנולוגיים התומכים בה.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8861948",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "דרושים » תוכנה » סמנכ\"ל /ית מערכות מידע וטכנולוגיה ( CIO )",
-  "company": "חברה חסויה",
-  "location": "נתניה",
-  "km": 38,
-  "hybrid": "no",
-  "desc": "הזדמנות להוביל את האסטרטגיה הטכנולוגית והדיגיטלית של אחת החברות המובילות במשק, ולהיות שותף/ה מרכזי/ת בעיצוב העתיד העסקי והטכנולוגי של הארגון.",
-  "source": "AllJobs",
-  "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877946",
-  "lastReal": "2026-11-13"
- },
- {
-  "title": "Business Systems & Product Manager",
-  "company": "Extreme",
-  "location": "Tel Aviv District, Israel",
-  "km": 65,
-  "hybrid": "na",
-  "desc": "Business Systems & Product Manager",
-  "source": "LinkedIn",
-  "url": "https://il.linkedin.com/jobs/view/business-systems-product-manager-at-extreme-4484437708",
-  "lastReal": "2026-11-12"
- },
- {
   "title": "סגן/ית מנהל/ת תחום מערכות מידע – תל אביב",
   "company": "חסוי",
   "location": "תל אביב יפו",
@@ -451,17 +429,6 @@
   "lastReal": "2026-11-12"
  },
  {
-  "title": "מנהל/ת מערכות מידע",
-  "company": "חברת מזון תעשייתית",
-  "location": "נתניה",
-  "km": 38,
-  "hybrid": "na",
-  "desc": "תואר ראשון. ניסיון מעל 5 שנים בניהול מערכות מידע בחברות תעשייה מורכבות. רקע בענף המזון: יתרון. היכרות עם מערכות BI. פריורטי- חובה. ניסיון בניהול פרויקטים חוצי ארגון. יכולת עמידה בזמנים.",
-  "source": "עץ השדה",
-  "url": "https://www.ezsade.co.il/copy-of-%D7%A0%D7%99%D7%94%D7%95%D7%9C-%D7%9E%D7%95%D7%AA%D7%92-%D7%95%D7%90%D7%99%D7%99%D7%A7%D7%95%D7%9E%D7%A8%D7%A1",
-  "lastReal": "2026-11-12"
- },
- {
   "title": "ERP & Information Systems Lead (Priority)",
   "company": "ריסקו",
   "location": "ראשון לציון",
@@ -470,17 +437,6 @@
   "desc": "We're looking for an ERP & Information Systems Lead to take ownership of our core business applications, with Priority ERP at the center. This is a hands-on role combining strong business process understanding with system implementation and ownership.",
   "source": "דרושים",
   "url": "https://www.drushim.co.il/job/38834863/f761ce88/",
-  "lastReal": "2026-11-12"
- },
- {
-  "title": "סגן/ית מנהל מערכות מידע",
-  "company": "השועלה",
-  "location": "נתניה",
-  "km": 38,
-  "hybrid": "na",
-  "desc": "לחברה מובילה בתחום הנדל\"ן והפיתוח העסקי דרוש/ה סגן/ית מנהל מערכות מידע הזדמנות להשתלב בתפקיד ניהולי משמעותי, הכולל הובלת מערכות מידע ארגוניות, פרויקטים טכנולוגיים ותהליכי טרנספורמציה דיגיטלית.",
-  "source": "דרושים",
-  "url": "https://www.drushim.co.il/job/39049221/cad29d47/",
   "lastReal": "2026-11-12"
  },
  {
@@ -537,17 +493,6 @@
   "source": "JobMaster",
   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9913543",
   "lastReal": "2026-11-12"
- },
- {
-  "title": "מנהל/ת אפליקציות עסקיות וחדשנות",
-  "company": "מכון תימה",
-  "location": "חיפה",
-  "km": 25,
-  "hybrid": "no",
-  "desc": "דרוש/ה מנהל/ת אפליקציות עסקיות וחדשנות לתפקיד מרכזי המחבר בין הפעילות העסקית של הרשת לבין מערכות המידע והפתרונות הטכנולוגיים התומכים בה.",
-  "source": "JobMaster",
-  "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9900370",
-  "lastReal": "2026-11-11"
  },
  {
   "title": "IT Manager, AI Ops",
