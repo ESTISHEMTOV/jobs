@@ -109,6 +109,7 @@ const CORPUS_MAX = 380000;    // max characters of board text sent to Gemini in 
 const MAX_PER_BOARD = 30000;  // max characters from any single search page
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
 const srcTitle = new Map();   // LinkedIn listing URL → the real job title as written on the search card
+const linkInfo = new Map();   // board listing URL → { title (anchor text), site, block }
 const pages = [];             // { name, url, txt } per loaded search
 let lastLi = 0;
 for (const [name, url] of BOARDS) {
@@ -126,6 +127,7 @@ for (const [name, url] of BOARDS) {
       const extraJob = abs && MORE_HOSTS.size && MORE_HOSTS.has(new URL(url).hostname.replace(/^www\./, '')) && sameHost(abs, url) && new URL(abs).pathname !== new URL(url).pathname && looksLikeJob(abs) && t.length >= 4;
       if (extraJob || abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/|linkedin\.com\/jobs\/view\/)/i.test(abs)) {
         realUrls.add(abs);
+        if (!linkInfo.has(abs) && t.length >= 4 && t.length <= 140 && !/^(לפרטים|לפרטים נוספים|למשרה|למודעה|הגש(ת|ו)? (מועמדות|קו"ח)|שלח(ו)? קו"ח|קרא(ו)? עוד|more|apply|details|view job)$/i.test(t)) linkInfo.set(abs, { title: t, site: name });
         if (/linkedin\.com\/jobs\/view\//i.test(abs) && !srcTitle.has(abs)) {
           const sr = inner.match(/<span[^>]*sr-only[^>]*>([\s\S]*?)<\/span>/i) || inner.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
           const ct = sr ? decodeEntities(sr[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim() : t;
@@ -156,6 +158,7 @@ for (const p of pages) {
     const prevEnd = i > 0 ? marks[i - 1].index + marks[i - 1][0].length : 0;
     const start = Math.max(prevEnd, marks[i].index - 160);                  // the title text right before the link
     const nextStart = j + 1 < marks.length ? Math.max(marks[j].index + marks[j][0].length, marks[j + 1].index - 160) : p.txt.length;
+    if (linkInfo.has(url) && !linkInfo.get(url).block) linkInfo.get(url).block = p.txt.slice(start, Math.min(nextStart, start + 900));
     if (sentUrls.has(url)) continue;                                        // already sent from another search
     sentUrls.add(url);
     blocks.push(p.txt.slice(start, Math.min(nextStart, start + 600)).trim());   // title, company, location and the start of the description
@@ -371,7 +374,8 @@ const isSitePage = u => MORE_SITES.some(([, v]) => (v || '').trim() && String(u 
 const directUrlKey = j => { const u = String(j.url || '').split('#')[0];
   return /^https?:\/\//.test(u) && !/google\.com\/search|linkedin\.com\/jobs\/search|jobs-guest/i.test(u) && !isSitePage(u) && !/[?&](q|freetxt|keywords|search_category)=/i.test(u) ? 'u:' + u.replace(/\/$/, '') : ''; };
 const longTitleKey = j => { const ct = coreTitle(j.title); return ct.split(' ').length >= 5 ? 'T:' + ct + '|' + String(j.location || '').toLowerCase().split(/[\/,\s]+/)[0] : ''; };
-const keysOf = j => { const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); const du = directUrlKey(j); if (du) k.push(du); const lt = longTitleKey(j); if (lt) k.push(lt); return k; };
+const keysOf = j => { if (j.idOnly) return [idKey(j), directUrlKey(j)].filter(Boolean);   // safety-net job: identified by its listing only
+  const k = [titleKey(j), looseKey(j)]; const id = idKey(j); if (id) k.push(id); const du = directUrlKey(j); if (du) k.push(du); const lt = longTitleKey(j); if (lt) k.push(lt); return k; };
 // CARRY-OVER: Gemini's output varies between runs, so a still-listed job can vanish for one run. Keep jobs that were REALLY found
 // in the last 2 days but are missing now. They go through ALL the checks below again (title rules, distance, LinkedIn page, expiry).
 const CARRY_DAYS = 2;
@@ -404,7 +408,7 @@ jobs.forEach(j => { for (const m of MANUAL_LOCATIONS) {
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
 const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
-const TITLE_BLOCK = /team ?lead|ראש[\/.]?ת?\s*צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
+const TITLE_BLOCK = /team ?lead|ראש[\/.]?ת?\s*צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer|מעבד(ה|ת)|\blab\b|laboratory|ייצור|production|manufacturing/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
 const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b|מכירות|\bsales\b|(^|[\s\/-])סחר(?=[\s,\/-]|$)/i;   // support / sales   // support roles — dropped unless the title is ALSO broad IS/IT management
 const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bMIS\b|\bcloud\b|ענן|\bBI\b|business intelligence/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
 const droppedTitles = [];
@@ -506,6 +510,25 @@ const statedLocation = lines => {
   return null;
 };
 const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
+// SAFETY NET (independent of Gemini): a board listing whose OWN title is clearly one of the target roles must not vanish.
+// If Gemini didn't return it, add it with the site's exact title; location = first known city in its listing block (else "לא צוין").
+const STRONG_TITLE = /מנהל\/?\.?ת? ?מערכות מידע|מנמ"?ר|\bCIO\b|chief information officer|information systems manager|\bIT manager\b|head of (it|information)|director of (it|information)|מנהל\/?\.?ת? ?(it|IT)\b|מנהל\/?\.?ת? ?(תחום )?(אפליקציות|יישומים)|business applications manager/i;
+const safetyAdds = [];
+{ const have = new Set(jobs.flatMap(keysOf));
+  for (const [url, info] of linkInfo) {
+    if (!isDirect(url) || !STRONG_TITLE.test(info.title)) continue;
+    const cand = { title: info.title, company: '', location: '', km: 65, hybrid: 'na', desc: '', source: info.site, url, lastReal: isoToday, idOnly: true };
+    if (keysOf(cand).some(k => have.has(k))) continue;                                   // Gemini already returned it (same listing)
+    const blk = String(info.block || '').replace(info.title, ' ').replace(/\[URL:[^\]]*\]/g, ' ').replace(/\s+/g, ' ').trim();
+    let best = null; for (const [names, km] of CITY_KM) for (const n of names) { const i = blk.indexOf(n); if (i >= 0 && (!best || i < best.i)) best = { n, km, i }; }
+    if (best) { cand.location = best.n; cand.km = best.km; } else cand.location = 'לא צוין';
+    { const co = (best ? blk.slice(0, best.i) : blk.slice(0, 40)).trim(); if (co.length >= 2 && co.length <= 40) cand.company = co; }   // the text between the title and the city = company
+    const ns = nearKm(cand.location); if (ns !== null) cand.km = Math.min(cand.km, ns);
+    if (HYB_YES.test(blk)) cand.hybrid = 'yes'; else if (HYB_NO.test(blk)) cand.hybrid = 'no';
+    cand.desc = (best ? blk.slice(best.i + best.n.length) : blk).trim().slice(0, 110);
+    jobs.push(cand); keysOf(cand).forEach(k => have.add(k)); safetyAdds.push(`${info.title} (${info.site}, ${cand.location})`);
+  } }
+if (safetyAdds.length) console.log(`::notice::Added by the safety net — listings with a target-role title that Gemini missed (${safetyAdds.length}): ${safetyAdds.join(' · ').slice(0, 900)}`);
 const checked = [];
 for (const j of jobs) {
   if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
