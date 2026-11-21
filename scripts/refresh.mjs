@@ -106,7 +106,7 @@ const looksLikeJob = (abs) => { try { const x = new URL(abs); return /\d{3,}|job
 
 const loaded = [], blocked = [], empty = [], trimmed = [];
 const CORPUS_MAX = 380000;    // max characters of board text sent to Gemini in one run (free-tier input limits)
-const MAX_PER_BOARD = 20000;  // max characters from any single search page
+const MAX_PER_BOARD = 30000;  // max characters from any single search page
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
 const srcTitle = new Map();   // LinkedIn listing URL → the real job title as written on the search card
 const pages = [];             // { name, url, txt } per loaded search
@@ -142,18 +142,39 @@ for (const [name, url] of BOARDS) {
     loaded.push(name);
   } catch { blocked.push(name); }
 }
+// LISTING BLOCKS: board pages are mostly noise (menus, filters, ads) and get cut before most listings. For pages with job links,
+// keep only the block of each listing (its title + details up to the next listing), each listing ONCE across all searches.
+const sentUrls = new Set();
+for (const p of pages) {
+  const marks = [...p.txt.matchAll(/\[URL:([^\]]+)\]/g)];
+  if (marks.length < 3) { p.ctxt = p.txt; continue; }   // few links → keep the page text as is
+  const blocks = [];
+  for (let i = 0; i < marks.length; i++) {
+    const url = marks[i][1];
+    if (i > 0 && marks[i - 1][1] === url) continue;                       // same listing linked twice in a row
+    let j = i; while (j + 1 < marks.length && marks[j + 1][1] === url) j++;
+    const prevEnd = i > 0 ? marks[i - 1].index + marks[i - 1][0].length : 0;
+    const start = Math.max(prevEnd, marks[i].index - 160);                  // the title text right before the link
+    const nextStart = j + 1 < marks.length ? Math.max(marks[j].index + marks[j][0].length, marks[j + 1].index - 160) : p.txt.length;
+    if (sentUrls.has(url)) continue;                                        // already sent from another search
+    sentUrls.add(url);
+    blocks.push(p.txt.slice(start, Math.min(nextStart, start + 600)).trim());   // title, company, location and the start of the description
+  }
+  p.ctxt = blocks.join('\n— ');
+}
 // Fit all text into Gemini's limit WITHOUT dropping any source: small pages stay whole, the remaining budget is split evenly among the big ones.
 let budget = CORPUS_MAX, left = pages.length, cap = MAX_PER_BOARD;
-for (const len of pages.map(p => p.txt.length).sort((x, y) => x - y)) {
+for (const len of pages.map(p => p.ctxt.length).sort((x, y) => x - y)) {
   const share = Math.min(MAX_PER_BOARD, Math.floor(budget / Math.max(left, 1)));
   if (len <= share) { budget -= len; left--; } else { cap = share; break; }
 }
 let corpus = '';
-for (const p of pages) corpus += `\n\n===== ${p.name} (${p.url}) =====\n` + p.txt.slice(0, cap);
+for (const p of pages) if (p.ctxt) corpus += `\n\n===== ${p.name} (${p.url}) =====\n` + p.ctxt.slice(0, cap);
 console.log(`  Text per search capped at ${cap} chars; total sent to Gemini: ${corpus.length} chars.`);
 { // per-site coverage on the run summary page: how much each site really returned
-  const agg = {}; for (const p of pages) { const a = agg[p.name] ||= { n: 0, chars: 0, links: 0, cut: 0 }; a.n++; a.chars += p.txt.length; a.links += p.links; if (p.txt.length > cap) a.cut++; }
-  console.log('::notice::Per-site coverage — ' + Object.entries(agg).map(([n, a]) => `${n}: ${a.n} searches, ${Math.round(a.chars / 1000)}k chars, ${a.links} job links${a.cut ? `, ${a.cut} cut at ${Math.round(cap / 1000)}k` : ''}`).join(' | ')); }
+  const agg = {}; for (const p of pages) { const a = agg[p.name] ||= { n: 0, chars: 0, sent: 0, links: 0, cut: 0, maxId: 0 }; a.n++; a.chars += p.txt.length; a.sent += Math.min(p.ctxt.length, cap); a.links += p.links; if (p.ctxt.length > cap) a.cut++;
+    for (const m of p.txt.matchAll(/\[URL:[^\]]*?(?:JobID=|key=|\/job\/|-)(\d{6,})/gi)) a.maxId = Math.max(a.maxId, +m[1]); }
+  console.log('::notice::Per-site coverage — ' + Object.entries(agg).map(([n, a]) => `${n}: ${a.n} searches, ${Math.round(a.chars / 1000)}k chars → ${Math.round(a.sent / 1000)}k sent, ${a.links} job links${a.maxId ? `, newest #${a.maxId}` : ''}${a.cut ? `, ${a.cut} still cut at ${Math.round(cap / 1000)}k` : ''}`).join(' | ')); }
 
 // ===== יישובים עד 45 ק"מ מצרופה — המרחק כאן קובע (אומדן). משרה באחד מהם תמיד בקבוצה הראשונה =====
 const NEAR = [
