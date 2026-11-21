@@ -137,7 +137,7 @@ for (const [name, url] of BOARDS) {
     });
     const txt = decodeEntities(raw.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
     if (txt.length < 300) { empty.push(name); continue; }
-    pages.push({ name, url, txt });
+    pages.push({ name, url, txt, links: realUrls.size - linksBefore });
     console.log(`  ${name}: ${txt.length} chars, ${realUrls.size - linksBefore} direct links | ${safeDecodeURI(url).slice(0, 110)}`);
     loaded.push(name);
   } catch { blocked.push(name); }
@@ -151,6 +151,9 @@ for (const len of pages.map(p => p.txt.length).sort((x, y) => x - y)) {
 let corpus = '';
 for (const p of pages) corpus += `\n\n===== ${p.name} (${p.url}) =====\n` + p.txt.slice(0, cap);
 console.log(`  Text per search capped at ${cap} chars; total sent to Gemini: ${corpus.length} chars.`);
+{ // per-site coverage on the run summary page: how much each site really returned
+  const agg = {}; for (const p of pages) { const a = agg[p.name] ||= { n: 0, chars: 0, links: 0, cut: 0 }; a.n++; a.chars += p.txt.length; a.links += p.links; if (p.txt.length > cap) a.cut++; }
+  console.log('::notice::Per-site coverage — ' + Object.entries(agg).map(([n, a]) => `${n}: ${a.n} searches, ${Math.round(a.chars / 1000)}k chars, ${a.links} job links${a.cut ? `, ${a.cut} cut at ${Math.round(cap / 1000)}k` : ''}`).join(' | ')); }
 
 // ===== יישובים עד 45 ק"מ מצרופה — המרחק כאן קובע (אומדן). משרה באחד מהם תמיד בקבוצה הראשונה =====
 const NEAR = [
@@ -296,14 +299,14 @@ if (!pages.length) {   // nothing loaded → don't ask Gemini (it would invent j
   console.log(`::error::Page NOT updated (previous page kept). No board could be loaded (blocked: ${[...new Set(blocked)].join(', ')}).`);
   process.exit(1);
 }
-try { jobs = await callGemini(PROMPT, [MODELS[0]]); }   // main pass: strong model only — the fallback model misses whole sources, better to keep the previous page
+try { jobs = await callGemini(PROMPT, [MODELS[0]]); console.log(`::notice::Gemini main pass returned ${jobs.length} jobs.`); }   // main pass: strong model only — the fallback model misses whole sources, better to keep the previous page
  catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
 if (geminiError) { console.log(`::error::Page NOT updated (previous page kept). Gemini failed — ${geminiError}`); process.exit(1); }
 // Focused pass on GROUP 1: only the excerpts around near places, inclusive when in doubt. Its jobs are ADDED (duplicates are removed below).
 if (nearCorpus && !geminiError) {
   const NEAR_PROMPT = PROMPT.slice(0, PROMPT.lastIndexOf('BOARD TEXT:')) +
     `FOCUS FOR THIS PASS: the BOARD TEXT below contains ONLY excerpts around places within ${NEAR_KM} km of Tzrufa. List EVERY job in it that is LOCATED in such a place and fits the roles — completeness is critical here; when unsure whether a title qualifies, INCLUDE it. Ignore jobs whose location is elsewhere.\n\nBOARD TEXT:` + nearCorpus;
-  try { const extra = await callGemini(NEAR_PROMPT); console.log(`  Focused near pass: ${extra.length} jobs`); jobs = [...(jobs || []), ...extra]; }
+  try { const extra = await callGemini(NEAR_PROMPT); console.log(`::notice::Gemini focused near pass returned ${extra.length} jobs.`); jobs = [...(jobs || []), ...extra]; }
   catch (err) { console.log(`::warning::Focused near pass failed (main results still used): ${err.message.slice(0, 200)}`); }
 }
 const rawCount = (jobs || []).length;
@@ -381,7 +384,7 @@ jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
 const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
 const TITLE_BLOCK = /team ?lead|ראש[\/.]?ת?\s*צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
-const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b/i;   // support roles — dropped unless the title is ALSO broad IS/IT management
+const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b|מכירות|\bsales\b|(^|[\s\/-])סחר(?=[\s,\/-]|$)/i;   // support / sales   // support roles — dropped unless the title is ALSO broad IS/IT management
 const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bMIS\b|\bcloud\b|ענן|\bBI\b|business intelligence/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
 const droppedTitles = [];
 const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
@@ -555,7 +558,7 @@ const todayState = { date: D, keys: jobs.flatMap(keysOf) };
 // ---- render fixed template ----
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const hb = { yes: '<span class="yes">כן</span>', no: '<span class="no">לא</span>', na: '<span class="na">לא צוין</span>' };
-const sorted = [...jobs].sort((a, b) => a.km - b.km);
+const sorted = [...jobs].sort((a, b) => (a.ystd === b.ystd ? 0 : a.ystd ? 1 : -1) || a.km - b.km);   // in every section: jobs not seen before FIRST, then by distance
 const rowsHtml = list => list.map(j => `<tr class="${j.km <= NEAR_KM ? 'near' : ''}" data-src="${esc(j.source)}" data-hyb="${j.hybrid}" data-near="${j.km <= NEAR_KM}" data-new="${!j.ystd}">
   <td class="title"><a href="${esc(j.url)}" target="_blank" rel="noopener">${esc(j.title)}</a></td>
   <td class="desc">${esc(j.desc)}</td>
@@ -611,13 +614,13 @@ const html = `<meta charset="utf-8">
   ${srcButtons}
  </div>
  <div class="count" id="count"></div>
- <div class="secbar">📍 עד ${NEAR_KM} ק"מ מצרופה</div>
+ <div class="secbar">📍 עד ${NEAR_KM} ק"מ מצרופה · חדשות קודם, אחר כך לפי מרחק</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km <= NEAR_KM)) || '<tr><td colspan="7" style="color:#64748b;padding:16px">אין כרגע משרות עד ${NEAR_KM} ק"מ</td></tr>'}</tbody></table>
- <div class="secbar hyb">🏠 מעבר ל-${NEAR_KM} ק"מ — היברידי · לפי מרחק עולה</div>
+ <div class="secbar hyb">🏠 מעבר ל-${NEAR_KM} ק"מ — היברידי · חדשות קודם, אחר כך לפי מרחק</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km > NEAR_KM && j.hybrid === 'yes'))}</tbody></table>
- <div class="secbar far">📌 מעבר ל-${NEAR_KM} ק"מ — לא היברידי / לא צוין · לפי מרחק עולה</div>
+ <div class="secbar far">📌 מעבר ל-${NEAR_KM} ק"מ — לא היברידי / לא צוין · חדשות קודם, אחר כך לפי מרחק</div>
  <table><thead><tr><th>שם המשרה</th><th>תיאור התפקיד</th><th>מיקום</th><th>היברידי</th><th>אתר המקור</th><th>שם החברה</th><th>הופיע בעבר?</th></tr></thead>
   <tbody>${rowsHtml(sorted.filter(j => j.km > NEAR_KM && j.hybrid !== 'yes'))}</tbody></table>
 </div>
