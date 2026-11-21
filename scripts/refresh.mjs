@@ -44,6 +44,10 @@ const BOARDS = [
   ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=Head of IT'],
   ['JobMaster', 'https://www.jobmaster.co.il/jobs/?q=מנהל יישומים'],
   ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=Business Application Manager'],
+  ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל/ת מערכות מידע'],
+  ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהלת מערכות מידע'],
+  ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל מערכות מידע חיפה'],
+  ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל מערכות מידע צפון'],
   // CIO / Chief Information Officer / מנהל/ת טכנולוגיות
   ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=CIO'],
   ['AllJobs', 'https://www.alljobs.co.il/SearchResultsGuest.aspx?freetxt=מנהל טכנולוגיות'],
@@ -110,6 +114,7 @@ const MAX_PER_BOARD = 30000;  // max characters from any single search page
 const realUrls = new Set();   // genuine listing URLs extracted from the board pages (so Gemini doesn't invent links)
 const srcTitle = new Map();   // LinkedIn listing URL → the real job title as written on the search card
 const linkInfo = new Map();   // board listing URL → { title (anchor text), site, block }
+const allLinks = new Map();   // every listing URL → { site, texts: all anchor texts } (diagnostics)
 const pages = [];             // { name, url, txt } per loaded search
 let lastLi = 0;
 for (const [name, url] of BOARDS) {
@@ -127,6 +132,7 @@ for (const [name, url] of BOARDS) {
       const extraJob = abs && MORE_HOSTS.size && MORE_HOSTS.has(new URL(url).hostname.replace(/^www\./, '')) && sameHost(abs, url) && new URL(abs).pathname !== new URL(url).pathname && looksLikeJob(abs) && t.length >= 4;
       if (extraJob || abs && /(checknum\.asp\?key=|drushim\.co\.il\/job\/\d+\/|alljobs\.co\.il\/Search\/UploadSingle|app\.civi\.co\.il\/|linkedin\.com\/jobs\/view\/)/i.test(abs)) {
         realUrls.add(abs);
+        { const e = allLinks.get(abs) || { site: name, texts: [] }; if (t && !e.texts.includes(t)) e.texts.push(t.slice(0, 120)); allLinks.set(abs, e); }
         if (!linkInfo.has(abs) && t.length >= 4 && t.length <= 140 && !/^(לפרטים|לפרטים נוספים|למשרה|למודעה|הגש(ת|ו)? (מועמדות|קו"ח)|שלח(ו)? קו"ח|קרא(ו)? עוד|more|apply|details|view job)$/i.test(t)) linkInfo.set(abs, { title: t, site: name });
         if (/linkedin\.com\/jobs\/view\//i.test(abs) && !srcTitle.has(abs)) {
           const sr = inner.match(/<span[^>]*sr-only[^>]*>([\s\S]*?)<\/span>/i) || inner.match(/<h3[^>]*>([\s\S]*?)<\/h3>/i);
@@ -323,7 +329,8 @@ if (!pages.length) {   // nothing loaded → don't ask Gemini (it would invent j
   console.log(`::error::Page NOT updated (previous page kept). No board could be loaded (blocked: ${[...new Set(blocked)].join(', ')}).`);
   process.exit(1);
 }
-try { jobs = await callGemini(PROMPT, [MODELS[0]]); console.log(`::notice::Gemini main pass returned ${jobs.length} jobs.`); }   // main pass: strong model only — the fallback model misses whole sources, better to keep the previous page
+let geminiReturned = [];
+try { jobs = await callGemini(PROMPT, [MODELS[0]]); console.log(`::notice::Gemini main pass returned ${jobs.length} jobs.`); geminiReturned = (jobs || []).map(j => ({ title: j.title, company: j.company, location: j.location, url: j.url })); }   // main pass: strong model only — the fallback model misses whole sources, better to keep the previous page
  catch (err) { geminiError = err.message; console.error('Gemini failed:', err.message); }
 if (geminiError) { console.log(`::error::Page NOT updated (previous page kept). Gemini failed — ${geminiError}`); process.exit(1); }
 // Focused pass on GROUP 1: only the excerpts around near places, inclusive when in doubt. Its jobs are ADDED (duplicates are removed below).
@@ -340,7 +347,8 @@ jobs = (jobs || []).filter(j => j && j.title).map(j => ({
   hybrid: ['yes', 'no', 'na'].includes(j.hybrid) ? j.hybrid : 'na',
   desc: String(j.desc || '').trim(), source: String(j.source || '').trim(), url: safeUrl(j),
 }));
-jobs.forEach(j => { j.title = String(j.title || '').replace(/^[\u05d0-\u05ea]\.?\s+(?=[\u05d0-\u05ea]{2})/, '').trim(); });   // stray letter at the start ("ה. לחברה…")
+const cleanTitle = t => String(t || '').split(/\s*[»›]\s*/).pop().replace(/^[\u05d0-\u05ea]\.?\s+(?=[\u05d0-\u05ea]{2})/, '').trim();   // breadcrumbs / stray letter
+jobs.forEach(j => { j.title = cleanTitle(j.title); });   // stray letter at the start ("ה. לחברה…")
 jobs.forEach(j => { const st = siteOf(j); if (st) j.source = st[0]; });   // one source name per added site (e.g. "Civi"/"Ziva Ben Porat" → the Hebrew site name)
 // ---- job identity keys (used by carry-over, dedupe and the "appeared before" history) ----
 const norm = s => s.toLowerCase().replace(/\//g, '').replace(/\s+/g, ' ').trim();
@@ -387,7 +395,7 @@ jobs.forEach(j => { j.lastReal = isoToday; });
   const carried = (Array.isArray(prevShown) ? prevShown : []).filter(p => p && p.title && p.lastReal >= cutC && !keysOf(p).some(k => nowKeys.has(k)));
   if (carried.length) {
     console.log(`::notice::Kept ${carried.length} job(s) found in the last ${CARRY_DAYS} days but missing from this run's Gemini output: ${carried.map(p => p.title).join(' · ').slice(0, 700)}`);
-    jobs.push(...carried.map(p => ({ title: p.title, company: p.company || '', location: p.location || '', km: Number.isFinite(+p.km) ? +p.km : 40,
+    jobs.push(...carried.map(p => ({ title: cleanTitle(p.title), company: p.company || '', location: p.location || '', km: Number.isFinite(+p.km) ? +p.km : 40,
       hybrid: ['yes', 'no', 'na'].includes(p.hybrid) ? p.hybrid : 'na', desc: p.desc || '', source: p.source || '', url: (p.url || '').trim() || safeUrl(p), lastReal: p.lastReal, carried: true })));
   } }
 // Far places: a location ONLY in the Shfela / south / Jerusalem gets at least its real distance (so a non-hybrid job there is dropped).
@@ -426,6 +434,7 @@ applyTitleRules();
 // Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
 // Specific "closed" phrases only, tested on VISIBLE text (scripts/styles removed) — generic words like "לא נמצאה" appear on valid pages too.
 const EXPIRED = /(ה?משרה|ה?מודעה)( זו| זאת| שחיפשת| המבוקשת)? (הוסרה|נמחקה|נסגרה|אוישה|אינה פעילה|לא פעילה|כבר אינה פעילה|כבר לא פעילה|אינה קיימת|לא קיימת|לא נמצאה|אינה זמינה|כבר לא רלוונטית)|הוסרה מהלוח|הוסרה מהאתר|תוקף (המשרה|המודעה) פג|(no longer|not currently|not|isn.?t|is not) (accepting|taking) (new )?applications|applications? (are|is)? ?(now )?closed|(לא|כבר לא|אינה|אינו) (מקבל(ת|ים)?|מקבלים כעת) (מועמדויות|מועמדים|בקשות)|this job is no longer available|job (has been )?(removed|closed|expired)|כבר לא מקבלים מועמדים/i;
+const SITE_BOILERPLATE = /המשרה נמחקה,? ?תוכל לצפות בה בדף המשרות[^.]*|חלק בשיפור התוכן שלנו[^.]*/g;   // fixed messages present on EVERY page of a site
 const visibleText = h => decodeEntities(String(h || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 const expiredDrops = [];
 const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
@@ -483,7 +492,7 @@ const ROLE_WORD = /מנהל|דרוש|ראש[\s\/]|רכז|נציג|מהנדס|מ�
 const IS_IT = /מערכות מידע|\bIT\b|טכנולוג|אפליקציות|יישומים|מחשוב|מנמ"?ר|information|technology|systems|digital|דיגיטל|\bCIO\b|\bCTO\b|\bdata\b|דאטה|\bERP\b|\bSAP\b|priority|פריוריטי/i;
 const BANNER = /[?!]|הצטרפ|משרות|חיפוש|join|careers|\bjobs\b|we.?re hiring/i;
 const pageJobTitles = raw => [...String(raw || '').matchAll(/<h1[^>]*>([\s\S]*?)<\/h1>/gi)]
-  .map(m => decodeEntities(m[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim())
+  .map(m => decodeEntities(m[1].replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim().split(/\s*[»›]\s*/).pop().trim())   // drop breadcrumbs
   .filter(t => t.length >= 5 && t.length <= 150 && ROLE_WORD.test(t) && !BANNER.test(t));
 // Content words of a title (generic words like "לחברה מובילה דרוש/ה מנהל/ת" removed) and their overlap.
 const GENERIC = new Set(['לחבר', 'חבר', 'מובילה', 'מוביל', 'דרוש', 'דרושה', 'מנהל', 'ראש', 'בכיר', 'בכירה', 'ארגון', 'לארגון', 'גדול', 'גדולה', 'the', 'of', 'and', 'for', 'manager', 'head', 'senior', 'director', 'בעמ']);
@@ -535,7 +544,7 @@ for (const j of jobs) {
   try {
     const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
     const raw = r.ok ? await r.text() : '';
-    const t = visibleText(raw);
+    const t = visibleText(raw).replace(SITE_BOILERPLATE, ' ');
     if (j.carried) { const mx = t.match(EXPIRED); if (mx) { const i = t.indexOf(mx[0]); expiredDrops.push(`${j.title} ["…${t.slice(Math.max(0, i - 25), i + mx[0].length + 25).trim()}…"]`); continue; } }   // only carried-over jobs: a job found in this run came from live search results
     // Does the link really lead to THIS job? Compare the page's job title with the recorded title.
     const cands = pageJobTitles(raw).map(t => ({ t, ov: overlap(t, j.title) })).sort((a, b) => b.ov - a.ov);
@@ -693,6 +702,7 @@ await mkdir('data', { recursive: true });
 await writeFile('index.html', html, 'utf8');
 await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'utf8');
 await writeFile('data/seen.json', JSON.stringify(H), 'utf8');
+await writeFile('data/debug-listings.json', JSON.stringify({ date: D, gemini: geminiReturned, sites: [...allLinks.entries()].reduce((o, [u, e]) => { const i = linkInfo.get(u) || {}; (o[e.site] ||= []).push({ url: u, texts: e.texts, block: String(i.block || '').replace(/\[URL:[^\]]*\]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 220) }); return o; }, {}) }, null, 1), 'utf8');
 await writeFile('data/jobs-shown.json', JSON.stringify(jobs.map(j => ({ title: j.title, company: j.company, location: j.location, km: j.km, hybrid: j.hybrid, desc: j.desc, source: j.source, url: j.url, lastReal: j.lastReal || isoToday })), null, 1), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
 console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= NEAR_KM).length} within ${NEAR_KM} km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
