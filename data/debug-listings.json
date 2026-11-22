@@ -2,16 +2,22 @@
  "date": "22.11.2026",
  "gemini": [
   {
-   "title": "סגן/ית מנהל מערכות מידע | קיסריה",
-   "company": "חברת השמה / כח אדם",
-   "location": "קיסריה",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895404"
+   "title": "דרוש /ה מנהל /ת מערכות מידע לקבוצת החברות M הנדסה",
+   "company": "M הנדסה",
+   "location": "זכרון יעקב/יקנעם עילית/נשר/חיפה/קרית ביאליק",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908196"
   },
   {
    "title": "מנהל /ת מערכות מידע - אזה\"ת צפוני קיסריה",
-   "company": "חברת השמה / כח אדם",
+   "company": "חברה חסויה",
    "location": "קיסריה",
    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8870497"
+  },
+  {
+   "title": "סגן מנהל מערכות מידע | קיסריה",
+   "company": "חברה חסויה",
+   "location": "קיסריה",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895404"
   },
   {
    "title": "מנהל /ת אפליקציות עסקיות וחדשנות",
@@ -20,46 +26,22 @@
    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8861948"
   },
   {
-   "title": "דרוש /ה מנהל /ת מערכות מידע לקבוצת החברות M הנדסה",
-   "company": "M הנדסה",
-   "location": "יקנעם עילית/זכרון יעקב/נשר/חיפה/קרית ביאליק",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908196"
+   "title": "מנהל /ת מערכות מידע",
+   "company": "דור כימיקלים",
+   "location": "קרית אתא/חיפה/קרית ביאליק",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901510"
   },
   {
-   "title": "דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
-   "company": "חסוי",
-   "location": "יקנעם עילית",
-   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920"
+   "title": "סמנכ\"ל /ית מערכות מידע וטכנולוגיה ( CIO )",
+   "company": "חברה חסויה",
+   "location": "נתניה/חדרה/קיסריה/יקנעם/חיפה",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877946"
   },
   {
    "title": "מנהל/ת יחידת טכנולוגיות דיגיטליות ומידע ראשי",
    "company": "מועצה אזורית משגב",
    "location": "משגב",
    "url": "https://www.drushim.co.il/job/39000505/95ad7b40/"
-  },
-  {
-   "title": "סמנכ\"ל /ית מערכות מידע וטכנולוגיה ( CIO )",
-   "company": "חברת השמה / כח אדם",
-   "location": "חיפה/יקנעם/קיסריה/חדרה/נתניה",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877946"
-  },
-  {
-   "title": "דרוש /ה מנהל /ת מערכות מידע לחברה תעשייתית",
-   "company": "דור כימיקלים",
-   "location": "חיפה/קרית אתא/קרית ביאליק",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901510"
-  },
-  {
-   "title": "מנהל /ת מערכות תשתיתיות ואינטגרציה לחיפה",
-   "company": "חברה חסויה",
-   "location": "חיפה",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893852"
-  },
-  {
-   "title": "Information Technology Infrastructure Manager",
-   "company": "AMAREL LTD",
-   "location": "North District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/information-technology-infrastructure-manager-at-amarel-ltd-4493503176"
   },
   {
    "title": "C.I.O מנהל מערכות מידע -תעשייה מסורתית גלובלית",
@@ -74,64 +56,40 @@
    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143"
   },
   {
+   "title": "מנהל/ת דאטה ודיגיטל",
+   "company": "אקרשטיין תעשיות בעמ",
+   "location": "הרצליה",
+   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9901410"
+  },
+  {
+   "title": "מנהל /ת דאטה ודיגיטל",
+   "company": "אקרשטיין תעשיות בע\"מ",
+   "location": "הרצליה",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8863393"
+  },
+  {
+   "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע",
+   "company": "חברה חסויה",
+   "location": "הרצליה/תל אביב יפו/פתח תקווה/חולון/ראשון לציון",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8819358"
+  },
+  {
    "title": "מנהל /ת יישומים, data ו-AI",
    "company": "IT Solutions LTD",
    "location": "כפר סבא",
    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893941"
   },
   {
-   "title": "business operations & systems manager",
-   "company": "חברה חסויה",
-   "location": "Kefar Sava",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8900819"
-  },
-  {
-   "title": "מנהל /ת פעילות",
-   "company": "חברת השמה / כח אדם",
-   "location": "שרון",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8904067"
-  },
-  {
-   "title": "לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע",
-   "company": "חברה חסויה",
-   "location": "הרצליה/פתח תקווה/תל אביב יפו/חולון/ראשון לציון",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8819358"
+   "title": "מנהל IT - חברה גלובאלית יצרנית",
+   "company": "אינטגרל פתרונות משאבי אנוש בע\"מ",
+   "location": "ראש העין",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8867702"
   },
   {
    "title": "סגן/ית מנהל/ת תחום מערכות מידע – תל אביב",
    "company": "חסוי",
    "location": "תל אביב יפו",
    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9926706"
-  },
-  {
-   "title": "מנהל /ת מחלקת מערכות מידע ויישומים עסקיים",
-   "company": "CyWayz Recruitment & Outsourcing",
-   "location": "תל אביב יפו/חולון/ראשון לציון/רחובות/מודיעין מכבים רעות",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898821"
-  },
-  {
-   "title": "Information Systems Manager",
-   "company": "חברה חסויה",
-   "location": "רמת השרון/כפר יונה/נתניה/בת חפר/חדרה",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877902"
-  },
-  {
-   "title": "Head of Information Technology",
-   "company": "KAMADA",
-   "location": "Rehovot",
-   "url": "https://il.linkedin.com/jobs/view/head-of-information-technology-at-kamada-4478219115"
-  },
-  {
-   "title": "Director of Information Technology",
-   "company": "iLeadX - Executive search",
-   "location": "Center District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/director-of-information-technology-at-ileadx-executive-search-4481081787"
-  },
-  {
-   "title": "Information Technology Manager",
-   "company": "Omnisys",
-   "location": "Center District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/information-technology-manager-at-omnisys-4490218564"
   },
   {
    "title": "מנהל /ת מערכות מידע",
@@ -147,75 +105,51 @@
   },
   {
    "title": "Information Systems Manager",
-   "company": "חברת השמה / כח אדם",
+   "company": "חברה חסויה",
    "location": "Tel Aviv-Yafo",
    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895744"
   },
   {
-   "title": "מנהל /ת מערכות",
-   "company": "חברה חסויה",
-   "location": "מרכז",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8881087"
-  },
-  {
-   "title": "מנהל/ת תחום דאטה ומערכות מידע (Data & IT Architecture Manager)",
-   "company": "חברה חסויה",
+   "title": "מנהל/ת תוכנית יישומים עסקיים",
+   "company": "לירון ואליס-גיוס והשמה",
    "location": "תל אביב יפו",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8859537"
+   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9923879"
   },
   {
-   "title": "IT & Infrastructure Manager",
-   "company": "IL MAKIAGE",
-   "location": "Tel Aviv-Yafo",
-   "url": "https://il.linkedin.com/jobs/view/it-infrastructure-manager-at-il-makiage-4483005927"
+   "title": "Head of Information Technology",
+   "company": "KAMADA",
+   "location": "Rehovot",
+   "url": "https://il.linkedin.com/jobs/view/head-of-information-technology-at-kamada-4478219115"
   },
   {
-   "title": "IT Manager",
-   "company": "CloudZone",
-   "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/it-manager-at-cloudzone-4489928790"
+   "title": "Director of Enterprise Applications & Data",
+   "company": "KAMADA",
+   "location": "Rehovot",
+   "url": "https://il.linkedin.com/jobs/view/director-of-enterprise-applications-data-at-kamada-4481082376"
   },
   {
-   "title": "IT Manager",
-   "company": "Transmit Security",
-   "location": "Tel Aviv-Yafo",
-   "url": "https://il.linkedin.com/jobs/view/it-manager-at-transmit-security-4470436740"
+   "title": "מנהל /ת מערכות מידע ודיגיטציה למעטפת מקצועית ארצית בתחומי התנדבות וקהילתיות",
+   "company": "חברה חסויה",
+   "location": "לוד",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8846605"
   },
   {
-   "title": "IT Manager, AI Ops",
-   "company": "Lemonade",
-   "location": "Tel Aviv-Yafo",
-   "url": "https://il.linkedin.com/jobs/view/it-manager-ai-ops-at-lemonade-4455707658"
-  },
-  {
-   "title": "Director of Global IT",
-   "company": "monday.com",
-   "location": "Tel Aviv-Yafo",
-   "url": "https://il.linkedin.com/jobs/view/director-of-global-it-at-monday-com-4470926827"
-  },
-  {
-   "title": "Head of Core Infrastructure(25756)",
-   "company": "Yael Group",
-   "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/head-of-core-infrastructure-25756-at-yael-group-4490449678"
-  },
-  {
-   "title": "Core Infrastructure Manager",
-   "company": "SQLink Group",
-   "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/core-infrastructure-manager-at-sqlink-group-4490877109"
-  },
-  {
-   "title": "IT Manager",
-   "company": "Oriient",
-   "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/it-manager-at-oriient-4492364055"
+   "title": "מנהל /ת מחלקת מערכות מידע ויישומים עסקיים",
+   "company": "CyWayz Recruitment & Outsourcing",
+   "location": "מודיעין מכבים רעות/רחובות/ראשון לציון/חולון/תל אביב יפו",
+   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898821"
   },
   {
    "title": "Information Systems Manager",
    "company": "Rapyd",
    "location": "Tel Aviv-Yafo",
    "url": "https://il.linkedin.com/jobs/view/information-systems-manager-at-rapyd-4486981117"
+  },
+  {
+   "title": "Business Applications & Information Systems Department Manager",
+   "company": "CyWayz Recruitment",
+   "location": "Rishon LeZion",
+   "url": "https://il.linkedin.com/jobs/view/business-applications-information-systems-department-manager-at-cywayz-recruitment-4483043600"
   },
   {
    "title": "Financial Systems Manager",
@@ -242,6 +176,12 @@
    "url": "https://il.linkedin.com/jobs/view/business-applications-manager-at-personetics-4483391246"
   },
   {
+   "title": "SAP Group Reporting Manager",
+   "company": "Deloitte",
+   "location": "Tel Aviv District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/sap-group-reporting-manager-at-deloitte-4485932926"
+  },
+  {
    "title": "Business Systems & Product Manager",
    "company": "Extreme",
    "location": "Tel Aviv District, Israel",
@@ -254,22 +194,94 @@
    "url": "https://il.linkedin.com/jobs/view/crm-digital-solutions-senior-manager-at-vishay-precision-group-inc-vpg-4482045669"
   },
   {
-   "title": "Chief Technology Officer (CTO) – אלטשולר שחם טרייד 198834",
-   "company": "Altshuler Shaham",
-   "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/chief-technology-officer-cto-%E2%80%93-%D7%90%D7%9C%D7%98%D7%A9%D7%95%D7%9C%D7%A8-%D7%A9%D7%97%D7%9D-%D7%98%D7%A8%D7%99%D7%99%D7%93-198834-at-altshuler-shaham-4490298325"
+   "title": "IT & Infrastructure Manager",
+   "company": "IL MAKIAGE",
+   "location": "Tel Aviv-Yafo",
+   "url": "https://il.linkedin.com/jobs/view/it-infrastructure-manager-at-il-makiage-4483005927"
   },
   {
-   "title": "Head of Digital, Data & AI",
-   "company": "SQLink Group",
+   "title": "IT Manager",
+   "company": "CloudZone",
    "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/head-of-digital-data-ai-at-sqlink-group-4492352653"
+   "url": "https://il.linkedin.com/jobs/view/it-manager-at-cloudzone-4489928790"
   },
   {
-   "title": "Head of Digital, Data & AI and Channels (1008288)",
-   "company": "Elad Software Systems",
+   "title": "Information Technology Infrastructure Manager",
+   "company": "AMAREL LTD",
+   "location": "North District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/information-technology-infrastructure-manager-at-amarel-ltd-4493503176"
+  },
+  {
+   "title": "IT Manager",
+   "company": "Transmit Security",
+   "location": "Tel Aviv-Yafo",
+   "url": "https://il.linkedin.com/jobs/view/it-manager-at-transmit-security-4470436740"
+  },
+  {
+   "title": "Information Technology Manager",
+   "company": "Omnisys",
+   "location": "Center District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/information-technology-manager-at-omnisys-4490218564"
+  },
+  {
+   "title": "IT Manager, AI Ops",
+   "company": "Lemonade",
+   "location": "Tel Aviv-Yafo",
+   "url": "https://il.linkedin.com/jobs/view/it-manager-ai-ops-at-lemonade-4455707658"
+  },
+  {
+   "title": "IT Manager - 243659",
+   "company": "Experis Israel",
+   "location": "Netanya",
+   "url": "https://il.linkedin.com/jobs/view/it-manager-243659-at-experis-israel-4485597329"
+  },
+  {
+   "title": "Director of Information Technology",
+   "company": "iLeadX - Executive search",
+   "location": "Center District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/director-of-information-technology-at-ileadx-executive-search-4481081787"
+  },
+  {
+   "title": "Director of Global IT",
+   "company": "monday.com",
+   "location": "Tel Aviv-Yafo",
+   "url": "https://il.linkedin.com/jobs/view/director-of-global-it-at-monday-com-4470926827"
+  },
+  {
+   "title": "Head of MIS",
+   "company": "Cloudinary",
+   "location": "Ramat Yishai",
+   "url": "https://il.linkedin.com/jobs/view/head-of-mis-at-cloudinary-4484380388"
+  },
+  {
+   "title": "Head of MIS",
+   "company": "Cloudinary",
+   "location": "Petah Tikva",
+   "url": "https://il.linkedin.com/jobs/view/head-of-mis-at-cloudinary-4484383241"
+  },
+  {
+   "title": "Head of Technology",
+   "company": "Amdocs",
+   "location": "Raanana",
+   "url": "https://il.linkedin.com/jobs/view/head-of-technology-at-amdocs-4482902413"
+  },
+  {
+   "title": "Infrastructure Team Manager",
+   "company": "NVIDIA",
+   "location": "Raanana",
+   "url": "https://il.linkedin.com/jobs/view/infrastructure-team-manager-at-nvidia-4456832001"
+  },
+  {
+   "title": "Infrastructure Manager",
+   "company": "Compie Technologies",
    "location": "Tel Aviv District, Israel",
-   "url": "https://il.linkedin.com/jobs/view/head-of-digital-data-ai-and-channels-1008288-at-elad-software-systems-4491251366"
+   "url": "https://il.linkedin.com/jobs/view/infrastructure-manager-at-compie-technologies-4492015164"
+  },
+  {
+   "title": "Head of Cloud Infrastructure & Scientific Computing",
+   "company": "Rafael Advanced Defense Systems",
+   "location": "Kiryat Bialik",
+   "url": "https://il.linkedin.com/jobs/view/head-of-cloud-infrastructure-scientific-computing-at-rafael-advanced-defense-systems-4459180041"
   },
   {
    "title": "Data Center Manager 2171",
@@ -278,34 +290,70 @@
    "url": "https://il.linkedin.com/jobs/view/data-center-manager-2171-at-bank-hapoalim-%D7%91%D7%A0%D7%A7-%D7%94%D7%A4%D7%95%D7%A2%D7%9C%D7%99%D7%9D-4493198411"
   },
   {
+   "title": "Core Infrastructure Manager",
+   "company": "SQLink Group",
+   "location": "Tel Aviv District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/core-infrastructure-manager-at-sqlink-group-4490877109"
+  },
+  {
+   "title": "Director, Networking AI and HPC Clusters Infrastructure",
+   "company": "NVIDIA",
+   "location": "Yokneam Ilit",
+   "url": "https://il.linkedin.com/jobs/view/director-networking-ai-and-hpc-clusters-infrastructure-at-nvidia-4482910454"
+  },
+  {
    "title": "IT Manager",
-   "company": "חברה חסויה",
-   "location": "Tel Aviv-Yafo",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8906792"
+   "company": "Oriient",
+   "location": "Tel Aviv District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/it-manager-at-oriient-4492364055"
+  },
+  {
+   "title": "Chief Executive Officer, C-level, General Manager",
+   "company": "Confidential Employer N/A",
+   "location": "Haifa District, Israel",
+   "url": "https://il.linkedin.com/jobs/view/chief-executive-officer-c-level-general-manager-at-confidential-employer-n-a-4489776050"
+  },
+  {
+   "title": "SW Director",
+   "company": "Harmonic",
+   "location": "Caesarea",
+   "url": "https://il.linkedin.com/jobs/view/sw-director-at-harmonic-4459793130"
+  },
+  {
+   "title": "Head of HR & ERP Systems",
+   "company": "Weizmann Institute of Science",
+   "location": "Rehovot",
+   "url": "https://il.linkedin.com/jobs/view/head-of-hr-erp-systems-at-weizmann-institute-of-science-4492341714"
+  },
+  {
+   "title": "מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager",
+   "company": "חסוי",
+   "location": "יקנעם עילית",
+   "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920"
   },
   {
    "title": "IT Information Systems Manager",
    "company": "חברה חסויה",
-   "location": "מרחוק/היברידי",
+   "location": "רמת השרון/כפר יונה/נתניה/בת חפר/חדרה",
    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877902"
   },
   {
-   "title": "מנהל/ת פרויקטים טכנולוגיים — מערכות מידע",
-   "company": "Proceed",
-   "location": "רמת גן",
-   "url": "https://www.drushim.co.il/job/39028226/685edcfe/"
+   "title": "מנהל/ת IT ומיישם/ת אבטחת מידע",
+   "company": "א.ש בינה בע\"מ",
+   "location": "בית שמש",
+   "url": "https://www.drushim.co.il/job/39048746/bb025fd9/"
   },
   {
-   "title": "מנהל/ת פרויקטים טכנולוגיים — מערכות מידע",
-   "company": "Proceed",
-   "location": "לוד",
-   "url": "https://www.drushim.co.il/job/38973867/1e7c6d73/"
+   "title": "מנהל/ת מערכות מידע",
+   "company": "חברה חסויה",
+   "location": "נתניה",
+   "url": "https://www.google.com/search?q=%D7%9E%D7%A0%D7%94%D7%9C%2F%D7%AA+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2+%D7%A0%D7%AA%D7%A0%D7%99%D7%94+%D7%97%D7%91%D7%A8%D7%AA+%D7%9E%D7%96%D7%95%D7%9F"
   },
   {
-   "title": "Information Systems & AI Automation Manager",
-   "company": "חברת השמה / כח אדם",
-   "location": "Mazor",
-   "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882659"
+   "title": "מנהל/ת מערכות מידע לחברת מוצרי צריכה מובילה בשפלה",
+   "company": "חברה חסויה",
+   "location": "שפלה",
+   "url": "https://www.google.com/search?q=%D7%9E%D7%A0%D7%94%D7%9C%2F%D7%AA+%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA+%D7%9E%D7%99%D7%93%D7%A2+%D7%9C%D7%97%D7%91%D7%A8%D7%AA+%D7%9E%D7%95%D7%A6%D7%A8%D7%99+%D7%A6%D7%A8%D7%99%D7%9B%D7%94+%D7%9E%D7%95%D7%91%D7%99%D7%9C%D7%94+%D7%91%D7%A9%D7%A4%D7%9C%D7%94"
   }
  ],
  "sites": {
@@ -325,88 +373,81 @@
     "block": "דיווחים ותשלומים לרשויות. משרה מלאה מיקום - אזור אור יהודה /יהוד מונוסון *נא לציין ציפיות שכר הגש מועמדות שמור למועדפים משרות נוספות דרוש /ה מנהל /ת E-Commerce ROYALTY יהוד מונוסון משרה מלאה אנו מחפשים מנהל /ת E-Commerce"
    },
    {
+    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9901410",
+    "texts": [
+     "מנהל/ת דאטה ודיגיטל"
+    ],
+    "block": "וצת ארגון מול שיווק, שירות לקוחות, כספים, מערכות מידע, סחר ולוגיסטיקה. משרה מלאה מיקום- יהוד מונוסון הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת דאטה ודיגיטל פורסם לפני 2 שעות ע\"י אקרשטיין תעשיות בעמ הרצליה משרה מלאה א"
+   },
+   {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9920361",
     "texts": [
      "לארגון מוביל בחולון דרוש/ה מנהל/ת מחלקת הנדסת נתונים (DBA)"
     ],
-    "block": "ם, מערכות מידע, סחר ולוגיסטיקה. משרה מלאה מיקום- יהוד מונוסון הגש מועמדות שמור למועדפים משרות נוספות לארגון מוביל בחולון דרוש/ה מנהל/ת מחלקת הנדסת נתונים (DBA) פורסם לפני 2 שעות ע\"י מאגרי אנוש - תל אביב - חולון חולון משר"
+    "block": "ל 10 מפעלים חיוניים ברחבי הארץ, כולל מפעלי בניה מתועשת ומג... הגש מועמדות שמור למועדפים משרות נוספות לארגון מוביל בחולון דרוש/ה מנהל/ת מחלקת הנדסת נתונים (DBA) פורסם לפני 5 שעות ע\"י מאגרי אנוש - תל אביב - חולון חולון משר"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9926948",
     "texts": [
      "אחראי/ת מערכות מידע לארגון חברתי מוביל בירושלים - 3336"
     ],
-    "block": "הובלה טכנולוגית של תחום מסדי הנתונים והנדסת הנתונים, כולל גיב... הגש מועמדות שמור למועדפים משרות נוספות אחראי/ת מערכות מידע לארגון חברתי מוביל בירושלים - 3336 פורסם לפני 2 שעות ע\"י In - Touch משאבי אנוש ירושלים משרה מלאה"
+    "block": "הובלה טכנולוגית של תחום מסדי הנתונים והנדסת הנתונים, כולל גיב... הגש מועמדות שמור למועדפים משרות נוספות אחראי/ת מערכות מידע לארגון חברתי מוביל בירושלים - 3336 פורסם לפני 5 שעות ע\"י In - Touch משאבי אנוש ירושלים משרה מלאה"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9920085",
     "texts": [
      "מנהל/ת ניהול שינוי והטמעה טכנולוגית ארגונית לארגון גדול במרכז"
     ],
-    "block": "ן, הטמעת מערכת חדשה לסנכרון וחיבור בין מערכות המידע הקי... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת ניהול שינוי והטמעה טכנולוגית ארגונית לארגון גדול במרכז פורסם לפני 3 שעות ע\"י Prologic קריית אונו משרה חלקית , פרילא"
+    "block": "ן, הטמעת מערכת חדשה לסנכרון וחיבור בין מערכות המידע הקי... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת ניהול שינוי והטמעה טכנולוגית ארגונית לארגון גדול במרכז פורסם לפני 6 שעות ע\"י Prologic קריית אונו משרה חלקית , פרילא"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9926706",
     "texts": [
      "סגן/ית מנהל/ת תחום מערכות מידע – תל אביב"
     ],
-    "block": "יד משמעותי ומאתגר בארגון גדול דרוש/ה מנהל/ת להובלת אסטרטגיית ניהול השינוי וה... הגש מועמדות שמור למועדפים משרות נוספות סגן/ית מנהל/ת תחום מערכות מידע – תל אביב פורסם לפני 4 שעות ע\"י חסוי תל אביב יפו משרה מלאה ניהול, הובל"
+    "block": "יד משמעותי ומאתגר בארגון גדול דרוש/ה מנהל/ת להובלת אסטרטגיית ניהול השינוי וה... הגש מועמדות שמור למועדפים משרות נוספות סגן/ית מנהל/ת תחום מערכות מידע – תל אביב פורסם לפני 7 שעות ע\"י חסוי תל אביב יפו משרה מלאה ניהול, הובל"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9873228",
     "texts": [
      "לחברה תעשייתית מובילה בדרום דרוש.ה מנהל.ת פרוייקטים ותומך מערכות מידע"
     ],
-    "block": "טי פיתוח והטמעה, בניית תהליכי עבודה ועבודה מול ממשקים מרובים... הגש מועמדות שמור למועדפים לחברה תעשייתית מובילה בדרום דרוש.ה מנהל.ת פרוייקטים ותומך מערכות מידע פורסם לפני 5 שעות ע\"י גפן השמות להבים משרה מלאה -הנעת תהליכי"
+    "block": "טי פיתוח והטמעה, בניית תהליכי עבודה ועבודה מול ממשקים מרובים... הגש מועמדות שמור למועדפים לחברה תעשייתית מובילה בדרום דרוש.ה מנהל.ת פרוייקטים ותומך מערכות מידע פורסם לפני 8 שעות ע\"י גפן השמות להבים משרה מלאה -הנעת תהליכי"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9917167",
     "texts": [
      "מנהל/ת מערכת Priority ERP לקבוצת פעמית"
     ],
-    "block": "הראשוני ועד לסיום מוצלח. כולל הטמעה ויישום בשטח תוך בקרה שוטפת אחר עמידה בלו&... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת מערכת Priority ERP לקבוצת פעמית פורסם לפני 6 שעות ע\"י פעמית תבניכל שיווק בית שמש משרה מלאה לק"
+    "block": "הראשוני ועד לסיום מוצלח. כולל הטמעה ויישום בשטח תוך בקרה שוטפת אחר עמידה בלו&... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת מערכת Priority ERP לקבוצת פעמית פורסם לפני 9 שעות ע\"י פעמית תבניכל שיווק בית שמש משרה מלאה לק"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9901037",
     "texts": [
      "ראש.ת תחום HR & ERP באגף טכנולוגיות מידע"
     ],
-    "block": "ority ERP לתפקיד מגוון, עצמאי ובעל השפעה. התפקיד כולל אחריות על התפעול והתחז... הגש מועמדות שמור למועדפים משרות נוספות ראש.ת תחום HR & ERP באגף טכנולוגיות מידע פורסם לפני 6 שעות ע\"י מכון ויצמן למדע רחובות משרה מלאה אחריו"
+    "block": "ority ERP לתפקיד מגוון, עצמאי ובעל השפעה. התפקיד כולל אחריות על התפעול והתחז... הגש מועמדות שמור למועדפים משרות נוספות ראש.ת תחום HR & ERP באגף טכנולוגיות מידע פורסם לפני 9 שעות ע\"י מכון ויצמן למדע רחובות משרה מלאה אחריו"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9853718",
     "texts": [
      "ראש/ת צוות BI | הובלת צוות BI בארגון מוביל | תפקיד ניהולי"
     ],
-    "block": "מעת יכולות חדשות. ניהול והובלת צוותי מנהלי פרויקטים, יישום ... הגש מועמדות שמור למועדפים משרות נוספות ראש/ת צוות BI | הובלת צוות BI בארגון מוביל | תפקיד ניהולי פורסם לפני 6 שעות ע\"י הילה אהרון H תל אביב יפו משרה מלאה 🚀 "
+    "block": "מעת יכולות חדשות. ניהול והובלת צוותי מנהלי פרויקטים, יישום ... הגש מועמדות שמור למועדפים משרות נוספות ראש/ת צוות BI | הובלת צוות BI בארגון מוביל | תפקיד ניהולי פורסם לפני 9 שעות ע\"י הילה אהרון H תל אביב יפו משרה מלאה 🚀 "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9925568",
     "texts": [
      "דרוש/ה מטמיע/ה מערכות ERP לחברה מובילה בקיסריה."
     ],
-    "block": "ראש/ת צוות BI לתפקיד בכיר, משמעותי ובעל השפעה רחבה על פעילות הארגון. ... הגש מועמדות שמור למועדפים משרות נוספות דרוש/ה מטמיע/ה מערכות ERP לחברה מובילה בקיסריה. פורסם לפני 7 שעות ע\"י דנאל - שרון קיסריה משרה מלאה יישום וני"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9924295",
-    "texts": [
-     "מנהל/ת מערכות מידע לתפקיד ניהולי מרכזי במפעל מוביל באזור דימונה"
-    ],
-    "block": "ון לאיסוף דרישות, מיפוי תהליכים, ביצוע התאמות, בדיקות... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת מערכות מידע לתפקיד ניהולי מרכזי במפעל מוביל באזור דימונה פורסם לפני 7 שעות ע\"י תיגבור חברה ארצית לשרותי כח אדם דימונה"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9927230",
-    "texts": [
-     "אחראי/ת אבטחת איכות ובטיחות מזון"
-    ],
-    "block": "0)\"> מתאים ל {this.classList.remove('active')},250)\"> מאפייני משרה דרושים מנהל יישומים דרושים מנהל יישומים נמצאו 772 משרות 772 אחראי/ת אבטחת איכות ובטיחות מזון חסוי נוף הגליל , עפולה משרה מלאה הובלת תחום אבטחת האיכות ובט"
+    "block": "ראש/ת צוות BI לתפקיד בכיר, משמעותי ובעל השפעה רחבה על פעילות הארגון. ... הגש מועמדות שמור למועדפים משרות נוספות דרוש/ה מטמיע/ה מערכות ERP לחברה מובילה בקיסריה. פורסם לפני 10 שעות ע\"י דנאל - שרון קיסריה משרה מלאה יישום ונ"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9927075",
     "texts": [
      "מנהל/ת מרכז מכירות ורישום – הנדסה - החלפה לחל\"ד"
     ],
-    "block": "צרים במקרה של חריגת איכות, בהתאם לנוהלי החברה ובתיאום עם סמנכ\"ל התפעול. דרישות התפקיד הגש מועמדות שמור למועדפים מנהל/ת מרכז מכירות ורישום – הנדסה - החלפה לחל\"ד שנקר - בית-ספר גבוה להנדסה ולעיצוב רמת גן משרה מלאה • ניהול "
+    "block": "his.classList.remove('active')},250)\"> מאפייני משרה דרושים מנהל יישומים דרושים מנהל יישומים נמצאו 773 משרות 773 מנהל/ת מרכז מכירות ורישום – הנדסה - החלפה לחל\"ד שנקר - בית-ספר גבוה להנדסה ולעיצוב רמת גן משרה מלאה • ניהול "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9921402",
@@ -427,7 +468,7 @@
     "texts": [
      "מנהל/ת תוכנית יישומים עסקיים"
     ],
-    "block": "הסכמי התקשרות עם לקוחות בכפוף למדיניות החברה יצירת שיתופי פעולה עם חברות לקידום עסקי החברה. הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת תוכנית יישומים עסקיים פורסם לפני 9 שעות ע\"י לירון ואליס-גיוס והשמה תל אביב יפו משר"
+    "block": "הסכמי התקשרות עם לקוחות בכפוף למדיניות החברה יצירת שיתופי פעולה עם חברות לקידום עסקי החברה. הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת תוכנית יישומים עסקיים פורסם לפני 12 שעות ע\"י לירון ואליס-גיוס והשמה תל אביב יפו מש"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9903529",
@@ -437,249 +478,242 @@
     "block": "שומים עסקיים (Hands-On) 📍 מיקום: רמת החייל, תל אביב מה כולל התפקיד? 🔹 הובלת הקמה ופיתוח של מערכ... הגש מועמדות שמור למועדפים משרות נוספות מנהל.ת תחום יישומים פורסם לפני 3 ימים ע\"י Novolog מודיעין מכבים רעות משרה מלאה נ"
    },
    {
+    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9918593",
+    "texts": [
+     "מנהל/ת שיווק בצמיחה ואנליזה שיווקית"
+    ],
+    "block": "בעולמות הבריאות, הפארמה, הלוגיסטיקה ושרשרת האספקה. פעילות הקבוצה מתאפיינת במערכי... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת שיווק בצמיחה ואנליזה שיווקית פורסם לפני 1 שעות ע\"י חסוי הרצליה , חדרה , כפר סבא , נתניה , "
+   },
+   {
+    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9878598",
+    "texts": [
+     "הזדמנות ניהולית ברשת קמעונאית – דרוש/ה מנהל/ת אזור!"
+    ],
+    "block": "ניתוח נתונים, הפקת תובנות ויישום בפועל של מהלכים עסקיים ושיווקיים. אנחנו מחפשי... הגש מועמדות שמור למועדפים הזדמנות ניהולית ברשת קמעונאית – דרוש/ה מנהל/ת אזור! פורסם לפני 2 שעות ע\"י חסוי תל אביב יפו משרה מלאה מנהל/ת האזו"
+   },
+   {
+    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9927798",
+    "texts": [
+     "מנהל.ת פרויקט AI לארגון רפואי בבני ברק"
+    ],
+    "block": "ת והפיתוח. לקבוצה מעל 10 מפעלים חיוניים ברחבי הארץ, כולל מפעלי בניה מתועשת ומג... הגש מועמדות שמור למועדפים משרות נוספות מנהל.ת פרויקט AI לארגון רפואי בבני ברק פורסם לפני 3 שעות ע\"י SPL - Software AG בני ברק , פתח תקווה "
+   },
+   {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9929495",
     "texts": [
      "דרוש/ה מנהל/ת ביצוע להקמת מערכות חשמל - רכב צמוד"
     ],
-    "block": "אות, הפארמה, הלוגיסטיקה ושרשרת האספקה. פעילות הקבוצה מתאפיינת במערכי... הגש מועמדות שמור למועדפים משרות נוספות דרוש/ה מנהל/ת ביצוע להקמת מערכות חשמל - רכב צמוד פורסם לפני 51 דקות ע\"י חסוי חיפה , ירושלים , נתניה , ראשון ל"
+    "block": "לא של פרויקטי מערכות מידע משלב הייזום ועד ליישום (End-to-End) - הובל... הגש מועמדות שמור למועדפים משרות נוספות דרוש/ה מנהל/ת ביצוע להקמת מערכות חשמל - רכב צמוד פורסם לפני 3 שעות ע\"י חסוי חיפה , ירושלים , נתניה , ראשון לצ"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9921962",
     "texts": [
      "מנהל/ת מכירות בינלאומי/ת – חברת קוסמטיקה מקצועית וצומחת (תל אביב)"
     ],
-    "block": "ריות על תפקוד והתנהלות האתר מבחינת הקמת מערכות חשמל במבנים גדולי... הגש מועמדות שמור למועדפים מנהל/ת מכירות בינלאומי/ת – חברת קוסמטיקה מקצועית וצומחת (תל אביב) פורסם לפני 1 שעות ע\"י פרמה קוסמטיקס מעבדות תל אביב יפו משרה "
+    "block": "ריות על תפקוד והתנהלות האתר מבחינת הקמת מערכות חשמל במבנים גדולי... הגש מועמדות שמור למועדפים מנהל/ת מכירות בינלאומי/ת – חברת קוסמטיקה מקצועית וצומחת (תל אביב) פורסם לפני 4 שעות ע\"י פרמה קוסמטיקס מעבדות תל אביב יפו משרה "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9911532",
     "texts": [
      "לחברה יזמית קבלנית מובילה דרוש/ה מנהלי עבודה לפרויקט מגורים-ברחובות/ יבנה"
     ],
-    "block": "עולם. התפקיד משלב אסטרטגיה, ניהול צוות ועבו... הגש מועמדות שמור למועדפים משרות נוספות לחברה יזמית קבלנית מובילה דרוש/ה מנהלי עבודה לפרויקט מגורים-ברחובות/ יבנה פורסם לפני 1 שעות ע\"י Y השמה יבנה , רחובות משרה מלאה התפקיד "
+    "block": "עולם. התפקיד משלב אסטרטגיה, ניהול צוות ועבו... הגש מועמדות שמור למועדפים משרות נוספות לחברה יזמית קבלנית מובילה דרוש/ה מנהלי עבודה לפרויקט מגורים-ברחובות/ יבנה פורסם לפני 4 שעות ע\"י Y השמה יבנה , רחובות משרה מלאה התפקיד "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9911541",
     "texts": [
      "לחברה מובילה בתחום היזמות והבניה למגורים דרוש /ה מנהל/ת איזור למרכז הארץ."
     ],
-    "block": "ות העבודה ועמידה בלוחות זמנים ובדרישות הפרו... הגש מועמדות שמור למועדפים משרות נוספות לחברה מובילה בתחום היזמות והבניה למגורים דרוש /ה מנהל/ת איזור למרכז הארץ. פורסם לפני 1 שעות ע\"י Y השמה יבנה , ראשון לציון , רחובות , ר"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9911544",
-    "texts": [
-     "מהנדס - מנהל/ת איזור - תחום הבניה למרכז הארץ"
-    ],
-    "block": "מקצועיים ההנדסיים והכלכליים. * מעקב ובקרה אחר תקציבים, לוחות זמנים ותוכנ... הגש מועמדות שמור למועדפים משרות נוספות מהנדס - מנהל/ת איזור - תחום הבניה למרכז הארץ פורסם לפני 1 שעות ע\"י Y השמה יבנה , רחובות , תל אביב יפו משר"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9929360",
-    "texts": [
-     "כלכלן/ית לחברה מ-ד-ה-י-מ-ה עם תנאים מעולים !-!-!"
-    ],
-    "block": "בכפיפות לסמנכ\"ל הביצוע, כולל אחריות על עמידה ביעדי ביצוע, תכנון, לו\"... הגש מועמדות שמור למועדפים משרות נוספות כלכלן/ית לחברה מ-ד-ה-י-מ-ה עם תנאים מעולים !-!-! פורסם לפני 1 שעות ע\"י סוריקיטה- משאבי אנוש יבנה , מודיעין מכ"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9929313",
-    "texts": [
-     "בסניף גבולות ! דרוש/ה אחראי/ת משמרת"
-    ],
-    "block": "בודה תקופתיות , איפיון לקוח והסביבה עסקית , איתור צרכי הלקוחות, שמירה על שביעות ר... הגש מועמדות שמור למועדפים משרות נוספות בסניף גבולות ! דרוש/ה אחראי/ת משמרת פורסם לפני 2 שעות ע\"י רשת הקיבוץ אגודה שיתופית חקלאית אופקים"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9925665",
-    "texts": [
-     "מנהל/ת תפעול לחברה בתחום הנדל\"ן"
-    ],
-    "block": "מתאים ל {this.classList.remove('active')},250)\"> מאפייני משרה דרושים מנהל טכנולוגיות דרושים מנהל טכנולוגיות נמצאו 397 משרות 397 מנהל/ת תפעול לחברה בתחום הנדל\"ן תוהא שירותי ניהול בע\"מ תל אביב יפו משרה מלאה 🔸 אחריות כוללת"
+    "block": "ות העבודה ועמידה בלוחות זמנים ובדרישות הפרו... הגש מועמדות שמור למועדפים משרות נוספות לחברה מובילה בתחום היזמות והבניה למגורים דרוש /ה מנהל/ת איזור למרכז הארץ. פורסם לפני 4 שעות ע\"י Y השמה יבנה , ראשון לציון , רחובות , ר"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9920377",
     "texts": [
      "לחברה טכנולוגית בצמיחה דרוש/ה מנה\"ח לקוחות/בילינג"
     ],
-    "block": "ערך התפעול. 🔸 עבודה שוטפת מול הנהלת המתחם וממשקים פנים וחוץ ארגוניים. הגש מועמדות שמור למועדפים משרות נוספות לחברה טכנולוגית בצמיחה דרוש/ה מנה\"ח לקוחות/בילינג חסוי יהוד מונוסון משרה מלאה לחברה טכנולוגית בצמיחה דרוש/ה מנ"
+    "block": "sList.remove('active')},250)\"> מאפייני משרה דרושים מנהל טכנולוגיות דרושים מנהל טכנולוגיות נמצאו 398 משרות 398 לחברה טכנולוגית בצמיחה דרוש/ה מנה\"ח לקוחות/בילינג חסוי יהוד מונוסון משרה מלאה לחברה טכנולוגית בצמיחה דרוש/ה מנ"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9920374",
     "texts": [
      "לחברה טכנולוגית בצמיחה דרוש/ה מנה\"ח"
     ],
-    "block": "יהול תהליך חיוב והפקה מול מנהלי פרוייקטים. בקרת גביה שוטפת מול לקוחות מוסדיים וסגירת תהליך הגביה. הגש מועמדות שמור למועדפים לחברה טכנולוגית בצמיחה דרוש/ה מנה\"ח חסוי יהוד מונוסון משרה מלאה לחברה טכנולוגית בצמיחה דרוש/ה מנ"
+    "block": "יהול תהליך חיוב והפקה מול מנהלי פרוייקטים. בקרת גביה שוטפת מול לקוחות מוסדיים וסגירת תהליך הגביה. הגש מועמדות שמור למועדפים לחברה טכנולוגית בצמיחה דרוש/ה מנה\"ח חסוי יהוד מונוסון משרה מלאה לחברה טכנולוגית בצמיחה ד"
+   },
+   {
+    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9911737",
+    "texts": [
+     "מנהל/ת מעבדת חומרים"
+    ],
+    "block": "רוש/ה מנהלת חשבונות ספקים קליטת חשבוניות והתאמות ספקים. עבודה מול מחלקת רכש ומחסנאים. התאמת כרטיסי אשראי של החברה הגש מועמדות שמור למועדפים מנהל/ת מעבדת חומרים חסוי אחיהוד משרה מלאה ניהול כולל של פעילות המעבדה בחברה, תוך"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9929364",
     "texts": [
      "דרוש/ה מנהל/ת שיווק | נהריה"
     ],
-    "block": "הלת חשבונות ספקים קליטת חשבוניות והתאמות ספקים. עבודה מול מחלקת רכש ומחסנאים. התאמת כרטיסי אשראי של החברה הגש מועמדות שמור למועדפים דרוש/ה מנהל/ת שיווק | נהריה חסוי חיפה , כרמיאל , נהריה , עכו , קריות משרה מלאה יש לך ראש"
-   },
-   {
-    "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9923736",
-    "texts": [
-     "מנהל מוצר ופתרונות טכנולוגיים"
-    ],
-    "block": "מול שיווק, שירות לקוחות, כספים, מערכות מידע, סחר ולוגיסטיקה. משרה מלאה מיקום- יהוד מונוסון הגש מועמדות שמור למועדפים משרות נוספות מנהל מוצר ופתרונות טכנולוגיים חסוי פתח תקווה משרה מלאה החברה וותיקה ומובילה בתחומה ועוסקת "
+    "block": "ת איכות, כשלים במוצר או בעיות בתהליך. השתתפות בפרויקטים של שיפור מתמיד, התייעלות והטמעת טכנולוגיות חדשות. הגש מועמדות שמור למועדפים דרוש/ה מנהל/ת שיווק | נהריה חסוי חיפה , כרמיאל , נהריה , עכו , קריות משרה מלאה יש לך ראש"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9917236",
     "texts": [
      "מנהל תיקי לקוחות לחברה טכנולוגית - אזור ירושלים"
     ],
-    "block": "וניהול פורטפוליו החברה, חשיפה מתמשכת לטכנולוגיות מתקדמות ולחדשנות בתחום מכונות המזון. הגש מועמדות שמור למועדפים מנהל תיקי לקוחות לחברה טכנולוגית - אזור ירושלים פורסם לפני 39 דקות ע\"י חסוי ירושלים משרה מלאה לחברה טכנולוגי"
+    "block": "קוחות, כספים, מערכות מידע, סחר ולוגיסטיקה. משרה מלאה מיקום- יהוד מונוסון הגש מועמדות שמור למועדפים משרות נוספות מנהל תיקי לקוחות לחברה טכנולוגית - אזור ירושלים פורסם לפני 3 שעות ע\"י חסוי ירושלים משרה מלאה לחברה טכנולוגית"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9925692",
     "texts": [
      "מנהל/ת מחסן לחברה טכנולוגית בפתח תקווה"
     ],
-    "block": "הול תהליכי מכירה: איתור לקוחות חדשים, התאמת הפתרון הטכנולוגי, מכירה בפועל וכן ליווי אדמיניס... הגש מועמדות שמור למועדפים מנהל/ת מחסן לחברה טכנולוגית בפתח תקווה פורסם לפני 39 דקות ע\"י חסוי פתח תקווה משרה מלאה לחברה טכנולו"
+    "block": "הול תהליכי מכירה: איתור לקוחות חדשים, התאמת הפתרון הטכנולוגי, מכירה בפועל וכן ליווי אדמיניס... הגש מועמדות שמור למועדפים מנהל/ת מחסן לחברה טכנולוגית בפתח תקווה פורסם לפני 3 שעות ע\"י חסוי פתח תקווה משרה מלאה לחברה טכנולוג"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9923687",
     "texts": [
      "(פ) הובלה טכנולוגית ותפעולית: דרוש/ה מנהל/ת טכני/ת לחברת הייטק גדולה"
     ],
-    "block": "ובקרתם, הפקדה על צורות אחסנה, ניהול צוות עובדים, ניהול מלאי, ... הגש מועמדות שמור למועדפים (פ) הובלה טכנולוגית ותפעולית: דרוש/ה מנהל/ת טכני/ת לחברת הייטק גדולה פורסם לפני 2 שעות ע\"י דנאל מרכז תל אביב יפו משרה מלאה חברת ה"
+    "block": "ובקרתם, הפקדה על צורות אחסנה, ניהול צוות עובדים, ניהול מלאי, ... הגש מועמדות שמור למועדפים (פ) הובלה טכנולוגית ותפעולית: דרוש/ה מנהל/ת טכני/ת לחברת הייטק גדולה פורסם לפני 5 שעות ע\"י דנאל מרכז תל אביב יפו משרה מלאה חברת ה"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9922326",
     "texts": [
      "מנהל/ת חשבונות ראשי/ת לחברה טכנולוגית בנתניה"
     ],
-    "block": "שמעותי ומאתגר בארגון גדול דרוש/ה מנהל/ת להובלת אסטרטגיית ניהול השינוי וה... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת חשבונות ראשי/ת לחברה טכנולוגית בנתניה פורסם לפני 5 שעות ע\"י ג&rsquo;וב אין איתור מיון והשמת כח אדם"
+    "block": "שמעותי ומאתגר בארגון גדול דרוש/ה מנהל/ת להובלת אסטרטגיית ניהול השינוי וה... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת חשבונות ראשי/ת לחברה טכנולוגית בנתניה פורסם לפני 8 שעות ע\"י ג&rsquo;וב אין איתור מיון והשמת כח אדם"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9926643",
     "texts": [
      "מנהל/ת טכנולוגיה ומעבדת תהליך"
     ],
-    "block": "ינה היברידית) ממשרדי החברה בנתניה. תחומי אחריות: ניהול צוות הנהלת החשבונות לרבות חלוקת ... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת טכנולוגיה ומעבדת תהליך פורסם לפני 5 שעות ע\"י טמבור בע\"מ עכו משרה מלאה לחברת טמבור ב"
+    "block": "ינה היברידית) ממשרדי החברה בנתניה. תחומי אחריות: ניהול צוות הנהלת החשבונות לרבות חלוקת ... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת טכנולוגיה ומעבדת תהליך פורסם לפני 8 שעות ע\"י טמבור בע\"מ עכו משרה מלאה לחברת טמבור ב"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9845575",
     "texts": [
      "ראש.ת מנהל טכנולוגיות באגף הנדסה"
     ],
-    "block": "הול, בקרה ושיפור תהליכי הייצור וקווי הייצור. -הובלת פרויקטים טכנולוגיים ותהליכי התיי... הגש מועמדות שמור למועדפים משרות נוספות ראש.ת מנהל טכנולוגיות באגף הנדסה פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ כרמיאל משרה מלאה אנח"
+    "block": "הול, בקרה ושיפור תהליכי הייצור וקווי הייצור. -הובלת פרויקטים טכנולוגיים ותהליכי התיי... הגש מועמדות שמור למועדפים משרות נוספות ראש.ת מנהל טכנולוגיות באגף הנדסה פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ כרמיאל משרה מלאה אנח"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9845171",
     "texts": [
      "מנהל.ת פרויקטים לאגף טכנולוגיות מידע"
     ],
-    "block": "גיות באגף הנדסה. בוא.י להוביל תחומי הנדסה וטכנולוגיה מתקדמים בלב העשייה הביטחוני... הגש מועמדות שמור למועדפים משרות נוספות מנהל.ת פרויקטים לאגף טכנולוגיות מידע פורסם לפני 6 שעות ע\"י מכון ויצמן למדע רחובות משרה מלאה אחריו"
+    "block": "גיות באגף הנדסה. בוא.י להוביל תחומי הנדסה וטכנולוגיה מתקדמים בלב העשייה הביטחוני... הגש מועמדות שמור למועדפים משרות נוספות מנהל.ת פרויקטים לאגף טכנולוגיות מידע פורסם לפני 9 שעות ע\"י מכון ויצמן למדע רחובות משרה מלאה אחריו"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9912525",
     "texts": [
      "מנהל/ת תיקי לקוחות למרכז לטכנולוגיה חינוכית"
     ],
-    "block": "ות ועד להטמעה, לרבות פרויקטים המשלבים פתרונות ומוצרים של ספקים חיצוניים. ... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת תיקי לקוחות למרכז לטכנולוגיה חינוכית פורסם לפני 7 שעות ע\"י המרכז לטכנולוגיה חינוכית (מטח) תל אביב"
+    "block": "ות ועד להטמעה, לרבות פרויקטים המשלבים פתרונות ומוצרים של ספקים חיצוניים. ... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת תיקי לקוחות למרכז לטכנולוגיה חינוכית פורסם לפני 10 שעות ע\"י המרכז לטכנולוגיה חינוכית (מטח) תל אבי"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9927437",
     "texts": [
      "מנהל/ת תיקי לקוחות שטח לחברה טכנולוגית מובילה | רכב צמוד"
     ],
-    "block": "ע מדי יום על למעלה ממיליון וחצי תלמידים ומעל 100,000 מורים ב... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת תיקי לקוחות שטח לחברה טכנולוגית מובילה | רכב צמוד פורסם לפני 7 שעות ע\"י חסוי אשדוד , פתח תקווה , ראשון לציון ,"
+    "block": "ע מדי יום על למעלה ממיליון וחצי תלמידים ומעל 100,000 מורים ב... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת תיקי לקוחות שטח לחברה טכנולוגית מובילה | רכב צמוד פורסם לפני 10 שעות ע\"י חסוי אשדוד , פתח תקווה , ראשון לציון "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859497",
     "texts": [
      "Inventory & Information Systems Specialist"
     ],
-    "block": "'active')},250)\"> מאפייני משרה דרושים Information Systems Manager דרושים Information Systems Manager נמצאו 4 משרות 4 Inventory & Information Systems Specialist פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ כרמיאל משרה מלאה We "
+    "block": "'active')},250)\"> מאפייני משרה דרושים Information Systems Manager דרושים Information Systems Manager נמצאו 4 משרות 4 Inventory & Information Systems Specialist פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ כרמיאל משרה מלאה We "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9856459",
     "texts": [
      "System Administrator - Virtual Computing & Storage"
     ],
-    "block": "ry & Information Systems Specialist At our Aerospace division, we ... הגש מועמדות שמור למועדפים משרות נוספות System Administrator - Virtual Computing & Storage פורסם לפני 6 שעות ע\"י חסוי תל אביב יפו משרה מלאה We are seek"
+    "block": "ry & Information Systems Specialist At our Aerospace division, we ... הגש מועמדות שמור למועדפים משרות נוספות System Administrator - Virtual Computing & Storage פורסם לפני 9 שעות ע\"י חסוי תל אביב יפו משרה מלאה We are seek"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9908025",
     "texts": [
      "Experienced Payroll Accountant"
     ],
-    "block": "ator with strong expertise in VMware technologies, infrastructure automation, operating system prov... הגש מועמדות שמור למועדפים Experienced Payroll Accountant פורסם לפני 8 שעות ע\"י OU Israel ירושלים משרה מלאה We are loo"
+    "block": "ator with strong expertise in VMware technologies, infrastructure automation, operating system prov... הגש מועמדות שמור למועדפים Experienced Payroll Accountant פורסם לפני 11 שעות ע\"י OU Israel ירושלים משרה מלאה We are lo"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9883920",
     "texts": [
      "דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager"
     ],
-    "block": "at OU Israel. This is a temporary, full-tim... הגש מועמדות שמור למועדפים משרות נוספות דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager פורסם לפני 8 שעות ע\"י חסוי יקנעם עילית משרה מלאה לחברה ותיקה"
+    "block": "at OU Israel. This is a temporary, full-tim... הגש מועמדות שמור למועדפים משרות נוספות דרוש/ה מנהל/ת מערכות מידע ואבטחת מידע - IT & Information Security Manager פורסם לפני 11 שעות ע\"י חסוי יקנעם עילית משרה מלאה לחברה ותיק"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9894795",
     "texts": [
      "מנהל/ת קטגוריות רכש גלובלי"
     ],
-    "block": "dates related to payroll. ● Working closely with the Human Resources and Finance departments. הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת קטגוריות רכש גלובלי פורסם לפני 5 שעות ע\"י נטפים מגל משרה מלאה עבודה היברידית Net"
+    "block": "dates related to payroll. ● Working closely with the Human Resources and Finance departments. הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת קטגוריות רכש גלובלי פורסם לפני 8 שעות ע\"י נטפים מגל משרה מלאה עבודה היברידית Net"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9926188",
     "texts": [
      "מנהל/ת איכות מים ומערכות השקייה - נטפים"
     ],
-    "block": "m and lead strategic sourcing categories supporting water and irrigation solu... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת איכות מים ומערכות השקייה - נטפים פורסם לפני 5 שעות ע\"י נטפים חצרים משרה מלאה כולל נסיעות לחו\""
+    "block": "m and lead strategic sourcing categories supporting water and irrigation solu... הגש מועמדות שמור למועדפים משרות נוספות מנהל/ת איכות מים ומערכות השקייה - נטפים פורסם לפני 8 שעות ע\"י נטפים חצרים משרה מלאה כולל נסיעות לחו\""
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9924779",
     "texts": [
      "Risk Analyst (Temporary Position) | אנליסט.ית סיכונים"
     ],
-    "block": "er Quality & Irrigation Systems Manager to lead our expertise i... הגש מועמדות שמור למועדפים משרות נוספות Risk Analyst (Temporary Position) | אנליסט.ית סיכונים פורסם לפני 5 שעות ע\"י קבוצת שטראוס פתח תקווה משרה מלאה Join "
+    "block": "er Quality & Irrigation Systems Manager to lead our expertise i... הגש מועמדות שמור למועדפים משרות נוספות Risk Analyst (Temporary Position) | אנליסט.ית סיכונים פורסם לפני 8 שעות ע\"י קבוצת שטראוס פתח תקווה משרה מלאה Join "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9928883",
     "texts": [
      "Operational Excellence Specialist"
     ],
-    "block": "rs, analyzing risk-related data, and supporting enterprise risk reporting across th... הגש מועמדות שמור למועדפים משרות נוספות Operational Excellence Specialist פורסם לפני 6 שעות ע\"י ראדא תעשיות אלקטרוניות בע&rsquo;&rsquo"
+    "block": "rs, analyzing risk-related data, and supporting enterprise risk reporting across th... הגש מועמדות שמור למועדפים משרות נוספות Operational Excellence Specialist פורסם לפני 9 שעות ע\"י ראדא תעשיות אלקטרוניות בע&rsquo;&rsquo"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9914140",
     "texts": [
      "Contracts & Sales Manager"
     ],
-    "block": "tection, counter-drone applications, critical infrastructure protection, and border surveil... הגש מועמדות שמור למועדפים משרות נוספות Contracts & Sales Manager פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ חולון משרה מלאה For "
+    "block": "tection, counter-drone applications, critical infrastructure protection, and border surveil... הגש מועמדות שמור למועדפים משרות נוספות Contracts & Sales Manager פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ חולון משרה מלאה For "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9906656",
     "texts": [
      "International Marketing & Business Development Manager"
     ],
-    "block": "ex commercial processes valued at tens of millions of dollars,... הגש מועמדות שמור למועדפים משרות נוספות International Marketing & Business Development Manager פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ חיפה משרה מלאה Elbit"
+    "block": "ex commercial processes valued at tens of millions of dollars,... הגש מועמדות שמור למועדפים משרות נוספות International Marketing & Business Development Manager פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ חיפה משרה מלאה Elbit"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9899030",
     "texts": [
      "Marketing Manager"
     ],
-    "block": "Development Manager to join our team in Haifa and play a key role in driving growth across internat... הגש מועמדות שמור למועדפים משרות נוספות Marketing Manager פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ שדרות משרה מלאה Our "
+    "block": "Development Manager to join our team in Haifa and play a key role in driving growth across internat... הגש מועמדות שמור למועדפים משרות נוספות Marketing Manager פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ שדרות משרה מלאה Our "
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9889620",
     "texts": [
      "Experienced Systems Engineer"
     ],
-    "block": "opment & Marketing Manager to lead growth initiatives and strategic marketing activities... הגש מועמדות שמור למועדפים משרות נוספות Experienced Systems Engineer פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ חיפה משרה מלאה For o"
+    "block": "opment & Marketing Manager to lead growth initiatives and strategic marketing activities... הגש מועמדות שמור למועדפים משרות נוספות Experienced Systems Engineer פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ חיפה משרה מלאה For o"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9918258",
     "texts": [
      "Production Planner"
     ],
-    "block": "r Systems Engineer / Technical Manager to lead engineering process acceleration initiatives across... הגש מועמדות שמור למועדפים משרות נוספות Production Planner פורסם לפני 6 שעות ע\"י BioProtect LTD נתניה משרה מלאה Locatio"
+    "block": "r Systems Engineer / Technical Manager to lead engineering process acceleration initiatives across... הגש מועמדות שמור למועדפים משרות נוספות Production Planner פורסם לפני 9 שעות ע\"י BioProtect LTD נתניה משרה מלאה Locatio"
    },
    {
     "url": "https://www.jobmaster.co.il/jobs/checknum.asp?key=9859479",
     "texts": [
      "Development Manager"
     ],
-    "block": "up in radiation protection technology. We offer spacers protecting healthy tissue during radiatio... הגש מועמדות שמור למועדפים משרות נוספות Development Manager פורסם לפני 6 שעות ע\"י אלביט מערכות בע\"מ רחובות משרה מלאה Elb"
+    "block": "up in radiation protection technology. We offer spacers protecting healthy tissue during radiatio... הגש מועמדות שמור למועדפים משרות נוספות Development Manager פורסם לפני 9 שעות ע\"י אלביט מערכות בע\"מ רחובות משרה מלאה Elb"
    }
   ],
   "AllJobs": [
@@ -688,105 +722,105 @@
     "texts": [
      "מנהל /ת מערכות מידע, חולון"
     ],
-    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות מנהל /ת מערכות מידע, חולון אורון אחזקות והשקעות בע\"מ מיקום המשרה: חולון סוג משרה: משרה "
-   },
-   {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8911657",
-    "texts": [
-     "דרוש /ה מנהל /ת מערכות מידע"
-    ],
-    "block": "רשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 9 דקות דרוש /ה מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: מודיעין מכבים רעות סוג משרה: משרה מל"
+    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות מנהל /ת מערכות מידע, חולון אורון אחזקות והשקעות בע\"מ מיקום המשרה: חולון סוג משרה: משרה "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8884434",
     "texts": [
      "מנהל /ת מערכות מידע"
     ],
-    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: באר שבע סוג משרה: משרה מלאה לחברה תע"
+    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 5 שעות מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: באר שבע סוג משרה: משרה מלאה לחברה תע"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8819358",
     "texts": [
      "לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע"
     ],
-    "block": "משרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: מספר מקומות ראשון לציון חולון תל אבי"
+    "block": "משרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות לחברה מובילה בתחומה דרוש /ה מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: מספר מקומות ראשון לציון חולון תל אבי"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8889223",
     "texts": [
      "C.I.O מנהל מערכות מידע -תעשייה מסורתית גלובלית"
     ],
-    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 6 שעות C.I.O מנהל מערכות מידע -תעשייה מסורתית גלובלית ישומים לבכירים מיקום המשרה: כרמיאל ו נהריה סוג משרה: משרה מל"
+    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות C.I.O מנהל מערכות מידע -תעשייה מסורתית גלובלית ישומים לבכירים מיקום המשרה: כרמיאל ו נהריה סוג משרה: משרה מל"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729143",
     "texts": [
      "דרוש /ה מנהל.ת מערכות מידע"
     ],
-    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 2 שעות דרוש /ה מנהל.ת מערכות מידע Jobs.ai מיקום המשרה: מספר מקומות פתח תקווה ראש העין כפר סבא "
+    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 5 שעות דרוש /ה מנהל.ת מערכות מידע Jobs.ai מיקום המשרה: מספר מקומות פתח תקווה ראש העין כפר סבא "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8900908",
     "texts": [
      "מנהל /ת מערכות מידע לחברה טכנולוגית ברחובות"
     ],
-    "block": "את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות מנהל /ת מערכות מידע לחברה טכנולוגית ברחובות חברה חסויה מיקום המשרה: רחובות סוג משרה: משרה מלאה לחברה טכנ"
+    "block": "את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות מנהל /ת מערכות מידע לחברה טכנולוגית ברחובות חברה חסויה מיקום המשרה: רחובות סוג משרה: משרה מלאה לחברה טכנ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8891423",
     "texts": [
      "מנהל /ת מערכות מידע"
     ],
-    "block": "ת שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: באר שבע סוג משרה: משרה מלאה הובלת פר"
+    "block": "ת שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: באר שבע סוג משרה: משרה מלאה הובלת פר"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8887822",
     "texts": [
      "לחברה תעשייתית בבאר שבע דרוש /ה מנהל /ת מערכות מידע"
     ],
-    "block": "סיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 2 שעות לחברה תעשייתית בבאר שבע דרוש /ה מנהל /ת מערכות מידע Nesh-a מיקום המשרה: באר שבע סוג משרה: משרה מלאה אחריות כוללת"
+    "block": "סיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 4 שעות לחברה תעשייתית בבאר שבע דרוש /ה מנהל /ת מערכות מידע Nesh-a מיקום המשרה: באר שבע סוג משרה: משרה מלאה אחריות כוללת"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898821",
     "texts": [
      "מנהל /ת מחלקת מערכות מידע ויישומים עסקיים"
     ],
-    "block": "ר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות מנהל /ת מחלקת מערכות מידע ויישומים עסקיים CyWayz Recruitment & Outsourcing מיקום המשרה: מספר מקומות מו"
+    "block": "ר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 9 שעות מנהל /ת מחלקת מערכות מידע ויישומים עסקיים CyWayz Recruitment & Outsourcing מיקום המשרה: מספר מקומות מו"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8867702",
     "texts": [
      "מנהל IT - חברה גלובאלית יצרנית"
     ],
-    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 5 שעות מנהל IT - חברה גלובאלית יצרנית אינטגרל פתרונות משאבי אנוש בע\"מ מיקום המשרה: ראש העין סוג מש"
+    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 8 שעות מנהל IT - חברה גלובאלית יצרנית אינטגרל פתרונות משאבי אנוש בע\"מ מיקום המשרה: ראש העין סוג מש"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8896415",
     "texts": [
      "ראש /ת צוות מערכות מידע ואפליקציות | ארגון פיננסי"
     ],
-    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות ראש /ת צוות מערכות מידע ואפליקציות | ארגון פיננסי IT Solutions LTD מיקום המשרה: תל אביב יפו ו פתח תקווה סוג מש"
+    "block": "ת החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות ראש /ת צוות מערכות מידע ואפליקציות | ארגון פיננסי IT Solutions LTD מיקום המשרה: תל אביב יפו ו פתח תקווה סוג מש"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898219",
     "texts": [
      "מנהל /ת תפעול ומערכות מידע לחברה מעולה בירושלים"
     ],
-    "block": "ה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות מנהל /ת תפעול ומערכות מידע לחברה מעולה בירושלים חברה חסויה מיקום המשרה: ירושלים סוג משרה: משרה מלאה אחריות כ"
+    "block": "ה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות מנהל /ת תפעול ומערכות מידע לחברה מעולה בירושלים חברה חסויה מיקום המשרה: ירושלים סוג משרה: משרה מלאה אחריות כ"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882550",
+    "texts": [
+     "דרוש /ה מנהל /ת פרויקטי מערכות מידע גלובלי (Global IS Project Manager )"
+    ],
+    "block": "ות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות דרוש /ה מנהל /ת פרויקטי מערכות מידע גלובלי (Global IS Project Manager ) חברה חסויה מיקום המשרה: מספר מקומות עפולה מגדל העמק כפר תבור"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8863393",
     "texts": [
      "מנהל /ת דאטה ודיגיטל"
     ],
-    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות מנהל /ת דאטה ודיגיטל אקרשטיין תעשיות בע\"מ מיקום המשרה: הרצליה סוג משרה: משרה מלאה "
+    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות מנהל /ת דאטה ודיגיטל אקרשטיין תעשיות בע\"מ מיקום המשרה: הרצליה סוג משרה: משרה מלאה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8881521",
     "texts": [
      "מנהל /ת צוות SAP פיננסי ולוגיסטי"
     ],
-    "block": "וחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 1 שעות מנהל /ת צוות SAP פיננסי ולוגיסטי Calanit by One מיקום המשרה: תל אביב יפו סוג משרה: משרה מלאה "
+    "block": "וחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות מנהל /ת צוות SAP פיננסי ולוגיסטי Calanit by One מיקום המשרה: תל אביב יפו סוג משרה: משרה מלאה "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8865589",
@@ -842,7 +876,7 @@
     "texts": [
      "דרוש /ה מנהל /ת מנהל מערכות מידע ודיגיטציה למעטפת מקצועית ארצית בתחומי התנדבות וקהילתיות"
     ],
-    "block": "המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 10 שעות דרוש /ה מנהל /ת מנהל מערכות מידע ודיגיטציה למעטפת מקצועית ארצית בתחומי התנדבות וקהילתיות מיקום המשרה: לוד סוג משרה: משרה חלקית חברתנו מגייסת עבור משרד"
+    "block": "המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 12 שעות דרוש /ה מנהל /ת מנהל מערכות מידע ודיגיטציה למעטפת מקצועית ארצית בתחומי התנדבות וקהילתיות מיקום המשרה: לוד סוג משרה: משרה חלקית חברתנו מגייסת עבור משרד"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8869588",
@@ -877,7 +911,7 @@
     "texts": [
      "רפרנט /ית מחשוב וניהול ידע בחיפה"
     ],
-    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 2 ימים רפרנט /ית מחשוב וניהול ידע בחיפה מיקום המשרה: חיפה סוג משרה: משרה מלאה מחפשים/ות תפקיד שמשלב "
+    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 3 ימים רפרנט /ית מחשוב וניהול ידע בחיפה מיקום המשרה: חיפה סוג משרה: משרה מלאה מחפשים/ות תפקיד שמשלב "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8860883",
@@ -898,84 +932,91 @@
     "texts": [
      "מנהל /ת יישומים, data ו-AI"
     ],
-    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות מנהל /ת יישומים, data ו-AI IT Solutions LTD מיקום המשרה: כפר סבא סוג משרה: משרה מלאה לח"
+    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות מנהל /ת יישומים, data ו-AI IT Solutions LTD מיקום המשרה: כפר סבא סוג משרה: משרה מלאה לח"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8770979",
     "texts": [
      "ראש צוות יישומים רוחביים"
     ],
-    "block": "המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות ראש צוות יישומים רוחביים הפניקס מיקום המשרה: ראשון לציון סוג משרה: משרה מלאה ניהול והו"
+    "block": "המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 10 שעות ראש צוות יישומים רוחביים הפניקס מיקום המשרה: ראשון לציון סוג משרה: משרה מלאה ניהול וה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8861948",
     "texts": [
      "מנהל /ת אפליקציות עסקיות וחדשנות"
     ],
-    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות מנהל /ת אפליקציות עסקיות וחדשנות מכון תימה- המכון לאבחון יעוץ והשמה מיקום המשרה: מספר מקומות י"
+    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות מנהל /ת אפליקציות עסקיות וחדשנות מכון תימה- המכון לאבחון יעוץ והשמה מיקום המשרה: מספר מקומות "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8849335",
     "texts": [
      "מנהל /ת פרויקטים BRM לחברה פיננסית ציבורית"
     ],
-    "block": "ם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 2 שעות מנהל /ת פרויקטים BRM לחברה פיננסית ציבורית יערה פיינר-אבחון והשמה מיקום המשרה: מספר מקומות תל אביב יפו "
+    "block": "ם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 5 שעות מנהל /ת פרויקטים BRM לחברה פיננסית ציבורית יערה פיינר-אבחון והשמה מיקום המשרה: מספר מקומות תל אביב יפו "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8867080",
     "texts": [
      "לחברת דקסל פארמה אתר אור עקיבא דרוש /ה מיישם /ת מערכות מידע / מנהל פרויקטים"
     ],
-    "block": "ת המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות לחברת דקסל פארמה אתר אור עקיבא דרוש /ה מיישם /ת מערכות מידע / מנהל פרויקטים דקסל פארמה מיקום המשרה: מספר מקומות נתניה חדרה אור עקיבא בני"
+    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 10 שעות לחברת דקסל פארמה אתר אור עקיבא דרוש /ה מיישם /ת מערכות מידע / מנהל פרויקטים דקסל פארמה מיקום המשרה: מספר מקומות נתניה חדרה אור עקיבא בנימ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8830053",
     "texts": [
      "מנהל /ת דאטה ואפליקציות ארגוניות (IS Director)"
     ],
-    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות מנהל /ת דאטה ואפליקציות ארגוניות (IS Director) קמהדע בע\"מ מיקום המשרה: בית קמה סוג משרה: משרה מלאה הובלת אס"
+    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות מנהל /ת דאטה ואפליקציות ארגוניות (IS Director) קמהדע בע\"מ מיקום המשרה: בית קמה סוג משרה: משרה מלאה הובלת אס"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8891500",
     "texts": [
      "דרוש /ה מנהל /ת תהליכים בפעילות עסקית"
     ],
-    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות דרוש /ה מנהל /ת תהליכים בפעילות עסקית חברה חסויה מיקום המשרה: מספר מקומות כפר סבא יקום תל מונד קדימ"
+    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות דרוש /ה מנהל /ת תהליכים בפעילות עסקית חברה חסויה מיקום המשרה: מספר מקומות כפר סבא יקום תל מונד קדימ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8888190",
     "texts": [
      "דרוש /ה מנהל /ת מוצר | פתרונות דיגיטליים לעסקים | רמת גן - היברידי (3 ימים מהבית)"
     ],
-    "block": "ורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות דרוש /ה מנהל /ת מוצר | פתרונות דיגיטליים לעסקים | רמת גן - היברידי (3 ימים מהבית) SVT מיקום המשרה: מספר מקומות באר שבע רחובות רמת גן נתניה חיפ"
+    "block": "ורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות דרוש /ה מנהל /ת מוצר | פתרונות דיגיטליים לעסקים | רמת גן - היברידי (3 ימים מהבית) SVT מיקום המשרה: מספר מקומות באר שבע רחובות רמת גן נתניה חיפ"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8911657",
+    "texts": [
+     "דרוש /ה מנהל /ת מערכות מידע"
+    ],
+    "block": "רשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 2 שעות דרוש /ה מנהל /ת מערכות מידע חברה חסויה מיקום המשרה: מודיעין מכבים רעות סוג משרה: משרה מל"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893301",
     "texts": [
      "מנהל.ת מערכת לחברת EVEDGE"
     ],
-    "block": "המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות מנהל.ת מערכת לחברת EVEDGE קבוצת יוניון מיקום המשרה: מספר מקומות בת ים תל אביב יפו רמת "
+    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות מנהל.ת מערכת לחברת EVEDGE קבוצת יוניון מיקום המשרה: מספר מקומות בת ים תל אביב יפו רמת "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8884128",
     "texts": [
      "דרוש /ה מנהל /ת אפליקציות ומערכות מידע | לחברת בנייה בשרון"
     ],
-    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 7 שעות דרוש /ה מנהל /ת אפליקציות ומערכות מידע | לחברת בנייה בשרון URSA GROUP מיקום המשרה: נתניה סוג משרה: משרה מלאה תפקיד חדש,"
+    "block": "משרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 10 שעות דרוש /ה מנהל /ת אפליקציות ומערכות מידע | לחברת בנייה בשרון URSA GROUP מיקום המשרה: נתניה סוג משרה: משרה מלאה תפקיד חדש,"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8910377",
     "texts": [
      "Head of Applications"
     ],
-    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 6 שעות Head of Applications SQLink מיקום המשרה: מספר מקומות נס ציונה לוד יהוד מונוסון תל "
+    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות Head of Applications SQLink מיקום המשרה: מספר מקומות נס ציונה לוד יהוד מונוסון תל "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8886846",
     "texts": [
      "דרוש /ה מנהל /ת דיגיטל - אפליקציות ומוצרים דיגיטליים"
     ],
-    "block": "יר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות דרוש /ה מנהל /ת דיגיטל - אפליקציות ומוצרים דיגיטליים וואן טכנולוגיות מיקום המשרה: יקום סוג משרה: משרה מלאה אנחנו "
+    "block": "יר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות דרוש /ה מנהל /ת דיגיטל - אפליקציות ומוצרים דיגיטליים וואן טכנולוגיות מיקום המשרה: יקום סוג משרה: משרה מלאה אנחנו "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8904642",
@@ -1087,91 +1128,91 @@
     "texts": [
      "Head of Technical Projects Delivery - בני ברק"
     ],
-    "block": "רצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות Head of Technical Projects Delivery - בני ברק לירוז נמני - מדייקת אנשים לארגונים מיקום המשרה: מספר מקומות "
+    "block": "צה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות Head of Technical Projects Delivery - בני ברק לירוז נמני - מדייקת אנשים לארגונים מיקום המשרה: מספר מקומות "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899406",
     "texts": [
      "Head of AI data Science"
     ],
-    "block": "יפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות Head of AI data Science לוגיקה IT מיקום המשרה: מספר מקומות תל אביב יפו רמת גן גבעתיי"
+    "block": "פוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 10 שעות Head of AI data Science לוגיקה IT מיקום המשרה: מספר מקומות תל אביב יפו רמת גן גבעתיי"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8905551",
     "texts": [
      "Head of AI data Science"
     ],
-    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 4 שעות Head of AI data Science ליאקום מערכות Liacom מיקום המשרה: מספר מקומות חולון תל אביב "
+    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 6 שעות Head of AI data Science ליאקום מערכות Liacom מיקום המשרה: מספר מקומות חולון תל אביב "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901236",
     "texts": [
      "דרוש /ה Head of AI data Science"
     ],
-    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות דרוש /ה Head of AI data Science קונסיסט מערכות בע\"מ מיקום המשרה: רמת גן ו פתח תקווה סוג משרה"
+    "block": "וחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות דרוש /ה Head of AI data Science קונסיסט מערכות בע\"מ מיקום המשרה: רמת גן ו פתח תקווה סוג משרה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901447",
     "texts": [
      "Head of Customer Service"
     ],
-    "block": "פוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות Head of Customer Service ריקרוטיקס בע\"מ Location: Tel Aviv-Yafo Job Type: Full Time a"
+    "block": "פוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 9 שעות Head of Customer Service ריקרוטיקס בע\"מ Location: Tel Aviv-Yafo Job Type: Full Time a"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8896582",
     "texts": [
      "Head of R.D - Global company in the water industry"
     ],
-    "block": "ת החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות Head of R.D - Global company in the water industry אטלנטיום טכנולוגיות בע\"מ Location: More than one Jerusalem R"
+    "block": "ת החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות Head of R.D - Global company in the water industry אטלנטיום טכנולוגיות בע\"מ Location: More than one Jerusalem R"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8729494",
     "texts": [
      "Head of Quality - Electronics Manufacturing Center"
     ],
-    "block": "ת החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 3 שעות Head of Quality - Electronics Manufacturing Center אלביט מערכות מיקום המשרה: רחובות סוג משרה: משרה מלאה לאתר הח"
+    "block": "ת החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות Head of Quality - Electronics Manufacturing Center אלביט מערכות מיקום המשרה: רחובות סוג משרה: משרה מלאה לאתר הח"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901920",
     "texts": [
      "Head of Marketing Execution & Integration"
     ],
-    "block": "ר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות Head of Marketing Execution & Integration ריקרוטיקס בע\"מ Location: Tel Aviv-Yafo and Ramat Gan Job Typ"
-   },
-   {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836922",
-    "texts": [
-     "Head of Metrology and Reliability in Jerusalem"
-    ],
-    "block": "צה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות Head of Metrology and Reliability in Jerusalem חברה חסויה Location: More than one Tzur Hadassah Nes Harim B"
+    "block": "את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 10 שעות Head of Marketing Execution & Integration ריקרוטיקס בע\"מ Location: Tel Aviv-Yafo and Ramat Gan Job Type"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8876120",
     "texts": [
      "Head of User Acquisition Client Strategy | תל אביב"
     ],
-    "block": "הסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 2 שעות Head of User Acquisition Client Strategy | תל אביב Jobs.ai מיקום המשרה: מספר מקומות חולון תל אביב יפו רמת גן גב"
+    "block": "הסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 4 שעות Head of User Acquisition Client Strategy | תל אביב Jobs.ai מיקום המשרה: מספר מקומות חולון תל אביב יפו רמת גן גב"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8836922",
+    "texts": [
+     "Head of Metrology and Reliability in Jerusalem"
+    ],
+    "block": "ה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות Head of Metrology and Reliability in Jerusalem חברה חסויה Location: More than one Tzur Hadassah Nes Harim B"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8686591",
     "texts": [
      "Head of Business Development - Israel Market לחברה יזמית בתחום האנרגיה המתחדשת"
     ],
-    "block": "משרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות Head of Business Development - Israel Market לחברה יזמית בתחום האנרגיה המתחדשת איילת אלבז מיקום המשרה: מספר מקומות פתח תקווה ראש העין רמת ה"
+    "block": "משרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות Head of Business Development - Israel Market לחברה יזמית בתחום האנרגיה המתחדשת איילת אלבז מיקום המשרה: מספר מקומות פתח תקווה ראש העין רמת ה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898981",
     "texts": [
      "Head of Sales | Israeli Defense Security"
     ],
-    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות Head of Sales | Israeli Defense Security קרול יועצים Location: Tel Aviv-Yafo and Petah Tikva Job Type"
+    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות Head of Sales | Israeli Defense Security קרול יועצים Location: Tel Aviv-Yafo and Petah Tikva Job Type"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899030",
     "texts": [
      "Head of International Sales | EMEA Defense"
     ],
-    "block": "ם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות Head of International Sales | EMEA Defense קרול יועצים Location: More than one Tel Aviv-Yafo Petah Tikv"
+    "block": "תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות Head of International Sales | EMEA Defense קרול יועצים Location: More than one Tel Aviv-Yafo Petah Tikva"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877289",
@@ -1206,7 +1247,7 @@
     "texts": [
      "Head of MIS"
     ],
-    "block": "בה בדף המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 3 ימים Head of MIS Location: Petah Tikva Job Type: Full Time We are looking for "
+    "block": "בה בדף המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 4 ימים Head of MIS Location: Petah Tikva Job Type: Full Time We are looking for "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8877287",
@@ -1262,7 +1303,7 @@
     "texts": [
      "head of fp&a"
     ],
-    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 6 ימים head of fp&a Location: Tel Aviv-Yafo Job Type: Full Time the company is t"
+    "block": "משרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 7 ימים head of fp&a Location: Tel Aviv-Yafo Job Type: Full Time the company is t"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8875186",
@@ -1283,91 +1324,91 @@
     "texts": [
      "Junior ERP & Business Applications Specialist"
     ],
-    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות Junior ERP & Business Applications Specialist פוליטקס טכנולוגיות בע\"מ מיקום המשרה: קיסריה סוג משרה: משרה מ"
+    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות Junior ERP & Business Applications Specialist פוליטקס טכנולוגיות בע\"מ מיקום המשרה: קיסריה סוג משרה: משרה מ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882336",
     "texts": [
      "Business Development Manager- Manager - CCTV /ICT / Smart City"
     ],
-    "block": "ה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 7 שעות Business Development Manager- Manager - CCTV /ICT / Smart City תפקיד פלוס - staf in Location: Lod and Shoham Job Type: Full"
+    "block": "ה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות Business Development Manager- Manager - CCTV /ICT / Smart City תפקיד פלוס - staf in Location: Lod and Shoham Job Type: Full"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8862688",
     "texts": [
      "Business Unit Manager"
     ],
-    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 3 שעות Business Unit Manager Bulls Media Location: More than one Yehud Kiryat Ono Tel Avi"
-   },
-   {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8754981",
-    "texts": [
-     "Product Manager - B2B"
-    ],
-    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות Product Manager - B2B TOP SOFT טופ סופט - השמה ומיקור חוץ Location: Tel Aviv-Yafo "
+    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות Business Unit Manager Bulls Media Location: More than one Yehud Kiryat Ono Tel Avi"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8909822",
     "texts": [
      "Business Development Manager"
     ],
-    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 1 ימים Business Development Manager humanlink מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה שכר: 18"
+    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 2 ימים Business Development Manager humanlink מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה שכר: 18"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8754981",
+    "texts": [
+     "Product Manager - B2B"
+    ],
+    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות Product Manager - B2B TOP SOFT טופ סופט - השמה ומיקור חוץ Location: Tel Aviv-Yafo "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8837749",
     "texts": [
      "Application Engineer"
     ],
-    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות Application Engineer VPG Location: Modi'In-Maccabim-Re'Ut Job Type: Full Time The "
+    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות Application Engineer VPG Location: Modi'In-Maccabim-Re'Ut Job Type: Full Time The "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8811366",
     "texts": [
      "דרוש /ה Business data Solutions Lead"
     ],
-    "block": "ה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות דרוש /ה Business data Solutions Lead One DatAI Location: Petah Tikva Job Type: Full Time We're lo"
+    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 10 שעות דרוש /ה Business data Solutions Lead One DatAI Location: Petah Tikva Job Type: Full Time We're loo"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901893",
     "texts": [
      "לחברת תוכנה דרוש /ה Business Operations Manager!"
     ],
-    "block": "להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 7 שעות לחברת תוכנה דרוש /ה Business Operations Manager! קבוצת נישה Location: More than one Giv'At Shmuel Petah Tikva "
+    "block": "להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 10 שעות לחברת תוכנה דרוש /ה Business Operations Manager! קבוצת נישה Location: More than one Giv'At Shmuel Petah Tikva"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899321",
     "texts": [
      "Business Analyst Project Manager - Lexus"
     ],
-    "block": "שימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 3 שעות Business Analyst Project Manager - Lexus קבוצת יוניון מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה ועבו"
+    "block": "שימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות Business Analyst Project Manager - Lexus קבוצת יוניון מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה ועבו"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8626565",
     "texts": [
      "Release Manager"
     ],
-    "block": "משרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות Release Manager Mertens – Malam Team מיקום המשרה: ראשון לציון סוג משרה: משרה"
+    "block": "משרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות Release Manager Mertens – Malam Team מיקום המשרה: ראשון לציון סוג משרה: משרה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8902282",
     "texts": [
      "Account Manager מנהל /ת תחום מכירות ופיתוח עסקי - קוסמטיקה"
     ],
-    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 2 שעות Account Manager מנהל /ת תחום מכירות ופיתוח עסקי - קוסמטיקה חברה חסויה מיקום המשרה: בני ברק סוג משרה: מספר סוגים משרה מלא"
+    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות Account Manager מנהל /ת תחום מכירות ופיתוח עסקי - קוסמטיקה חברה חסויה מיקום המשרה: בני ברק סוג משרה: מספר סוגים משרה מלא"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8782443",
     "texts": [
      "Customer Success Manager לתפקיד מפתח עם השפעה וצמיחה"
     ],
-    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות Customer Success Manager לתפקיד מפתח עם השפעה וצמיחה חברה חסויה מיקום המשרה: אשקלון סוג משרה: משרה מלאה לחברת היי"
+    "block": "חיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 10 שעות Customer Success Manager לתפקיד מפתח עם השפעה וצמיחה חברה חסויה מיקום המשרה: אשקלון סוג משרה: משרה מלאה לחברת היי"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8829250",
     "texts": [
      "(c7007) Customer Success Manager לתפקיד מפתח עם השפעה וצמיחה"
     ],
-    "block": "אם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות (c7007) Customer Success Manager לתפקיד מפתח עם השפעה וצמיחה חברה חסויה מיקום המשרה: אשקלון ו אשדוד סוג משרה: משרה מלאה ל"
+    "block": "אם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות (c7007) Customer Success Manager לתפקיד מפתח עם השפעה וצמיחה חברה חסויה מיקום המשרה: אשקלון ו אשדוד סוג משרה: משרה מלאה ל"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895811",
@@ -1458,35 +1499,35 @@
     "texts": [
      "מנהל /ת מערכות מידע לתפקיד ניהולי מרכזי במפעל מוביל באזור דימונה"
     ],
-    "block": "ת השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 3 שעות מנהל /ת מערכות מידע לתפקיד ניהולי מרכזי במפעל מוביל באזור דימונה תיגבור 1 מיקום המשרה: ירוחם ו דימונה סוג משרה: משרה מלאה למפ"
+    "block": "ת השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 6 שעות מנהל /ת מערכות מידע לתפקיד ניהולי מרכזי במפעל מוביל באזור דימונה תיגבור 1 מיקום המשרה: ירוחם ו דימונה סוג משרה: משרה מלאה למפ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908196",
     "texts": [
      "דרוש /ה מנהל /ת מערכות מידע לקבוצת החברות M הנדסה"
     ],
-    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות דרוש /ה מנהל /ת מערכות מידע לקבוצת החברות M הנדסה M הנדסה מיקום המשרה: מספר מקומות זכרון יעקב יקנעם עילית נשר "
+    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות דרוש /ה מנהל /ת מערכות מידע לקבוצת החברות M הנדסה M הנדסה מיקום המשרה: מספר מקומות זכרון יעקב יקנעם עילית נשר "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899099",
     "texts": [
      "לחברה תעשייתית מובילה בדרום דרוש /ה מנהל /ת מערכות מידע"
     ],
-    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות לחברה תעשייתית מובילה בדרום דרוש /ה מנהל /ת מערכות מידע מורן שמעוני - שירותי HR, גיוס וחיבורי קרירה מיקום המשרה: מספ"
+    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות לחברה תעשייתית מובילה בדרום דרוש /ה מנהל /ת מערכות מידע מורן שמעוני - שירותי HR, גיוס וחיבורי קרירה מיקום המשרה: מספ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898749",
     "texts": [
      "מנהל /ת מערכות מידע -מנוסה -אק' - תנאים מעולים"
     ],
-    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 2 שעות מנהל /ת מערכות מידע -מנוסה -אק' - תנאים מעולים צירופים השמת בכירים מיקום המשרה: מספר מקומות דימונה באר שבע "
+    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות מנהל /ת מערכות מידע -מנוסה -אק' - תנאים מעולים צירופים השמת בכירים מיקום המשרה: מספר מקומות דימונה באר שבע "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8901510",
     "texts": [
      "דרוש /ה מנהל /ת מערכות מידע לחברה תעשייתית"
     ],
-    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות דרוש /ה מנהל /ת מערכות מידע לחברה תעשייתית דור כימיקלים מיקום המשרה: מספר מקומות קרית אתא חיפה קרית ביא"
+    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות דרוש /ה מנהל /ת מערכות מידע לחברה תעשייתית דור כימיקלים מיקום המשרה: מספר מקומות קרית אתא חיפה קרית ביא"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8898612",
@@ -1500,14 +1541,14 @@
     "texts": [
      "דרוש.ה מנהל.ת פרויקט ומנתח.ת מערכות למשרד ממשלתי בירושלים"
     ],
-    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות דרוש.ה מנהל.ת פרויקט ומנתח.ת מערכות למשרד ממשלתי בירושלים HMS - הלפרין יועצים מיקום המשרה: ירושלים סוג משרה: משרה מלאה "
+    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 10 שעות דרוש.ה מנהל.ת פרויקט ומנתח.ת מערכות למשרד ממשלתי בירושלים HMS - הלפרין יועצים מיקום המשרה: ירושלים סוג משרה: משרה מלאה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8906896",
     "texts": [
      "מנהל /ת פרויקטים ומנתח /ת מערכות"
     ],
-    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 2 שעות מנהל /ת פרויקטים ומנתח /ת מערכות Comblack מיקום המשרה: בני ברק סוג משרה: משרה מלאה חברת COMBLA"
+    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 4 שעות מנהל /ת פרויקטים ומנתח /ת מערכות Comblack מיקום המשרה: בני ברק סוג משרה: משרה מלאה חברת COMBLA"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8861492",
@@ -1522,6 +1563,13 @@
      "מנהל /ת צוות מנתחי מערכות ומומחה/ית לאפיון תהליכים עסקיים"
     ],
     "block": "וש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 01/11/2026 מנהל /ת צוות מנתחי מערכות ומומחה/ית לאפיון תהליכים עסקיים מיקום המשרה: מרכז סוג משרה: משרה מלאה לחברה ממשלתית במרכז הא"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8854568",
+    "texts": [
+     "מנהל.ת פרויקטים - OT"
+    ],
+    "block": "ת שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 13/10/2026 מנהל.ת פרויקטים - OT מיקום המשרה: מרכז סוג משרה: משרה מלאה אחריות על מערכות פיננס"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8889587",
@@ -1549,63 +1597,63 @@
     "texts": [
      "לחברת תעשייתית באיזור השרון דרוש /ה מיישם /ת ומנהל /ת פרויקטים מערכות מידע"
     ],
-    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 3 שעות לחברת תעשייתית באיזור השרון דרוש /ה מיישם /ת ומנהל /ת פרויקטים מערכות מידע חברה חסויה מיקום המשרה: קיסריה סוג משרה: משרה מלאה אפיון וני"
+    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 5 שעות לחברת תעשייתית באיזור השרון דרוש /ה מיישם /ת ומנהל /ת פרויקטים מערכות מידע חברה חסויה מיקום המשרה: קיסריה סוג משרה: משרה מלאה אפיון וני"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8347641",
     "texts": [
      "יישום וניהול פרוייקטים בתחום המערכות מידע"
     ],
-    "block": "חיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 2 שעות יישום וניהול פרוייקטים בתחום המערכות מידע מידעטק מיקום המשרה: מספר מקומות הוד השרון הרצליה טירת כרמל ס"
+    "block": "חיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 4 שעות יישום וניהול פרוייקטים בתחום המערכות מידע מידעטק מיקום המשרה: מספר מקומות הוד השרון הרצליה טירת כרמל ס"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8886341",
     "texts": [
      "מנהל /ת פרויקטים טכנולוגיים - CRM, אינטגרציות ופתרונות דיגיטליים"
     ],
-    "block": "רצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות מנהל /ת פרויקטים טכנולוגיים - CRM, אינטגרציות ופתרונות דיגיטליים חברה חסויה מיקום המשרה: חיפה סוג משרה: משרה מלאה ועבודה היבר"
+    "block": "רצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות מנהל /ת פרויקטים טכנולוגיים - CRM, אינטגרציות ופתרונות דיגיטליים חברה חסויה מיקום המשרה: חיפה סוג משרה: משרה מלאה ועבודה היבר"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8713140",
     "texts": [
      "מיישם /ת פריוריטי"
     ],
-    "block": "אות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות מיישם /ת פריוריטי המימד השלישי מיקום המשרה: מספר מקומות חיפה קרית ביאליק קרית "
+    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 10 שעות מיישם /ת פריוריטי המימד השלישי מיקום המשרה: מספר מקומות חיפה קרית ביאליק קרית "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893571",
     "texts": [
      "לחברה יצרנית תפעולית מוביל /ת מערכות AI וחדשנות דיגיטלית"
     ],
-    "block": "מת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות לחברה יצרנית תפעולית מוביל /ת מערכות AI וחדשנות דיגיטלית חברה חסויה מיקום המשרה: מספר מקומות פתח תקווה ראש העין כפר ס"
+    "block": "מת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות לחברה יצרנית תפעולית מוביל /ת מערכות AI וחדשנות דיגיטלית חברה חסויה מיקום המשרה: מספר מקומות פתח תקווה ראש העין כפר ס"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8750573",
     "texts": [
      "אחראי /ת מערכות ניהול זהויות וגישה ארגונית (IAM /IDM) במערך מחשוב ומערכות מידע JB-2557"
     ],
-    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 2 שעות אחראי /ת מערכות ניהול זהויות וגישה ארגונית (IAM /IDM) במערך מחשוב ומערכות מידע JB-2557 הטכניון - מכון טכנולוגי לישראל מיקום המשרה: חיפה סוג משרה: מ"
+    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות אחראי /ת מערכות ניהול זהויות וגישה ארגונית (IAM /IDM) במערך מחשוב ומערכות מידע JB-2557 הטכניון - מכון טכנולוגי לישראל מיקום המשרה: חיפה סוג משרה: מ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895384",
     "texts": [
      "רכז.ת תהליכים ובקרה בתחום הביטחון"
     ],
-    "block": "רצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 6 שעות רכז.ת תהליכים ובקרה בתחום הביטחון רפאל מיקום המשרה: קרית ים סוג משרה: משרה מלאה תכנון, ריכוז ו"
+    "block": "רצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות רכז.ת תהליכים ובקרה בתחום הביטחון רפאל מיקום המשרה: קרית ים סוג משרה: משרה מלאה תכנון, ריכוז ו"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893397",
     "texts": [
      "מנהל /ת פרויקט הטמעת פריוריטי"
     ],
-    "block": "ה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 3 שעות מנהל /ת פרויקט הטמעת פריוריטי קוגול - טייר סנטר מיקום המשרה: קיסריה סוג משרה: משרה חלקית ק"
+    "block": "ה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות מנהל /ת פרויקט הטמעת פריוריטי קוגול - טייר סנטר מיקום המשרה: קיסריה סוג משרה: משרה חלקית ק"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8873960",
     "texts": [
      "מתאם /ת MES למפעל בגליל המערבי"
     ],
-    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות מתאם /ת MES למפעל בגליל המערבי YHR מיקום המשרה: מספר מקומות עכו דייר אל אסד כפר ורדים נהריה"
+    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות מתאם /ת MES למפעל בגליל המערבי YHR מיקום המשרה: מספר מקומות עכו דייר אל אסד כפר ורדים נהריה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893852",
@@ -1629,25 +1677,25 @@
     "block": "ף המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 7 ימים PMO לפיתוח והנדסה מיקום המשרה: יגור סוג משרה: משרה מלאה דרוש/ה PMO לתפקיד הכול"
    },
    {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882550",
-    "texts": [
-     "דרוש /ה מנהל /ת פרויקטי מערכות מידע גלובלי (Global IS Project Manager )"
-    ],
-    "block": "ות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 4 שעות דרוש /ה מנהל /ת פרויקטי מערכות מידע גלובלי (Global IS Project Manager ) חברה חסויה מיקום המשרה: מספר מקומות עפולה מגדל העמק כפר תבור"
-   },
-   {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899474",
     "texts": [
      "ראש /ת צוות פיתוח ואפליקציות לקבוצה תעשייתית מובילה"
     ],
-    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות ראש /ת צוות פיתוח ואפליקציות לקבוצה תעשייתית מובילה איילת אלבז מיקום המשרה: מספר מקומות בית שאן עפולה כפר תבור טב"
+    "block": "החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות ראש /ת צוות פיתוח ואפליקציות לקבוצה תעשייתית מובילה איילת אלבז מיקום המשרה: מספר מקומות בית שאן עפולה כפר תבור טב"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8905480",
     "texts": [
      "למפעל מזון באזור עפולה דרוש /ה ראש /ת צוות פיתוח ואפליקציות"
     ],
-    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 1 שעות למפעל מזון באזור עפולה דרוש /ה ראש /ת צוות פיתוח ואפליקציות וי.קונקט מיקום המשרה: עפולה סוג משרה: משרה מלאה הובלת צוות א"
+    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות למפעל מזון באזור עפולה דרוש /ה ראש /ת צוות פיתוח ואפליקציות וי.קונקט מיקום המשרה: עפולה סוג משרה: משרה מלאה הובלת צוות א"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8910716",
+    "texts": [
+     "מנהל /ת רשת system admin"
+    ],
+    "block": "ת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 7 שעות מנהל /ת רשת system admin מיקום המשרה: צפון סוג משרה: משרה מלאה ניהול, תחזוקה ושדרוג ש"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8855759",
@@ -1671,102 +1719,109 @@
     "block": "י המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 20/10/2026 איש/ת סיסטם בכיר/ה בצפון מיקום המשרה: צפון סוג משרה: משרה מלאה דרוש/ה איש/אשת סיסטם ב"
    },
    {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8822460",
+    "texts": [
+     "ERP & Information Systems Lead (Priority)"
+    ],
+    "block": "מת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 10 שעות ERP & Information Systems Lead (Priority) Risco Group Location: Rishon Letsiyon Job Type: More than on"
+   },
+   {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8827833",
     "texts": [
      "מנהל /ת פרויקטים טכנולוגיים"
     ],
-    "block": "שרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות מנהל /ת פרויקטים טכנולוגיים מלם תים מיקום המשרה: מספר מקומות ירושלים לוד ראשון לציון פתח"
+    "block": "שרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות מנהל /ת פרויקטים טכנולוגיים מלם תים מיקום המשרה: מספר מקומות ירושלים לוד ראשון לציון פתח"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8907548",
     "texts": [
      "מנהל /ת פרויקטים טכנולוגיים -סייבר ותשתיות IT"
     ],
-    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות מנהל /ת פרויקטים טכנולוגיים -סייבר ותשתיות IT TOP SOFT טופ סופט - השמה ומיקור חוץ מיקום המשרה: מספר מקומות "
+    "block": "המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 10 שעות מנהל /ת פרויקטים טכנולוגיים -סייבר ותשתיות IT TOP SOFT טופ סופט - השמה ומיקור חוץ מיקום המשרה: מספר מקומות"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8873766",
     "texts": [
      "דרוש /ה מנהל /ת תחום טכנולוגיה לארגון מוביל בתחום המזון באזור עפולה"
     ],
-    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות דרוש /ה מנהל /ת תחום טכנולוגיה לארגון מוביל בתחום המזון באזור עפולה חברה חסויה מיקום המשרה: מספר מקומות אלון מורה גדעונה עפולה מ"
+    "block": "ימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות דרוש /ה מנהל /ת תחום טכנולוגיה לארגון מוביל בתחום המזון באזור עפולה חברה חסויה מיקום המשרה: מספר מקומות אלון מורה גדעונה עפולה מ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8911347",
     "texts": [
      "מנהל /ת פרויקטים"
     ],
-    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 1 שעות מנהל /ת פרויקטים G-NESS מיקום המשרה: ראשון לציון סוג משרה: משרה מלאה ועבודה ה"
+    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 4 שעות מנהל /ת פרויקטים G-NESS מיקום המשרה: ראשון לציון סוג משרה: משרה מלאה ועבודה ה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8905773",
     "texts": [
      "מנהל /ת חטיבת תשתיות מחשוב"
     ],
-    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות מנהל /ת חטיבת תשתיות מחשוב Match השמה מחברת מיקום המשרה: ירושלים ו מודיעין מכבים רעות ס"
+    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות מנהל /ת חטיבת תשתיות מחשוב Match השמה מחברת מיקום המשרה: ירושלים ו מודיעין מכבים רעות ס"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8894770",
     "texts": [
      "מנהל /ת Delivery בכיר /ה לתחום Professional Services"
     ],
-    "block": "יר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות מנהל /ת Delivery בכיר /ה לתחום Professional Services peax talent מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה לחברה"
+    "block": "יר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות מנהל /ת Delivery בכיר /ה לתחום Professional Services peax talent מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה לחברה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882538",
     "texts": [
      "מנהל /ת מערך salesforce לחברה ציבורית מובילה במשק"
     ],
-    "block": "להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות מנהל /ת מערך salesforce לחברה ציבורית מובילה במשק יערה פיינר-אבחון והשמה מיקום המשרה: מספר מקומות חולון תל אבי"
+    "block": "להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות מנהל /ת מערך salesforce לחברה ציבורית מובילה במשק יערה פיינר-אבחון והשמה מיקום המשרה: מספר מקומות חולון תל אבי"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8783409",
     "texts": [
      "מנהל אתר data Center"
     ],
-    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 5 שעות מנהל אתר data Center Calanit by One מיקום המשרה: שוהם ו חיפה סוג משרה: משרה מלאה ח"
+    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות מנהל אתר data Center Calanit by One מיקום המשרה: שוהם ו חיפה סוג משרה: משרה מלאה ח"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8858838",
     "texts": [
      "דרוש /ה מנהל /ת פרויקטים בתחום תשתיות IT"
     ],
-    "block": "יר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות דרוש /ה מנהל /ת פרויקטים בתחום תשתיות IT G-NESS מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה ועבודה היב"
+    "block": "יר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות דרוש /ה מנהל /ת פרויקטים בתחום תשתיות IT G-NESS מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה ועבודה היב"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8885719",
     "texts": [
      "מנכ\"ל /ית למלון בתל אביב"
     ],
-    "block": "ת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 2 שעות מנכ\"ל /ית למלון בתל אביב Jobs.ai מיקום המשרה: מספר מקומות מודיעין מכבים רעות ראשון לצ"
+    "block": "ת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 5 שעות מנכ\"ל /ית למלון בתל אביב Jobs.ai מיקום המשרה: מספר מקומות מודיעין מכבים רעות ראשון לצ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8567935",
     "texts": [
      "רכז /ת גיוס טכנולוגי"
     ],
-    "block": "רשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות רכז /ת גיוס טכנולוגי EXPERIS HR מיקום המשרה: תל אביב יפו סוג משרה: מספר סוגים משר"
+    "block": "שימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות רכז /ת גיוס טכנולוגי EXPERIS HR מיקום המשרה: תל אביב יפו סוג משרה: מספר סוגים משר"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8872541",
     "texts": [
      "דרוש /ה מנהלת מעבדה ואבטחת איכות"
     ],
-    "block": "וחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות דרוש /ה מנהלת מעבדה ואבטחת איכות חברה חסויה מיקום המשרה: חיפה סוג משרה: משרה מלאה למפעל מזון "
+    "block": "וחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות דרוש /ה מנהלת מעבדה ואבטחת איכות חברה חסויה מיקום המשרה: חיפה סוג משרה: משרה מלאה למפעל מזון "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8892860",
     "texts": [
      "מבקר /ת איכות למפעל מזון בבית שמש"
     ],
-    "block": "חזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות מבקר /ת איכות למפעל מזון בבית שמש א.ג.גילרו מיקום המשרה: מספר מקומות באר שבע קרית גת קרית מלאכ"
+    "block": "זרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות מבקר /ת איכות למפעל מזון בבית שמש א.ג.גילרו מיקום המשרה: מספר מקומות באר שבע קרית גת קרית מלאכ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8866072",
     "texts": [
      "דרוש /ה מבקר /ת איכות"
     ],
-    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות דרוש /ה מבקר /ת איכות דוידוב סלומון טרז פזוס מיקום המשרה: מספר מקומות באר יעקב לוד"
+    "block": "לי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות דרוש /ה מבקר /ת איכות דוידוב סלומון טרז פזוס מיקום המשרה: מספר מקומות באר יעקב לוד"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8869838",
@@ -1811,20 +1866,6 @@
     "block": "דף המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 03/11/2026 מנהל /ת מוצר מיקום המשרה: מרכז סוג משרה: משרה מלאה דרוש/ה מנהל /ת מוצר טכ"
    },
    {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8854568",
-    "texts": [
-     "מנהל.ת פרויקטים - OT"
-    ],
-    "block": "ת שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 13/10/2026 מנהל.ת פרויקטים - OT מיקום המשרה: מרכז סוג משרה: משרה מלאה אחריות על מערכות פיננס"
-   },
-   {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8848899",
-    "texts": [
-     "מנהל /ת פרויקטי IT /OT ותשתיות"
-    ],
-    "block": "אות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם 08/10/2026 מנהל /ת פרויקטי IT /OT ותשתיות מיקום המשרה: פתח תקווה סוג משרה: משרה מלאה ועבודה היברידית ל"
-   },
-   {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8874982",
     "texts": [
      "מוביל/ה טכנולוגי/ת בתחום הDATA"
@@ -1857,56 +1898,49 @@
     "texts": [
      "IT Information Systems Manager"
     ],
-    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות IT Information Systems Manager חברה חסויה Location: More than one Ramat Hasharon Kfar Yona N"
+    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות IT Information Systems Manager חברה חסויה Location: More than one Ramat Hasharon Kfar Yona N"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8905649",
     "texts": [
      "מיישמ /ת מערכות מידע ותפעול ענן"
     ],
-    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 2 שעות מיישמ /ת מערכות מידע ותפעול ענן אומניטלקום בע\"מ מיקום המשרה: רמת גן סוג משרה: משרה מלאה הזדמ"
+    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 4 שעות מיישמ /ת מערכות מידע ותפעול ענן אומניטלקום בע\"מ מיקום המשרה: רמת גן סוג משרה: משרה מלאה הזדמ"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8911557",
     "texts": [
      "IT Infrastructure Manager"
     ],
-    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 57 דקות IT Infrastructure Manager Comblack מיקום המשרה: ירושלים סוג משרה: משרה מלאה חברת Combl"
+    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות IT Infrastructure Manager Comblack מיקום המשרה: ירושלים סוג משרה: משרה מלאה חברת Combla"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8875012",
     "texts": [
      "Information system Specialist"
     ],
-    "block": "ימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 2 שעות Information system Specialist Alpha TAU Medical Location: Jerusalem Job Type: Full Time Ab"
-   },
-   {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8822460",
-    "texts": [
-     "ERP & Information Systems Lead (Priority)"
-    ],
-    "block": "ימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות ERP & Information Systems Lead (Priority) Risco Group Location: Rishon Letsiyon Job Type: More than on"
+    "block": "ימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 5 שעות Information system Specialist Alpha TAU Medical Location: Jerusalem Job Type: Full Time Ab"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8905485",
     "texts": [
      "Core Infrastructure Manager"
     ],
-    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 3 שעות Core Infrastructure Manager SQLink מיקום המשרה: מספר מקומות תל אביב יפו רמת גן גבעתיים פת"
+    "block": "האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 5 שעות Core Infrastructure Manager SQLink מיקום המשרה: מספר מקומות תל אביב יפו רמת גן גבעתיים פת"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8841313",
     "texts": [
      "דרוש /ה מנהל מערכת WMS /TMS בקבוצת ח.י. ביד בינימין ליד גדרה"
     ],
-    "block": "אם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 7 שעות דרוש /ה מנהל מערכת WMS /TMS בקבוצת ח.י. ביד בינימין ליד גדרה קבוצת ח.י. מיקום המשרה: מספר מקומות יד בנימין אשדוד רחובות ר"
+    "block": "אם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות דרוש /ה מנהל מערכת WMS /TMS בקבוצת ח.י. ביד בינימין ליד גדרה קבוצת ח.י. מיקום המשרה: מספר מקומות יד בנימין אשדוד רחובות ר"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8885279",
     "texts": [
      "Information Systems Implementer + Software Tester"
     ],
-    "block": "ות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 8 שעות Information Systems Implementer + Software Tester מלם תים מיקום המשרה: מספר מקומות בת ים תל אביב יפו רמת גן פת"
+    "block": "ת החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 11 שעות Information Systems Implementer + Software Tester מלם תים מיקום המשרה: מספר מקומות בת ים תל אביב יפו רמת גן פת"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8903229",
@@ -1920,28 +1954,28 @@
     "texts": [
      "Project Manager"
     ],
-    "block": "זרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 1 שעות Project Manager Comblack מיקום המשרה: ירושלים סוג משרה: משרה מלאה חברת Combl"
+    "block": "זרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות Project Manager Comblack מיקום המשרה: ירושלים סוג משרה: משרה מלאה חברת Combl"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8855003",
     "texts": [
      "ממונה הגנת מידע"
     ],
-    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 1 שעות ממונה הגנת מידע Experis Cyber מיקום המשרה: רעננה סוג משרה: משרה מלאה ממונה ה"
+    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 4 שעות ממונה הגנת מידע Experis Cyber מיקום המשרה: רעננה סוג משרה: משרה מלאה ממונה ה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908164",
     "texts": [
      "data Project Manager"
     ],
-    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 6 שעות data Project Manager אלעד מערכות Location: Tel Aviv-Yafo Job Type: Full Time A Bit"
+    "block": "שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה לפני 9 שעות data Project Manager אלעד מערכות Location: Tel Aviv-Yafo Job Type: Full Time A Bit"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908497",
     "texts": [
      "Information Security & Cybersecurity Implementation Specialist"
     ],
-    "block": "רות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות Information Security & Cybersecurity Implementation Specialist SQLink מיקום המשרה: מספר מקומות בת ים חולון תל אביב יפו רמת "
+    "block": "ות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 10 שעות Information Security & Cybersecurity Implementation Specialist SQLink מיקום המשרה: מספר מקומות בת ים חולון תל אביב יפו רמת "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8882659",
@@ -1962,7 +1996,7 @@
     "texts": [
      "Product Manager in information systems and service accessibility"
     ],
-    "block": "מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 4 שעות Product Manager in information systems and service accessibility Location: Merkaz Job Type: Full Time and Public Service / Go"
+    "block": "מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות Product Manager in information systems and service accessibility Location: Merkaz Job Type: Full Time and Public Service / Go"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899079",
@@ -2011,84 +2045,84 @@
     "texts": [
      "Project Manager"
     ],
-    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 6 שעות Project Manager SQLink מיקום המשרה: מספר מקומות בית שמש ירושלים גבעת זאב מוד"
+    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 9 שעות Project Manager SQLink מיקום המשרה: מספר מקומות בית שמש ירושלים גבעת זאב מוד"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8909971",
     "texts": [
      "Project Manager"
     ],
-    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 9 שעות Project Manager דיאלוג מיקום המשרה: מספר מקומות רחובות תל אביב יפו רמת גן הר"
+    "block": "צאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 11 שעות Project Manager דיאלוג מיקום המשרה: מספר מקומות רחובות תל אביב יפו רמת גן הר"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8843047",
     "texts": [
      "Product Manager"
     ],
-    "block": "זרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 8 שעות Product Manager פיקארו- גיוס והשמה להייטק מיקום המשרה: תל אביב יפו סוג משרה:"
+    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות Product Manager פיקארו- גיוס והשמה להייטק מיקום המשרה: תל אביב יפו סוג משרה:"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8536949",
     "texts": [
      "IT Risk Management"
     ],
-    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 9 שעות IT Risk Management G-NESS מיקום המשרה: תל אביב יפו סוג משרה: משרה מלאה ועבודה הי"
+    "block": "לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 11 שעות IT Risk Management G-NESS מיקום המשרה: תל אביב יפו סוג משרה: משרה מלאה ועבודה ה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8811329",
     "texts": [
      "Tax Manager"
     ],
-    "block": "י המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 8 שעות Tax Manager קסלמן וקסלמן PwC Israel - רואי חשבון מיקום המשרה: מספר מקומו"
+    "block": "המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה משרה בלעדית לפני 10 שעות Tax Manager קסלמן וקסלמן PwC Israel - רואי חשבון מיקום המשרה: מספר מקומות"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908861",
     "texts": [
      "HardWare Manager"
     ],
-    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות HardWare Manager חברה חסויה Location: More than one Caesarea Yokne`am Migdal "
+    "block": "רה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות HardWare Manager חברה חסויה Location: More than one Caesarea Yokne`am Migdal "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8908579",
     "texts": [
      "HardWare Manager"
     ],
-    "block": "צאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 6 שעות HardWare Manager חברה חסויה מיקום המשרה: מספר מקומות עפולה מגדל העמק חיפה עכו"
+    "block": "צאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות HardWare Manager חברה חסויה מיקום המשרה: מספר מקומות עפולה מגדל העמק חיפה עכו"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8893144",
     "texts": [
      "HardWare Manager"
     ],
-    "block": "צאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 7 שעות HardWare Manager דיאלוג מיקום המשרה: מספר מקומות תל אביב יפו פתח תקווה הוד הש"
+    "block": "צאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 9 שעות HardWare Manager דיאלוג מיקום המשרה: מספר מקומות תל אביב יפו פתח תקווה הוד הש"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8536973",
     "texts": [
      "Product Manager"
     ],
-    "block": "זרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 4 שעות Product Manager G-NESS מיקום המשרה: תל אביב יפו סוג משרה: משרה מלאה ועבודה ה"
+    "block": "זרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 7 שעות Product Manager G-NESS מיקום המשרה: תל אביב יפו סוג משרה: משרה מלאה ועבודה ה"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8899439",
     "texts": [
      "Product Manager"
     ],
-    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 2 שעות Product Manager דיאלוג מיקום המשרה: מספר מקומות רחובות תל אביב יפו רמת גן הר"
+    "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 4 שעות Product Manager דיאלוג מיקום המשרה: מספר מקומות רחובות תל אביב יפו רמת גן הר"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8743278",
     "texts": [
      "FP A Manager"
     ],
-    "block": "ת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 8 שעות FP A Manager קבוצת נישה מיקום המשרה: מספר מקומות שוהם פתח תקווה ראש העין "
+    "block": "תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם משרה בלעדית לפני 11 שעות FP A Manager קבוצת נישה מיקום המשרה: מספר מקומות שוהם פתח תקווה ראש העין א"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8857934",
     "texts": [
      "EPC Manager"
     ],
-    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 3 שעות EPC Manager תפקיד טק מיקום המשרה: מודיעין מכבים רעות סוג משרה: משרה מלאה "
+    "block": "הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה חברת השמה / כח אדם לפני 6 שעות EPC Manager תפקיד טק מיקום המשרה: מודיעין מכבים רעות סוג משרה: משרה מלאה "
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8895011",
@@ -2140,13 +2174,6 @@
     "block": "ף המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 11/11/2026 sales manager Location: Herzliya Job Type: Full Time we are looking for an"
    },
    {
-    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8886686",
-    "texts": [
-     "sales manager"
-    ],
-    "block": "ף המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 05/11/2026 sales manager Location: Petah Tikva Job Type: More than one Full Time Mult"
-   },
-   {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8883083",
     "texts": [
      "release manager"
@@ -2159,6 +2186,13 @@
      "Customer Success Manager, exposure management- emea"
     ],
     "block": "וצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 3 ימים Customer Success Manager, exposure management- emea Location: Tel Aviv-Yafo Job Type: Full Time own the end-to-e"
+   },
+   {
+    "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8861998",
+    "texts": [
+     "Product Manager"
+    ],
+    "block": "המשרות שלי המשרה הוחזרה לרשימת תוצאות החיפוש האם תרצה להסיר את המשרה מרשימת המשרות השמורות שלך? כן לא אירעה שגיאה בשליחת פרטיך למשרה 18/10/2026 Product Manager Location: Tel Aviv-Yafo Job Type: Full Time we are looking f"
    },
    {
     "url": "https://www.alljobs.co.il/Search/UploadSingle.aspx?JobID=8863812",
@@ -2191,7 +2225,7 @@
   ],
   "דרושים": [
    {
-    "url": "https://www.drushim.co.il/job/38901610/416ef0c4/",
+    "url": "https://www.drushim.co.il/job/38901534/95cff02b/",
     "texts": [
      "פרטי המשרה",
      "הגשת מועמדות"
@@ -2199,7 +2233,7 @@
     "block": "קיים אחריות ניהולית על תשתיות הIT, סיסטם, תקשורת, ענן, זמינות ורציפות תפעולית בנייה וניהול של תוכניות עבודה, יעדים, משימות וסדרי עדיפויות של המחלקה. פרטי המשרה הגשת מועמדות שיתוף מנהל /ת מערכות מידע, חולון אורון אחזקות ו"
    },
    {
-    "url": "https://www.drushim.co.il/job/38901534/95cff02b/",
+    "url": "https://www.drushim.co.il/job/38901610/416ef0c4/",
     "texts": [
      "פרטי המשרה",
      "הגשת מועמדות"
@@ -2292,7 +2326,63 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "ותמיכה מתן מענה תמיכה למשתמשים על כלל הציוד, היישומים והכלים איתם עובדים. ניהול קריאות שירות, תעדוף ועמידה ב-SLA הדרכת משתמשים וכתיבת מדריכים ונהלים פרטי המשרה הגשת מועמדות שיתוף ק רכז/ת מערכות מידע ומשאבי אנוש – HRIS קב"
+    "block": "ותמיכה מתן מענה תמיכה למשתמשים על כלל הציוד, היישומים והכלים איתם עובדים. ניהול קריאות שירות, תעדוף ועמידה ב-SLA הדרכת משתמשים וכתיבת מדריכים ונהלים פרטי המשרה הגשת מועמדות שיתוף חסוי דרוש מוביל/ת פרויקטים ויישומי GIS - "
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39051881/0dae243d/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "S. אנחנו מחפשים איש/אשת מקצוע עם ניסיון מעשי של 2–4 שנים בתחום ה-GIS, יכולת טכנית גבוהה, סקרנות מקצועית, מוטיבציה ורצון לקחת אחריות ולהוביל תהליכים. פרטי המשרה הגשת מועמדות שיתוף חסוי מנהל/ת פרויקטים טכנולוגיים CRM ופיתו"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/38973867/1e7c6d73/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "ותקשורת שוטפת מול הלקוחות. • תעבדו בצמוד לצוותים פנימיים: אפיון, פיתוח, QA ויישום. • תובילו תהליכי הטמעה, הדרכה וליווי לקוחות גם לאחר העלייה לאוויר. פרטי המשרה הגשת מועמדות שיתוף מיישמ.ת ERP Decathlon כפר סבא 1-2 שנים מש"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/38890533/5e77c505/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "כות ליבה אחרות כגון: WMS, BI ועוד מעקב, בקרה, שיפור ותמיכה בממשקים מול מערכות המטה הגלובלי בחו\"ל הדרכה ומתן תמיכה למשתמשי הקצה במחלקות השונות בארגון פרטי המשרה הגשת מועמדות שיתוף לחברת הראל דרוש/ה מנהל/ת פרויקטים הראל בי"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39097272/639a4267/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "ודה טכנולוגית ומתקדמת - אפשרויות למידה, צמיחה והתפתחות מקצועית *מיקום: רמת גן, מתחם הבורסה *היקף משרה: מלאה (8.5 שעות ביום) מעניין אותך? נשמח להכיר! פרטי המשרה הגשת מועמדות שיתוף חסוי דרוש/ה מנהל מחלקת תשתיות IT - חסוי -"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/38859259/ab3ed9d7/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "וות, איסוף מידע רלוונטי מהספקים השונים ותיעודו. שמירה על קשרי עבודה רציפים מול הספקים, נותני השירות וליווי התקנות. דאגה לזמינות מלאה של המערכות 24/7 פרטי המשרה הגשת מועמדות שיתוף ה סגן/ית מנהל מערכות מידע השועלה נתניה 5-"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39049221/cad29d47/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "הוי הצרכים ועד ליישום פתרונות. קידום חדשנות, אוטומציה ופתרונות AI ארגוניים. אחריות לתיאום בין פרויקטים, ניהול סיכונים, עמידה ביעדים ובקרה על תוצרים. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת תחום IT ומערכות תשתית- רכבת קלה יר"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39074472/21788eef/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "קת משימות, חניכה ובקרת ביצועים • ניהול תקציב התחום, רכש, רישיונות, חוזים וספקים; ניהול משא ומתן, הסכמי SLA ובקרה על עלויות, איכות ועמידה בהתחייבויות פרטי המשרה הגשת מועמדות שיתוף ק רכז/ת מערכות מידע ומשאבי אנוש – HRIS קב"
    },
    {
     "url": "https://www.drushim.co.il/job/39001930/7735c5b5/",
@@ -2307,23 +2397,7 @@
     "texts": [
      "פרטי המשרה"
     ],
-    "block": "היקף משרה: 100% דירוג: מנהלי / מח\"ר/ דירוג מקביל, מתח דרגות: 9-11 / 39-41 (בהתאם לדירוג) תאריך פרסום המכרז: 04/11/2026 תאריך סגירת המכרז: 10/11/2026 פרטי המשרה שלח/י באתר החברה שיתוף מנהל/ת תחום IT ומערכות תשתית- רכבת קל"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39074472/21788eef/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "קת משימות, חניכה ובקרת ביצועים • ניהול תקציב התחום, רכש, רישיונות, חוזים וספקים; ניהול משא ומתן, הסכמי SLA ובקרה על עלויות, איכות ועמידה בהתחייבויות פרטי המשרה הגשת מועמדות שיתוף ה סגן/ית מנהל מערכות מידע השועלה נתניה 5-"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39049221/cad29d47/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "הוי הצרכים ועד ליישום פתרונות. קידום חדשנות, אוטומציה ופתרונות AI ארגוניים. אחריות לתיאום בין פרויקטים, ניהול סיכונים, עמידה ביעדים ובקרה על תוצרים. פרטי המשרה הגשת מועמדות שיתוף א מנהל/ת IT ומיישם/ת אבטחת מידע א.ש בינה "
+    "block": "היקף משרה: 100% דירוג: מנהלי / מח\"ר/ דירוג מקביל, מתח דרגות: 9-11 / 39-41 (בהתאם לדירוג) תאריך פרסום המכרז: 04/11/2026 תאריך סגירת המכרז: 10/11/2026 פרטי המשרה שלח/י באתר החברה שיתוף א מנהל/ת IT ומיישם/ת אבטחת מידע א.ש ב"
    },
    {
     "url": "https://www.drushim.co.il/job/39048746/bb025fd9/",
@@ -2347,47 +2421,7 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "ילוב טכנולוגיות AI. • ניתוח תהליכים עסקיים, ביצוע מחקרי שוק והשוואת פתרונות טכנולוגיים. • ניהול ספקים ופרויקטים במיקור חוץ ומעקב אחר התקדמות הפיתוח. פרטי המשרה הגשת מועמדות שיתוף 21627 - Account Manager - Defense Sector "
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39134379/e56307d4/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "חון והובלת פעילויות פיתוח עסקי על מנת להבטיח שלקוחותינו יקבלו פתרונות מקיפים ויעילים התואמים את צרכיהם ויעדיהם. מדובר במשרה מלאה בנתניה לטווח הרחוק. פרטי המשרה הגשת מועמדות שיתוף חסוי אחראי/ת תפעול מערכות מידע - חסוי - ת"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/38868721/3d1b3244/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "ולוגיים, שדרוג מערכות והטמעת כלים חדשים. - בחינת פתרונות טכנולוגיים לשיפור וייעול תהליכי עבודה, כולל כלי AI. מיקום: עזריאלי- קו רכבת השלום משרה מלאה פרטי המשרה הגשת מועמדות שיתוף מנהל/ת מוצר ו/או פרויקטים עוז תוכנה בע\"מ "
-   },
-   {
-    "url": "https://www.drushim.co.il/job/38855649/b9477f3c/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "פתרון טכנולוגי אל מול מערכות הליבה הבנקאיות. מנהל/ת הנכס מאשר כל מסמך HLD ו- LLD , ומהווים את נקודת הממשק בין הדרישה העסקית לפתרון הטכנולוגי בפועל. פרטי המשרה הגשת מועמדות שיתוף מנהל.ת תחום Salesforce מימון ישיר פתח תקוו"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/38883104/88ef1b75/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "סיכונים, הצפת חסמים ודיווח להנהלה על התקדמות, איכות ועמידה ביעדים. קידום מפת דרכים טכנולוגית, בחינת יכולות חדשות בפלטפורמה והטמעתן בהתאם לערך העסקי. פרטי המשרה הגשת מועמדות שיתוף ת #371 רכז.ת מערכות מידע ותשתיות תנועת או"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/38950782/109ab20d/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "תחזוקה של Monday, כולל לוחות, אוטומציות ודשבורדים • תמיכה באפליקציה הארגונית, מעבר לענן ופרויקטים טכנולוגיים • עבודה מול ספקים ותיעוד תהליכים ונהלים פרטי המשרה הגשת מועמדות הצג עוד משרות חברות מובילות חברות מובילות הדרך "
+    "block": "ילוב טכנולוגיות AI. • ניתוח תהליכים עסקיים, ביצוע מחקרי שוק והשוואת פתרונות טכנולוגיים. • ניהול ספקים ופרויקטים במיקור חוץ ומעקב אחר התקדמות הפיתוח. פרטי המשרה הגשת מועמדות הצג עוד משרות חברות מובילות חברות מובילות הדרך "
    },
    {
     "url": "https://www.drushim.co.il/job/39132916/6b13f13d/",
@@ -2395,7 +2429,7 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "ראש העין 5-6 שנים משרה מלאה לפני 4 שעות לחברה גלובלית מתחום האנרגיה המתחדשת דרוש/ה מנהל/ת תכנון ליווי פרויקטי תשתיות משלב התכנון ועד ההקמה והמסירה. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקט טכנולוגי/ת בכיר/ה (AI) top-s"
+    "block": "ראש העין 5-6 שנים משרה מלאה לפני 7 שעות לחברה גלובלית מתחום האנרגיה המתחדשת דרוש/ה מנהל/ת תכנון ליווי פרויקטי תשתיות משלב התכנון ועד ההקמה והמסירה. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקט טכנולוגי/ת בכיר/ה (AI) top-s"
    },
    {
     "url": "https://www.drushim.co.il/job/38873851/985b1850/",
@@ -2404,6 +2438,22 @@
      "הגשת מועמדות"
     ],
     "block": "terfall) • עבודה מול צוותי פיתוח פנימיים וחיצוניים, תשתיות, הגנת מידע, data ואינטגרציה • כתיבת מסמכי אפיון (HLD/LLD), תוכניות בדיקות ותוכניות פרויקט פרטי המשרה הגשת מועמדות שיתוף מ מנהל/ת יחידת טכנולוגיות דיגיטליות ומידע"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39106373/f74485ad/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "ות, רגולציה ואבטחת מידע. • הובלת חדשנות טכנולוגית וקידום פתרונות מתקדמים תוך יישום מתודולוגיות Agile, Scrum ו-Waterfall. משרה מלאה בבני ברק- היברידי פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים עוז תוכנה בע\"מ"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39062331/73e71a24/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "יקטים מורכבים וחוצי-ארגון מקצה לקצה – משלב איסוף הדרישות והאפיון, דרך אינטגרציות וניהול לו\"ז ותקציב, ועד להטמעה מלאה מול הדרגים הבכירים ומשתמשי הקצה פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים בכיר/ה – AI QP"
    },
    {
     "url": "https://www.drushim.co.il/job/39121307/1d4f29b9/",
@@ -2419,15 +2469,7 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "- גיבוש מדיניות רכש לכלים וספקים בתחום, הקמת קהילת עמיתים מקצועית לשיתוף ידע, והצגת ערך כלכלי, ROI והאצת זמני הגעה לשוק (TTM). - מודל עבודה היברידי. פרטי המשרה הגשת מועמדות שיתוף י מנהל מוצר ופתרונות טכנולוגיים יאמ שרפשט"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39092446/71c71965/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "ללקוחות וליווי לקוחות אסטרטגיים, עבודה מול יצרנים בינ\"ל, תמחור וניהול פורטפוליו החברה, חשיפה מתמשכת לטכנולוגיות מתקדמות ולחדשנות בתחום מכונות המזון. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים מדנס סוכנות לב"
+    "block": "- גיבוש מדיניות רכש לכלים וספקים בתחום, הקמת קהילת עמיתים מקצועית לשיתוף ידע, והצגת ערך כלכלי, ROI והאצת זמני הגעה לשוק (TTM). - מודל עבודה היברידי. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים מדנס סוכנות לב"
    },
    {
     "url": "https://www.drushim.co.il/job/39025642/6b055be8/",
@@ -2435,7 +2477,15 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "י עבודה, הבנת צרכי המשתמשים, •הגדרת דרישות עסקיות והעברתן לספקים ולצוות היישום והפיתוח, כתיבת מסמכי אפיון עסקיים וטכניים (פונקציונלים), כולל תרשימים פרטי המשרה הגשת מועמדות שיתוף א מנהל/ת מחסנים טכנולוגיים אפקון בקרה פתח"
+    "block": "י עבודה, הבנת צרכי המשתמשים, •הגדרת דרישות עסקיות והעברתן לספקים ולצוות היישום והפיתוח, כתיבת מסמכי אפיון עסקיים וטכניים (פונקציונלים), כולל תרשימים פרטי המשרה הגשת מועמדות שיתוף י מנהל מוצר ופתרונות טכנולוגיים יאמ שרפשט"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39092446/71c71965/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "ללקוחות וליווי לקוחות אסטרטגיים, עבודה מול יצרנים בינ\"ל, תמחור וניהול פורטפוליו החברה, חשיפה מתמשכת לטכנולוגיות מתקדמות ולחדשנות בתחום מכונות המזון. פרטי המשרה הגשת מועמדות שיתוף א מנהל/ת מחסנים טכנולוגיים אפקון בקרה פתח"
    },
    {
     "url": "https://www.drushim.co.il/job/38968072/477fae67/",
@@ -2494,30 +2544,6 @@
     "block": "צוותי פיתוח, QA, גורמים פנים ארגוניים וממשקים עסקיים. הובלת מפגשי Design Review עם הגורמים הרלוונטיים. בדיקות קבלה והטמעה מול גורמים פנים ארגוניים. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים — מערכות מידע P"
    },
    {
-    "url": "https://www.drushim.co.il/job/38973867/1e7c6d73/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "ותקשורת שוטפת מול הלקוחות. • תעבדו בצמוד לצוותים פנימיים: אפיון, פיתוח, QA ויישום. • תובילו תהליכי הטמעה, הדרכה וליווי לקוחות גם לאחר העלייה לאוויר. פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים בכיר/ה – AI El"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39106373/f74485ad/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "ות, רגולציה ואבטחת מידע. • הובלת חדשנות טכנולוגית וקידום פתרונות מתקדמים תוך יישום מתודולוגיות Agile, Scrum ו-Waterfall. משרה מלאה בבני ברק- היברידי פרטי המשרה הגשת מועמדות שיתוף מנהל/ת פרויקטים טכנולוגיים עוז תוכנה בע\"מ"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39062331/73e71a24/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "יקטים מורכבים וחוצי-ארגון מקצה לקצה – משלב איסוף הדרישות והאפיון, דרך אינטגרציות וניהול לו\"ז ותקציב, ועד להטמעה מלאה מול הדרגים הבכירים ומשתמשי הקצה פרטי המשרה הגשת מועמדות שיתוף מנהל/ת איכות וטכנולוגיה למחלבת תל יוסף תנ"
-   },
-   {
     "url": "https://www.drushim.co.il/job/38970447/4a1942b8/",
     "texts": [
      "פרטי המשרה"
@@ -2557,22 +2583,6 @@
     "block": "משרה מלאה בירושלים | ימים א׳–ה׳ ושישי לסירוגין. שעות עבודה 09:00–18:00. הזדמנות להוביל פעילות מסחרית, לנהל צוות ולהשתלב בתחום טכנולוגי מתקדם ומתפתח. פרטי המשרה הגשת מועמדות הצג עוד משרות חברות מובילות חברות מובילות הדרך "
    },
    {
-    "url": "https://www.drushim.co.il/job/39161739/0569101c/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "שבונות שוטפת וחשבות שכר * עבודה מול מטפלים: מעקב אחר סגירה ודיווח של פגישות במערכת, ותמיכה בשינויי מועדים וביטולים * הובלת תהליכי שיפור, ייעול ובקרה פרטי המשרה הגשת מועמדות שיתוף y מנהל/ת ידע והדרכה בארגון מוביל בצפון ye"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39084333/415de4c1/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "יתוח מקצועי לשדרת הניהול - תרגום שינויים עסקיים לתהליכי עבודה והטמעתם במוקדים - עבודה עצמאית וישירה מול הלקוח והנהלת הפרויקט וביצוע בקרות באופן שוטף פרטי המשרה הגשת מועמדות שיתוף ש מנהל/ת פרויקטים שטח-ידע וניסיון בביצוע "
-   },
-   {
     "url": "https://www.drushim.co.il/job/38905163/e8cd2cc4/",
     "texts": [
      "פרטי המשרה",
@@ -2594,7 +2604,23 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "- ניהול הידע בארגון, שמירתו והעברתו לגורם הרלוונטי, מעקב אחר משימות ודחיפתן לביצוע. - משימות נוספות בהתאם לדרישות מנהל ישיר ו/או צרכי התפקיד והחברה פרטי המשרה הגשת מועמדות שיתוף דרוש/ה מנהל/ת תוכן וידע לגיל השלישי CALANI"
+    "block": "- ניהול הידע בארגון, שמירתו והעברתו לגורם הרלוונטי, מעקב אחר משימות ודחיפתן לביצוע. - משימות נוספות בהתאם לדרישות מנהל ישיר ו/או צרכי התפקיד והחברה פרטי המשרה הגשת מועמדות שיתוף מ מנהל/ת יחידת טכנולוגיות דיגיטליות ומידע "
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39161739/0569101c/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "שבונות שוטפת וחשבות שכר * עבודה מול מטפלים: מעקב אחר סגירה ודיווח של פגישות במערכת, ותמיכה בשינויי מועדים וביטולים * הובלת תהליכי שיפור, ייעול ובקרה פרטי המשרה הגשת מועמדות שיתוף y מנהל/ת ידע והדרכה אזורית בארגון מוביל ב"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39084333/415de4c1/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "יתוח מקצועי לשדרת הניהול - תרגום שינויים עסקיים לתהליכי עבודה והטמעתם במוקדים - עבודה עצמאית וישירה מול הלקוח והנהלת הפרויקט וביצוע בקרות באופן שוטף פרטי המשרה הגשת מועמדות שיתוף דרוש/ה מנהל/ת תוכן וידע לגיל השלישי CALAN"
    },
    {
     "url": "https://www.drushim.co.il/job/39097975/70164dbb/",
@@ -2729,15 +2755,7 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "the organization (AI Factory) • Act as the go-to AI expert for business and IBT teams, guiding and reviewing the work of internal teams and vendors פרטי המשרה הגשת מועמדות שיתוף Data Information Systems Analyst Malam מער"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39143499/255d5d7a/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": ". במסגרת התפקיד ליווי התהליך משלב הדרישה העסקית ועד למימוש, עבודה מול צוותים טכנולוגיים והובלת משימות ופרויקטי Data, תוך שילוב פתרונות AI ואוטומציה. פרטי המשרה הגשת מועמדות הצג עוד משרות חברות מובילות חברות מובילות הדרך "
+    "block": "the organization (AI Factory) • Act as the go-to AI expert for business and IBT teams, guiding and reviewing the work of internal teams and vendors פרטי המשרה הגשת מועמדות הצג עוד משרות חברות מובילות חברות מובילות הדרך ה"
    },
    {
     "url": "https://www.drushim.co.il/job/39016427/af0aab23/",
@@ -2904,15 +2922,7 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "rs. ? Improve project management processes and Agile methodologies. ? Ensure project delivery aligns with business goals and technical requirements. פרטי המשרה הגשת מועמדות שיתוף B CRM Lifecycle Manager | DTC Brand | Ris"
-   },
-   {
-    "url": "https://www.drushim.co.il/job/39094004/b5b85b6f/",
-    "texts": [
-     "פרטי המשרה",
-     "הגשת מועמדות"
-    ],
-    "block": "kets - Track KPIs, build dashboards, run A/B tests and maintain deliverability - Develop the loyalty program and integrate it into customer journeys פרטי המשרה הגשת מועמדות שיתוף HSE Manager PB כפר מנחם 3-4 שנים משרה מלא"
+    "block": "rs. ? Improve project management processes and Agile methodologies. ? Ensure project delivery aligns with business goals and technical requirements. פרטי המשרה הגשת מועמדות שיתוף HSE Manager PB כפר מנחם 3-4 שנים משרה מלא"
    },
    {
     "url": "https://www.drushim.co.il/job/39012798/f752429c/",
@@ -2920,7 +2930,15 @@
      "פרטי המשרה",
      "הגשת מועמדות"
     ],
-    "block": "rface with local authorities and regulatory bodies as required. · Prepare and deliver HSE performance reports to the Owner’s Project Management Team פרטי המשרה הגשת מועמדות שיתוף Project Manager B-net ייעוץ והשמה מספר מק"
+    "block": "rface with local authorities and regulatory bodies as required. · Prepare and deliver HSE performance reports to the Owner’s Project Management Team פרטי המשרה הגשת מועמדות שיתוף B CRM Lifecycle Manager | DTC Brand | Ris"
+   },
+   {
+    "url": "https://www.drushim.co.il/job/39094004/b5b85b6f/",
+    "texts": [
+     "פרטי המשרה",
+     "הגשת מועמדות"
+    ],
+    "block": "kets - Track KPIs, build dashboards, run A/B tests and maintain deliverability - Develop the loyalty program and integrate it into customer journeys פרטי המשרה הגשת מועמדות שיתוף Project Manager B-net ייעוץ והשמה מספר מק"
    },
    {
     "url": "https://www.drushim.co.il/job/39103865/a646401b/",
@@ -2958,7 +2976,7 @@
     "texts": [
      "IT Manager"
     ],
-    "block": "Information Technology Infrastructure Manager AMAREL LTD North District, Israel הגש מועמדות מוקדמת לפני ‏3‏ ‏שעות‏ IT Manager"
+    "block": "Information Technology Infrastructure Manager AMAREL LTD North District, Israel הגש מועמדות מוקדמת לפני ‏5‏ ‏שעות‏ IT Manager"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/it-system-team-lead-at-cato-networks-4479420003",
@@ -3098,7 +3116,7 @@
     "texts": [
      "Security Manger"
     ],
-    "block": "Information Technology Infrastructure Manager AMAREL LTD North District, Israel הגש מועמדות מוקדמת לפני ‏3‏ ‏שעות‏ Security Manger"
+    "block": "Information Technology Infrastructure Manager AMAREL LTD North District, Israel הגש מועמדות מוקדמת לפני ‏5‏ ‏שעות‏ Security Manger"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/it-systems-team-lead-at-cellebrite-4432364361",
@@ -3161,14 +3179,14 @@
     "texts": [
      "Enterprise Applications & Technology Team Lead"
     ],
-    "block": "ystems & Technology Team Lead Enlight Renewable Energy Ltd (ENLT) Rosh HaAyin הגש מועמדות מוקדמת לפני ‏5‏ ‏ימים‏ Enterprise Applications & Technology Team Lead"
+    "block": "ystems & Technology Team Lead Enlight Renewable Energy Ltd (ENLT) Rosh HaAyin הגש מועמדות מוקדמת לפני ‏6‏ ‏ימים‏ Enterprise Applications & Technology Team Lead"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/engineering-it-portfolio-manager-at-applied-materials-israel-4491667331",
     "texts": [
      "Engineering IT Portfolio Manager"
     ],
-    "block": "Enterprise Applications & Technology Team Lead Enlight Renewable Energy Ltd (ENLT) Rosh HaAyin לפני ‏5‏ ‏ימים‏ Engineering IT Portfolio Manager"
+    "block": "Enterprise Applications & Technology Team Lead Enlight Renewable Energy Ltd (ENLT) Rosh HaAyin לפני ‏6‏ ‏ימים‏ Engineering IT Portfolio Manager"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/business-applications-manager-at-personetics-4483391246",
@@ -3266,7 +3284,7 @@
     "texts": [
      "Core Infrastructure Manager"
     ],
-    "block": "Data Center Manager 2171 Bank Hapoalim בנק הפועלים Center District, Israel הגש מועמדות מוקדמת לפני ‏3‏ ‏שעות‏ Core Infrastructure Manager"
+    "block": "Data Center Manager 2171 Bank Hapoalim בנק הפועלים Center District, Israel הגש מועמדות מוקדמת לפני ‏6‏ ‏שעות‏ Core Infrastructure Manager"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/director-networking-ai-and-hpc-clusters-infrastructure-at-nvidia-4482910454",
@@ -3280,7 +3298,7 @@
     "texts": [
      "Senior Manager, IT Infrastructure Department"
     ],
-    "block": "Director, Networking AI and HPC Clusters Infrastructure NVIDIA Yokneam Ilit הגש מועמדות מוקדמת לפני ‏5‏ ‏ימים‏ Senior Manager, IT Infrastructure Department"
+    "block": "Director, Networking AI and HPC Clusters Infrastructure NVIDIA Yokneam Ilit הגש מועמדות מוקדמת לפני ‏6‏ ‏ימים‏ Senior Manager, IT Infrastructure Department"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/ai-manager-at-tnuva-4485502042",
@@ -3308,7 +3326,7 @@
     "texts": [
      "IT Team Lead"
     ],
-    "block": "IT Manager Oriient Tel Aviv District, Israel הגש מועמדות מוקדמת לפני ‏3‏ ‏שעות‏ IT Team Lead"
+    "block": "IT Manager Oriient Tel Aviv District, Israel הגש מועמדות מוקדמת לפני ‏5‏ ‏שעות‏ IT Team Lead"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/software-firmware-team-manager-at-%D7%9E%D7%A2%D7%95%D7%A3-%D7%9E%D7%A9%D7%90%D7%91%D7%99-%D7%90%D7%A0%D7%95%D7%A9-4488293207",
@@ -3546,7 +3564,7 @@
     "texts": [
      "Assistant Controller"
     ],
-    "block": "3D Artist UR Tech Jobs Ashkelon לפני ‏5‏ ‏ימים‏ Assistant Controller Assistant Control"
+    "block": "3D Artist UR Tech Jobs Ashkelon לפני ‏6‏ ‏ימים‏ Assistant Controller Assistant Control"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/electrical-engineer-at-confidential-4488310706",
@@ -3570,67 +3588,74 @@
     "block": "Senior BSP Software Engineer MDA Space Rehovot מגייסים בפועל לפני ‏1‏ ‏יום‏ Embedded Software Engineer - 234714 Embedded Software Engineer - 234714 Experis Israel Rehovot מגייסים בפועל לפני ‏4‏ ‏ימים‏"
    },
    {
+    "url": "https://il.linkedin.com/jobs/view/information-systems-implementer-%E2%80%93-insurance-industry-experience-at-abra-4487765209",
+    "texts": [
+     "Information Systems Implementer – Insurance Industry Experience"
+    ],
+    "block": "Information Systems Implementer – Insurance Industry Experience Information Systems Implementer – Ins"
+   },
+   {
+    "url": "https://il.linkedin.com/jobs/view/senior-systems-analyst-%E2%80%93-data-enterprise-information-%E2%80%93-level-c-4807-at-bynet-software-systems-ltd-4489253255",
+    "texts": [
+     "Senior Systems Analyst – Data & Enterprise Information – Level C - 4807"
+    ],
+    "block": "urance Industry Experience abra Center District, Israel מגייסים בפועל לפני ‏2‏ ‏שבועות‏ Senior Systems Analyst – Data & Enterprise Information – Level C - 4807 Senior Syste"
+   },
+   {
     "url": "https://il.linkedin.com/jobs/view/business-applications-implementation-engineer-at-mobileye-4475435593",
     "texts": [
      "Business Applications Implementation Engineer"
     ],
-    "block": "Business Applications Implementation Engineer"
+    "block": "ms Analyst – Data & Enterprise Information – Level C - 4807 Bynet Software Systems Ltd. Ramat Gan לפני ‏1‏ ‏שבוע‏ Business Applications Implementation Engineer"
+   },
+   {
+    "url": "https://il.linkedin.com/jobs/view/erp-support-implementor-at-challenge-group-4439825873",
+    "texts": [
+     "ERP Support Implementor"
+    ],
+    "block": "Business Applications Implementation Engineer Mobileye Jerusalem District, Israel מגייסים בפועל לפני ‏3‏ ‏ימים‏ ERP Support Implementor"
+   },
+   {
+    "url": "https://il.linkedin.com/jobs/view/%D7%9E%D7%99%D7%99%D7%A9%D7%9E-%D7%AA-sap-at-iai-israel-aerospace-industries-4478850979",
+    "texts": [
+     "מיישמ/ת SAP"
+    ],
+    "block": "ERP Support Implementor Challenge Group Shoham מגייסים בפועל לפני ‏1‏ ‏יום‏ מיישמ/ת SAP"
+   },
+   {
+    "url": "https://il.linkedin.com/jobs/view/%D7%9E%D7%94%D7%A0%D7%93%D7%A1-%D7%AA-it-at-elbit-systems-israel-4429898535",
+    "texts": [
+     "מהנדס.ת IT"
+    ],
+    "block": "מיישמ/ת SAP IAI - Israel Aerospace Industries Lod מגייסים בפועל לפני ‏2‏ ‏שבועות‏ מהנדס.ת IT"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/%D7%9E%D7%99%D7%99%D7%A9%D7%9D-%D7%AA-%D7%9E%D7%A2%D7%A8%D7%9B%D7%95%D7%AA-%D7%9E%D7%99%D7%93%D7%A2-%D7%92-%D7%95%D7%A0%D7%99%D7%95%D7%A8-%D7%9C%D7%9E%D7%A4%D7%A2%D7%9C-%D7%91%D7%93%D7%A8%D7%95%D7%9D-at-ursa-group-4487891668",
     "texts": [
      "מיישם/ת מערכות מידע ג'וניור למפעל בדרום"
     ],
-    "block": "Business Applications Implementation Engineer Mobileye Jerusalem District, Israel מגייסים בפועל לפני ‏3‏ ‏ימים‏ מיישם/ת מערכות מידע ג'וניור למפעל בדרום"
+    "block": "מהנדס.ת IT Elbit Systems Israel Netanya מגייסים בפועל לפני ‏2‏ ‏שבועות‏ מיישם/ת מערכות מידע ג'וניור למפעל בדרום"
    },
    {
-    "url": "https://il.linkedin.com/jobs/view/erp-implementer-at-logica-it-4491391394",
+    "url": "https://il.linkedin.com/jobs/view/information-systems-implementer-at-abra-4485402140",
     "texts": [
-     "ERP Implementer"
+     "Information Systems Implementer"
     ],
-    "block": "מיישם/ת מערכות מידע ג'וניור למפעל בדרום Ursa Group Ashkelon לפני ‏1‏ ‏שבוע‏ ERP Implementer"
+    "block": "מיישם/ת מערכות מידע ג'וניור למפעל בדרום Ursa Group Ashkelon לפני ‏1‏ ‏שבוע‏ Information Systems Implementer"
    },
    {
-    "url": "https://il.linkedin.com/jobs/view/windows-network-manager-at-weizmann-institute-of-science-4490454348",
+    "url": "https://il.linkedin.com/jobs/view/system-analyst-25717-at-yael-group-4481087462",
     "texts": [
-     "Windows Network Manager"
+     "System Analyst (25717)"
     ],
-    "block": "Director of Enterprise Applications & Data KAMADA Rehovot לפני ‏4‏ ‏שבועות‏ Windows Network Manager"
+    "block": "Information Systems Implementer abra Center District, Israel הגש מועמדות מוקדמת לפני ‏3‏ ‏שבועות‏ System Analyst (25717)"
    },
    {
-    "url": "https://il.linkedin.com/jobs/view/it-infrastructure-expert-at-elbit-systems-israel-4429870537",
+    "url": "https://il.linkedin.com/jobs/view/information-technology-system-engineer-at-classiq-4488867921",
     "texts": [
-     "IT Infrastructure Expert"
+     "Information Technology System Engineer"
     ],
-    "block": "IT Infrastructure Maintenance Team Lead Commit Beer Yaakov מגייסים בפועל לפני ‏1‏ ‏שבוע‏ IT Infrastructure Expert"
-   },
-   {
-    "url": "https://il.linkedin.com/jobs/view/system-administrator-at-iai-israel-aerospace-industries-4399105085",
-    "texts": [
-     "System Administrator"
-    ],
-    "block": "IT Infrastructure Expert Elbit Systems Israel Rehovot מגייסים בפועל לפני ‏5‏ ‏שעות‏ System Administrator"
-   },
-   {
-    "url": "https://il.linkedin.com/jobs/view/information-security-cybersecurity-manager-at-ayalon-highways-4490335985",
-    "texts": [
-     "Information Security & Cybersecurity Manager"
-    ],
-    "block": "IT Infrastructure Maintenance Team Lead Commit Beer Yaakov מגייסים בפועל לפני ‏1‏ ‏שבוע‏ Information Security & Cybersecurity Manager"
-   },
-   {
-    "url": "https://il.linkedin.com/jobs/view/hpc-support-team-lead-at-weizmann-institute-of-science-4490444535",
-    "texts": [
-     "HPC Support Team Lead"
-    ],
-    "block": "Windows Network Manager Weizmann Institute of Science Rehovot הגש מועמדות מוקדמת לפני ‏5‏ ‏ימים‏ HPC Support Team Lead"
-   },
-   {
-    "url": "https://il.linkedin.com/jobs/view/sales-application-lead-at-hp-4488112536",
-    "texts": [
-     "Sales Application Lead"
-    ],
-    "block": "Head of Information Technology KAMADA Rehovot לפני ‏6‏ ‏ימים‏ Sales Application Lead"
+    "block": "System Analyst (25717) Yael Group Kfar Saba מגייסים בפועל לפני ‏4‏ ‏שבועות‏ Information Technology System Engineer Information Technology System Engineer Classiq Tel Aviv District, Israel לפני ‏1‏ ‏שבוע‏"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/chief-information-security-officer-ciso-at-neotech-israel-%D7%A0%D7%99%D7%90%D7%95%D7%98%D7%A7-%D7%99%D7%A9%D7%A8%D7%90%D7%9C-4482298128",
@@ -3645,6 +3670,13 @@
      "Head of HR & ERP Systems"
     ],
     "block": "Chief Information Security Officer- CISO NeoTech Israel | ניאוטק ישראל Rishon LeZion לפני ‏3‏ ‏שבועות‏ Head of HR & ERP Systems"
+   },
+   {
+    "url": "https://il.linkedin.com/jobs/view/information-security-cybersecurity-manager-at-ayalon-highways-4490335985",
+    "texts": [
+     "Information Security & Cybersecurity Manager"
+    ],
+    "block": "Head of HR & ERP Systems Weizmann Institute of Science Rehovot הגש מועמדות מוקדמת לפני ‏9‏ ‏שעות‏ Information Security & Cybersecurity Manager"
    },
    {
     "url": "https://il.linkedin.com/jobs/view/%D7%A8%D7%90%D7%A9-%D7%AA-%D7%AA%D7%97%D7%95%D7%9D-%D7%90%D7%A8%D7%9B%D7%99%D7%98%D7%A7%D7%98%D7%95%D7%A8%D7%94-%D7%95%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9C%D7%9E%D7%A0%D7%94%D7%9C-cto-at-iai-israel-aerospace-industries-4489212106",
