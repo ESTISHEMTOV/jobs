@@ -11,7 +11,21 @@ const now = new Date();
 const part = (t, opts) => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, ...opts }).format(now);
 const g = (type) => new Intl.DateTimeFormat('en-GB', { timeZone: TZ, day: '2-digit', month: '2-digit', year: 'numeric' })
   .formatToParts(now).find(x => x.type === type).value;
-const D = `${g('day')}.${g('month')}.${g('year')}`;                          // 25.06.2026
+const D = `${g('day')}.${g('month')}.${g('year')}`;
+// ===== זמני מוכנות העמוד (שעון ישראל): 10:00, 13:00, 17:00 =====
+// GitHub delays scheduled runs (sometimes by hours), so the workflow fires every 30 min and this gate decides:
+// run in the 90 minutes before each target (or up to 60 min after, if all earlier attempts were delayed), once per window.
+const READY_AT = [10 * 60, 13 * 60, 17 * 60], LEAD_MIN = 90, LATE_MIN = 60;
+if (process.env.GITHUB_EVENT_NAME === 'schedule') {
+  const hm = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Jerusalem', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()).map(p => [p.type, p.value]));
+  const nowMin = (+hm.hour % 24) * 60 + +hm.minute;   // minutes since midnight, Israel time (DST handled by the time zone)
+  const target = READY_AT.find(t => nowMin >= t - LEAD_MIN && nowMin < t + LATE_MIN);
+  if (target === undefined) { console.log('Outside the run windows (before 10:00 / 13:00 / 17:00 Israel time) — skipping.'); process.exit(0); }
+  let last = 0; try { last = Date.parse((await readFile('data/last-run.txt', 'utf8')).trim()) || 0; } catch {}
+  const windowStart = Date.now() - (nowMin - (target - LEAD_MIN)) * 60000;
+  if (last >= windowStart) { console.log(`Already refreshed for the ${target / 60}:00 window — skipping.`); process.exit(0); }
+  console.log(`Running for the ${target / 60}:00 window.`);
+}                          // 25.06.2026
 const dFull = new Intl.DateTimeFormat('he-IL', { timeZone: TZ, weekday: 'long', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).format(now);
 
 const UAS = [
@@ -96,6 +110,7 @@ const MORE_SITES = [
   ["ג'וב קרוב", 'https://www.jobkarov.com/Search/?speciality=1857&role=1864%2C3387'],  // מסונן: מערכות מידע
   ['זיוה בן פורת', 'https://www.zivabenporat.com/jobs'],
   ['Sharon Careers', 'https://sharoncareers.site/?search_category=172'],  // מסונן: מערכות מידע
+  ['אמיל', 'https://emil.co.il/#/jobs'],   // אתר שנטען ב-JavaScript — ייתכן שיחזור ריק (תופיע על כך הערה)
 ];
 const MORE_HOSTS = new Set();
 for (const [n, u] of MORE_SITES) {
@@ -145,7 +160,7 @@ for (const [name, url] of BOARDS) {
     });
     const txt = decodeEntities(raw.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim();
     if (txt.length < 300) { empty.push(name); continue; }
-    pages.push({ name, url, txt, links: realUrls.size - linksBefore });
+    pages.push({ name, url, txt: txt.replace(/המשרה הוחזרה לרשימת תוצאות החיפוש|האם תרצה להסיר את המשרה[^?]*\?\s*(כן\s*לא)?|אירעה שגיאה בשליחת פרטיך[^.]*/g, ' '), links: realUrls.size - linksBefore });
     console.log(`  ${name}: ${txt.length} chars, ${realUrls.size - linksBefore} direct links | ${safeDecodeURI(url).slice(0, 110)}`);
     loaded.push(name);
   } catch { blocked.push(name); }
@@ -416,11 +431,14 @@ jobs.forEach(j => { for (const m of MANUAL_LOCATIONS) {
 jobs.forEach(j => { const k = nearKm(j.location); if (k !== null && k < j.km) j.km = k; });
 // Title rules enforced in code (Gemini doesn't always obey the blacklist).
 const BROAD = /מערכות מידע|information systems|information technology(?! infrastructure)|\bCIO\b|chief information|head of (it|information|technology)|מנמ"?ר|\bIT manager|IT director|director of (it|information)|מנהל\/?ת? (it|טכנולוגיות|אפליקציות|יישומים)|applications manager/i;
-const TITLE_BLOCK = /team ?lead|ראש[\/.]?ת?\s*צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\/?ת? פרויקט|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer|מעבד(ה|ת)|\blab\b|laboratory|ייצור|production|manufacturing/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
-const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b|מכירות|\bsales\b|(^|[\s\/-])סחר(?=[\s,\/-]|$)/i;   // support / sales   // support roles — dropped unless the title is ALSO broad IS/IT management
+const TITLE_BLOCK = /team ?lead|ראש[\/.]?ת?\s*צוות|devops|developer|^\s*מפתח|מפתח\/ת|מפתחת|analyst|מנתח|project manager|מנהל\s*[\/.]?\s*ת?\s*פרו?ייקט|הטמעת|\bCEO\b|chief executive|general manager|(^|[\s,(])מנכ"?ל|\bPMO\b|engineer|מהנדס|\bDBA\b|CCoE|junior|ג'וניור|\brisk\b|סיכונ|\bGRC\b|compliance|(^|[\s,–-])ו?ציות(?=[\s,–-]|$)|FP&A|\bfinance\b|כספים|controller|(^|\s)חשב(\/?ת)?(\s|$)|\bCISO\b|infosec|information security officer|מעבד(ה|ת)|\blab\b|laboratory|ייצור|production|manufacturing/i;   // never a fit (incl. risk, finance, CISO — even "CISO & Head of IT")
+const SOFT_BLOCK = /help ?desk|service ?desk|תמיכה|\bsupport\b|מכירות|\bsales\b|(^|[\s\/-])סחר(?=[\s,\/-]|$)|שיווק|marketing|software|\bSW\b|R&D|מו"?פ|פיתוח|salesforce|נכס דיגיטלי|digital asset|product|מוצר|data ?cent(er|re)|דאטה ?סנטר|חוות שרתים/i;   // support / sales   // support roles — dropped unless the title is ALSO broad IS/IT management
 const NARROW = /infrastructure|תשתיות|security|אבטחת מידע|סייבר|cyber|\bMIS\b|\bcloud\b|ענן|\bBI\b|business intelligence/i;   // narrow domain — kept only if the title is ALSO broad IS/IT management
 const droppedTitles = [];
+// POSITIVE rule: the title must name an IS / IT / technology / applications role at all (Gemini sometimes adds unrelated roles).
+const POSITIVE = /מערכות|\bIT\b|\bIS\b|\bO?CIO\b|\bCTO\b|מנמ"?ר|טכנולוג|technolog|information|אפליקציות|יישומים|applications|\bERP\b|\bSAP\b|priority|פריוריטי|מחשוב|דיגיט|digital|systems/i;
 const applyTitleRules = () => { jobs = jobs.filter(j => { const t = j.title;
+  if (!POSITIVE.test(t)) { droppedTitles.push(t); return false; }
   // judge "broad" WITHOUT the narrow words: "Head of IT Infrastructure" → "Head of" (narrow), "מנהל/ת מערכות מידע ואבטחת מידע" → still broad
   const broad = BROAD.test(t.replace(/(information technology|\bit)\s+infrastructure|infrastructure|תשתיות(\s+(it|מחשוב))?|(information\s+)?security|אבטחת מידע|סייבר|cyber|\bCISO\b|\bMIS\b|\bcloud\b|ענן|\bBI\b|business intelligence/ig, ' '));
   const bad = TITLE_BLOCK.test(t) || ((NARROW.test(t) || SOFT_BLOCK.test(t)) && !broad);
@@ -433,8 +451,8 @@ applyTitleRules();
 // LinkedIn search cards don't show Hybrid/On-site → open each LinkedIn job page and look for an EXPLICIT statement.
 // Only an explicit hybrid/remote statement makes it "yes"; anything unclear stays "na" (better to miss a hybrid than to mislabel an on-site job).
 // Specific "closed" phrases only, tested on VISIBLE text (scripts/styles removed) — generic words like "לא נמצאה" appear on valid pages too.
-const EXPIRED = /(ה?משרה|ה?מודעה)( זו| זאת| שחיפשת| המבוקשת)? (הוסרה|נמחקה|נסגרה|אוישה|אינה פעילה|לא פעילה|כבר אינה פעילה|כבר לא פעילה|אינה קיימת|לא קיימת|לא נמצאה|אינה זמינה|כבר לא רלוונטית)|הוסרה מהלוח|הוסרה מהאתר|תוקף (המשרה|המודעה) פג|(no longer|not currently|not|isn.?t|is not) (accepting|taking) (new )?applications|applications? (are|is)? ?(now )?closed|(לא|כבר לא|אינה|אינו) (מקבל(ת|ים)?|מקבלים כעת) (מועמדויות|מועמדים|בקשות)|this job is no longer available|job (has been )?(removed|closed|expired)|כבר לא מקבלים מועמדים/i;
-const SITE_BOILERPLATE = /המשרה נמחקה,? ?תוכל לצפות בה בדף המשרות[^.]*|חלק בשיפור התוכן שלנו[^.]*/g;   // fixed messages present on EVERY page of a site
+const EXPIRED = /(ה?משרה|ה?מודעה)( זו| זאת| שחיפשת| המבוקשת)? (הוסרה|נמחקה|נסגרה|אוישה|אינה פעילה|לא פעילה|כבר אינה פעילה|כבר לא פעילה|אינה קיימת|לא קיימת|לא נמצאה|אינה זמינה|כבר לא רלוונטית)|הוסרה מהלוח|הוסרה מהאתר|לא אקטואלית|אינה אקטואלית|תוקף (המשרה|המודעה) פג|(no longer|not currently|not|isn.?t|is not) (accepting|taking) (new )?applications|applications? (are|is)? ?(now )?closed|(לא|כבר לא|אינה|אינו) (מקבל(ת|ים)?|מקבלים כעת) (מועמדויות|מועמדים|בקשות)|this job is no longer available|job (has been )?(removed|closed|expired)|כבר לא מקבלים מועמדים/i;
+const SITE_BOILERPLATE = /המשרה נמחקה,? ?תוכל לצפות בה בדף המשרות[^.]*|חלק בשיפור התוכן שלנו[^.]*|המשרה הוחזרה לרשימת תוצאות החיפוש|האם תרצה להסיר את המשרה[^?]*\?\s*(כן\s*לא)?|אירעה שגיאה בשליחת פרטיך[^.]*/g;   // fixed messages present on EVERY page of a site
 const visibleText = h => decodeEntities(String(h || '').replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ');
 const expiredDrops = [];
 const HYB_YES = /\bhybrid\b(?![\s-]*(cloud|environment|infrastructure|it\b|architecture|solution|system|data|network))|היברידי|work(ing)? from home|\bWFH\b|remote work|fully remote|remote position|remote-first|עבודה מהבית|ימים? מהבית/i;
@@ -518,10 +536,11 @@ const statedLocation = lines => {
   }
   return null;
 };
-const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u);   // LinkedIn already checked above
+const isDirect = (u) => /checknum\.asp|alljobs\.co\.il\/Search\/UploadSingle|drushim\.co\.il\/job\//i.test(u)
+  || (!!directUrlKey({ url: u }) && (() => { try { return MORE_HOSTS.has(new URL(u).hostname.replace(/^www\./, '')); } catch { return false; } })());   // + single-job pages on the added sites (e.g. Ziva Ben Porat)
 // SAFETY NET (independent of Gemini): a board listing whose OWN title is clearly one of the target roles must not vanish.
 // If Gemini didn't return it, add it with the site's exact title; location = first known city in its listing block (else "לא צוין").
-const STRONG_TITLE = /מנהל\/?\.?ת? ?מערכות מידע|מנמ"?ר|\bCIO\b|chief information officer|information systems manager|\bIT manager\b|head of (it|information)|director of (it|information)|מנהל\/?\.?ת? ?(it|IT)\b|מנהל\/?\.?ת? ?(תחום )?(אפליקציות|יישומים)|business applications manager/i;
+const STRONG_TITLE = /מנהל\s*[\/.]?\s*ת?\s*מערכות מידע|מנמ"?ר|\bCIO\b|chief information officer|information systems manager|\bIT manager\b|head of (it|information)|director of (it|information)|מנהל\s*[\/.]?\s*ת?\s*(it|IT)\b|מנהל\s*[\/.]?\s*ת?\s*(תחום )?(אפליקציות|יישומים)|business applications manager/i;
 const safetyAdds = [];
 { const have = new Set(jobs.flatMap(keysOf));
   for (const [url, info] of linkInfo) {
@@ -538,14 +557,15 @@ const safetyAdds = [];
     jobs.push(cand); keysOf(cand).forEach(k => have.add(k)); safetyAdds.push(`${info.title} (${info.site}, ${cand.location})`);
   } }
 if (safetyAdds.length) console.log(`::notice::Added by the safety net — listings with a target-role title that Gemini missed (${safetyAdds.length}): ${safetyAdds.join(' · ').slice(0, 900)}`);
-const checked = [];
+const checked = [], pageChecks = [];
 for (const j of jobs) {
   if (!isDirect(j.url)) { checked.push(j); continue; }   // search/Google links can't be expiry-checked → keep
   try {
     const r = await fetch(j.url, { headers: { 'User-Agent': UAS[0], 'Accept-Language': 'he-IL' }, signal: AbortSignal.timeout(15000) });
     const raw = r.ok ? await r.text() : '';
+    const rec = { url: j.url, title: j.title, location: j.location, status: r.status }; pageChecks.push(rec);
     const t = visibleText(raw).replace(SITE_BOILERPLATE, ' ');
-    if (j.carried) { const mx = t.match(EXPIRED); if (mx) { const i = t.indexOf(mx[0]); expiredDrops.push(`${j.title} ["…${t.slice(Math.max(0, i - 25), i + mx[0].length + 25).trim()}…"]`); continue; } }   // only carried-over jobs: a job found in this run came from live search results
+    { const mx = t.match(EXPIRED); if (mx) { rec.closed = mx[0]; const i = t.indexOf(mx[0]); expiredDrops.push(`${j.title} ["…${t.slice(Math.max(0, i - 25), i + mx[0].length + 25).trim()}…"]`); continue; } }   // every job: AllJobs/JobMaster search results DO include removed listings
     // Does the link really lead to THIS job? Compare the page's job title with the recorded title.
     const cands = pageJobTitles(raw).map(t => ({ t, ov: overlap(t, j.title) })).sort((a, b) => b.ov - a.ov);
     const pt = cands.length && cands[0].ov >= 0.5 ? cands[0].t : (cands.length === 1 ? cands[0].t : '');   // best match, or the page's single job title
@@ -555,6 +575,7 @@ for (const j of jobs) {
     }
     const lines = raw ? visibleLines(raw) : [];
     const sl = statedLocation(lines);   // the page states the job's location → it wins, and no branch search
+    rec.pageTitle = pt || ''; rec.locationLine = sl ? sl.line : (lines.find(l => /מיקום|אזור|location/i.test(l) && l.length < 80) || '');
     if (sl) { if (sl.text !== j.location && !j.manual) { locFixes.push(`${j.title}: ${j.location} → ${sl.text} [line: "${sl.line.slice(0, 60)}"]`); j.location = sl.text; j.km = sl.km; } }
     const nb = !sl && raw && nearerBranch(j, lines);
     if (nb && nb.km < j.km) { branchFixes.push(`${j.title}: ${j.location} → ${nb.name}/${j.location} [line: "${nb.line.slice(0, 80)}"]`); j.location = `${nb.name}/${j.location}`; j.km = nb.km; }
@@ -702,7 +723,8 @@ await mkdir('data', { recursive: true });
 await writeFile('index.html', html, 'utf8');
 await writeFile('data/jobs-today.json', JSON.stringify(todayState, null, 2), 'utf8');
 await writeFile('data/seen.json', JSON.stringify(H), 'utf8');
-await writeFile('data/debug-listings.json', JSON.stringify({ date: D, gemini: geminiReturned, sites: [...allLinks.entries()].reduce((o, [u, e]) => { const i = linkInfo.get(u) || {}; (o[e.site] ||= []).push({ url: u, texts: e.texts, block: String(i.block || '').replace(/\[URL:[^\]]*\]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 220) }); return o; }, {}) }, null, 1), 'utf8');
+await writeFile('data/last-run.txt', new Date().toISOString(), 'utf8');
+await writeFile('data/debug-listings.json', JSON.stringify({ date: D, gemini: geminiReturned, pageChecks, sites: [...allLinks.entries()].reduce((o, [u, e]) => { const i = linkInfo.get(u) || {}; (o[e.site] ||= []).push({ url: u, texts: e.texts, block: String(i.block || '').replace(/\[URL:[^\]]*\]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 220) }); return o; }, {}) }, null, 1), 'utf8');
 await writeFile('data/jobs-shown.json', JSON.stringify(jobs.map(j => ({ title: j.title, company: j.company, location: j.location, km: j.km, hybrid: j.hybrid, desc: j.desc, source: j.source, url: j.url, lastReal: j.lastReal || isoToday })), null, 1), 'utf8');
 await writeFile('data/jobs-yesterday.json', JSON.stringify(Y, null, 2), 'utf8');
 console.log(`::notice::Page updated: ${jobs.length} jobs (${jobs.filter(j => j.km <= NEAR_KM).length} within ${NEAR_KM} km). Loaded ${[...new Set(loaded)].join(', ') || 'none'}; blocked ${[...new Set(blocked)].join(', ') || 'none'}.`);
