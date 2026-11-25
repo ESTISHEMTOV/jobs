@@ -1,9 +1,8 @@
 name: Daily Jobs Refresh
 on:
   schedule:
-    - cron: '0 2 * * *'
-    - cron: '0 8 * * *'
-    - cron: '0 11 * * *'
+    # כל 30 דקות בין 05:13 ל-15:43 UTC. הסקריפט עצמו מחליט אם לרוץ, כך שהעמוד מוכן עד 10:00, 13:00 ו-17:00 שעון ישראל (קיץ וחורף).
+    - cron: '13,43 5-15 * * *'
   workflow_dispatch: {}
 permissions:
   contents: write
